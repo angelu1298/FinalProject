@@ -1,30 +1,33 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
-<%@ include file="/inc/boardHeader.jsp" %>
+<%@ include file="/inc/boardHeader.jsp"%>
 <!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
 
 <section class="sub_container">
 
-<%@ include file="/inc/leftMenu05.jsp" %>
-		<!-- 서브메뉴에 따라 Side Navigation을 다르게 부여해준다. -->	
-		
-		<!-- 서브컨텐츠 영역 START -->
-		<div class="subContent">
-			<h3>후기게시판</h3>
-			
-			<h4>글쓰기</h4>
-		
-			<form action="sboardwrite_ok.brn" method="post" enctype="multipart/form-data" id="sboardwrite">
+	<%@ include file="/inc/leftMenu05.jsp"%>
+	<!-- 서브메뉴에 따라 Side Navigation을 다르게 부여해준다. -->
+
+	<!-- 서브컨텐츠 영역 START -->
+	<div class="subContent">
+		<h3>후기게시판</h3>
+
+		<h4>글쓰기</h4>
+
+		<form action="sboardwrite_ok.brn" method="post"
+			enctype="multipart/form-data" id="sboardwrite">
 			<!--게시글-->
-			<div class="Board_write"> 
+			<div class="Board_write">
 				<!--제목-->
 				<div class="board_tit">
-					<input type="text" name="s_sj" id="s_sj" placeholder="제목을 입력해주세요."/>
+					<input type="text" name="s_sj" id="s_sj" placeholder="제목을 입력해주세요." />
 				</div>
 				<!--정보-->
 				<script>
 				
-				$(function(){	var oEditors = [];
+				$(function(){	
+					var oEditors = [];
 					
 					// 추가 글꼴 목록
 					//var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
@@ -32,7 +35,7 @@
 					nhn.husky.EZCreator.createInIFrame({
 						oAppRef: oEditors,
 						elPlaceHolder: "s_ct",
-						sSkinURI: "./html_community/se/SmartEditor2Skin.html",	
+						sSkinURI: "./resources/editor/SmartEditor2Skin.html",	
 						htParams : {
 							bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
 							bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -65,41 +68,41 @@
 						
 						
 					})
-				});
+ 
+					
+					$('.file_Area').on('click', ".btn_add", function(){ 
+					    var fileIndex = $("#fileview li input[type=file]").length;      
+					    $("#fileview").append(
+					            "<li>"
+					            + "<input type=\"file\" name=\"s_fl["+ fileIndex +"]\" />"
+					            + "<input class=\"btn_add\" type=\"button\" value=\"파일추가\" />"
+					            + "<input class=\"btn_del\" type=\"button\" value=\"파일삭제\" />"
+					            + '</li>'
+					     );
+					});    
+					
+					$(document).on('click', ".btn_del", function(){ 
+						    var fileIndex = $("#fileview li input[type=file]").length;
+					    $(this).parent("li").remove();
+					});
+				})
 				</script>
-				<div class="Editor_area"> 
-					<textarea name="s_ct" id="s_ct" rows="10" cols="766px" style="display:none;"></textarea>
+				<div class="Editor_area">
+					<textarea name="s_ct" id="s_ct" rows="10" cols="766px"
+						style="display: none;"></textarea>
 				</div>
 				<!--첨부파일-->
 				<div class="file_Area">
-					<h6><strong>첨부파일</strong></h6>
-					<script>
-						$(function(){
-							$('.file_Area').on('click','.btn_del', function(){
-								if($('#s_fl').length==1){
-									$('.addfile > li:first-child').after('<li class="pdf">' +
-									 '<input type="file" name="s_fl2" id="s_fl2" class="s_fl" value="파일추가">'+
-									 '<input type="button" class="btn_del"></li>');
-								}else if($('#s_fl2').val()!=''){
-									$('.pdf:nth-child(2)').after('<li class="pdf">' +
-											 '<input type="file" name="s_fl3" id="s_fl3" class="s_fl" value="파일추가">'+
-											 '<input type="button" class="btn_del"></li>');
-								}else if($('#s_fl2').val()!=''){
-									alert('더이상 파일을 업로드 할 수 없습니다');
-								}
-							$('.btn_del').each(function(index,item){
-								$(this).on('click',function(){
-									if($(this).parent('li')!=$('.addfile > li:first-child'))
-										$(this).parent('li').remove();
-								})
-							})
-							})
-						})
-					</script>
-					<ul class="addfile">
-						<li class="pdf"><input type="file" name="s_fl" id="s_fl" class="s_fl" value="파일추가"><input type="button" class="btn_del"></li>
-					</ul>
-				</div>
+						<h6>	
+							<strong>첨부파일</strong>
+						</h6>
+						<ul id="fileview">
+							<li>
+								<input name="s_fl[0]" type="file" />
+								<input class="btn_add" type="button" value="파일추가" />
+							</li>
+						</ul>
+					</div>
 				<!--//첨부파일-->
 			</div>
 			<!--//게시글-->
@@ -113,11 +116,11 @@
 					<a href="#" class="black" id="formsubmit">등록</a>
 				</div>
 			</div>
-			<!--//버튼영역--> 
-			</form>
-		</div>
-		
-		<!--//게시글영역-->
+			<!--//버튼영역-->
+		</form>
+	</div>
+
+	<!--//게시글영역-->
 	<!-- 서브컨텐츠 영역 END -->
 	</div>
 </section>

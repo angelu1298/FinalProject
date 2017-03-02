@@ -142,7 +142,7 @@
 	<!-- 코멘트 입력시 게시물의 코멘트 수 증가  -->
 	<update id="updatescommcnt" parameterType="int" >
     	update sboard
-    		set scomm_cnt = scomm_cnt+1
+    		set scomm_cnt = (select count(*) from scomment where s_no=#{s_no})
     	where s_no=#{s_no}
     </update>
     

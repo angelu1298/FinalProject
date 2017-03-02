@@ -72,24 +72,22 @@
 					<p>
 					<a href="sboardList.brn?page=1" class="pre" title="맨앞">&lt;&lt;</a>
 					<c:if test="${page <=1 }">
-						<span>&lt;&nbsp;</span>
+						<a href="#">&lt;</a>
 					</c:if>
-					
 					<c:if test="${page > 1 }">
-						<a href="sboardList.brn?page=${page-1}" class="pre" title="이전페이지">&lt;</a>&nbsp;
+						<a href="sboardList.brn?page=${page-1}" class="pre" title="이전페이지">&lt;</a>
 					</c:if>			
-		
 					<c:forEach var="a" begin="${startpage}" end="${endpage}">
 						<c:if test="${a == page }">
-							<span>${a}</span>
+							<a href="#">${a}</a>
 						</c:if>
 						<c:if test="${a != page }">
-							<a href="sboardList.brn?page=${a}"><strong><span>${a}</span></strong></a>&nbsp;
+							<a href="sboardList.brn?page=${a}"><strong>${a}</strong></a>
 						</c:if>
 					</c:forEach>			
 					
 					<c:if test="${page >= maxpage }">
-						<span>&gt;</span>
+						<a href="#">&gt;</a>
 					</c:if>
 					<c:if test="${page < maxpage }">
 						<a href="sboardList.brn?page=${page+1}">&gt;</a>
@@ -104,6 +102,12 @@
 		  	onsubmit="return find_check()" name="search">
 			<div class="borad_srch">
 				<!--한줄-->
+					<!--//검색영역-->
+					<select id="viewcount" name="limit">
+						<option value="20">20줄보기</option>
+						<option value="50">50줄보기</option>
+						<option value="100">100줄보기</option>
+					</select> 
 				<p class="col">
 					<label for="srch_sel01" class="sc_txt">검색영역</label>
 					<select class="w180 mr10" id="srch_sel01" name="find_field">
@@ -114,12 +118,6 @@
 					</select>
 					<label for="srch_txt" class="dnone"></label><input type="text" name="find_name" id="srch_txt" class="w280 mr10" value="검색어를 입력하세요"/>
 					<input type="submit" class="btn_srch" value="검색" />
-					<!--//검색영역-->
-					<select id="viewcount" name="limit">
-						<option value="20">20줄보기</option>
-						<option value="50">50줄보기</option>
-						<option value="100">100줄보기</option>
-					</select> 
 				</p>
 				<!--한줄-->
 			</div>

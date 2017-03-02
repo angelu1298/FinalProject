@@ -59,8 +59,12 @@
 				<!--첨부파일-->
 				<div class="file_Area">
 					<ul class="addfile">
-						<li class="pdf"><a href="./resources/upload${sbean.s_fl}" 
-      						target="_blank">${sbean.s_fl }</a></li>
+					<c:if test="${!empty filenames }">
+						<c:forEach items="${filenames }" var="filename">
+						<li class="pdf"><a href="./resources/upload${filename}" 
+      						target="_blank">${filename}</a></li>
+      					</c:forEach>
+      				</c:if>
 					</ul>
 				</div>
 				<!--//첨부파일-->
