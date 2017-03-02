@@ -39,7 +39,7 @@ public class SboardAction {
 
 	@RequestMapping(value = "/sboardWrite.brn")
 	public String sboardwrite() {
-		return "sboard/sboardWrite"; // html_community/sboard 폴더의
+		return "html_community/sboard/sboardWrite"; // html_community/sboard 폴더의
 										// sboardWrite.jsp 뷰 페이지가 실행
 	}
 
@@ -124,7 +124,8 @@ public class SboardAction {
 	service.insertSboard(bean); // 저장메서드 호출
 
 	// 자신이 쓴 글 세부 페이지로 보내는 방법 생각하기
-	response.sendRedirect("sboardcont.brn?s_no="+bean.getS_no()+"&state=cont");return null;
+	response.sendRedirect("sboardcont.brn?s_no="+bean.getS_no()+"&state=cont");
+	return null;
 
 	}
 
@@ -167,7 +168,7 @@ public class SboardAction {
 			m.put("limit", limit);
 			
 			List<SboardBean> slist = service.getSboardList(m); 
-				ModelAndView model=new ModelAndView("sboard/sboardList");
+				ModelAndView model=new ModelAndView("html_community/sboard/sboardList");
 				model.addObject("page", page);
 				model.addObject("limit", limit);
 				model.addObject("maxpage", maxpage);
@@ -241,14 +242,14 @@ public class SboardAction {
 
 			if (state.equals("cont")) {// 내용보기
 				service.sboardHit(s_no);// 조회수 증가
-				contM.setViewName("sboard/sboardView");
+				contM.setViewName("html_community/sboard/sboardView");
 
 				// 글내용 중 엔터키 친부분을 다음줄로 개행 처리
 				String s_ct = bean.getS_ct().replace("\n", "<br/>");
 
 				contM.addObject("s_ct", s_ct);
 			} else if (state.equals("edit")) {
-				contM.setViewName("sboard/sboardEdit");
+				contM.setViewName("html_community/sboard/sboardEdit");
 			}
 			if (bean.getS_fl() != null) {
 				StringTokenizer token = new StringTokenizer(bean.getS_fl(), ",");
@@ -411,7 +412,7 @@ public class SboardAction {
 
 		List<SboardBean> slist = service.getSboardListSearch(m);
 
-		ModelAndView model = new ModelAndView("sboard/sboardList");
+		ModelAndView model = new ModelAndView("html_community/sboard/sboardList");
 		model.addObject("limit", limit);
 		model.addObject("find_name", find_name);
 		model.addObject("find_field", find_field);
@@ -470,7 +471,7 @@ public class SboardAction {
 
 		List<SboardBean> slist = service.getSboardListSearch(m);
 
-		ModelAndView model = new ModelAndView("sboard/sboardView");
+		ModelAndView model = new ModelAndView("html_community/sboard/sboardView");
 		model.addObject("find_name", find_name);
 		model.addObject("find_field", find_field);
 		model.addObject("page", page);

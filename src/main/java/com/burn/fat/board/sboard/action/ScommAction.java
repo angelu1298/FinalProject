@@ -53,7 +53,7 @@ public class ScommAction {
 	public ModelAndView scommList(HttpServletRequest request,
 			HttpServletResponse response,@RequestParam(value="s_no") int s_no) throws Exception{
 		List<ScommBean> beanlist = new ArrayList<ScommBean>();
-		ModelAndView model=new ModelAndView("sboard/scommList");
+		ModelAndView model=new ModelAndView("html_community/sboard/scommList");
 		beanlist = service.getCommList(s_no);
 		model.addObject("beanlist",beanlist);
 		
@@ -61,7 +61,7 @@ public class ScommAction {
 	}
 	
 	@RequestMapping(value="/scommdelete_ok.brn", method=RequestMethod.POST)
-	public void scommDelet(HttpServletRequest request,
+	public void scommDelete(HttpServletRequest request,
 			HttpServletResponse response,@RequestParam(value="s_no") int s_no,@RequestParam(value="scomm_no") int scomm_no)throws Exception{
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("scomm_no", scomm_no);

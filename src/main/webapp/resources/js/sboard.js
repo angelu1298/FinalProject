@@ -55,8 +55,7 @@ function scrap_ok(){
 		},
 		error : function(data, status){
 			alert('게시물 스크랩에 실패하셨습니다'+status+data);
-		},
-		 headers : {"cache-control": "no-cache","pragma": "no-cache"}
+		}
 	})
 }
 
@@ -77,13 +76,14 @@ function scomm_write(){
 		success : function(data){
 			if(data==1){
 			$('.commentList').empty();
-			$('.commentList').load("scommList.brn",'s_no='+s_no);
+			$('.commentList').load("./scommList.brn",'s_no='+s_no);
 			}else{
 				alert('실패!!'+data);
 			}
 		},
 		error: function(data, status){
 			alert('실패 ㅠㅠ '+data + status);
-		}
+		},
+		 headers : {"cache-control": "no-cache","pragma": "no-cache"}
 	})
 }
