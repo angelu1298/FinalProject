@@ -59,4 +59,13 @@ public class LoginAction {
 		return "../index";
 	}
 	
+	@RequestMapping("/IdFind.brn")
+	public String idFind(HttpServletRequest request, HttpServletResponse response,HttpSession session) throws Exception{
+		return "html_membership/idFind";
+	}
+	@RequestMapping("/PwFind.brn")
+	public String pwFind(HttpServletRequest request, HttpServletResponse response,HttpSession session) throws Exception{
+		return "html_membership/pwFind";
+	}
+	
 }

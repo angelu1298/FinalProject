@@ -42,7 +42,7 @@
 							<input type="text" class="w300" placeholder="ooooo@email.co.kr의 형식으로 작성해주세요">
 						</li>
 					</ul>
-					<input type="submit" href="#" class="findBtn" value="아이디 찾기">
+					<input type="submit" href="#" class="findBtn" value="비밀번호찾기">
 				</div>
 	
 			</form>
@@ -67,7 +67,7 @@
 							<input type="text" class="w300" placeholder="ooooo@email.co.kr의 형식으로 작성해주세요">
 						</li>
 					</ul>
-					<input type="submit" href="#" class="findBtn" value="아이디 찾기">
+					<input type="submit" href="#" class="findBtn" value="비밀번호찾기">
 				</div>
 	
 			</form>
