@@ -1,19 +1,8 @@
-$(function(){
-	
-	   if (window.sessionStorage) {
-           var limit = sessionStorage.getItem('limit');
-           $("#viewcount").val(limit).prop("selected", true);
-       }
-	$('#viewcount').change(function(){
-		 $('form[name="search"]').submit();
-	})
-})
+
 function find_check(){
 	if($('#srch_txt').val().trim()==''){
 		alert('검색할 값을 입력해주세요');
-		return false;
 	}
-		
 }
 
 function delete_check(){

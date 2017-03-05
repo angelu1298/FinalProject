@@ -15,7 +15,7 @@
 			<h4>목록</h4>
 		
 			<!-- form -->
-			<form action="sboardView.brn"  method="post">
+			<form action="sboardView.brn"  method="post" onsubmit="find_check()">
 			<p class="srch_result">
 				<span class="rs_txt"><strong>${listcount }</strong>건이 검색되었습니다.</span>
 			</p>
@@ -42,18 +42,19 @@
 						</tr>
 						</thead>
 						<tbody>
+						<!-- 리스트에 뿌려질 글번호 세팅 -->
 						<c:set var="num" value="${listcount-(page-1)*limit}"/> 	
 						<c:if test="${slist !=null }">
-						<c:forEach items="${slist }" var="list">
-						<tr>
-							<td><c:out value="${num }" /><c:set var="num" value="${num-1}"/>	</td>
-							<td><a href="sboardcont.brn?s_no=${list.s_no}&page=${page}&state=cont">${list.s_sj }</a>[ ${list.scomm_cnt }]</td>
-							<td>${list.mem_id }</td>
-							<td>${list.s_dt }</td>
-							<td>${list.s_rc }</td>
-							<td>${list.s_lk }</td>
-						</tr>
-						</c:forEach>
+							<c:forEach items="${slist }" var="list">
+								<tr>
+									<td><c:out value="${num }" /><c:set var="num" value="${num-1}"/>	</td>
+									<td><a href="sboardcont.brn?s_no=${list.s_no}&page=${page}&state=cont">${list.s_sj }</a>[ ${list.scomm_cnt }]</td>
+									<td>${list.mem_id }</td>
+									<td>${list.s_dt }</td>
+									<td>${list.s_rc }</td>
+									<td>${list.s_lk }</td>
+								</tr>
+							</c:forEach>
 						</c:if>
 						<c:if test="${slist ==null }">
 							<!--등록된 게시물이 없는경우-->
@@ -70,12 +71,10 @@
 				<div class="paginate">
 					<p>
 					<a href="sboardList.brn?page=1" class="pre" title="맨앞">&lt;&lt;</a>
-					<c:if test="${page <=1 }">
-						<a href="#">&lt;</a>
-					</c:if>
 					<c:if test="${page > 1 }">
 						<a href="sboardList.brn?page=${page-1}" class="pre" title="이전페이지">&lt;</a>
-					</c:if>			
+					</c:if>		
+						
 					<c:forEach var="a" begin="${startpage}" end="${endpage}">
 						<c:if test="${a == page }">
 							<a href="#">${a}</a>
@@ -85,9 +84,6 @@
 						</c:if>
 					</c:forEach>			
 					
-					<c:if test="${page >= maxpage }">
-						<a href="#">&gt;</a>
-					</c:if>
 					<c:if test="${page < maxpage }">
 						<a href="sboardList.brn?page=${page+1}">&gt;</a>
 					</c:if>			
@@ -102,8 +98,26 @@
 			<div class="borad_srch">
 				<!--한줄-->
 					<!--//검색영역-->
+					<script>
+					$(function(){
+						
+					         $("#viewcount").val(${limit}).prop("selected", true);
+						   	 $('#viewcount').change(function(){
+						   		 $.ajax({
+						   			 data : {"limit" : $('#viewcount').val()},
+						   			 type : "get",
+						   			 success : function(data){
+										 $('form[name="search"]').submit();
+						   			 },
+						   			 error : function(data, status){
+						   				 
+						   			 }
+						   		 })
+						   })
+					})
+					</script>
 					<select id="viewcount" name="limit">
-						<option value="20">20줄보기</option>
+						<option value="20" >20줄보기</option>
 						<option value="50">50줄보기</option>
 						<option value="100">100줄보기</option>
 					</select> 

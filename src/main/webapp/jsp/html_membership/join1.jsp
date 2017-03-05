@@ -18,7 +18,7 @@
 						<span class="off">2</span>
 						<span class="off">3</span>
 					</div>
-					<form action="join2.jsp" method="get">
+					<form action="./JoinGetInfo.brn" method="post" id="agreement">
 					<h4 class="h4 mt15">회원약관 동의</h4>
 					<div class="Agree_area">
 						<p class="tit">
@@ -49,7 +49,7 @@
 						<!--//개인정보 수집 및 이용에 대한 안내-->
 						<!--전체동의-->
 						<div class="checkall">
-							<label><input type="checkbox">전체 동의합니다.</label>
+							<input type="checkbox" name="checkall" id="checkall"><label for="checkall">전체 동의합니다.</label>
 						</div>
 						<!--//전체동의-->
 					</div>

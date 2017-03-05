@@ -130,19 +130,18 @@ public class SboardAction {
 	}
 
 	@RequestMapping("/sboardList.brn")
-	public ModelAndView sboardList(HttpServletRequest request, HttpServletResponse response, @RequestParam(value="limit" ,defaultValue="20") int limit)throws Exception{
+	public ModelAndView sboardList(HttpServletRequest request, HttpServletResponse response, @RequestParam(value="limit" ,defaultValue= "20" ) int limit)throws Exception{
 	    
 			int page = 1;
+			
 	 		HttpSession session = request.getSession();
-
+	 		System.out.println(limit);
 	 		if(request.getParameter("page") != null){
 				page=Integer.parseInt(request.getParameter("page"));
 			}
 	 		if(session.getAttribute("limit") != null){
 	 			limit=(Integer) session.getAttribute("limit");
-	 		}
-	 		
-	 		if(request.getParameter("limit") != null)
+	 		}else if(request.getParameter("limit") != null)
 	 		{
 	 			limit=Integer.parseInt(request.getParameter("limit"));
 	 			session.setAttribute("limit", limit); //session에 limit를 저장하면 페이징처리시 쿼리스트링으로 limit값을 넘겨주지 않아도 된다.
@@ -366,7 +365,7 @@ public class SboardAction {
 	 * port="8088" protocol="HTTP/1.1" redirectPort="8443" URIEncoding="UTF-8"/>
 	 */
 	/* 자료실 검색 목록 */
-	@RequestMapping(value = "/sboardfind_ok.brn", method = RequestMethod.GET)
+	@RequestMapping(value = "/sboardfind_ok.brn")
 	public ModelAndView sboardfind_ok(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "limit", defaultValue = "20") int limit) throws Exception {
 

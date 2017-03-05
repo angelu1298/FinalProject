@@ -10,7 +10,7 @@ public class JoinAction {
 	public String join(){
 		return "html_membership/join1";
 	}
-	@RequestMapping("/Modify.brn")
+	@RequestMapping("/JoinGetInfo.brn")
 	public String modify(){
 		return "html_membership/join2";
 	}

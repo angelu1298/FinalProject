@@ -14,14 +14,14 @@
 					<div class="Step">
 						<span class="off">1</span>
 						<span class="on"><span class="num">2</span><span class="on_tit">개인 정보 입력</span></span>
-						<span class="off">2</span>
+						<span class="off">3</span>
 					</div>
 					<h4 class="h4 mt15">회원정보 입력</h4>
 					<p class="tit_tip">
 						 회원정보는 개인정보처리방침에 따라 안전하게 보호되며 회원님의 동의 없이 공개 또는 제3자에게 제공되지 않습니다.
 					</p>
 					<p class="tip_blue">
-						 (<img src="../images/bull/bull_mando.png" alt="*">)표기는 필수입력사항으로 모두 입력해주세요.
+						 (<img src="./resources/img/bull/bull_mando.png" alt="*" />)표기는 필수입력사항으로 모두 입력해주세요.
 					</p> 
 					<!--회원정보입력란-->
 									
@@ -38,8 +38,8 @@
 									<span class="mando">아이디</span>
 								</th>
 								<td>
-									<input type="text" class="w170">
-									<input type="button" class="btn_w" value="중복확인">
+									<input type="text" class="w170" id="inputid" name="inputid" >
+									<input type="button" class="btn_w" value="중복확인" id="idcheck">
 									<span class="tip_info2">6~10자리 수 영문 또는 숫자 로만 가능</span>
 								</td>
 							</tr>
@@ -48,16 +48,16 @@
 									<span class="mando">비밀번호</span>
 								</th>
 								<td>
-									<input type="text" class="w170 ">
+									<input type="text" class="w170 " id="inputpw" name="inputpw">
 									<span class="tip_info2">8~16 자리수 영문과 숫자를 조합</span>
 								</td>
 							</tr>
 							<tr>
 								<th>
-									<span class="mando">비밀번호 확인</span>
+									<span class="mando" >비밀번호 확인</span>
 								</th>
 								<td>
-									<input type="text" class="w170 ">
+									<input type="text" class="w170 " id="checkpw" name="checkpw">
 									<span class="tip_info2">비밀번호를 다시 한번 입력해주세요.</span>
 								</td>
 							</tr>
@@ -66,7 +66,7 @@
 									 성명
 								</th>
 								<td>
-									<input type="text" class="w170">
+									<input type="text" class="w170" id="inputname" name="inputname">
 								</td>
 							</tr>
 							<tr>
@@ -109,9 +109,9 @@
 										<option>010</option>
 									</select>
 									<span class="bttxt">-</span>
-									<input type="text" class="w100">
+									<input type="text" class="w100" id="middleph" name="middleph">
 									<span class="bttxt">-</span>
-									<input type="text" class="w100">
+									<input type="text" class="w100" id="lastph" name="lastph">
 								</td>
 							</tr>
 							<tr>
@@ -121,13 +121,13 @@
 								<td>
 									<p class="col">
 										<input type="button" value="우편번호찾기" > 
-										<input type="text" class="w100">
+										<input type="text" class="w100" id="zipcode" name="zipcode">
 									</p>
 									<p class="col">
-										<input type="text" class="w400"><span class="tip_info2">기본주소</span>
+										<input type="text" class="w400" id="address" name="address"><span class="tip_info2">기본주소</span>
 									</p>
 									<p class="col">
-										<input type="text" class="w400">
+										<input type="text" class="w400" id="detailaddr" name="detailaddr">
 										<span class="tip_info2">상세주소</span>
 									</p> 
 								</td>
@@ -137,8 +137,8 @@
 									<span class="mando">이메일</span>
 								</th>
 								<td>
-									<input type="text" class="w150"><span class="bttxt">@</span>
-									<input type="text" class="w120"><span class="bttxt"> </span>
+									<input type="text" class="w150" id="email" name="email"><span class="bttxt">@</span>
+									<input type="text" class="w120" id="domain" name="domain"><span class="bttxt"> </span>
 									<select>
 										<option>-직접입력-</option>
 										<option>gmail.com</option>
@@ -152,16 +152,16 @@
 									<span class="mando">키</span>
 								</th>
 								<td>
-									<input type="text" class="w060" maxlength="5">
+									<input type="text" class="w060" maxlength="5" id="height" name="height">
 									<span class="bttxt">cm</span>
 								</td>
 							</tr>
 							<tr>
 								<th>
-									<span class="mando">몸무</span>
+									<span class="mando">몸무게</span>
 								</th>
 								<td>
-									<input type="text" class="w060" maxlength="5">
+									<input type="text" class="w060" maxlength="5" id="weight" name="weight">
 									<span class="bttxt">kg</span>
 								</td>
 							</tr>

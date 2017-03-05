@@ -23,6 +23,7 @@ public class MemberBean {
    private Date mem_dd;
    private String mem_rs1;
    private String mem_rs2;
+   
    public int getMem_no() {
       return mem_no;
    }
