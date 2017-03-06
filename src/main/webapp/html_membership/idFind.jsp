@@ -16,7 +16,7 @@
 				<!--탭-->
 				<div class="tabarea">
 					<ul class="tabmenu">
-						<li class="choice">휴대전화번호로  찾기</li>
+						<li class="choice">휴대전화 번호로  찾기</li>
 						<li class="right">이메일주소로 찾기</li> 
 					</ul>
 				</div>
