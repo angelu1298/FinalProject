@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<typeAliases>
+		<typeAlias alias="sboardbean" type="com.burn.fat.board.sboard.model.SboardBean" />	
+		<typeAlias alias="scommbean" type="com.burn.fat.board.sboard.model.ScommBean" />	
+		<typeAlias alias="memberbean" type="com.burn.fat.member.model.MemberBean" />	
+	</typeAliases>
+
+	
+	<mappers>
+		<mapper resource="sql/sboard.xml" />
+		<mapper resource="sql/scomm.xml" />
+		<mapper resource="sql/login.xml" />
+		<mapper resource="sql/join.xml" />
+	</mappers>
+
+</configuration>
+
+
+
+
+
+
+
+
+
+
+

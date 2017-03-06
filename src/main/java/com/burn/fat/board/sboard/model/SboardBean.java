@@ -1,31 +1,34 @@
 package com.burn.fat.board.sboard.model;
 
-import java.sql.Clob;
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class SboardBean {
 	
 	private int s_no;
-	private int mem_no;
+	private String mem_id;
 	private String s_sj;
-	private Clob s_ct;
+	private String s_ct;
 	private String s_fl;
-	private String s_gl;
 	private int s_rc;
 	private Date s_dt;
 	private int s_lk;
 	private String s_lkno;
+	private int scomm_cnt;
+	
 	public int getS_no() {
 		return s_no;
 	}
 	public void setS_no(int s_no) {
 		this.s_no = s_no;
 	}
-	public int getMem_no() {
-		return mem_no;
+	public String getMem_id() {
+		return mem_id;
 	}
-	public void setMem_no(int mem_no) {
-		this.mem_no = mem_no;
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
 	}
 	public String getS_sj() {
 		return s_sj;
@@ -33,10 +36,10 @@ public class SboardBean {
 	public void setS_sj(String s_sj) {
 		this.s_sj = s_sj;
 	}
-	public Clob getS_ct() {
+	public String getS_ct() {
 		return s_ct;
 	}
-	public void setS_ct(Clob s_ct) {
+	public void setS_ct(String s_ct) {
 		this.s_ct = s_ct;
 	}
 	public String getS_fl() {
@@ -44,12 +47,6 @@ public class SboardBean {
 	}
 	public void setS_fl(String s_fl) {
 		this.s_fl = s_fl;
-	}
-	public String getS_gl() {
-		return s_gl;
-	}
-	public void setS_gl(String s_gl) {
-		this.s_gl = s_gl;
 	}
 	public int getS_rc() {
 		return s_rc;
@@ -74,6 +71,12 @@ public class SboardBean {
 	}
 	public void setS_lkno(String s_lkno) {
 		this.s_lkno = s_lkno;
+	}
+	public int getScomm_cnt() {
+		return scomm_cnt;
+	}
+	public void setScomm_cnt(int scomm_cnt) {
+		this.scomm_cnt = scomm_cnt;
 	}
 	
 	
