@@ -76,6 +76,14 @@ public class SboardDAO {
 		sqlSession.update("updatescommcnt",s_no);
 	}
 
+	public SboardBean getSboardContPreNext(int rnum) {
+		return sqlSession.selectOne("sboardcontPreNext",rnum);
+	}
+
+	public int getRowNum(int s_no) {
+		return sqlSession.selectOne("getrnum",s_no);
+	}
+
 	
 	
 	

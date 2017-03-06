@@ -102,43 +102,7 @@
 		
 	</select>    
 	
-    <select id="date_order"  parameterType="java.util.Map"  resultType="sboardbean">
-	    
-		select * 
-		from 
-		  (select rownum rnum, s_no, mem_id,   s_sj, 
-		   s_ct, s_fl,     s_rc,
-		   s_dt,  s_lk,   S_lkno , scomm_cnt
-		   from  
-	  	       (select * from sboardlist 
-	  	      <!-- Mybatis 동적 SQL문  -->
-		<where>
-    	 	<!-- 검색조건이 없는 경우 -->
-    	 	<if test="find_field==''">
-    	 	</if>
-    	 	<!-- 검색 조건이 글쓴이인 경우 -->
-    	 	<if test="find_field=='mem_id'">
-    	 		mem_id like #{find_name} 
-    	 	</if>
-    	 	<!-- 검색 조건이 제목인 경우 -->
-    	 	<if test="find_field=='s_sj'">
-    	 		s_sj like #{find_name}
-    	 	</if>
-    	 	<!-- 검색 조건이 내용인 경우 -->
-    	 	<if test="find_field=='s_ct'">
-    	 		s_ct like #{find_name}
-    	 	</if>
-    	 </where>
-	  	       order by 
-	  	     <choose>
-	  	       <when test="orderdate=='asc'"> s_dt asc)) </when>
-	  	       <when test="orderdate=='desc'"> s_dt desc)) </when>
-	  	       <otherwise> s_dt desc)) </otherwise>
-	  	   </choose>    
-	  	   
-	   	where rnum &gt;= ((#{page}-1) * #{limit} +1)  and rnum &lt;= (#{page} * #{limit})
-		
-	</select>    
+
 	<!-- 코멘트 입력시 게시물의 코멘트 수 증가  -->
 	<update id="updatescommcnt" parameterType="int" >
     	update sboard
@@ -170,6 +134,28 @@
     <!-- 자료실 내용 가져오기 -->
     <select id="sboardcont" resultType="sboardbean" parameterType="int">
       select * from sboardlist where s_no=#{num}
+    </select>
+    <!-- 현재글 로우넘 받기 -->
+    <select id="getrnum" resultType="int" parameterType="int">
+    	 select  rnum
+		from 
+		  (select rownum rnum , s_no
+		   from  
+	  	      (select * from sboardlist 
+	  	       order by s_no desc))
+	 	 where s_no = #{s_no}
+    </select>
+	<!-- 이전 글 다음 글  -->
+    <select id="sboardcontPreNext" resultType="sboardbean" parameterType="int">
+     select  *
+		from 
+		  (select rownum rnum, s_no, mem_id,   s_sj, 
+		   s_ct, s_fl,      s_rc,
+		   s_dt,  s_lk,   S_lkno , scomm_cnt
+		   from  
+	  	      (select * from sboardlist 
+	  	       order by s_no desc))
+	  where rnum = #{rnum}
     </select>
     
     <!-- 조회수 증가 -->

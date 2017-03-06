@@ -88,15 +88,27 @@
 				<li>
 					<dl class="next_box">
 						<dt class="prne"><span class="noti_txt01">다음글</span></dt>
-						<dd class="subject"><a href="sboardcont.brn?s_no=${sbean.s_no+1}&page=${page}&state=cont">${beannext.s_sj }</a></dd>
+						<c:if test="${!empty beannext }">
+						<dd class="subject"><a href="sboardcont.brn?s_no=${beannext.s_no}&page=${page}&state=cont">${beannext.s_sj }</a></dd>
 						<dd class="prne_date">${beannext.s_dt }</dd>
+						</c:if>
+						<c:if test="${empty beannext }">
+							<dd class="subject">다음 글이 없습니다.</dd>
+							<dd></dd>
+						</c:if>
 					</dl>
 				</li>
 				<li>
 					<dl class="prev_box">
 						<dt class="prne"><span class="noti_txt01">이전글</span></dt>
-						<dd class="subject"><a href="sboardcont.brn?s_no=${sbean.s_no-1}&page=${page}&state=cont">${beanpre.s_sj }</a></dd>
+						<c:if test="${!empty beanpre }">
+						<dd class="subject"><a href="sboardcont.brn?s_no=${beanpre.s_no}&page=${page}&state=cont">${beanpre.s_sj }</a></dd>
 						<dd class="prne_date">${beanpre.s_dt }</dd>
+						</c:if>
+						<c:if test="${empty beanpre }">
+							<dd class="subject">이전 글이 없습니다</dd>
+							<dd></dd>
+						</c:if>
 					</dl>
 				</li>
 			</ul>

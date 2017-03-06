@@ -14,6 +14,7 @@
 <script src="./resources/js/jquery.min.js"></script>
 <script src="./resources/js/angular.js"></script>
 <script src="./resources/js/common.js"></script>
+<script src="./resources/js/jquery.form.min.js"></script>
 <script src="./resources/js/joinValidation.js"></script>
 
 </head>

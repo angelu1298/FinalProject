@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/jsp/inc/logHeader.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
 <section class="log_container">
@@ -23,6 +24,7 @@
 					<p class="tip_blue">
 						 (<img src="./resources/img/bull/bull_mando.png" alt="*" />)표기는 필수입력사항으로 모두 입력해주세요.
 					</p> 
+					<form action="./JoinSubmit.brn" method="post" id="joinform">
 					<!--회원정보입력란-->
 									
 						<div class="common_write_box">
@@ -38,7 +40,7 @@
 									<span class="mando">아이디</span>
 								</th>
 								<td>
-									<input type="text" class="w170" id="inputid" name="inputid" >
+									<input type="text" class="w200" id="inputid" name="inputid" >
 									<input type="button" class="btn_w" value="중복확인" id="idcheck">
 									<span class="tip_info2">6~10자리 수 영문 또는 숫자 로만 가능</span>
 								</td>
@@ -48,7 +50,7 @@
 									<span class="mando">비밀번호</span>
 								</th>
 								<td>
-									<input type="text" class="w170 " id="inputpw" name="inputpw">
+									<input type="text" class="w200 " id="inputpw" name="inputpw" pattern=".{8,}">
 									<span class="tip_info2">8~16 자리수 영문과 숫자를 조합</span>
 								</td>
 							</tr>
@@ -57,7 +59,7 @@
 									<span class="mando" >비밀번호 확인</span>
 								</th>
 								<td>
-									<input type="text" class="w170 " id="checkpw" name="checkpw">
+									<input type="text" class="w200 " id="checkpw" name="checkpw">
 									<span class="tip_info2">비밀번호를 다시 한번 입력해주세요.</span>
 								</td>
 							</tr>
@@ -66,7 +68,7 @@
 									 성명
 								</th>
 								<td>
-									<input type="text" class="w170" id="inputname" name="inputname">
+									<input type="text" class="w200" id="inputname" name="inputname">
 								</td>
 							</tr>
 							<tr>
@@ -74,9 +76,9 @@
 									 성별
 								</th>
 								<td>
-									 <input type="radio" name="gender" id="gender_m"><label>남</label>
+									 <input type="radio" name="gender" id="gender_m" class="gender" value="1"><label for="gender_m">남</label>
 									 <span class="bttxt w050"></span>
-									 <input type="radio" name="gender" id="gender_f"><label>여</label>
+									 <input type="radio" name="gender" id="gender_f" class="gender" value="2"><label for="gender_f" id="gender_f_label">여</label>
 								</td>
 							</tr>
 							
@@ -86,15 +88,20 @@
 								</th>
 								<td>
 									<!-- 셀렉트박스는 커스텀 태그를 써야할듯? -->
-									<select>
-										<option>2016</option> 
+									<select id="birthyear" name="birthyear">
+										<option>-선택-</option> 
+										<c:forEach var="num" begin="1930" end="2017" step="1">
+										<option>${num }</option> 
+										</c:forEach>
 									</select>
 									<span class="bttxt">년</span> 
-									<select>
+									<select id="birthmonth" name="birthmonth">
+										<option>-선택-</option> 
 										<option>12</option> 
-									</select>
+									</select >
 									<span class="bttxt">월</span> 
-									<select>
+									<select id="birthday" name="birthday">
+										<option>-선택-</option> 
 										<option>31</option> 
 									</select>
 									<span class="bttxt">일</span> 
@@ -105,13 +112,16 @@
 									<span class="mando">휴대폰번호</span>
 								</th>
 								<td>
-									<select class="w100">
-										<option>010</option>
+									<select class="w100" name='mobileNo1' id='mobileNo1'>
+										<option value="010">010</option>
+						            	<option value="011">011</option>
+						            	<option value="016">016</option>
+						            	<option value="019">019</option>
 									</select>
 									<span class="bttxt">-</span>
 									<input type="text" class="w100" id="middleph" name="middleph">
 									<span class="bttxt">-</span>
-									<input type="text" class="w100" id="lastph" name="lastph">
+									<input type="text" class="w100" id="lastph" name="lastph" >
 								</td>
 							</tr>
 							<tr>
@@ -139,11 +149,12 @@
 								<td>
 									<input type="text" class="w150" id="email" name="email"><span class="bttxt">@</span>
 									<input type="text" class="w120" id="domain" name="domain"><span class="bttxt"> </span>
-									<select>
-										<option>-직접입력-</option>
-										<option>gmail.com</option>
-										<option>naver.com</option>
-										<option>hanmail.com</option>
+									<select id="sel" name="sel">
+										<option value="">-직접입력-</option>
+						            	<option value="naver.com">naver.com</option>
+						            	<option value="daum.net">daum.net</option>
+						            	<option value="nate.com">nate.com</option>
+						            	<option value="gmail.com">gmail.com</option>
 									</select>
 								</td>
 							</tr>
@@ -176,6 +187,7 @@
 						<!--//버튼-->	
 					</div>
 					<!--//회원정보입력란-->
+				</form>
 		</section>
 	<!-- // container End -->
 	

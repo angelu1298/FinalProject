@@ -1,6 +1,6 @@
 package com.burn.fat.member.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class MemberBean {
 
@@ -16,9 +16,10 @@ public class MemberBean {
    private String mem_add1;
    private String mem_add2;
    private String mem_ma;
-   private int mem_h;
-   private int mem_w;
+   private double mem_h;
+   private double mem_w;
    private Date mem_jd;
+   private String mem_wb; //워너비 사진 경로
    private int mem_st;
    private Date mem_dd;
    private String mem_rs1;
@@ -96,16 +97,16 @@ public class MemberBean {
    public void setMem_ma(String mem_ma) {
       this.mem_ma = mem_ma;
    }
-   public int getMem_h() {
+   public double getMem_h() {
       return mem_h;
    }
-   public void setMem_h(int mem_h) {
+   public void setMem_h(double mem_h) {
       this.mem_h = mem_h;
    }
-   public int getMem_w() {
+   public double getMem_w() {
       return mem_w;
    }
-   public void setMem_w(int mem_w) {
+   public void setMem_w(double mem_w) {
       this.mem_w = mem_w;
    }
    public Date getMem_jd() {
@@ -114,7 +115,13 @@ public class MemberBean {
    public void setMem_jd(Date mem_jd) {
       this.mem_jd = mem_jd;
    }
-   public int getMem_st() {
+   public String getMem_wb() {
+	return mem_wb;
+}
+public void setMem_wb(String mem_wb) {
+	this.mem_wb = mem_wb;
+}
+public int getMem_st() {
       return mem_st;
    }
    public void setMem_st(int mem_st) {

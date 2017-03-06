@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.burn.fat.member.model.MemberBean;
 
-@Service("member")
+@Service("memberService")
 public class MemberService {
 	
 	@Autowired

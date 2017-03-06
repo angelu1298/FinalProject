@@ -77,3 +77,14 @@ from scomment s, member m
 where s.mem_no = m.mem_no;
 
 
+   select  rnum, s_no, mem_id,   s_sj, 
+		   s_ct, s_fl,      s_rc,
+		   s_dt,  s_lk,   S_lkno , scomm_cnt 
+		from 
+		  (select rownum rnum, s_no, mem_id,   s_sj, 
+		   s_ct, s_fl,      s_rc,
+		   s_dt,  s_lk,   S_lkno , scomm_cnt
+		   from  
+	  	      (select * from sboardlist 
+	  	       order by s_no desc))
+	  where rnum = 4;

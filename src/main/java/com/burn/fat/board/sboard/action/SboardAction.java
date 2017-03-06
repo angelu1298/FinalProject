@@ -226,13 +226,18 @@ public class SboardAction {
 		ModelAndView contM = new ModelAndView();
 		// 번호를 기준으로 DB 내용을 가져옵니다.
 		SboardBean bean = this.service.getSboardCont(s_no);
+		// 번호를 기준으로 rnum 받아오기
+		int rnum = service.getRowNum(s_no);
+		int listcount = service.getListCount();
 		/* if(s_no!=1){ */
-		SboardBean beanpre = service.getSboardCont(s_no - 1);
-		contM.addObject("beanpre", beanpre);
-		/* } */
-		SboardBean beannext = service.getSboardCont(s_no + 1);
-		contM.addObject("beannext", beannext);
-
+		if(rnum!=listcount){
+			SboardBean beanpre = service.getSboardContPreNext(rnum + 1);
+			contM.addObject("beanpre", beanpre);
+		}
+		if(rnum!=1){
+			SboardBean beannext = service.getSboardContPreNext(rnum - 1);
+			contM.addObject("beannext", beannext);
+		}
 		if (bean == null) {
 			PrintWriter out = response.getWriter();
 			out.print("<script>alert('존재하지 않는 게시물입니다.'); history.back();</script>");

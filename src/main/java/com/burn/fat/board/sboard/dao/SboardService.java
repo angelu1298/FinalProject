@@ -70,6 +70,14 @@ public class SboardService {
 		dao.chageScommcnt(s_no);
 	}
 
+	public SboardBean getSboardContPreNext(int rnum) {
+		return dao.getSboardContPreNext(rnum);
+	}
+
+	public int getRowNum(int s_no) {
+		return dao.getRowNum(s_no);
+	}
+
 
 	
 

@@ -30,7 +30,7 @@
 								 
 							</div>
 							<div class="checkarea">
-								<input type="checkbox" id="agree01"><label for="agree01">위 고유식별정보 수집에 동의합니다.</label>
+								<input type="checkbox" id="agree01" value="agree01"><label for="agree01">위 고유식별정보 수집에 동의합니다.</label>
 							</div>
 						</div>
 						<!--//회원가입약관 -->
@@ -43,7 +43,7 @@
 							
 							</div>
 							<div class="checkarea">
-								<input type="checkbox" id="agree02"><label for="agree02">위 개인정보 수집 및 이용에 동의합니다.</label>
+								<input type="checkbox" id="agree02" value="agree02"><label for="agree02">위 개인정보 수집 및 이용에 동의합니다.</label>
 							</div>
 						</div>
 						<!--//개인정보 수집 및 이용에 대한 안내-->
