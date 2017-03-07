@@ -16,7 +16,7 @@
 				<!--탭-->
 				<div class="tabarea">
 					<ul class="tabmenu">
-						<li class="choice">휴대전화 번호로  찾기</li>
+						<li class="choice">휴대전화번호로  찾기</li>
 						<li class="right">이메일주소로 찾기</li> 
 					</ul>
 				</div>
@@ -42,7 +42,7 @@
 							<input type="text" class="w300" placeholder="ooooo@email.co.kr의 형식으로 작성해주세요">
 						</li>
 					</ul>
-					<input type="submit" href="#" class="findBtn" value="비밀번호찾기">
+					<input type="submit" href="#" class="findBtn" value="비밀번호 찾기">
 				</div>
 	
 			</form>
@@ -67,7 +67,7 @@
 							<input type="text" class="w300" placeholder="ooooo@email.co.kr의 형식으로 작성해주세요">
 						</li>
 					</ul>
-					<input type="submit" href="#" class="findBtn" value="비밀번호찾기">
+					<input type="submit" href="#" class="findBtn" value="비밀번호 찾기">
 				</div>
 	
 			</form>
@@ -77,7 +77,6 @@
 		</div>
 		<!-- 서브컨텐츠 영역 END -->
 
-		</div>
 </section>
 <!-- // container End -->
 

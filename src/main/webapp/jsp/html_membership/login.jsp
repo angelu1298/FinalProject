@@ -23,8 +23,8 @@
 			</div>
 
 			<ul class="login_fot">
-				<li><a href="idfind.jsp">아이디 찾기</a></li>
-				<li><a href="pwfind.jsp">비밀번호 찾기</a></li>
+				<li><a href="idFind.jsp">아이디 찾기</a></li>
+				<li><a href="pwFind.jsp">비밀번호 찾기</a></li>
 				<li><a href="join1.jsp">회원가입</a></li>
 			</ul>
 

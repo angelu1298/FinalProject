@@ -59,8 +59,9 @@
 					</div>
 		
 				</form>
+				
 	
-				<!-- 비밀번호 찾기 -->
+				<!-- 아이디찾기 -->
 				<form action="idFindRslt.jsp" method="get" class="findForm02 off" >
 					<div class="login_box">
 						<ul class="find_inp">
