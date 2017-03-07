@@ -31,16 +31,19 @@ public class JoinAction {
 	private String saveFolder = "C:/Users/angel/git/FinalProject/src/main/webapp/resources/upload";
 
 	
+	//회원가입 1단계로 이동(가입동의)
 	@RequestMapping(value="/Join.brn")
 	public String join(){
 		return "html_membership/join1";
 	}
+	//회원가입페이지로 이동
 	@RequestMapping(value="/JoinGetInfo.brn", method=RequestMethod.POST)
 	public String modify(HttpServletRequest request, HttpServletResponse response ){
 		if(request.getParameter("checkall")==null)
 			return "html_membership/join1";
 		return "html_membership/join2";
 	}
+	//워너비 사진 제외 회원가입완료
 	@RequestMapping(value="/JoinSubmit.brn", method=RequestMethod.POST)
 	public String joinSubmit(HttpServletRequest request, HttpServletResponse response,@RequestParam(value="inputid")String id
 			,@RequestParam(value="inputpw")String pw, @RequestParam(value="inputname")String name, @RequestParam(value="gender")int gender
@@ -70,6 +73,7 @@ public class JoinAction {
 	public String seeThum(){
 		return "html_membership/join3";
 	}*/
+	//워너비사진 완료
 	@RequestMapping(value="/Thumbnail.brn", method=RequestMethod.POST)
 	public ModelAndView thumbnailReturn(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
 		int fileSize = 5 * 1024 * 1024; // 이진파일 최대 업로드 크기
@@ -125,6 +129,7 @@ public class JoinAction {
 		return model;
 	} 
 	
+	//가입 완료 메시지
 	@RequestMapping(value="/JoinComplete.brn")
 	public String joinComplete(){
 		return "html_membership/joinComlete";
