@@ -11,7 +11,7 @@ import com.burn.fat.member.model.MemberBean;
 public class MemberServiceImpl implements MemberService {
 	
     @Autowired
-	private MemberServiceImpl memDAO;
+	private MemberDAOImpl memDAO;
 
 
 	@Override

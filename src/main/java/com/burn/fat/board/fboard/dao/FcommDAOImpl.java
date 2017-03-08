@@ -18,33 +18,33 @@ public class FcommDAOImpl {
 	
 	
 	public List<FcommBean> getListCmt(int f_no) throws Exception {
-		List<FcommBean> list =sqlSession.selectList("fcommlist", f_no);
+		List<FcommBean> list =sqlSession.selectList("fboard.fcommlist", f_no);
 		
         return list;
    }
 
     public int createCmt(FcommBean bean) throws Exception{
-    	return sqlSession.insert("insertcomm", bean);
+    	return sqlSession.insert("fboard.insertcomm", bean);
    }
 
     public int deleteCmt(Map m) throws Exception{
-    	return sqlSession.delete("deletecomm", m);
+    	return sqlSession.delete("fboard.deletecomm", m);
    }
     ///////
 
     
     public FcommBean getComment(FcommBean bean) {
-		return sqlSession.selectOne("getcomment",bean);
+		return sqlSession.selectOne("fboard.getcomment",bean);
 	}
 	public void insertCommRep(FcommBean bean) {
-		sqlSession.insert("insertcommreply",bean);
+		sqlSession.insert("fboard.insertcommreply",bean);
 	}
 	
 	public int deleteCommExistRep(Map m) {
-		return sqlSession.update("deletecommexistrep",m);
+		return sqlSession.update("fboard.deletecommexistrep",m);
 	}
 	
 	public List<FcommBean> getCommentRef(FcommBean bean) {
-		return sqlSession.selectList("getcommentref",bean);
+		return sqlSession.selectList("fboard.getcommentref",bean);
 	}
 }

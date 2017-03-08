@@ -36,7 +36,7 @@ footer{ position:fixed; bottom:0; left:0; width:100%; display:block; padding:20p
 footer p{ padding:0 5%; margin:0 auto; font-size:10px; letter-spacing:1px; text-align:right; font-family:tahoma; color:#fff; }
 footer a.topbtn{ position:absolute; right:0; top:0; width:100px; height:100px; display:block; background-color:#29cadd; background-image:url(../img/btn_top.png); background-position:center; background-repeat:no-repeat; background-size:30px; text-indent:-9999px;}
  
-footer iframe{ position:fixed; bottom:100px;; left:0; width:500px;; height:500px; display:block;}
+footer iframe{ position:fixed; bottom:0px; left:0; width:230px; height:380px; display:block; background:#fff; border:1px solid #000;}
 /*에러박스*/
 .errorBox{ width:50%; display:block; margin:100px auto; }
 .errorBox h1{ font-size:30px; font-weight:600;  color:#d53e2d;   }
