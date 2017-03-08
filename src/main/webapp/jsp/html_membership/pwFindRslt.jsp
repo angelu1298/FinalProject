@@ -38,7 +38,7 @@
 		
 					<div class="btnL_area mt25 w500">
 						<ul class="login_fot">
-							<li><a href="join1.jsp">회원가입</a></li>
+							<li><a href="./Join.brn">회원가입</a></li>
 							<li><a href="./Login.brn">로그인</a></li>
 						</ul>
 					</div>
