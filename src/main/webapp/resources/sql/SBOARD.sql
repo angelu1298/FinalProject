@@ -1,59 +1,31 @@
-﻿create user final identified by rabbit;
-grant CONNECT, RESOURCE, UNLIMITED TABLESPACE, create view to final;
-
-conn final/rabbit;
-
-create sequence s_no_seq
-start with 1;
-
-create sequence scomm_no_seq
-start with 1;
-
-drop table sboard cascade constraint;
-drop table scomment cascade constraint;
-drop sequence s_no_seq;
-drop sequence scomm_no_seq;
-
-select * from member;
-select * from sboard;
-select * from sboardlist;
-select * from scomment;
-
-
-             
-create table SBOARD(
+﻿create table SBOARD(
 	s_no			number	constraint sb_sno_PK primary key,
 	mem_no			number,
 	s_sj			varchar2(100)	not null,	
 	s_ct			clob	not null,
 	s_fl			varchar2(1024),
+	s_gl			varchar2(1024),
 	s_rc			number	default 0,
 	s_dt			date default sysdate,
 	s_lk			number	default 0,
-	S_lkno			varchar2(2048) default ',',
-	scomm_cnt		number default 0
+	S_lkno			varchar2(2048)
 );
-
 
 create table scomment(
 	scomm_no		number constraint scomm_scno_pk primary key,
 	mem_no			number,
 	scomm_ct		varchar2(600) not null,
 	scomm_dt		date,
-	scomm_re_ref	number default 0,
-	scomm_re_lev	number default 0,
-	scomm_re_seq	number default 0,
+	scomm_re_ref	number,
+	scomm_re_lev	number,
+	scomm_re_seq	number,
 	s_no			number
 );
 
 
-
-alter table sboard 
-drop constraint sb_mem_no_FK ;
-
 alter table sboard 
 add constraint sb_mem_no_FK foreign key (mem_no) 
-references member(mem_no) on delete cascade;
+references member(mem_no);
 
 alter table scomment 
 add constraint scomm_mem_no_FK foreign key (mem_no) 
@@ -62,6 +34,7 @@ references member(mem_no);
 alter table scomment 
 add constraint scomm_s_no_FK foreign key (s_no) 
 references sboard(s_no);
+<<<<<<< HEAD
 
 
 create or replace view sboardlist
@@ -88,3 +61,5 @@ where s.mem_no = m.mem_no;
 	  	      (select * from sboardlist 
 	  	       order by s_no desc))
 	  where rnum = 4;
+=======
+>>>>>>> branch 'suhyun' of https://github.com/angelu1298/FinalProject

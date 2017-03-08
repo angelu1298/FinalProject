@@ -130,6 +130,14 @@
 		    <version>1.4</version>
 		</dependency>
 		
+		<!-- 메일 보내기 -->
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>mail</artifactId>
+		    <version>1.4.7</version>
+		</dependency>
+		
+		
 		<!-- multipartRequest쓰기 위한 api -->
        <dependency>
 	     <groupId>com.servlets</groupId>

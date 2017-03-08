@@ -9,7 +9,11 @@
 		int second=c.get(Calendar.SECOND);
 	%> 
 	
+<<<<<<< HEAD
 	<%@ include file="/jsp/inc/logHeader.jsp" %>
+=======
+	<%@ include file="../inc/logHeader.jsp" %>
+>>>>>>> branch 'suhyun' of https://github.com/angelu1298/FinalProject
 	
 	<div class="log_container">
 		

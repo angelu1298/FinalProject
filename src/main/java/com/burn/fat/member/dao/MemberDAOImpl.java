@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.burn.fat.member.model.MemberBean;
-import com.burn.fat.member.model.ZipcodeBean2;
 
 @Repository
 public class MemberDAOImpl {
@@ -17,54 +16,24 @@ public class MemberDAOImpl {
 	private SqlSessionTemplate sqlsession;
 
 	
-	/***** 아이디 중복 체크 *****/
-	public int checkMemberId(String id) throws Exception{
-		int re=-1; 
-		try{
-		MemberBean mb = (MemberBean) sqlsession.selectOne("login_check",id);
-		if(mb != null) re=1;
-		}catch(Exception e){
-			
+	/*1.아이디 검색*/
+	public MemberBean findid1(Map m) throws Exception{
+	     return (MemberBean)sqlsession.selectOne("id_find1",m);
 		}
-			// 중복id
-		return re;
-	}
-	/***** 아이디 중복 체크 끝 *****/
+	
+	/*2.아이디 검색*/
+	public MemberBean findid2(Map m) throws Exception{
+	     return (MemberBean)sqlsession.selectOne("id_find2",m);
+		}
 
-	/*우편 검색*/
-	public List<ZipcodeBean2> findZipcode(String dong) throws Exception{
-		List<ZipcodeBean2> list=sqlsession.selectList("zipcodeList",dong);
-		return list;
-	}
+
 
 	/* 비번 검색 */
-	public MemberBean findpwd(Map pm) throws Exception{
-	     return (MemberBean)sqlsession.selectOne("pwd_find",pm);
+	public MemberBean findpwd(Map m) throws Exception{
+	     return (MemberBean)sqlsession.selectOne("pwd_find",m);
 		}
 
-	/*회원저장*/
-	public void insertMember(MemberBean m) throws Exception{
-	     sqlsession.insert("member_join",m);		
-	}
-
-	/*로그인 인증 체크 */
-	public MemberBean userCheck(String id) throws Exception{
-		MemberBean m = 
-			(MemberBean)sqlsession.selectOne("Test.login_check",id);
-		return m;
-	}
 	
-	/*회원삭제*/
-	public void deleteMember(MemberBean delm) throws Exception{
-		sqlsession.update("member_delete",delm);		
-	}
-	
-	
-	
-    /*회원수정*/
-	public void updateMember(MemberBean member) throws Exception{
-		sqlsession.update("member_edit",member);		
-	}
 	
 	
 }
