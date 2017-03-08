@@ -27,7 +27,8 @@ import com.burn.fat.board.fboard.model.FboardBean;
 import com.burn.fat.board.fboard.model.FcommBean;
 import com.oreilly.servlet.MultipartRequest;
 
-  @Controller("bbs")
+
+  @Controller("fboard")
 
   public class FboardAction {
 
@@ -39,13 +40,13 @@ import com.oreilly.servlet.MultipartRequest;
      
      ////private String saveFolder ="C:/Program Files/Apache Software Foundation/Tomcat 8.0/webapps/myhome7/resources/upload";
       //private String saveFolder="c:/sts2/spring6_mvc_bbs/src/main/webapp/resources/upload";
-    private String saveFolder="C:/Users/김수현/git/FinalProject/src/main/webapp/resources/upload"; //파일 저장시킬 경로
+    private String saveFolder="C:/upload"; //파일 저장시킬 경로
      
 
     /*자료실 입력폼*/
     @RequestMapping(value="/bbs_write.brn")
     public String bbs_write(){
-       return "html_community/fboard/boardWrite"; //bbs 폴더의 bbs_write.jsp 뷰 페이지가 실행
+       return "html_community/fhtml_community/boardWrite"; //bbs 폴더의 bbs_write.jsp 뷰 페이지가 실행
     }
      
      /* 자료실 저장 */
@@ -59,7 +60,7 @@ import com.oreilly.servlet.MultipartRequest;
            HttpServletRequest request,
            HttpServletResponse response) throws Exception{
         
-        FboardBean FboardBean=new FboardBean();      
+        FboardBean bbsbean=new FboardBean();      
         int fileSize=5*1024*1024; //이진파일 최대 업로드 크기   
         
         PrintWriter out=response.getWriter();
@@ -132,17 +133,17 @@ import com.oreilly.servlet.MultipartRequest;
               refileName);
               
               //바뀐 파일명으로  저장
-              FboardBean.setF_fl(fileDBName);
+              bbsbean.setF_fl(fileDBName);
         }
-       /* FboardBean.setBbs_name(bbs_name);
-        FboardBean.setBbs_pass(bbs_pass);*/
+       /* bbsbean.setBbs_name(bbs_name);
+        bbsbean.setBbs_pass(bbs_pass);*/
         
-        FboardBean.setMem_id(mem_id);
+        bbsbean.setMem_id(mem_id);
         
-        FboardBean.setF_sj(f_sj);
-        FboardBean.setF_ct(f_ct);
+        bbsbean.setF_sj(f_sj);
+        bbsbean.setF_ct(f_ct);
         
-        this.bbsService.insertBbs(FboardBean); //저장메서드 호출
+        this.bbsService.insertBbs(bbsbean); //저장메서드 호출
         
         response.sendRedirect("bbs_list.brn");
         return null;
@@ -199,7 +200,7 @@ import com.oreilly.servlet.MultipartRequest;
         //리스트 받아옴
         List<FboardBean> bbslist = bbsService.getBbsList(m);//page,limit를 보냄
      
-        ModelAndView model=new ModelAndView("html_community/fboard/boardList");
+        ModelAndView model=new ModelAndView("html_community/fhtml_community/boardList");
       model.addObject("page", page);
       model.addObject("maxpage", maxpage);
       model.addObject("startpage", startpage);
@@ -240,7 +241,7 @@ import com.oreilly.servlet.MultipartRequest;
         }
         
         //번호를 기준으로 DB 내용을 가져옵니다.
-        FboardBean FboardBean=this.bbsService.getBbsCont(num);
+        FboardBean bbsbean=this.bbsService.getBbsCont(num);
         
         FboardBean bean1 = bbsService.getBbsCont(num-1);
         contM.addObject("bean1",bean1);
@@ -250,7 +251,7 @@ import com.oreilly.servlet.MultipartRequest;
         
         
        
-    	if(FboardBean==null){
+    	if(bbsbean==null){
     		out.println("<script>");
             out.println("alert('게시판 글이 없습니다.')");
             out.println("history.back()");
@@ -261,14 +262,14 @@ import com.oreilly.servlet.MultipartRequest;
     	
         
         if(state.equals("cont")){//내용보기
-           contM.setViewName("html_community/fboard/boardView");
+           contM.setViewName("html_community/fhtml_community/boardView");
            
           //글내용 중 엔터키 친부분을 다음줄로 개행 처리
-           String f_ct=FboardBean.getF_ct().replace("\n","<br/>");
+           String f_ct=bbsbean.getF_ct().replace("\n","<br/>");
            
           contM.addObject("bbs_cont",f_ct);
         }else if(state.equals("edit")){
-           contM.setViewName("html_community/fboard/boardModify");//수정일때
+           contM.setViewName("html_community/fhtml_community/boardModify");//수정일때
         }/*else if(state.equals("del")){//삭제일때
         	contM.setViewName("html_community/boardList");//삭제일때
    
@@ -286,7 +287,7 @@ import com.oreilly.servlet.MultipartRequest;
 		contM.addObject("bean",bean);
         }
         
-        contM.addObject("FboardBean",FboardBean);
+        contM.addObject("bbsbean",bbsbean);
         contM.addObject("page",page);
         return contM;
    	}
@@ -300,7 +301,7 @@ import com.oreilly.servlet.MultipartRequest;
      public ModelAndView bbs_edit_ok(HttpServletRequest request,
            HttpServletResponse response) throws Exception{
         
-        FboardBean FboardBean=new FboardBean();
+        FboardBean bbsbean=new FboardBean();
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out=response.getWriter();
         
@@ -368,16 +369,16 @@ import com.oreilly.servlet.MultipartRequest;
               
               UpFile.renameTo(new File(homedir+"/"+refileName));
 
-              FboardBean.setF_fl(fileDBName);
+              bbsbean.setF_fl(fileDBName);
            }
-           FboardBean.setF_no(f_no);
-           FboardBean.setMem_id(mem_id);
+           bbsbean.setF_no(f_no);
+           bbsbean.setMem_id(mem_id);
            
-          /* FboardBean.setBbs_name(bbs_name);*/
-           FboardBean.setF_sj(f_sj);
-           FboardBean.setF_ct(f_ct);
+          /* bbsbean.setBbs_name(bbs_name);*/
+           bbsbean.setF_sj(f_sj);
+           bbsbean.setF_ct(f_ct);
            
-           this.bbsService.editBbs(FboardBean);//수정메서드 호출
+           this.bbsService.editBbs(bbsbean);//수정메서드 호출
            
          //get방식으로 3개의 파라미터 값이 넘어갑니다.
             response.sendRedirect(
@@ -400,10 +401,10 @@ import com.oreilly.servlet.MultipartRequest;
        /* String pwd=request.getParameter("pwd").trim();*/
         
         //글번호에 해당하는 디비 내용을 가져옵니다.
-        FboardBean FboardBean=this.bbsService.getBbsCont(f_no);
+        FboardBean bbsbean=this.bbsService.getBbsCont(f_no);
         
         //기존 파일명 가져옵니다.
-        String fname=FboardBean.getF_fl();
+        String fname=bbsbean.getF_fl();
         
         //세션 선언 후 세션 id가져오기
         HttpSession session = request.getSession();
@@ -411,7 +412,7 @@ import com.oreilly.servlet.MultipartRequest;
         String mem_id = (String)session.getAttribute("mem_id");//세션에 저장된 mem_id를 mem_id로 저장
         
   
-        if(!FboardBean.getMem_id().equals(mem_id)){//해당 회원이 아니라면
+        if(!bbsbean.getMem_id().equals(mem_id)){//해당 회원이 아니라면
            out.println("<script>");
            out.println("alert('삭제 권한이 없습니다.')");
            out.println("history.back()");
@@ -481,7 +482,7 @@ import com.oreilly.servlet.MultipartRequest;
             
            List<FboardBean> bbslist = bbsService.getBbsList3(m); 
            
-           ModelAndView model=new ModelAndView("html_community/fboard/boardList");
+           ModelAndView model=new ModelAndView("html_community/fhtml_community/boardList");
            model.addObject("find_name",find_name);
            model.addObject("find_field",find_field);         
            model.addObject("page", page);

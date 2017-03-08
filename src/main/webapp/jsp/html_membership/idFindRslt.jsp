@@ -10,13 +10,14 @@
 		<%@ include file="../inc/leftMenu_log.jsp" %>
 		
 		<!-- 서브컨텐츠 영역 START -->
-		<div class="subContent">
+		<div class="subContent nobg">
 			
 		<!--로그인 영역-->
-		<div class="con_con">
+		<div class="login_area">
 					<!--회원가입 영역-->
-					<h4 class="h4 mt15">아이디 찾기</h4>
-					<div class="Agree_area">
+					<div class="login_box">
+					<div class="result">
+					<h4 class="h4">아이디 찾기</h4>			
 						<p class="tit">
 							회원님의 아이디는 아래와 같습니다.
 						</p>
@@ -25,7 +26,7 @@
 					<!-- 아이디 찾기 확인 -->
 					
 					<!--버튼-->
-					<div class="btnL_area mt25">
+					<div class="btnL_area mt25 w500">
 						<ul class="login_fot">
 							<li><a href="PwFind.brn" class="findBtn" value="비밀번호 찾기">비밀번호 찾기</a></li>
 							<li><a href="join1.jsp">회원가입</a></li>
