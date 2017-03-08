@@ -1,7 +1,10 @@
 package com.burn.fat.member.model;
 
-import java.util.Date;
+import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberBean {
 
 	private int mem_no;
@@ -19,10 +22,19 @@ public class MemberBean {
 	private int mem_h;
 	private int mem_w;
 	private Date mem_jd;
+	private String mem_wb;
 	private int mem_st;
 	private Date mem_dd;
 	private String mem_rs1;
 	private String mem_rs2;
+	
+	public String getMem_wb() {
+		return mem_wb;
+	}
+	public void setMem_wb(String mem_wb) {
+		this.mem_wb = mem_wb;
+	}
+	
 	public int getMem_no() {
 		return mem_no;
 	}
