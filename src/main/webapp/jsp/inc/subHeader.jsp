@@ -14,7 +14,6 @@
 <script src="/fat/resources/js/jquery.min.js"></script>
 <script src="/fat/resources/js/angular.js"></script>
 <script src="/fat/resources/js/common.js"></script>
-<<<<<<< HEAD
 
 </head>
 
@@ -37,32 +36,4 @@
 			<%@ include file="/jsp/inc/gnb.jsp"%>
 			<!-- lnb 영역 -->
 			<%@ include file="/jsp/inc/lnb.jsp"%>
-=======
-<script src="./resources/js/sboard.js"></script>
-
-</head>
-
-<body>
-
-	<%@ page session='true' %>
-	<%--
-		request.setCharacterEncoding("UTF-8");
-		// 가입시간
-		String logintime = "";
-		logintime = request.getParameter("loginTime");
-		session.setAttribute("s_loginTime", logintime);
-	--%>
-
-<%
-	session.setAttribute("mem_id", "ss");
-%>
-	<!-- S: wrap -->
-	<div class="wrap">
-
-		<header>
-			<!-- gnb 영역 -->
-			<%@ include file="gnb.jsp"%>
-			<!-- lnb 영역 -->
-			<%@ include file="lnb.jsp"%>
->>>>>>> branch 'suhyun' of https://github.com/angelu1298/FinalProject
 		</header>
