@@ -34,7 +34,6 @@ references member(mem_no);
 alter table scomment 
 add constraint scomm_s_no_FK foreign key (s_no) 
 references sboard(s_no);
-<<<<<<< HEAD
 
 
 create or replace view sboardlist
@@ -61,5 +60,3 @@ where s.mem_no = m.mem_no;
 	  	      (select * from sboardlist 
 	  	       order by s_no desc))
 	  where rnum = 4;
-=======
->>>>>>> branch 'suhyun' of https://github.com/angelu1298/FinalProject

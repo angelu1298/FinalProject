@@ -27,7 +27,6 @@ import com.burn.fat.board.fboard.model.FboardBean;
 import com.burn.fat.board.fboard.model.FcommBean;
 import com.oreilly.servlet.MultipartRequest;
 
-
   @Controller("fboard")
 
   public class FboardAction {
@@ -36,7 +35,7 @@ import com.oreilly.servlet.MultipartRequest;
      private FboardService bbsService;
      
      @Autowired
- 	private FcommService fcService;
+    private FcommService fcService;
      
      ////private String saveFolder ="C:/Program Files/Apache Software Foundation/Tomcat 8.0/webapps/myhome7/resources/upload";
       //private String saveFolder="c:/sts2/spring6_mvc_bbs/src/main/webapp/resources/upload";
@@ -46,7 +45,7 @@ import com.oreilly.servlet.MultipartRequest;
     /*자료실 입력폼*/
     @RequestMapping(value="/bbs_write.brn")
     public String bbs_write(){
-       return "html_community/fhtml_community/boardWrite"; //bbs 폴더의 bbs_write.jsp 뷰 페이지가 실행
+       return "html_community/fboard/boardWrite"; //bbs 폴더의 bbs_write.jsp 뷰 페이지가 실행
     }
      
      /* 자료실 저장 */
@@ -77,11 +76,11 @@ import com.oreilly.servlet.MultipartRequest;
         String mem_id = (String)session.getAttribute("mem_id");//세션에 저장된 mem_id를 mem_id로 저장
         
         if(mem_id==null){
-			out.print("<script>alert('로그인 후 이용할 수 있습니다.');");
-			out.print(" history.back()</script>");
-			
-			return null;
-		}
+         out.print("<script>alert('로그인 후 이용할 수 있습니다.');");
+         out.print(" history.back()</script>");
+         
+         return null;
+      }
         
         
         String f_sj=multi.getParameter("f_sj").trim();
@@ -200,7 +199,7 @@ import com.oreilly.servlet.MultipartRequest;
         //리스트 받아옴
         List<FboardBean> bbslist = bbsService.getBbsList(m);//page,limit를 보냄
      
-        ModelAndView model=new ModelAndView("html_community/fhtml_community/boardList");
+        ModelAndView model=new ModelAndView("html_community/fboard/boardList");
       model.addObject("page", page);
       model.addObject("maxpage", maxpage);
       model.addObject("startpage", startpage);
@@ -247,31 +246,31 @@ import com.oreilly.servlet.MultipartRequest;
         contM.addObject("bean1",bean1);
 
         FboardBean bean2 = bbsService.getBbsCont(num+1);
-        contM.addObject("bean2",bean2);	
+        contM.addObject("bean2",bean2);   
         
         
        
-    	if(bbsbean==null){
-    		out.println("<script>");
+       if(bbsbean==null){
+          out.println("<script>");
             out.println("alert('게시판 글이 없습니다.')");
             out.println("history.back()");
             out.println("</script>");
 
-    		return null;
-    	}else{
-    	
+          return null;
+       }else{
+       
         
         if(state.equals("cont")){//내용보기
-           contM.setViewName("html_community/fhtml_community/boardView");
+           contM.setViewName("html_community/fboard/boardView");
            
           //글내용 중 엔터키 친부분을 다음줄로 개행 처리
            String f_ct=bbsbean.getF_ct().replace("\n","<br/>");
            
           contM.addObject("bbs_cont",f_ct);
         }else if(state.equals("edit")){
-           contM.setViewName("html_community/fhtml_community/boardModify");//수정일때
+           contM.setViewName("html_community/fboard/boardModify");//수정일때
         }/*else if(state.equals("del")){//삭제일때
-        	contM.setViewName("html_community/boardList");//삭제일때
+           contM.setViewName("html_community/boardList");//삭제일때
    
         }else if(state.equals("reply")){//답변글
            contM.setViewName("bbs/bbs_reply");
@@ -282,17 +281,17 @@ import com.oreilly.servlet.MultipartRequest;
        
         if(fcService.getListCmt(num)!=null)
         {
-		bean= fcService.getListCmt(num);
-		
-		contM.addObject("bean",bean);
+      bean= fcService.getListCmt(num);
+      
+      contM.addObject("bean",bean);
         }
         
         contM.addObject("bbsbean",bbsbean);
         contM.addObject("page",page);
         return contM;
-   	}
-    	
-    	
+      }
+       
+       
      }
      
      /* 자료실 수정 */
@@ -326,11 +325,11 @@ import com.oreilly.servlet.MultipartRequest;
         String mem_id = (String)session.getAttribute("mem_id");//세션에 저장된 mem_id를 mem_id로 저장
         
         if(mem_id==null){
-			out.print("<script>alert('로그인 후 이용할 수 있습니다.');");
-			out.print(" history.back()</script>");
-			
-			return null;
-		}
+         out.print("<script>alert('로그인 후 이용할 수 있습니다.');");
+         out.print(" history.back()</script>");
+         
+         return null;
+      }
         
         
         if(!bcont.getMem_id().equals(mem_id)){//해당 회원이 아니라면
@@ -392,7 +391,7 @@ import com.oreilly.servlet.MultipartRequest;
      public ModelAndView bbs_delete_ok(
            HttpServletRequest request,
            HttpServletResponse response) throws Exception{
-    	 
+        
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out=response.getWriter();
         
@@ -482,7 +481,7 @@ import com.oreilly.servlet.MultipartRequest;
             
            List<FboardBean> bbslist = bbsService.getBbsList3(m); 
            
-           ModelAndView model=new ModelAndView("html_community/fhtml_community/boardList");
+           ModelAndView model=new ModelAndView("html_community/fboard/boardList");
            model.addObject("find_name",find_name);
            model.addObject("find_field",find_field);         
            model.addObject("page", page);
@@ -498,40 +497,35 @@ import com.oreilly.servlet.MultipartRequest;
      
      //스크랩
     @RequestMapping(value="/fboardscrap.brn")
- 	public void sboardscrap(HttpServletRequest request,
- 			HttpServletResponse response, @RequestParam(value="f_no", required=true) int f_no)throws Exception{
- 		
- 		HttpSession session = request.getSession();
- 		
- 		String mem_no = (String) session.getAttribute("mem_no");
- 		mem_no="2";
- 		Map<String, Object> map = new HashMap<String, Object>();
- 		map.put("f_no", f_no);
- 		map.put("mem_no", mem_no);
- 		int check=0;
- 		String f_lkno = bbsService.checkscrap(f_no);
- 		if(f_lkno!=null){
- 			StringTokenizer token = new StringTokenizer(f_lkno, ",");
- 			while(token.hasMoreTokens()){
- 				if(token.nextToken().equals(mem_no)){
- 					check=1;
- 				}
- 			}
- 			System.out.println("1."+f_lkno);
- 		}else{
- 			System.out.println("f_lkno is null");
- 		}
- 		int result = 0;
- 		if(check !=1 ){
- 			result = bbsService.likeCountUp(map);
- 			System.out.println(result);
- 		}
- 		
- 	}
+    public void sboardscrap(HttpServletRequest request,
+          HttpServletResponse response, @RequestParam(value="f_no", required=true) int f_no)throws Exception{
+       
+       HttpSession session = request.getSession();
+       
+       String mem_no = (String) session.getAttribute("mem_no");
+       mem_no="2";
+       Map<String, Object> map = new HashMap<String, Object>();
+       map.put("f_no", f_no);
+       map.put("mem_no", mem_no);
+       int check=0;
+       String f_lkno = bbsService.checkscrap(f_no);
+       if(f_lkno!=null){
+          StringTokenizer token = new StringTokenizer(f_lkno, ",");
+          while(token.hasMoreTokens()){
+             if(token.nextToken().equals(mem_no)){
+                check=1;
+             }
+          }
+          System.out.println("1."+f_lkno);
+       }else{
+          System.out.println("f_lkno is null");
+       }
+       int result = 0;
+       if(check !=1 ){
+          result = bbsService.likeCountUp(map);
+          System.out.println(result);
+       }
+       
+    }
   }
-
-
-
-
-
 

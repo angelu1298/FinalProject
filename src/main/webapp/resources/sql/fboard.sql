@@ -2,70 +2,79 @@ drop table fboard;
 drop table fcomment;
 
 create table fboard(
-<<<<<<< HEAD
-	f_no		number constraint fb_fno_PK primary key,--±Û¹øÈ£
-	mem_no		number,--ÀÛ¼ºÀÚ È¸¿ø ¹øÈ£
-	f_sj		varchar2(100) not null,--±Û Á¦¸ñ
-	f_ct		clob,--±Û ³»¿ë
-	f_fl		varchar2(1024),--¾÷·Îµå ÆÄÀÏ °æ·Î
-	f_rc		number default 0,--Á¶È¸¼ö
-	f_dt		date default sysdate,--ÀÛ¼º½Ã°£
-	f_lk		number	default 0, --ÃßÃµ¼ö
-	f_lkno		varchar2(2048)--È¸¿ø¹øÈ£(ÃßÃµÀÎ)
+   f_no      number constraint fb_fno_PK primary key,--ê¸€ë²ˆí˜¸
+   mem_no      number references member(mem_no),--ìž‘ì„±ìž íšŒì› ë²ˆí˜¸
+   f_sj      varchar2(100) not null,--ê¸€ ì œëª©
+   f_ct      clob,--ê¸€ ë‚´ìš©
+   f_fl      varchar2(1024),--ì—…ë¡œë“œ íŒŒì¼ ê²½ë¡œ
+   f_rc      number default 0,--ì¡°íšŒìˆ˜
+   f_dt      date default sysdate,--ìž‘ì„±ì‹œê°„
+   f_lk      number   default 0, --ì¶”ì²œìˆ˜
+   f_lkno      varchar2(2048) default ',',--íšŒì›ë²ˆí˜¸(ì¶”ì²œì¸)
+   fcomm_cnt      number default 0
 );
 
+drop view fboardlist;
+
+create or replace view fboardlist
+as
+select f_no, m.mem_id,f_sj, f_ct, f_fl,f_rc,f_dt,f_lk,f_lkno,fcomm_cnt
+from fboard f, member m 
+where f.mem_no = m.mem_no;
+
+/***** fboard í…Œì´ë¸”ì˜ ì‹œí€€ìŠ¤ ìƒì„± *****/
+create sequence fboard_seq 
+increment by 1 start with 1 nocache;
+
+
+create sequence member_seq 
+increment by 1 start with 1 nocache;
+
+insert into mem88(mem_no,mem_id)
+values(mem88_seq.nextval, 'ss');
+
+insert into mem88(mem_no,mem_id)
+values(mem88_seq.nextval, 'ok');
+
+drop table mem88;
 
 
 select * from fboard;
 
-/***** fboard Å×ÀÌºíÀÇ ½ÃÄö½º »ý¼º *****/
-create sequence fboard_seq 
-increment by 1 start with 1 nocache;
+
+
+
+select * from FCOMMENT;
+select * from fcommlist;
 
 drop sequence fboard_seq; 
+drop sequence fcomm_seq;
 
 create table fcomment(
-	fcomm_no		number constraint fcomm_fcno_pk primary key,--ÄÚ¸àÆ® ¹øÈ£
-	mem_no			number,--ÀÛ¼ºÀÚ È¸¿ø¹øÈ£
-	fcomm_ct		varchar2(600) not null,--ÄÚ¸àÆ® ³»¿ë
-	fcomm_dt		date,--ÄÚ¸àÆ® ÀÛ¼º³¯Â¥
-	fcomm_re_ref	number,--ÄÚ¸àÆ®´äº¯ÂüÁ¶±Û ¹øÈ£
-	fcomm_re_lev	number,--ÄÚ¸àÆ® ´äº¯ ¼öÁØ
-	fcomm_re_seq	number,--ÄÚ¸àÆ® ´äº¯ ¼ø¼­
-	f_no			number  --ÂüÁ¶±Û ¹øÈ£
-=======
-	f_no		number constraint fb_fno_PK primary key,--ï¿½Û¹ï¿½È£
-	mem_no		number,--ï¿½Û¼ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½È£
-	f_sj		varchar2(100) not null,--ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	f_ct		clob,--ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	f_fl		varchar2(1024),--ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
-	f_rc		number default 0,--ï¿½ï¿½È¸ï¿½ï¿½
-	f_dt		date default sysdate,--ï¿½Û¼ï¿½ï¿½Ã°ï¿½
-	f_lk		number	default 0, --ï¿½ï¿½Ãµï¿½ï¿½
-	f_lkno		varchar2(2048)--È¸ï¿½ï¿½ï¿½ï¿½È£(ï¿½ï¿½Ãµï¿½ï¿½)
+   fcomm_no      number constraint fcomm_fcno_pk primary key,--ì½”ë©˜íŠ¸ ë²ˆí˜¸
+   mem_no         number,--ìž‘ì„±ìž íšŒì›ë²ˆí˜¸
+   fcomm_ct      varchar2(600) not null,--ì½”ë©˜íŠ¸ ë‚´ìš©
+   fcomm_dt      date,--ì½”ë©˜íŠ¸ ìž‘ì„±ë‚ ì§œ
+   fcomm_re_ref   number,--ì½”ë©˜íŠ¸ë‹µë³€ì°¸ì¡°ê¸€ ë²ˆí˜¸
+   fcomm_re_lev   number,--ì½”ë©˜íŠ¸ ë‹µë³€ ìˆ˜ì¤€
+   fcomm_re_seq   number,--ì½”ë©˜íŠ¸ ë‹µë³€ ìˆœì„œ
+   f_no         number  --ì°¸ì¡°ê¸€ ë²ˆí˜¸
 );
 
-
-
-select * from fboard;
-
-/***** fboard ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ *****/
-create sequence fboard_seq 
+/***** fcomment í…Œì´ë¸”ì˜ ì‹œí€€ìŠ¤ ìƒì„± *****/
+create sequence fcomm_seq 
 increment by 1 start with 1 nocache;
 
-drop sequence fboard_seq; 
 
-create table fcomment(
-	fcomm_no		number constraint fcomm_fcno_pk primary key,--ï¿½Ú¸ï¿½Æ® ï¿½ï¿½È£
-	mem_no			number,--ï¿½Û¼ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½È£
-	fcomm_ct		varchar2(600) not null,--ï¿½Ú¸ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
-	fcomm_dt		date,--ï¿½Ú¸ï¿½Æ® ï¿½Û¼ï¿½ï¿½ï¿½Â¥
-	fcomm_re_ref	number,--ï¿½Ú¸ï¿½Æ®ï¿½äº¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
-	fcomm_re_lev	number,--ï¿½Ú¸ï¿½Æ® ï¿½äº¯ ï¿½ï¿½ï¿½ï¿½
-	fcomm_re_seq	number,--ï¿½Ú¸ï¿½Æ® ï¿½äº¯ ï¿½ï¿½ï¿½ï¿½
-	f_no			number  --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
->>>>>>> branch 'temp' of https://github.com/angelu1298/FinalProject
-);
+create or replace view fcommlist
+as
+select fcomm_no, m.mem_id, fcomm_ct, fcomm_dt, 
+     fcomm_re_ref, fcomm_re_lev, fcomm_re_seq, f_no
+from fcomment f, member m 
+where f.mem_no = m.mem_no
+
+drop view fcommlist;
+
 
 alter table fboard 
 add constraint fb_mem_no_FK foreign key (mem_no) 

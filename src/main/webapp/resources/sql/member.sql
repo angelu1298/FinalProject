@@ -23,7 +23,6 @@ create table member(
     mem_dd		date default sysdate,--Ż��¥
     mem_rs1		varchar2(300),--Ż�����1
     mem_rs2		varchar2(300)  --Ż�����2
-<<<<<<< HEAD
 )
 create sequence mem_no_seq start with 1;
 drop table member cascade constraint;
@@ -31,9 +30,6 @@ drop sequence mem_no_seq;
 
 delete from member where mem_no=2;
 select * from member;
-=======
-);
->>>>>>> branch 'suhyun' of https://github.com/angelu1298/FinalProject
 
 /***** member ���̺��� join_code ������ ���� *****/
 create sequence member_joincode_seq 
@@ -41,16 +37,14 @@ increment by 1 start with 1 nocache;
 
 drop sequence member_joincode_seq; 
 
-<<<<<<< HEAD
 
 alter table fboard 
 add constraint fb_mem_no_FK foreign key (mem_no) 
 references member(mem_no);
-=======
+
 insert into member(mem_no,mem_id,mem_pw, mem_nm,mem_bd,mem_hp,mem_ma,mem_jd)
 values(member_joincode_seq.nextval,'ss','1111','홍길동','19880909','01077778888',
 'ssheln@naver.com',sysdate);
->>>>>>> branch 'suhyun' of https://github.com/angelu1298/FinalProject
 
 create table zipcode (
   no number PRIMARY KEY
