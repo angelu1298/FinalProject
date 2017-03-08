@@ -10,12 +10,12 @@
 <meta http-equiv="Pragma" content="no-cache"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>Burn Fat</title>
-<link href="/fat/resources/css/sub.css" rel="stylesheet" type="text/css">
-<script src="/fat/resources/js/jquery.min.js"></script>
-<script src="/fat/resources/js/angular.js"></script>
-<script src="/fat/resources/js/common.js"></script>
-<script src="./resources/js/sboard.js"></script>
-<script type="text/javascript" src="./resources/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
+<link href="${pageContext.request.contextPath}/resources/css/sub.css" rel="stylesheet" type="text/css">
+<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/angular.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/sboard.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
 
 </head>
 

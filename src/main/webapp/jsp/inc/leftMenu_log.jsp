@@ -26,7 +26,7 @@
 	
 			<li><a href="./Modify.brn">회원정보수정</a></li>
 			
-			<li><a href="/fat/html_membership/memDrop.jsp">회원탈퇴</a></li>
+			<li><a href="${pageContext.request.contextPath}/html_membership/memDrop.jsp">회원탈퇴</a></li>
 			
 		</c:if>
 	</ul>
