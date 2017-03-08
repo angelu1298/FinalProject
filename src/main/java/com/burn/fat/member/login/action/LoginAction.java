@@ -1,7 +1,6 @@
 package com.burn.fat.member.login.action;
 
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -56,8 +55,11 @@ public class LoginAction {
 	public String logout(HttpServletRequest request, HttpServletResponse response,HttpSession session) throws Exception{
 		session= request.getSession();
 		session.removeAttribute("mem_id");
-		return "../index";
+		//임의로 설정
+		return "html_membership/login";
+		/*return "../index";*/
 	}
+	
 	
 	@RequestMapping("/IdFind.brn")
 	public String idFind(HttpServletRequest request, HttpServletResponse response,HttpSession session) throws Exception{

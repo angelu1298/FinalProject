@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -270,6 +269,7 @@ public class SboardAction {
 			contM.addObject("sbean", bean);
 			contM.addObject("page", page);
 			return contM;
+
 		}
 	}
 
@@ -429,65 +429,8 @@ public class SboardAction {
 
 		return model;
 		// return null;
-	}
-
-	@RequestMapping(value = "/find_order_date.brn")
-	public ModelAndView find_order_date(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-		int page = 1;
-		int limit = 10;
-		if (request.getParameter("page") != null)
-			page = Integer.parseInt(request.getParameter("page"));
-		String orderdate = "";
-		if (request.getParameter("orderdate") != null) {
-			orderdate = request.getParameter("orderdate");
-		}
-		orderdate = request.getParameter("orderdate");
-		String find_name = null;
-		if (request.getParameter("find_name") != null) {
-			find_name = request.getParameter("find_name").trim();
-		}
-		String find_field = null;
-		if (request.getParameter("find_field") != null) {
-			find_field = request.getParameter("find_field").trim();
-		}
-
-		Map<String, Object> m = new HashMap<String, Object>();
-		m.put("page", page);
-		m.put("find_field", find_field);
-		m.put("find_name", "%" + find_name + "%");
-
-		int listcount = this.service.getListCountSearch(m);
-
-		m.put("orderdate", orderdate);
-
-		// 총 페이지 수
-		int maxpage = (listcount + limit - 1) / limit;
-
-		// 현재 페이지에 보여줄 시작 페이지 수(1, 11, 21 등...)
-		int startpage = ((page - 1) / 10) * 10 + 1;
-
-		// 현재 페이지에 보여줄 마지막 페이지 수(10, 20, 30 등...)
-		int endpage = startpage + 10 - 1;
-
-		if (endpage > maxpage)
-			endpage = maxpage;
-
-		List<SboardBean> slist = service.getSboardListSearch(m);
-
-		ModelAndView model = new ModelAndView("html_community/sboard/sboardView");
-		model.addObject("find_name", find_name);
-		model.addObject("find_field", find_field);
-		model.addObject("page", page);
-		model.addObject("maxpage", maxpage);
-		model.addObject("orderdate", orderdate);
-		model.addObject("startpage", startpage);
-		model.addObject("endpage", endpage);
-		model.addObject("listcount", listcount);
-		model.addObject("slist", slist);
-
-		return model;
 
 	}
+
 
 }

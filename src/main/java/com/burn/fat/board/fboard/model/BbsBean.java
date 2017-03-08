@@ -1,21 +1,21 @@
 package com.burn.fat.board.fboard.model;
 
-import java.util.Date;
-
 import org.springframework.stereotype.Component;
 
 @Component
-public class FbbsBean {
+public class BbsBean {
 
 	private int f_no;
-	private int mem_no;//ÀÛ¼ºÀÚ È¸¿ø ¹øÈ£
-	private String f_sj;//±ÛÁ¦¸ñ
-	private String f_ct;//±Û³»¿ë(Clob)
-	private String f_fl;//¾÷·ÎµåÆÄÀÏ°æ·Î
-	private int f_rc;//Á¶È¸¼ö
-	private Date f_dt;//ÀÛ¼º½Ã°£
-	private int f_lk;//ÃßÃµ¼ö
-	private String f_lkno;//È¸¿ø¹øÈ£(ÃßÃµÀÎ)
+	private String mem_id;
+	private String f_sj; //ê¸€ì œëª©
+	private String f_ct; //ê¸€ë‚´ìš©
+	private String f_fl; //ì´ì§„íŒŒì¼ëª…
+	private int f_rc; //ì¡°íšŒìˆ˜
+	private String f_dt; //ê¸€ ë“±ë¡ë‚ ì§œ
+	private int f_lk; //ì¶”ì²œìˆ˜
+	private String f_lkno; // íšŒì›ë²ˆí˜¸
+	private int scomm_cnt; //ì½”ë©˜íŠ¸
+	
 	
 	public int getF_no() {
 		return f_no;
@@ -23,11 +23,11 @@ public class FbbsBean {
 	public void setF_no(int f_no) {
 		this.f_no = f_no;
 	}
-	public int getMem_no() {
-		return mem_no;
+	public String getMem_id() {
+		return mem_id;
 	}
-	public void setMem_no(int mem_no) {
-		this.mem_no = mem_no;
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
 	}
 	public String getF_sj() {
 		return f_sj;
@@ -53,10 +53,10 @@ public class FbbsBean {
 	public void setF_rc(int f_rc) {
 		this.f_rc = f_rc;
 	}
-	public Date getF_dt() {
+	public String getF_dt() {
 		return f_dt;
 	}
-	public void setF_dt(Date f_dt) {
+	public void setF_dt(String f_dt) {
 		this.f_dt = f_dt;
 	}
 	public int getF_lk() {
@@ -71,6 +71,13 @@ public class FbbsBean {
 	public void setF_lkno(String f_lkno) {
 		this.f_lkno = f_lkno;
 	}
+	public int getScomm_cnt() {
+		return scomm_cnt;
+	}
+	public void setScomm_cnt(int scomm_cnt) {
+		this.scomm_cnt = scomm_cnt;
+	}
+	
 	
 	
 	

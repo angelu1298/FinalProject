@@ -36,9 +36,16 @@
 				<li>
 					<a href="#none">COMMUNITY</a>
 					<ul>
+<<<<<<< HEAD
 			            <li><a href="/fat/html_community/boardList.jsp">운동게시판</a></li>
 			            <li><a href="/fat/html_community/boardList.jsp">식품게시판</a></li>
 			            <li><a href="/fat/html_community/boardList.jsp">자유게시판</a></li>
+=======
+					
+			            <li><a href="/fat/jsp/board/fboard/boardList.jsp">운동게시판</a></li>
+			            <li><a href="./bbs_list.brn">식품게시판</a></li>
+			            <li><a href="/fat/jsp/board/fboard/boardList.jsp">자유게시판</a></li>
+>>>>>>> branch 'suhyun' of https://github.com/angelu1298/FinalProject
 			            <li><a href="./sboardList.brn">후기게시판</a></li>
 			            <li><a href="/fat/html_community/gallList.jsp">갤러리</a></li>
 					</ul>
