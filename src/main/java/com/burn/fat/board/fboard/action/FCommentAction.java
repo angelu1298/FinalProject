@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.burn.fat.board.fboard.dao.BoardService;
+import com.burn.fat.board.fboard.dao.FboardService;
 import com.burn.fat.board.fboard.dao.FcommService;
 import com.burn.fat.board.fboard.model.FcommBean;
 
@@ -26,7 +26,7 @@ public class FCommentAction {
       private FcommService fcService;
       
       @Autowired
-  	  private BoardService boardservice;
+  	  private FboardService boardservice;
      
       //코멘트 리스트
       @RequestMapping(value="/listCmt.brn")

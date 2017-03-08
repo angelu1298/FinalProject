@@ -8,54 +8,54 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.burn.fat.board.fboard.model.BbsBean;
+import com.burn.fat.board.fboard.model.FboardBean;
 
 @Repository
-public class BbsDAOImpl {
+public class FboardDAOImpl {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	/*ÀÚ·á½Ç ÀúÀå*/
-	public void insertBbs(BbsBean bbsbean) throws Exception{
-		sqlSession.insert("bbs_insert",bbsbean);		
+	/*ï¿½Ú·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
+	public void insertBbs(FboardBean FboardBean) throws Exception{
+		sqlSession.insert("bbs_insert",FboardBean);		
 	}
 
-	/* ÀÚ·á½Ç ÃÑ °Ô½Ã¹° ¼ö*/
+	/* ï¿½Ú·ï¿½ï¿½ ï¿½ï¿½ ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½*/
 	public int getListCount() throws Exception{
 		int count=((Integer)sqlSession.selectOne("bbs_count")).intValue();
 		return count;
 	}
 	
-	/* ÀÚ·á½Ç ¸ñ·Ï°ú ÆäÀÌÂ¡ */
-	public List<BbsBean> getBbsList(Map m) throws Exception {//page,limit
-		List<BbsBean>  list = sqlSession.selectList("bbs_list",m);
+	/* ï¿½Ú·ï¿½ï¿½ ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½Â¡ */
+	public List<FboardBean> getBbsList(Map m) throws Exception {//page,limit
+		List<FboardBean>  list = sqlSession.selectList("bbs_list",m);
 	    return list;
 	}
 
 	
 	
-	/*¹øÈ£¸¦ ±âÁØÀ¸·Î ÀÚ·á½Ç ³»¿ë °¡Á®¿À±â */
-	public BbsBean getBbsCont(int num) throws Exception{
-		return (BbsBean)sqlSession.selectOne("bbs_cont", num);
+	/*ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	public FboardBean getBbsCont(int num) throws Exception{
+		return (FboardBean)sqlSession.selectOne("bbs_cont", num);
 	}
 
-	/*³»¿ëº¸±â ÇÒ¶§¸¸ Á¶È¸¼ö Áõ°¡*/
+	/*ï¿½ï¿½ï¿½ëº¸ï¿½ï¿½ ï¿½Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
 	public void bbsHit(int num) throws Exception{
 		sqlSession.update("bbs_hit",num);		
 	}
 
-	/*ÀÚ·á½Ç ¼öÁ¤*/
-	public void editBbs(BbsBean bbsbean) throws Exception{
-		sqlSession.update("bbs_edit",bbsbean);		
+	/*ï¿½Ú·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
+	public void editBbs(FboardBean FboardBean) throws Exception{
+		sqlSession.update("bbs_edit",FboardBean);		
 	}
 
-	/*ÀÚ·á½Ç »èÁ¦*/
+	/*ï¿½Ú·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
 	public void deleteBbs(int f_no) throws Exception{
 		sqlSession.delete("bbs_delete",f_no);		
 	}
 
-	/*°Ë»ö °á°ú °Ô½Ã¹° ¼ö*/
+	/*ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½*/
 //	public int getListCount3(String find_name,String find_field) throws SQLException{
 	public int getListCount3(Map m) throws Exception{
 		int count=0;
@@ -63,24 +63,24 @@ public class BbsDAOImpl {
 		return count;
 	}
 
-	/*°Ë»ö °á°ú ÆäÀÌÂ¡ ¸ñ·Ï*/
-	public List<BbsBean> getBbsList3(Map m) throws Exception {
-		List<BbsBean>  list = sqlSession.selectList("bbs_find", m);
+	/*ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Â¡ ï¿½ï¿½ï¿½*/
+	public List<FboardBean> getBbsList3(Map m) throws Exception {
+		List<FboardBean>  list = sqlSession.selectList("bbs_find", m);
 	    return list;
 	}
 	
-	//ÃßÃµ
+	//ï¿½ï¿½Ãµ
 	public int likeCountUp(Map<String, Object> map) {
 		return sqlSession.update("likecountup", map);
 	}
 
-	//½ºÅ©·¦
+	//ï¿½ï¿½Å©ï¿½ï¿½
 	public String checkscrap(int f_no) {
 		
 		return sqlSession.selectOne("checkscrap", f_no);
 	}
 
-	//ÄÚ¸àÆ®
+	//ï¿½Ú¸ï¿½Æ®
 	public void changeFcomment(int f_no) {
 		sqlSession.update("updatefcommcnt",f_no);
 	}

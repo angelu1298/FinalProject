@@ -3,7 +3,7 @@ package com.burn.fat.board.fboard.model;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BbsBean {
+public class FboardBean {
 
 	private int f_no;
 	private String mem_id;

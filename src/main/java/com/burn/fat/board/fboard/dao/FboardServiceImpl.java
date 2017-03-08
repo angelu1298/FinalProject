@@ -6,16 +6,16 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.burn.fat.board.fboard.model.BbsBean;
+import com.burn.fat.board.fboard.model.FboardBean;
 
 @Service("boardService")
-public class BoardServiceImpl implements BoardService {
+public class FboardServiceImpl implements FboardService {
     @Autowired
-	private BbsDAOImpl bbsDAO;
+	private FboardDAOImpl bbsDAO;
 
 	@Override
-	public void insertBbs(BbsBean bbsbean) throws Exception {
-		bbsDAO.insertBbs(bbsbean);
+	public void insertBbs(FboardBean FboardBean) throws Exception {
+		bbsDAO.insertBbs(FboardBean);
 	}
 
 	@Override
@@ -24,12 +24,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BbsBean> getBbsList(Map m) throws Exception {
+	public List<FboardBean> getBbsList(Map m) throws Exception {
 		return bbsDAO.getBbsList(m);
 	}
 
 	@Override
-	public BbsBean getBbsCont(int num) throws Exception {
+	public FboardBean getBbsCont(int num) throws Exception {
 		return bbsDAO.getBbsCont(num);
 	}
 
@@ -39,8 +39,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void editBbs(BbsBean bbsbean) throws Exception {
-         bbsDAO.editBbs(bbsbean);		
+	public void editBbs(FboardBean FboardBean) throws Exception {
+         bbsDAO.editBbs(FboardBean);		
 	}
 
 	@Override
@@ -54,22 +54,22 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BbsBean> getBbsList3(Map m) throws Exception {
+	public List<FboardBean> getBbsList3(Map m) throws Exception {
 		return bbsDAO.getBbsList3(m);
 	}
 
-	//ÃßÃµ
+	//ï¿½ï¿½Ãµ
 	public int likeCountUp(Map<String, Object> map) {
 		return bbsDAO.likeCountUp(map);
 	}
 
-	//½ºÅ©·¦
+	//ï¿½ï¿½Å©ï¿½ï¿½
 	public String checkscrap(int f_no) {
 		return bbsDAO.checkscrap(f_no);
 	}
 
 
-	//ÄÚ¸àÆ®
+	//ï¿½Ú¸ï¿½Æ®
 	public void changeFcomment(int f_no) {
 		bbsDAO.changeFcomment(f_no);
 	}
