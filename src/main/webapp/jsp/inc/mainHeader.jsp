@@ -31,13 +31,7 @@
 
 		<header>
 			<!-- gnb 영역 -->
-<<<<<<< HEAD
 			<%@ include file="/jsp/inc/gnb.jsp"%>
 			<!-- lnb 영역 -->
 			<%@ include file="/jsp/inc/lnb.jsp"%>
-=======
-			<%@ include file="gnb.jsp"%>
-			<!-- lnb 영역 -->
-			<%@ include file="lnb.jsp"%>
->>>>>>> branch 'suhyun' of https://github.com/angelu1298/FinalProject
 		</header>

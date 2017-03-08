@@ -33,7 +33,14 @@ public class MemberAction {
 	private MemberService memberService;
 	
 
-
+	@RequestMapping(value="/idFind.brn")
+	public String idFind(){
+		return "html_membership/idFind";
+	}
+	@RequestMapping(value="/pwFind.brn")
+	public String pwFind(){
+		return "html_membership/pwFind";
+	}
 	
 	/*1. 아이디찾기(핸드폰)*/
 	@RequestMapping(value="/id_find_ok1.brn",method=RequestMethod.POST)
