@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="/fat/resources/js/jquery.min.js"></script>
-<script src="./resources/js/reply.js"></script>
 <style>
 #re_form{
 	padding:5px 10px 40px 10px;

@@ -30,15 +30,6 @@ increment by 1 start with 1 nocache;
 create sequence member_seq 
 increment by 1 start with 1 nocache;
 
-insert into mem88(mem_no,mem_id)
-values(mem88_seq.nextval, 'ss');
-
-insert into mem88(mem_no,mem_id)
-values(mem88_seq.nextval, 'ok');
-
-drop table mem88;
-
-
 select * from fboard;
 
 

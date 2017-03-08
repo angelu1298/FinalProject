@@ -10,7 +10,6 @@
 <meta http-equiv="Pragma" content="no-cache"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>BURN FAT</title>
-<<<<<<< HEAD
 <link href="./resources/css/login.css" rel="stylesheet" type="text/css">
 <script src="./resources/js/jquery.min.js"></script>
 <script src="./resources/js/angular.js"></script>
@@ -39,32 +38,5 @@
 			<%@ include file="/jsp/inc/gnb.jsp"%>
 			<!-- lnb 영역 -->
 			<%@ include file="/jsp/inc/lnb.jsp"%>
-=======
-<link href="/fat/resources/css/login.css" rel="stylesheet" type="text/css">
-<script src="/fat/resources/js/jquery.min.js"></script>
-<script src="/fat/resources/js/angular.js"></script>
-<script src="/fat/resources/js/common.js"></script>
 
-</head>
-
-<body>
-
-	<%@ page session='true' %>
-	<%--
-		request.setCharacterEncoding("UTF-8");
-		// 가입시간
-		String logintime = "";
-		logintime = request.getParameter("loginTime");
-		session.setAttribute("s_loginTime", logintime);
-	--%>
-
-	<!-- S: wrap -->
-	<div class="wrap">
-
-		<header>
-			<!-- gnb 영역 -->
-			<%@ include file="gnb.jsp"%>
-			<!-- lnb 영역 -->
-			<%@ include file="lnb.jsp"%>
->>>>>>> branch 'suhyun' of https://github.com/angelu1298/FinalProject
 		</header>

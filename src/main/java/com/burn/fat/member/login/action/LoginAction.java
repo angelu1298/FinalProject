@@ -36,14 +36,14 @@ public class LoginAction {
 		ModelAndView model = new ModelAndView("main/mainpage");
 		PrintWriter out = response.getWriter();
 			if(member==null){
-				out.print("<script>alert('등록되지 않은 회원입니다.');history.go(-1)</script>");
+				out.print("<script>alert('�벑濡앸릺吏� �븡�� �쉶�썝�엯�땲�떎.');history.go(-1)</script>");
 				return null;
 			}else{
 				if(check_pass.equals(member.getMem_pw())){
 					session.setAttribute("mem_id", check_id);
 					session.setAttribute("mem_no", member.getMem_no());
 				}else{
-					out.print("<script>alert('비밀번호가 일치하지 않습니다.');history.go(-1)</script>");
+					out.print("<script>alert('鍮꾨�踰덊샇媛� �씪移섑븯吏� �븡�뒿�땲�떎.');history.go(-1)</script>");
 					return null;
 				}
 			}
@@ -55,19 +55,10 @@ public class LoginAction {
 	public String logout(HttpServletRequest request, HttpServletResponse response,HttpSession session) throws Exception{
 		session= request.getSession();
 		session.removeAttribute("mem_id");
-		//임의로 설정
 		return "html_membership/login";
 		/*return "../index";*/
 	}
 	
 	
-	@RequestMapping("/IdFind.brn")
-	public String idFind(HttpServletRequest request, HttpServletResponse response,HttpSession session) throws Exception{
-		return "html_membership/idFind";
-	}
-	@RequestMapping("/PwFind.brn")
-	public String pwFind(HttpServletRequest request, HttpServletResponse response,HttpSession session) throws Exception{
-		return "html_membership/pwFind";
-	}
 	
 }

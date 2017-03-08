@@ -15,33 +15,33 @@ public class ScommDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	public int insertComm(ScommBean commbean) {
-		return sqlSession.insert("insertcomm",commbean);
+		return sqlSession.insert("Scomm.insertcomm",commbean);
 	}
 	public List<ScommBean> getCommList(int s_no) {
-		return sqlSession.selectList("scommlist", s_no);
+		return sqlSession.selectList("Scomm.scommlist", s_no);
 	}
 	public int deleteComm(Map<String, Integer> map) {
-		return sqlSession.delete("deletecomm",map);
+		return sqlSession.delete("Scomm.deletecomm",map);
 	}
 	public ScommBean getComment(ScommBean bean) {
-		return sqlSession.selectOne("getcomment",bean);
+		return sqlSession.selectOne("Scomm.getcomment",bean);
 	}
 	public void insertCommRep(ScommBean commbean) {
-		sqlSession.insert("insertcommreply",commbean);
+		sqlSession.insert("Scomm.insertcommreply",commbean);
 	}
 	public Integer getCommCnt(int s_no) {
 		
-		return sqlSession.selectOne("commlistcnt",s_no);
+		return sqlSession.selectOne("Scomm.commlistcnt",s_no);
 	}
 	public ScommBean getComment(Map<String, Integer> map) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("getcommentbyno",map);
+		return sqlSession.selectOne("Scomm.getcommentbyno",map);
 	}
 	public List<ScommBean> getCommentRef(ScommBean bean) {
-		return sqlSession.selectList("getcommentref",bean);
+		return sqlSession.selectList("Scomm.getcommentref",bean);
 	}
 	public int deleteCommExistRep(Map<String, Integer> map) {
-		return sqlSession.update("deletecommexistrep",map);
+		return sqlSession.update("Scomm.deletecommexistrep",map);
 	}
 
 }

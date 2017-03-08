@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../../inc/subHeader.jsp"%>
+<%@ include file="/jsp/inc/boardHeader.jsp"%>
 <%@ page import="java.util.*"%>
 <!-- 파일 업로드 처리를 위한 MultipartRequest 객체를 임포트 -->
 <%@ page import="com.oreilly.servlet.MultipartRequest" %> 
@@ -7,16 +7,14 @@
 <%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="/fat/resources/js/jquery.min.js"></script>
-<script src="./resources/js/bbs.js"></script>
-
+ <script src="./resources/js/fboard.js"></script>
 
 
 <!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
 <section class="sub_container">
 
 		<!-- 서브메뉴에 따라 Side Navigation을 다르게 부여해준다. -->	
-		<%@ include file="../../inc/leftMenu05.jsp"%>
+		<%@ include file="/jsp/inc/leftMenu05.jsp"%>
 		
 		<!-- 서브컨텐츠 영역 START -->
 		<div class="subContent">
@@ -137,4 +135,4 @@
 <!-- 	</div> -->
 </section>
 <!-- // container End -->
-<%@ include file="../../inc/footer.jsp"%>
+<%@ include file="/jsp/inc/footer.jsp"%>

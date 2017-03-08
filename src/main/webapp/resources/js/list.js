@@ -13,7 +13,7 @@
     	    var scount=$("#viewcount").val();
            $.ajax({
     	       type:"POST",    
-    	       url:"bbs_list.nhn",    
+    	       url:"bbs_list.brn",    
     	       data: {"limit" : scount}, 
     	       cache: false,
     	       headers : {"cache-control" : "no-cache", "pragma" : "no-cache"},

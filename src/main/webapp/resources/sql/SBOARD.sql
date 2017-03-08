@@ -22,6 +22,12 @@ create table scomment(
 	s_no			number
 );
 
+create sequence s_no_seq 
+increment by 1 start with 1 nocache;
+
+create sequence scomm_no_seq 
+increment by 1 start with 1 nocache;
+
 
 alter table sboard 
 add constraint sb_mem_no_FK foreign key (mem_no) 

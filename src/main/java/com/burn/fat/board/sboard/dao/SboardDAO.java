@@ -18,12 +18,12 @@ public class SboardDAO {
 
 	public int getListCount() {
 		int listNum = 0;
-		listNum = ((Integer)sqlSession.selectOne("sboardcount")).intValue();
+		listNum = ((Integer)sqlSession.selectOne("Sboard.sboardcount")).intValue();
 		return listNum;
 	}
 
 	public List<SboardBean> getSboardList(Map<String, Integer> m) {
-		List<SboardBean> list = sqlSession.selectList("sboardlist",m);
+		List<SboardBean> list = sqlSession.selectList("Sboard.sboardlist",m);
 		return list;
 	}
 
@@ -32,56 +32,56 @@ public class SboardDAO {
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("bean", bean);
 		map.put("mem_no", mem_no);*/
-		sqlSession.insert("insertSboard",bean);
+		sqlSession.insert("Sboard.insertSboard",bean);
 	}
 
 	public SboardBean getSboardCont(int num) {
-		return (SboardBean) sqlSession.selectOne("sboardcont",num);
+		return (SboardBean) sqlSession.selectOne("Sboard.sboardcont",num);
 	}
 
 	public void sboardHit(int num) {
-		sqlSession.update("sboardhit",num);
+		sqlSession.update("Sboard.sboardhit",num);
 		
 	}
 
 	public void editSboard(SboardBean bean) {
-		sqlSession.update("sboardedit",bean);
+		sqlSession.update("Sboard.sboardedit",bean);
 	}
 
 	public int deleteSboard(int s_no) {
-		return sqlSession.delete("sboarddelete", s_no);
+		return sqlSession.delete("Sboard.sboarddelete", s_no);
 	}
 
 	public int getListCountSearch(Map<String, Object> m) {
-		int num = sqlSession.selectOne("searchcnt", m);
+		int num = sqlSession.selectOne("Sboard.searchcnt", m);
 		return num;
 	}
 
 	public List<SboardBean> getSboardListSearch(Map<String, Object> m) {
-		List<SboardBean> list = sqlSession.selectList("sboardlistsearch",m);
+		List<SboardBean> list = sqlSession.selectList("Sboard.sboardlistsearch",m);
 		return list;
 	}
 
 
 	public int likeCountUp(Map<String, Object> map) {
-		return sqlSession.update("likecountup", map);
+		return sqlSession.update("Sboard.likecountup", map);
 	}
 
 	public String checkscrap(int s_no) {
 		
-		return sqlSession.selectOne("checkscrap", s_no);
+		return sqlSession.selectOne("Sboard.checkscrap", s_no);
 	}
 
 	public void chageScommcnt(int s_no) {
-		sqlSession.update("updatescommcnt",s_no);
+		sqlSession.update("Sboard.updatescommcnt",s_no);
 	}
 
 	public SboardBean getSboardContPreNext(int rnum) {
-		return sqlSession.selectOne("sboardcontPreNext",rnum);
+		return sqlSession.selectOne("Sboard.sboardcontPreNext",rnum);
 	}
 
 	public int getRowNum(int s_no) {
-		return sqlSession.selectOne("getrnum",s_no);
+		return sqlSession.selectOne("Sboard.getrnum",s_no);
 	}
 
 	

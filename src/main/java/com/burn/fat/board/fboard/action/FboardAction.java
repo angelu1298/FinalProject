@@ -27,7 +27,7 @@ import com.burn.fat.board.fboard.model.FboardBean;
 import com.burn.fat.board.fboard.model.FcommBean;
 import com.oreilly.servlet.MultipartRequest;
 
-  @Controller("fboard")
+  @Controller("fboardaction")
 
   public class FboardAction {
 

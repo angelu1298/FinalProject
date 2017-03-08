@@ -35,23 +35,12 @@
 					<!-- 비밀번호 찾기 확인 -->
 					
 					<!--버튼-->
-<<<<<<< HEAD
-					<div class="btnL_area mt25">
-						<input type="submit" value="확인">
-						<input type="reset" value="취소">
-=======
-<!-- 					<div class="btnL_area mt25">
-						<input type="submit" class="findBtn" value="확인">
-						<input type="reset" class="findBtn" value="취소" />
-					</div> -->
-					
-					
+		
 					<div class="btnL_area mt25 w500">
 						<ul class="login_fot">
 							<li><a href="join1.jsp">회원가입</a></li>
 							<li><a href="./Login.brn">로그인</a></li>
 						</ul>
->>>>>>> branch 'suhyun' of https://github.com/angelu1298/FinalProject
 					</div>
 					<!--//버튼-->	
 					

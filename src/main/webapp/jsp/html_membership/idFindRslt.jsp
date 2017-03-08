@@ -28,7 +28,7 @@
 					<!--버튼-->
 					<div class="btnL_area mt25 w500">
 						<ul class="login_fot">
-							<li><a href="PwFind.brn" class="findBtn" value="비밀번호 찾기">비밀번호 찾기</a></li>
+							<li><a href="./pwFind.brn">비밀번호 찾기</a></li>
 							<li><a href="join1.jsp">회원가입</a></li>
 							<li><a href="./Login.brn">로그인</a></li>
 						</ul>

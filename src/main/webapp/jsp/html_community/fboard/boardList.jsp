@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../../inc/subHeader.jsp"%>
+<%@ include file="/jsp/inc/boardHeader.jsp"%>
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<script src="/fat/resources/js/jquery.min.js"></script>
  <script src="./resources/js/list.js"></script>
     
     
@@ -15,7 +14,7 @@
 <section class="sub_container">
 
 	<!-- 서브메뉴에 따라 Side Navigation을 다르게 부여해준다. -->
-	<%@ include file="../../inc/leftMenu05.jsp"%>
+	<%@ include file="/jsp/inc/leftMenu05.jsp"%>
 
 	<!-- 서브컨텐츠 영역 START -->
 	<div class="subContent">
@@ -185,4 +184,4 @@
 </section>
 <!-- // container End -->
 
-<%@ include file="../../inc/footer.jsp"%>
+<%@ include file="/jsp/inc/footer.jsp"%>

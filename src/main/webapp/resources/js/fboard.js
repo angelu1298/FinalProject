@@ -21,7 +21,7 @@
 				data:{"f_no" : f_no,
 						"page" : page },
 				type : "post",
-				url : "bbs_delete_ok.nhn",
+				url : "bbs_delete_ok.brn",
 				success : function(data){
 						alert('게시물이 삭제되었습니다');
 				}
@@ -35,7 +35,7 @@
 		$.ajax({
 			type : "post",
 			data : {"f_no" : f_no},
-			url : "fboardscrap.nhn",
+			url : "fboardscrap.brn",
 			success : function(data){
 				var check = Number(data);
 					alert('스크랩 완료!!');
@@ -62,11 +62,11 @@
 			type: "post",
 			data : {"f_no": f_no,
 					"fcomm_ct": fcomm_ct},
-			url: "writeReplyAjax.nhn",
+			url: "writeReplyAjax.brn",
 			success : function(data){
 				if(data==1){
 				$('.commentList').empty();
-				$('.commentList').load("listReplyAjax.nhn",'f_no='+f_no);
+				$('.commentList').load("listReplyAjax.brn",'f_no='+f_no);
 				}else{
 					alert('실패!!'+data);
 				}
@@ -99,12 +99,12 @@
 							"fcomm_no" : fcomm_no
 						},
 						type : "post",
-						url : "deleteReplyAjax.nhn",
+						url : "deleteReplyAjax.brn",
 						success : function(data) {
 							if (data == 1) {
 								alert('코멘트가 삭제되었습니다');
 								$('.commentList').empty();
-								$('.commentList').load("listReplyAjax.nhn", 'f_no=' + f_no);
+								$('.commentList').load("listReplyAjax.brn", 'f_no=' + f_no);
 								$('.fcomm_re_ct').hide();
 								$('.fcomm_rep_button').hide();
 							}
@@ -132,9 +132,9 @@
 						"fcomm_ct" : fcomm_re_ct
 					},
 					type : "post",
-					url : "writeReplyAjax.nhn",
+					url : "writeReplyAjax.brn",
 					success : function(data) {
-						$('.commentList').load("listReplyAjax.nhn",'f_no='+f_no);
+						$('.commentList').load("listReplyAjax.brn",'f_no='+f_no);
 					},
 					error : function(data, status) {
 						alert('코멘트 답글 실패.');
