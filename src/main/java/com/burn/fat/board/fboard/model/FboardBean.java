@@ -14,7 +14,7 @@ public class FboardBean {
 	private String f_dt; //글 등록날짜
 	private int f_lk; //추천수
 	private String f_lkno; // 회원번호
-	private int scomm_cnt; //코멘트
+	private int fcomm_cnt; //코멘트
 	
 	
 	public int getF_no() {
@@ -72,10 +72,10 @@ public class FboardBean {
 		this.f_lkno = f_lkno;
 	}
 	public int getScomm_cnt() {
-		return scomm_cnt;
+		return fcomm_cnt;
 	}
-	public void setScomm_cnt(int scomm_cnt) {
-		this.scomm_cnt = scomm_cnt;
+	public void setScomm_cnt(int fcomm_cnt) {
+		this.fcomm_cnt = fcomm_cnt;
 	}
 	
 	

@@ -16,6 +16,7 @@
 <script src="./resources/js/common.js"></script>
 <script src="./resources/js/jquery.form.min.js"></script>
 <script src="./resources/js/joinValidation.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 </head>
 

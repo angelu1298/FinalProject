@@ -89,23 +89,23 @@
 								<td>
 									<!-- 셀렉트박스는 커스텀 태그를 써야할듯? -->
 									<select id="birthyear" name="birthyear">
-										<option>-선택-</option> 
+										<option value="">-선택-</option> 
 										<c:forEach var="year" begin="1" end="117" step="1">
-										<option>${2017-year+1 }</option> 
+										<option value="${2017-year+1 }">${2017-year+1 }</option> 
 										</c:forEach>
 									</select>
 									<span class="bttxt">년</span> 
 									<select id="birthmonth" name="birthmonth">
-										<option>-선택-</option> 
+										<option value="">-선택-</option> 
 										<c:forEach var="month" begin="1" end="12" step="1">
-										<option>${month }</option> 
+										<option value="${month }">${month }</option> 
 										</c:forEach>
 									</select >
 									<span class="bttxt">월</span> 
 									<select id="birthday" name="birthday">
-										<option>-선택-</option> 
+										<option value="">-선택-</option> 
 										<c:forEach var="day" begin="1" end="31" step="1">
-										<option>${day }</option> 
+										<option value="${day }">${day }</option> 
 										</c:forEach>
 									</select>
 									<span class="bttxt">일</span> 
@@ -117,6 +117,7 @@
 								</th>
 								<td>
 									<select class="w100" name='mobileNo1' id='mobileNo1'>
+										<option value="">-선택-</option>
 										<option value="010">010</option>
 						            	<option value="011">011</option>
 						            	<option value="016">016</option>
@@ -134,22 +135,23 @@
 								</th>
 								<td>
 									<select class="w100" name='mem_tel1' id='mem_tel1'>
-										<option>02</option>
-										<option>031</option>
-										<option>032</option>
-										<option>033</option>
-										<option>041</option>
-										<option>042</option>
-										<option>043</option>
-										<option>051</option>
-										<option>052</option>
-										<option>053</option>
-										<option>054</option>
-										<option>055</option>
-										<option>061</option>
-										<option>062</option>
-										<option>063</option>
-										<option>064</option>
+										<option value="">-선택-</option>
+										<option value="02">02</option>
+										<option value="031">031</option>
+										<option value="032">032</option>
+										<option value="033">033</option>
+										<option value="041">041</option>
+										<option value="042">042</option>
+										<option value="043">043</option>
+										<option value="051">051</option>
+										<option value="052">052</option>
+										<option value="053">053</option>
+										<option value="054">054</option>
+										<option value="055">055</option>
+										<option value="061">061</option>
+										<option value="062">062</option>
+										<option value="063">063</option>
+										<option value="064">064</option>
 									</select>
 									<span class="bttxt">-</span>
 									<input type="text" class="w100" name='mem_tel2' id='mem_tel2'>
@@ -163,7 +165,7 @@
 								</th>
 								<td>
 									<p class="col">
-										<input type="button" value="우편번호찾기" id="findzipcode"> 
+										<input type="button" value="우편번호찾기" id="findzipcode" onclick="zipcode_find()"> 
 										<input type="text" class="w100" id="zipcode" name="zipcode">
 									</p>
 									<p class="col">

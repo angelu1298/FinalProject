@@ -1,5 +1,7 @@
 package com.burn.fat.member.join.action;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -8,6 +10,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import javax.imageio.ImageIO;
+import javax.media.jai.JAI;
+import javax.media.jai.RenderedOp;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -71,10 +76,10 @@ public class JoinAction {
 		
 		return "html_membership/join3";
 	}
-	/*@RequestMapping(value="/PutThum.brn")
+	@RequestMapping(value="/PutThum.brn")
 	public String seeThum(){
 		return "html_membership/join3";
-	}*/
+	}
 	//워너비사진 완료
 	@RequestMapping(value="/Thumbnail.brn", method=RequestMethod.POST)
 	public ModelAndView thumbnailReturn(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
@@ -128,6 +133,7 @@ public class JoinAction {
 		ModelAndView model = new ModelAndView("html_membership/join3");
 		model.addObject("wannabe",fileDBName);
 		
+		 
 		return model;
 	} 
 	
