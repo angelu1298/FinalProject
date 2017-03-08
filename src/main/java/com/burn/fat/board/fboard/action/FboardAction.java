@@ -45,7 +45,7 @@ import com.oreilly.servlet.MultipartRequest;
     /*자료실 입력폼*/
     @RequestMapping(value="/bbs_write.brn")
     public String bbs_write(){
-       return "board/fboard/boardWrite"; //bbs 폴더의 bbs_write.jsp 뷰 페이지가 실행
+       return "html_community/fboard/boardWrite"; //bbs 폴더의 bbs_write.jsp 뷰 페이지가 실행
     }
      
      /* 자료실 저장 */
@@ -199,7 +199,7 @@ import com.oreilly.servlet.MultipartRequest;
         //리스트 받아옴
         List<FboardBean> bbslist = bbsService.getBbsList(m);//page,limit를 보냄
      
-        ModelAndView model=new ModelAndView("board/fboard/boardList");
+        ModelAndView model=new ModelAndView("html_community/fboard/boardList");
       model.addObject("page", page);
       model.addObject("maxpage", maxpage);
       model.addObject("startpage", startpage);
@@ -261,14 +261,14 @@ import com.oreilly.servlet.MultipartRequest;
     	
         
         if(state.equals("cont")){//내용보기
-           contM.setViewName("board/fboard/boardView");
+           contM.setViewName("html_community/fboard/boardView");
            
           //글내용 중 엔터키 친부분을 다음줄로 개행 처리
            String f_ct=bbsbean.getF_ct().replace("\n","<br/>");
            
           contM.addObject("bbs_cont",f_ct);
         }else if(state.equals("edit")){
-           contM.setViewName("board/fboard/boardModify");//수정일때
+           contM.setViewName("html_community/fboard/boardModify");//수정일때
         }/*else if(state.equals("del")){//삭제일때
         	contM.setViewName("html_community/boardList");//삭제일때
    
@@ -481,7 +481,7 @@ import com.oreilly.servlet.MultipartRequest;
             
            List<FboardBean> bbslist = bbsService.getBbsList3(m); 
            
-           ModelAndView model=new ModelAndView("board/fboard/boardList");
+           ModelAndView model=new ModelAndView("html_community/fboard/boardList");
            model.addObject("find_name",find_name);
            model.addObject("find_field",find_field);         
            model.addObject("page", page);

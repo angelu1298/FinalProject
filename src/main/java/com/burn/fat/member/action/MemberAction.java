@@ -220,6 +220,7 @@ public class MemberAction {
 			
 		}else{  //회원 아이디와 정보가 맞는 경우
 			
+			try {
 			
 			ModelAndView mv=new ModelAndView("html_membership/pwFindRslt");
 			//html_membership/pwFind.jsp로 이동
@@ -235,7 +236,7 @@ public class MemberAction {
 	        //관리자의 메일 발신 전용 계정 메일.....
 	        final String username = "ssheln";  //네이버 아이디     
 	        int port=465;
-	        final String password = "qwqw123";   //네이버 이메일 비밀번호
+	        final String password = "qwe123";   //네이버 이메일 비밀번호(실패/성공)
 	        
 	        
 	        //임시비밀번호 생성
@@ -278,6 +279,9 @@ public class MemberAction {
 	      //저장한 Properties 객체의 값으로 세션의 인스턴스를 생성합니다.
 	      //public static Session getDefaultInstance(Properties props)
 	        
+				
+			
+	        
 	        Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 	            String un=username;
 	            String pw=password;
@@ -300,10 +304,26 @@ public class MemberAction {
 	        mimeMessage.setText(body);
 	        //내용 셋팅
 	        Transport.send(mimeMessage);
+	        
+	        
+	        out.println("<script>");
+	        out.println("alert('임시 비밀번호 메일 보내기에 성공하였습니다.')");
+	        out.println("</script>");
+	        
+	        return mv;
 
-			
+	        } catch (Exception e) {
+	        	e.printStackTrace();
+	        	out.println("<script>");
+				out.println("alert('임시 비밀번호 메일 보내기에 실패하였습니다.')");
+				out.println("history.go(-1)");  //오류 발생 시 뒤로 돌아감
+				out.println("</script>");
+			}
+	        
+	        
+	        
+	        
 		
-			return mv;
 		}
 		return null;
 	}

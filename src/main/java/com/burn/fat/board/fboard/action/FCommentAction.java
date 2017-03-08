@@ -43,7 +43,7 @@ public class FCommentAction {
            	
            	
             mv.addObject("bean", bean);
-            mv.setViewName("board/fboard/fcomment");
+            mv.setViewName("html_community/fboard/fcomment");
             return mv;
       }
      
