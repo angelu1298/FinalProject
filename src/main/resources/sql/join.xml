@@ -6,10 +6,10 @@
 		<selectKey keyProperty="mem_no" resultType="int" order="BEFORE">
     		select mem_no_seq.nextval from dual
     	</selectKey>
-		insert into member (mem_no, mem_id, mem_pw, mem_nm, mem_sx, mem_bd, mem_hp, mem_zc, mem_add1, mem_add2,
+		insert into member (mem_no, mem_id, mem_pw, mem_nm, mem_sx, mem_bd, mem_hp, mem_tel, mem_zc, mem_add1, mem_add2,
 		mem_ma, mem_h, mem_w)
 		 values(#{mem_no}, #{mem_id}, #{mem_pw}, #{mem_nm}, #{mem_sx}, #{mem_bd},
-		#{mem_hp}, #{mem_zc},#{mem_add1},#{mem_add2},#{mem_ma}, #{mem_h},#{mem_w})
+		#{mem_hp}, #{mem_tel}, #{mem_zc},#{mem_add1},#{mem_add2},#{mem_ma}, #{mem_h},#{mem_w})
 	</insert>
 	<update id="wannabeinsert" parameterType="java.util.Map">
 		update member set  mem_wb = #{mem_wb, jdbcType=VARCHAR} where mem_id=#{mem_id}

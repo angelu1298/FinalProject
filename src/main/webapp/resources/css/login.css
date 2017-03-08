@@ -77,4 +77,6 @@ ul.login_fot li a{color:#fff;}
 .btnL_area input[type="reset"]{ height:50px; line-height:50px; padding:0 50px;  }
 .btnL_area input[type="submit"]{background:#223230; color:#fff; padding:0 50px; border:1px solid #223230; }
 .btnL_area input[type="reset"]{ height:50px; line-height:50px; padding:0 50px; border:1px solid #223230; color:#223230; }
-	
+
+.login_Complete_area{font-family: 'Advent Pro';  position:absoulte;  top:20%; left:0; width:100%; height:60%; padding-top:50px;padding-bottom:50px; display:inline-block; background:rgba(0,0,0,0.6); }
+.login_Complete_box > p {text-align:center; color:white;}

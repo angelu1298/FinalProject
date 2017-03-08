@@ -42,6 +42,12 @@ $(function(){
 		//모달로
 		
 	})*/
+	$('#joinformThum').submit(function(){
+		if($('#wannbe').val()==''){
+			$('#thumbnail').val('워너비사진은 필수 입력값입니다.');
+			return false;
+		}
+	})
 	
 	$('#joinform').on('submit', function(e){
 		if($.trim($('#inputid').val())==''){
@@ -75,12 +81,6 @@ $(function(){
 			$('#lastph').val('값 입니다');
 			return false;
 		}
-		
-		if($.trim($('#detailaddr').val())==''){
-			$('#detailaddr').css({'color':'red'});
-			$('#detailaddr').val('상세주소를 입력하세요');
-			return false;
-		}
 		if($.trim($('#email').val())==''){
 			$('#email').css({'color':'red'});
 			$('#email').val('이메일을 입력하세요');
@@ -91,8 +91,31 @@ $(function(){
 			$('#domain').val('도메인을 입력하세요');
 			return false;
 		}
+		if($.trim($('#height').val())==''){
+			$('#height').css({'color':'red'});
+			$('#height').val('키를 입력하세요');
+			return false;
+		}
+		if($.trim($('#weight').val())==''){
+			$('#weight').css({'color':'red'});
+			$('#weight').val('몸무게를 입력하세요');
+			return false;
+		}
 		
 		
+	})
+	$('#sel').change(function(){
+		if($('#sel').val()==""){
+			$('#domain').attr('disabled',true);
+			$('#domain').val('');
+			$('#domain').focus();
+		}else{
+			$('#domain').val($('#sel').val());
+			$('#domain').prop('readonly',true);
+		}
+	})
+	$('#findzipcode').on('click',function(){
+		window.open("./FindZipCode.brn", "우편번호찾기","width=570,height=420, scrollbars=yes, resizable=yes");
 	})
 	$('#checkpw').on('blur',function(){
 		if(($.trim($('#inputpw').val()))!=($.trim($('#checkpw').val()))){
@@ -138,6 +161,7 @@ $(function(){
 	$('.gender').focus(function(){
 		$('#gendercheck').remove();
 	})
+	
 	$('#wannabe').change(function(){
 		$('#joinformThum').submit();
 	})

@@ -50,20 +50,22 @@ public class JoinAction {
 			,@RequestParam(value="birthyear")int year, @RequestParam(value="birthmonth")int month,@RequestParam(value="birthday")int day
 			,@RequestParam(value="mobileNo1")String hp1
 			,@RequestParam(value="middleph")String hp2, @RequestParam(value="lastph")String hp3,@RequestParam(value="zipcode")int zc
-			, @RequestParam(value="address")String addr
+			,@RequestParam(value="address")String addr, @RequestParam(value="mem_tel1")String tel1, @RequestParam(value="mem_tel2")String tel2
+			,@RequestParam(value="mem_tel3")String tel3
 			,@RequestParam(value="detailaddr")String detailaddr, @RequestParam(value="email")String email, @RequestParam(value="domain")String domain
 			,@RequestParam(value="height")double height, @RequestParam(value="weight")double weight) throws Exception{
 		MemberBean member = new MemberBean();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		java.util.Date date = format.parse(year+"-"+month+"-"+day);
 		Date sqldate = new Date(date.getTime());
+		String tel=tel1+tel2+tel3;
 		HttpSession session = request.getSession();
 		session.setAttribute("mem_id", id);
 		
 		member.setMem_id(id);	member.setMem_sx(gender);	member.setMem_bd(sqldate);
 		member.setMem_pw(pw);	member.setMem_hp(hp1+hp2+hp3); 	member.setMem_zc(zc);	member.setMem_add1(addr);
 		member.setMem_nm(name);	member.setMem_add2(detailaddr);		member.setMem_ma(email+"@"+domain);	member.setMem_h(height);
-		member.setMem_w(weight);
+		member.setMem_w(weight); member.setMem_tel(tel);
 		int mem_no = service.joinMember(member);
 		session.setAttribute("mem_no", mem_no);
 		
@@ -132,7 +134,12 @@ public class JoinAction {
 	//가입 완료 메시지
 	@RequestMapping(value="/JoinComplete.brn")
 	public String joinComplete(){
-		return "html_membership/joinComlete";
+		return "html_membership/joinComplete";
+	}
+	
+	@RequestMapping(value="/FindZipCode.brn")
+	public String findZipCode(){
+		return "html_membership/zipcode";
 	}
 	
 }

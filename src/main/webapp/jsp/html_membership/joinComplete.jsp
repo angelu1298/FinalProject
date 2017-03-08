@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/jsp/inc/logHeader.jsp"%>
@@ -8,10 +9,18 @@
 		<!-- 서브메뉴에 따라 Side Navigation을 다르게 부여해준다. -->	
 		<%@ include file="/jsp/inc/leftMenu_log.jsp" %>
 
-		${sessionScope.mem_id }님 불타는 지방이에 회원가입에 성공하셨습니다!<br>
-		앞으로 함께 열심히 다이어트를 해봐요!!
+		<!-- 서브컨텐츠 영역 START -->
+		<div class="subContent nobg">
+			<div class="login_Complete_area">
+				<div class="login_Complete_box">
+					<p><strong>${sessionScope.mem_id }</strong> 님 <font color="red">Burnning Fat</font> 회원가입에 성공하셨습니다!<br>
+					앞으로 함께 열심히 다이어트를 해봐요!!</p>
+				</div>
+			</div>
+		</div>
 		
 </section>
 <!-- // container End -->
 	
 <%@ include file="/jsp/inc/footer.jsp" %>
+
