@@ -1,10 +1,11 @@
 drop table member;
+delete from member;
 
 select * from member;
 
 create table member(   
-	mem_no		number constraint member_memno_pk primary key,--ȸ�� ��ȣ
-    mem_id      varchar2(50) ,
+	mem_no		number constraint member_memno_pk primary key,--회원 번호
+    mem_id      varchar2(50),
     mem_pw      varchar2(50),     
     mem_nm      varchar2(100),--�̸�
     mem_sx		number, --����(�� :1, �� :2)
@@ -31,7 +32,10 @@ drop sequence mem_no_seq;
 delete from member where mem_no=2;
 select * from member;
 
-/***** member ���̺��� join_code ������ ���� *****/
+
+
+
+/***** member 테이블의 join_code 시퀀스 생성 *****/
 create sequence member_joincode_seq 
 increment by 1 start with 1 nocache;
 
@@ -46,13 +50,4 @@ insert into member(mem_no,mem_id,mem_pw, mem_nm,mem_bd,mem_hp,mem_ma,mem_jd)
 values(member_joincode_seq.nextval,'ss','1111','홍길동','19880909','01077778888',
 'ssheln@naver.com',sysdate);
 
-create table zipcode (
-  no number PRIMARY KEY
-  ,ZIPCODE varchar2(7)
-  ,sido varchar2(10) 
-  ,gugun varchar2(20) 
-  ,dong varchar2(50) 
-  ,bunji varchar2(50) 
-);
 
-select * from zipcode;
