@@ -16,6 +16,7 @@
 				<ul>
 					<li><a href="./idFind.brn">아이디 찾기</a></li>
 					<li><a href="./pwFind.brn">비밀번호 찾기</a></li>
+
 				</ul>
 			</li>
 			
