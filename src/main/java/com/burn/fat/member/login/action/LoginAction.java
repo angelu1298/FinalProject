@@ -1,7 +1,6 @@
 package com.burn.fat.member.login.action;
 
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -60,6 +59,7 @@ public class LoginAction {
 		return "html_membership/login";
 		/*return "../index";*/
 	}
+	
 	
 	@RequestMapping("/IdFind.brn")
 	public String idFind(HttpServletRequest request, HttpServletResponse response,HttpSession session) throws Exception{
