@@ -21,25 +21,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.burn.fat.board.fboard.dao.BoardService;
+import com.burn.fat.board.fboard.dao.FboardService;
 import com.burn.fat.board.fboard.dao.FcommService;
-import com.burn.fat.board.fboard.model.BbsBean;
+import com.burn.fat.board.fboard.model.FboardBean;
 import com.burn.fat.board.fboard.model.FcommBean;
 import com.oreilly.servlet.MultipartRequest;
 
-  @Controller("bbs")
+  @Controller("fboard")
 
-  public class BbsAction {
+  public class FboardAction {
 
      @Autowired
-     private BoardService bbsService;
+     private FboardService bbsService;
      
      @Autowired
  	private FcommService fcService;
      
      ////private String saveFolder ="C:/Program Files/Apache Software Foundation/Tomcat 8.0/webapps/myhome7/resources/upload";
       //private String saveFolder="c:/sts2/spring6_mvc_bbs/src/main/webapp/resources/upload";
-    private String saveFolder="C:/Users/김수현/git/FinalProject/src/main/webapp/resources/upload"; //파일 저장시킬 경로
+    private String saveFolder="C:/upload"; //파일 저장시킬 경로
      
 
     /*자료실 입력폼*/
@@ -59,7 +59,7 @@ import com.oreilly.servlet.MultipartRequest;
            HttpServletRequest request,
            HttpServletResponse response) throws Exception{
         
-        BbsBean bbsbean=new BbsBean();      
+        FboardBean bbsbean=new FboardBean();      
         int fileSize=5*1024*1024; //이진파일 최대 업로드 크기   
         
         PrintWriter out=response.getWriter();
@@ -197,7 +197,7 @@ import com.oreilly.servlet.MultipartRequest;
         m.put("page", page);
         m.put("limit", limit);
         //리스트 받아옴
-        List<BbsBean> bbslist = bbsService.getBbsList(m);//page,limit를 보냄
+        List<FboardBean> bbslist = bbsService.getBbsList(m);//page,limit를 보냄
      
         ModelAndView model=new ModelAndView("board/fboard/boardList");
       model.addObject("page", page);
@@ -240,12 +240,12 @@ import com.oreilly.servlet.MultipartRequest;
         }
         
         //번호를 기준으로 DB 내용을 가져옵니다.
-        BbsBean bbsbean=this.bbsService.getBbsCont(num);
+        FboardBean bbsbean=this.bbsService.getBbsCont(num);
         
-        BbsBean bean1 = bbsService.getBbsCont(num-1);
+        FboardBean bean1 = bbsService.getBbsCont(num-1);
         contM.addObject("bean1",bean1);
 
-        BbsBean bean2 = bbsService.getBbsCont(num+1);
+        FboardBean bean2 = bbsService.getBbsCont(num+1);
         contM.addObject("bean2",bean2);	
         
         
@@ -300,7 +300,7 @@ import com.oreilly.servlet.MultipartRequest;
      public ModelAndView bbs_edit_ok(HttpServletRequest request,
            HttpServletResponse response) throws Exception{
         
-        BbsBean bbsbean=new BbsBean();
+        FboardBean bbsbean=new FboardBean();
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out=response.getWriter();
         
@@ -317,7 +317,7 @@ import com.oreilly.servlet.MultipartRequest;
         String f_ct=multi.getParameter("f_ct").trim();//내용
         
         //디비로 부터 내용을 가져옴
-        BbsBean bcont=this.bbsService.getBbsCont(f_no);
+        FboardBean bcont=this.bbsService.getBbsCont(f_no);
         
       //세션 선언 후 세션 id가져오기
         HttpSession session = request.getSession();
@@ -400,7 +400,7 @@ import com.oreilly.servlet.MultipartRequest;
        /* String pwd=request.getParameter("pwd").trim();*/
         
         //글번호에 해당하는 디비 내용을 가져옵니다.
-        BbsBean bbsbean=this.bbsService.getBbsCont(f_no);
+        FboardBean bbsbean=this.bbsService.getBbsCont(f_no);
         
         //기존 파일명 가져옵니다.
         String fname=bbsbean.getF_fl();
@@ -479,7 +479,7 @@ import com.oreilly.servlet.MultipartRequest;
                           
            if (endpage > maxpage) endpage= maxpage;   
             
-           List<BbsBean> bbslist = bbsService.getBbsList3(m); 
+           List<FboardBean> bbslist = bbsService.getBbsList3(m); 
            
            ModelAndView model=new ModelAndView("board/fboard/boardList");
            model.addObject("find_name",find_name);

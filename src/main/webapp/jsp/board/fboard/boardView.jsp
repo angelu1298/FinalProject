@@ -8,7 +8,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="/fat/resources/js/jquery.min.js"></script>
-<script src="./resources/js/bbs.js"></script>
+<script src="./resources/js/fboard.js"></script>
 
 
 

@@ -4,7 +4,7 @@
 <configuration>
 
 	<typeAliases>
-		<typeAlias alias="bbsbean" type="com.burn.fat.board.fboard.model.BbsBean" />
+		<typeAlias alias="fboardbean" type="com.burn.fat.board.fboard.model.FboardBean" />
 		<typeAlias alias="fcommbean" type="com.burn.fat.board.fboard.model.FcommBean" />
 		<typeAlias alias="sboardbean" type="com.burn.fat.board.sboard.model.SboardBean" />	
 		<typeAlias alias="scommbean" type="com.burn.fat.board.sboard.model.ScommBean" />	
@@ -16,7 +16,7 @@
 		<mapper resource="sql/sboard.xml" />
 		<mapper resource="sql/scomm.xml" />
 		<mapper resource="sql/member.xml" />
-		<mapper resource="sql/bbs.xml" />
+		<mapper resource="sql/fboard.xml" />
 	</mappers>
 
 </configuration>
