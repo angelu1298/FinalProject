@@ -1,5 +1,6 @@
 package com.burn.fat.member.join.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,4 +22,22 @@ public class JoinService {
 	public void insertWannabe(Map<String, String> map) {
 		dao.insertWannabe(map);
 	}
+	
+	public MemberBean isMember(String mem_id) {
+		
+		
+		return dao.isMember(mem_id);
+	}
+	
+	public void updateMember(MemberBean member) {
+		
+		dao.updateMember(member);
+	}
+	
+	public void deleteMember(MemberBean member) {
+		
+		
+		dao.deleteMember(member);
+	}
+	
 }

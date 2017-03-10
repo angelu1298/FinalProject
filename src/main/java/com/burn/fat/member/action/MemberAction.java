@@ -41,6 +41,7 @@ public class MemberAction {
    public String pwFind(){
       return "html_membership/pwFind";
    }
+
    
    /*1. 아이디찾기(핸드폰)*/
    @RequestMapping(value="/id_find_ok1.brn",method=RequestMethod.POST)
@@ -230,6 +231,7 @@ public class MemberAction {
          
       }else{  //회원 아이디와 정보가 맞는 경우
          
+    	  try{
          
          ModelAndView mv=new ModelAndView("html_membership/pwFindRslt");
          //html_membership/pwFind.jsp로 이동
@@ -311,9 +313,21 @@ public class MemberAction {
            //내용 셋팅
            Transport.send(mimeMessage);
 
+           out.println("<script>");
+	        out.println("alert('임시 비밀번호 메일 보내기에 성공하였습니다.')");
+	        out.println("</script>");
+	        
+	        return mv;
+
+	        } catch (Exception e) {
+	        	e.printStackTrace();
+	        	out.println("<script>");
+				out.println("alert('임시 비밀번호 메일 보내기에 실패하였습니다.')");
+				out.println("history.go(-1)");  //오류 발생 시 뒤로 돌아감
+				out.println("</script>");
+			}
          
       
-         return mv;
       }
       return null;
    }

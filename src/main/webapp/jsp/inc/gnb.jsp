@@ -15,8 +15,10 @@
 	<%--로그인 여부 확인 세션에 아이디값으로...--%>
 	<ul>
 		<c:if test="${!empty sessionScope.mem_id }">
-			<li><a href="./Logout.brn">LOGOUT</a></li>
-		 	<li><a href="./Mypage.brn">MYPAGE</a></li>
+				<li><a href="./mem_edit.brn">${sessionScope.mem_id } 님 환영합니다! </a></li>
+				<li><a href="./Logout.brn">LOGOUT</a></li>
+		 		<li><a href="./Mypage.brn">MYPAGE</a></li>
+			
 		 </c:if>
 		<c:if test="${empty sessionScope.mem_id }">
 		 	<li><a href="./Login.brn">LOGIN</a></li>

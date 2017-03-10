@@ -1,5 +1,6 @@
 package com.burn.fat.member.join.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -21,4 +22,20 @@ public class JoinDAO {
 	public void insertWannabe(Map<String, String> map) {
 		sqlSession.update("wannabeinsert", map);
 	}
+	
+	public MemberBean isMember(String mem_id) {
+		
+		return sqlSession.selectOne("isMember", mem_id);
+	}
+	
+	public void updateMember(MemberBean member) {
+		
+		sqlSession.update("updateMember", member);
+	}
+	
+	public void deleteMember(MemberBean member) {
+		
+		sqlSession.update("deleteMember", member);
+	}
+	
 }
