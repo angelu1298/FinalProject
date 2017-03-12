@@ -22,6 +22,13 @@
 							회원님의 아이디는 아래와 같습니다.
 						</p>
 						<div><strong>${mem_id}</strong>	</div>
+						
+						<ul>
+							<li>▶ 기타 문의 사항은
+							 <a href="./inquiry.brn">Burning fat</a> 으로 문의해주세요.</li>
+							
+						</ul>
+						
 					
 					<!-- 아이디 찾기 확인 -->
 					

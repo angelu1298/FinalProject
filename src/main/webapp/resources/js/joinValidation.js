@@ -181,4 +181,10 @@ $(function(){
 		$('#joinformThum').attr('action','./JoinComplete.brn');
 		$('#joinformThum').submit();
 	})
+	
+	
+	
+	
+	
+	
 })

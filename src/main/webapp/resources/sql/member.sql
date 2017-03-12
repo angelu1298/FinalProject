@@ -13,7 +13,7 @@ create table member(
     mem_sx		number, --성별(남 :1, 여 :2)
     mem_bd		date, --생년월일
     mem_hp      varchar2(100),--핸드폰번호
-    mem_tel		varchar2(100),--전화번호
+    mem_tel		varchar2(200),--전화번호
     mem_zc      number(20),--우편번호
     mem_add1    varchar2(300),--주소
     mem_add2	varchar2(100),--상세주소

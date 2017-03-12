@@ -2,21 +2,24 @@
 <%@ include file="/jsp/inc/logHeader.jsp"%>
 <script>
 $(function() {
+	$('#rs_ect').hide();
 	
 	$(".drop_check2 li input").change(function(){
 		
 		if($(this).attr("id") =="agree05"){
-			$(this).parent().append("<li><textarea rows=\"5\" cols=\"70\" style=\"border:1px solid black;\" id=\"rs_ect\"></textarea>");	
+			/* $(this).parent().append("<li><textarea rows=\"5\" cols=\"70\" style=\"border:1px solid black;\" id=\"rs_ect\"></textarea>");	 */
+			$("#rs_ect").show();
 			
-			if($.trim($('#rs_ect').val())==''){
-				$('#rs_ect').css({'color':'red'});
-				$('#rs_ect').val('내용을 입력하세요');
+			if($.trim($("#rs_ect").val())==''){
+				$("#rs_ect").css({'color':'red'});
+				$("#rs_ect").val('내용을 입력하세요');
 				return false;
 			}
 			
 		
 		} else {
-			$("#rs_ect").parent().remove();
+			/* $("#rs_ect").parent().remove(); */
+			$("#rs_ect").hide();
 		}
 	})
 	
@@ -64,7 +67,7 @@ $(function() {
 							<li><input type="radio" name="agree" id="agree03" value="유사 서비스로의 이전"><label for="agree03">유사 서비스로의 이전</label></li>
 							<li><input type="radio" name="agree" id="agree04" value="이용할 만한 서비스 부족"><label for="agree04">이용할 만한 서비스 부족</label></li>
 							<li><input type="radio" name="agree" id="agree05" value="기타"><label for="agree05">기타</label></li>
-						
+							<li><textarea rows="5" cols="70" style="border:1px solid black;" id="rs_ect" name="rs_ect"></textarea>
 						<div id="agree_label"></div>
 						</ul>
 						

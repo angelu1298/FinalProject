@@ -25,7 +25,7 @@
 		
 			
 	
-			<li><a href="./mem_edit.brn">회원정보수정</a></li>
+			<li><a href="./mem_modify.brn">회원정보수정</a></li>
 			
 			<li><a href="./mem_drop.brn">회원탈퇴</a></li>
 			

@@ -6,11 +6,17 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Random;
 import java.util.StringTokenizer;
 
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -147,6 +153,45 @@ public class JoinAction {
 		return "html_membership/zipcode";
 	}
 	
+	//ID중복 검사 ajax함수로 처리 부분
+	@RequestMapping(value="/member_idcheck.brn" , method=RequestMethod.POST)
+	public void member_idcheck(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		PrintWriter out=response.getWriter();
+		String mem_id =request.getParameter("mem_id");
+		
+		int result =service.checkId(mem_id);
+		
+		out.println(result);
+	}
+	
+	//회원정보 수정 이동 
+	@RequestMapping(value="/mem_modify.brn")
+	public ModelAndView mem_modify(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
+		
+		PrintWriter out=response.getWriter();//출력 스트림 객체 생성
+		session=request.getSession();//세션 객체 생성
+		
+		String mem_id=(String)session.getAttribute("mem_id");
+		if(mem_id==null){//세션 아이디가 없는 경우
+			out.println("<script>");
+			out.println("alert('다시 로그인 해주세요!');");
+			out.println("location='Login.brn'");
+			out.println("</script>");
+		}else{
+			MemberBean member=this.service.isMember(mem_id);
+					
+			ModelAndView mv=new ModelAndView("html_membership/modifyView");
+				
+			mv.addObject("member",member);
+				
+			return mv;
+			
+		}
+		
+		return null;
+	}
+	
+	
 	
 	//회원정보 수정 폼
 	@RequestMapping(value="/mem_edit.brn")
@@ -161,7 +206,7 @@ public class JoinAction {
 		
 		if(mem_id == null){  //세션 아이디 값이 없는 경우
 			out.println("<script>");
-			out.println("alert('다시 로그인 해주세요!')");
+			out.println("alert('다시 로그인 해주세요!');");
 			out.println("location='Login.brn'");
 			out.println("</script>");
 			
@@ -194,14 +239,17 @@ public class JoinAction {
 	    	String mem_mailid=st03.nextToken();
 	    	String mem_maildomain=st03.nextToken();
 	    	
-	    	/*//Date to String
-	    	Date mem_bd = member.getMem_bd();
 	    	
-	    	String bd = (String)member.getMem_bd();*/
 	    	
+	    	//Date to String
+	    	
+	    	String mem_bd = member.getMem_bd().toString();
 
 	    	//생년월일 저장
-	    	//StringTokenizer st04=new StringTokenizer("-");
+	    	StringTokenizer st04=new StringTokenizer(mem_bd,"-");
+	    	String year=st04.nextToken();//첫번째
+	    	String month=st04.nextToken(); //두번째
+	    	String day=st04.nextToken();//세번째
 
 	    	
 					
@@ -216,6 +264,10 @@ public class JoinAction {
 			mv.addObject("tel1",tel1);
 			mv.addObject("tel2",tel2);
 			mv.addObject("tel3",tel3);
+			mv.addObject("year",year);
+			mv.addObject("month",month);
+			mv.addObject("day",day);
+			
 			
 			return mv;
 			
@@ -244,7 +296,7 @@ public class JoinAction {
 		
 		if(mem_id == null){  //세션 아이디 값이 없는 경우
 			out.println("<script>");
-			out.println("alert('다시 로그인 해주세요!')");
+			out.println("alert('다시 로그인 해주세요!');");
 			out.println("location='Login.brn'");
 			out.println("</script>");
 			
@@ -277,7 +329,7 @@ public class JoinAction {
 			
 			this.service.updateMember(member); //수정 메서드
 			
-			ModelAndView mv = new ModelAndView("html_membership/view");
+			ModelAndView mv = new ModelAndView("html_membership/modifyView");
 			mv.addObject("member",member);
 			
 			
@@ -300,7 +352,7 @@ public class JoinAction {
 		String mem_id=(String)session.getAttribute("mem_id");
 		if(mem_id==null){//세션 아이디가 없는 경우
 			out.println("<script>");
-			out.println("alert('다시 로그인 해주세요!')");
+			out.println("alert('다시 로그인 해주세요!');");
 			out.println("location='Login.brn'");
 			out.println("</script>");
 		}else{
@@ -332,7 +384,7 @@ public class JoinAction {
 
 		if(!isMember.getMem_id().equals(mem_id)){
 			out.println("<script>");
-			out.println("alert('아이디가 다릅니다!')");
+			out.println("alert('아이디가 다릅니다!');");
 			out.println("location='Login.brn'");
 			out.println("</script>");
 		
@@ -340,7 +392,7 @@ public class JoinAction {
 
 			if(!isMember.getMem_pw().equals(mem_pw)){
 				out.println("<script>");
-				out.println("alert('비번이 다릅니다!')");
+				out.println("alert('비번이 다릅니다!');");
 				out.println("history.back()");
 			    out.println("</script>");	
 			    
@@ -374,22 +426,31 @@ public class JoinAction {
 			String mem_rs1=request.getParameter("agree").trim();
 			
 			System.out.println(mem_rs1);
+			
+			String mem_rs2="";
+			
+			
+			if(request.getParameter("rs_ect").trim() == null){
+				
+				mem_rs2= null;
+			}else{
+				
+				mem_rs2= request.getParameter("rs_ect").trim(); 
+			}
 
-			String mem_rs2= request.getParameter("rs_ect").trim(); 
 			
 			System.out.println(mem_rs2);
 
 			MemberBean isMember=this.service.isMember(mem_id);
 			
 			
-			MemberBean member = new MemberBean();
-			member.setMem_id(mem_id);
-			member.setMem_rs1(mem_rs1);
-			member.setMem_rs2(mem_rs2);
+			isMember.setMem_st(1);
+			isMember.setMem_rs1(mem_rs1);
+			isMember.setMem_rs2(mem_rs2);
 			
-			this.service.deleteMember(member);   //삭제 메서드 호출
+			this.service.deleteMember(isMember);   //삭제 메서드 호출
 			
-			session.invalidate();//세션 만료
+			session.removeAttribute("mem_id");
 			
 			out.println("<script>");
 			out.println("alert('회원 탈퇴되었습니다.')");
@@ -399,6 +460,105 @@ public class JoinAction {
 			return null;
 			
 		}
+		
+		
+		 //문의 메일 폼
+		   @RequestMapping(value="/inquiry.brn")
+		   public String inquiry(){
+			   return "html_membership/inquiry";
+		   }
+		   
+		   
+		   //문의 메일 보내기
+		   @RequestMapping(value="/inquiry_ok.brn",method=RequestMethod.POST)
+		   public ModelAndView inquiry(
+		         HttpServletRequest request,
+		         HttpServletResponse response) throws Exception{
+		      
+		      
+		       response.setContentType("text/html;charset=UTF-8");
+		       PrintWriter out=response.getWriter();
+		       ModelAndView mv = new ModelAndView("html_membership/login");
+
+		    	  try{
+		    		  
+		    	  String mem_ma = request.getParameter("mail");
+
+		    		  // 메일 관련 정보  ->SMTP 서버 주소를 지정합니다.(네이버인 경우)
+		           String host = "smtp.naver.com";
+		           
+		           
+		           //관리자의 메일 발신 전용 계정 메일.....
+		           final String username = "ssheln";  //네이버 아이디     
+		           int port=465;
+		           final String password = "qweqwe123";   //네이버 이메일 비밀번호
+		           
+
+		           
+		           // 이메일 내용
+		           String title = request.getParameter("title");
+		           String content = request.getParameter("content");
+		            
+		           //html파일이 오는 경우
+		           
+		           
+		           //서버 정보를 Properties 객체에 저장합니다.
+		           Properties props = System.getProperties();
+		             
+		             
+		           //SMTP 서버 정보 설정
+		           props.put("mail.smtp.host", host);
+		           props.put("mail.smtp.port", port);
+		           props.put("mail.smtp.auth", "true");
+		           props.put("mail.smtp.ssl.enable", "true");
+		           props.put("mail.smtp.ssl.trust", host);
+		              
+		         //저장한 Properties 객체의 값으로 세션의 인스턴스를 생성합니다.
+		         //public static Session getDefaultInstance(Properties props)
+		           
+		           Session session1 = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+		               String un=username;
+		               String pw=password;
+		               protected PasswordAuthentication getPasswordAuthentication() {
+		                   return new PasswordAuthentication(un, pw);
+		               }
+		           });
+		           session1.setDebug(true); //for debug
+		              
+		           Message mimeMessage = new MimeMessage(session1);
+		           
+		           mimeMessage.setFrom(new InternetAddress("ssheln@naver.com"));
+		           //발신자 셋팅, 보내는 사람의 이메일 주소를 한번 더 입력.. 이메일 풀 주소를 다 작성
+		           
+		           mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(mem_ma));
+		           //수신자 셋팅
+		           
+		           mimeMessage.setSubject(title);
+		           //제목 셋팅
+		           mimeMessage.setText(content);
+		           //내용 셋팅
+		           Transport.send(mimeMessage);
+
+		           out.println("<script>");
+			       out.println("alert('문의사항 메일 보내기에 성공하였습니다.')");
+			       out.println("</script>");
+			        
+			      return mv;
+
+			        } catch (Exception e) {
+			        	e.printStackTrace();
+			        	out.println("<script>");
+						out.println("alert('문의사항 메일 보내기에 실패하였습니다.')");
+						out.println("history.go(-1)");  //오류 발생 시 뒤로 돌아감
+						out.println("</script>");
+					}
+		         
+		    	  return null;
+		   }
+
+		
+		
+		
 }
 
 

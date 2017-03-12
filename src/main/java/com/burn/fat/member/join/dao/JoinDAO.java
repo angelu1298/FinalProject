@@ -1,6 +1,5 @@
 package com.burn.fat.member.join.dao;
 
-import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -28,14 +27,29 @@ public class JoinDAO {
 		return sqlSession.selectOne("isMember", mem_id);
 	}
 	
+	//회원 정보 수정
 	public void updateMember(MemberBean member) {
 		
 		sqlSession.update("updateMember", member);
 	}
 	
+	//회원 삭제
 	public void deleteMember(MemberBean member) {
 		
 		sqlSession.update("deleteMember", member);
+	}
+	
+	//아이디 중복 체크
+	public int checkId(String mem_id) throws Exception{
+		int result =-1;
+		try{
+			MemberBean member=(MemberBean) sqlSession.selectOne("join.checkId", mem_id);
+			
+			if(member != null) result=1;
+		}catch (Exception e) {
+
+		}
+		return result;
 	}
 	
 }

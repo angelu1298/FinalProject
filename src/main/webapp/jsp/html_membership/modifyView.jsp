@@ -20,7 +20,7 @@
 					<p class="tit_tip">
 						 회원정보는 개인정보처리방침에 따라 안전하게 보호되며 회원님의 동의 없이 공개 또는 제3자에게 제공되지 않습니다.
 					</p>
-
+					<form action="./mem_edit.brn" method="post">
 					<!--회원정보입력란-->
 									
 						<div class="common_write_box">
@@ -61,11 +61,11 @@
 								</th>
 								<td>
 									 <c:if test="${member.mem_sx ==1 }">
-									 <input type="radio" name="gender" id="gender_m" class="gender" value="1" checked="checked"><label for="gender_m">남</label>
+									 <label for="gender_m">남</label>
 									</c:if>
 									
 									<c:if test="${member.mem_sx ==2 }">
-									 <input type="radio" name="gender" id="gender_f" class="gender" value="2" checked="checked"><label for="gender_f" id="gender_f_label">여</label>
+									 <label for="gender_f" id="gender_f_label">여</label>
 									</c:if>
 									
 								</td>
@@ -134,8 +134,8 @@
 						<!--//회원정보입력란-->
 						<!--버튼-->
 						<div class="btnL_area mt25">
-							<a href="#" onclick="javascript:history.go(-1);" class="white">뒤로</a>
-							<a href="#" class="white">마이페이지</a>
+							<input type="reset" value="취소">
+							<input type="submit" value="수정하기">
 						</div>
 						<!--//버튼-->	
 					</div>

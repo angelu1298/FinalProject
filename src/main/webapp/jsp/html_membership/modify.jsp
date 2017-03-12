@@ -48,7 +48,7 @@
 									<span class="mando">비밀번호</span>
 								</th>
 								<td>
-									<input type="text" class="w200 " id="inputpw" name="inputpw" pattern=".{8,}">
+									<input type="text" class="w200 " id="inputpw" name="inputpw" pattern=".{8,}" value="${member.mem_pw }">
 									<span class="tip_info2">8~16 자리수 영문과 숫자를 조합</span>
 								</td>
 							</tr>
@@ -57,7 +57,7 @@
 									<span class="mando" >비밀번호 확인</span>
 								</th>
 								<td>
-									<input type="text" class="w200 " id="checkpw" name="checkpw">
+									<input type="text" class="w200 " id="checkpw" name="checkpw" value="${member.mem_pw }">
 									<span class="tip_info2">비밀번호를 다시 한번 입력해주세요.</span>
 								</td>
 							</tr>
@@ -97,22 +97,34 @@
 									<!-- 셀렉트박스는 커스텀 태그를 써야할듯? -->
 									<select id="birthyear" name="birthyear">
 										<option value="">-선택-</option> 
-										<c:forEach var="year" begin="1" end="117" step="1">
-										<option>${2017-year+1 }</option> 
+										<c:forEach var="yearmodify" begin="1" end="117" step="1">
+										<option value="${2017-yearmodify+1 }" 
+											<c:if test="${year == (2017-yearmodify+1 )}">
+	                     						${'selected'}
+	               							</c:if>
+										>${2017-yearmodify+1 }</option> 
 										</c:forEach>
 									</select>
 									<span class="bttxt">년</span> 
 									<select id="birthmonth" name="birthmonth">
 										<option value="">-선택-</option> 
-										<c:forEach var="month" begin="1" end="12" step="1">
-										<option>${month }</option> 
+										<c:forEach var="monthmodify" begin="1" end="12" step="1">
+										<option value="${monthmodify }" 
+											<c:if test="${monthmodify == month}">
+	                     						${'selected'}
+	               							</c:if>
+										>${monthmodify }</option> 
 										</c:forEach>
 									</select >
 									<span class="bttxt">월</span> 
 									<select id="birthday" name="birthday">
 										<option value="">-선택-</option> 
-										<c:forEach var="day" begin="1" end="31" step="1">
-										<option>${day }</option> 
+										<c:forEach var="daymodify" begin="1" end="31" step="1">
+										<option value="${daymodify }" 
+											<c:if test="${daymodify == day}">
+	                     						${'selected'}
+	               							</c:if>
+										>${daymodify }</option> 
 										</c:forEach>
 									</select>
 									<span class="bttxt">일</span> 
@@ -125,10 +137,26 @@
 								</th>
 								<td>
 									<select class="w100" name='mobileNo1' id='mobileNo1'>
-										<option value="010">010</option>
-						            	<option value="011">011</option>
-						            	<option value="016">016</option>
-						            	<option value="019">019</option>
+										<option value="010"
+											<c:if test="${010 == hp1 }">
+												${'selected' }
+											</c:if>
+										>010</option>
+						            	<option value="011"
+						            		<c:if test="${011 == hp1 }">
+												${'selected' }
+											</c:if>
+						            	>011</option>
+						            	<option value="016"
+						            		<c:if test="${016 == hp1 }">
+												${'selected' }
+											</c:if>
+						            	>016</option>
+						            	<option value="019"
+						            		<c:if test="${019 == hp1 }">
+												${'selected' }
+											</c:if>
+						            	>019</option>
 									</select>
 									<span class="bttxt">-</span>
 									<input type="text" class="w100" id="middleph" name="middleph" value="${hp2 }">
@@ -141,23 +169,21 @@
 									전화번호
 								</th>
 								<td>
+								<%
+								String[] tel={"02","031","032","033","041","042", "043","044",
+		  						"051","052","053","054","055","061","062","063","064"};
+								  request.setAttribute("tel",tel);
+								 %><!-- 집전화 번호를 따로 관리해서 request 객체에 저장 -->
+								 
 									<select class="w100" name='mem_tel1' id='mem_tel1'>
-										<option>02</option>
-										<option>031</option>
-										<option>032</option>
-										<option>033</option>
-										<option>041</option>
-										<option>042</option>
-										<option>043</option>
-										<option>051</option>
-										<option>052</option>
-										<option>053</option>
-										<option>054</option>
-										<option>055</option>
-										<option>061</option>
-										<option>062</option>
-										<option>063</option>
-										<option>064</option>
+										<c:forEach var="t" items="${tel}" >
+								          <option value="${t}" 
+								               <c:if test="${tel1 == t}">
+								                     ${'selected'}
+								               </c:if>
+								           >${t}
+								          </option>
+										</c:forEach>
 									</select>
 									<span class="bttxt">-</span>
 									<input type="text" class="w100" name='mem_tel2' id='mem_tel2' value="${tel2 }">

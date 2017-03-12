@@ -14,6 +14,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,7 +61,7 @@ public class MemberAction {
       String mem_hp3=request.getParameter("mem_hp3").trim();
       
       /*String mem_hp=mem_hp1+"-"+mem_hp2+"-"+mem_hp3;*/
-      String mem_hp=mem_hp1+mem_hp2+mem_hp3;
+      String mem_hp=mem_hp1+"-"+mem_hp2+"-"+mem_hp3;
       
       //생년월일
       String mem_bd1=request.getParameter("mem_bd1").trim();
@@ -247,7 +248,7 @@ public class MemberAction {
            //관리자의 메일 발신 전용 계정 메일.....
            final String username = "ssheln";  //네이버 아이디     
            int port=465;
-           final String password = "qwqw123";   //네이버 이메일 비밀번호
+           final String password = "qweqwe123";   //네이버 이메일 비밀번호
            
            
            //임시비밀번호 생성
@@ -313,7 +314,7 @@ public class MemberAction {
            //내용 셋팅
            Transport.send(mimeMessage);
 
-           out.println("<script>");
+            out.println("<script>");
 	        out.println("alert('임시 비밀번호 메일 보내기에 성공하였습니다.')");
 	        out.println("</script>");
 	        
@@ -332,7 +333,7 @@ public class MemberAction {
       return null;
    }
 
-
+  
    
 }
 

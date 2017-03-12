@@ -1,6 +1,5 @@
 package com.burn.fat.member.join.dao;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,15 +28,21 @@ public class JoinService {
 		return dao.isMember(mem_id);
 	}
 	
+	//회원 정보 수정
 	public void updateMember(MemberBean member) {
 		
 		dao.updateMember(member);
 	}
 	
+	//회원 삭제
 	public void deleteMember(MemberBean member) {
 		
 		
 		dao.deleteMember(member);
 	}
 	
+	//아이디 중복 체크
+	public int checkId(String mem_id) throws Exception{
+		return dao.checkId(mem_id);
+	}
 }

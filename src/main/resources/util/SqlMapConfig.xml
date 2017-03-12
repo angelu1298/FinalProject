@@ -13,6 +13,7 @@
 
 	
 	<mappers>
+		<mapper resource="sql/admin.xml" />
 		<mapper resource="sql/sboard.xml" />
 		<mapper resource="sql/scomm.xml" />
 		<mapper resource="sql/login.xml" />
