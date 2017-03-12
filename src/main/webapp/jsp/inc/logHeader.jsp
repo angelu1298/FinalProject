@@ -17,6 +17,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery.form.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/joinValidation.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/login.js"></script>
 
 </head>
 

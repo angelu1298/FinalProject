@@ -1,5 +1,7 @@
 package com.burn.fat.board.fboard.model;
 
+import java.sql.Date;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,7 +13,7 @@ public class FboardBean {
 	private String f_ct; //글내용
 	private String f_fl; //이진파일명
 	private int f_rc; //조회수
-	private String f_dt; //글 등록날짜
+	private Date f_dt; //글 등록날짜
 	private int f_lk; //추천수
 	private String f_lkno; // 회원번호
 	private int fcomm_cnt; //코멘트
@@ -53,10 +55,10 @@ public class FboardBean {
 	public void setF_rc(int f_rc) {
 		this.f_rc = f_rc;
 	}
-	public String getF_dt() {
+	public Date getF_dt() {
 		return f_dt;
 	}
-	public void setF_dt(String f_dt) {
+	public void setF_dt(Date f_dt) {
 		this.f_dt = f_dt;
 	}
 	public int getF_lk() {

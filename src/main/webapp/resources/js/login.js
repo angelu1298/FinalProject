@@ -2,8 +2,9 @@
 $(function() {
 	$(".log_container").css("height", $(window).innerHeight() ) ;	
 	$(".log_container").css("width", $(window).innerWidth() ) ; 
+
 });
- 
+
 // 윈도우의 스크롤이 작동할 때마다
 $(window).scroll(function(e){   
   

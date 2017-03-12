@@ -9,8 +9,6 @@
 		response.setHeader ("Cache-Control", "no-cache"); 
 	%>
 
-
-
 <nav class="gnb">
 	<%--로그인 여부 확인 세션에 아이디값으로...--%>
 	<ul>

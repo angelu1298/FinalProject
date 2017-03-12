@@ -22,6 +22,7 @@ create table scomment(
 	s_no			number
 );
 
+select * from sboard;
 
 alter table sboard 
 add constraint sb_mem_no_FK foreign key (mem_no) 

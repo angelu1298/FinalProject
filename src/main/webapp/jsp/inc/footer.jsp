@@ -4,9 +4,7 @@
 		<!-- footer -->
 			<footer>
 						
-			<iframe src="http://127.0.0.1:8888">
 			
-			</iframe>		
 			
 			<!-- 
 				<iframe src="http://m.google.com"></iframe> -->
