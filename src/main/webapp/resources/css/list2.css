@@ -1,0 +1,151 @@
+@CHARSET "UTF-8";
+
+.srchbox { border:1px solid #a0a0a0; padding:20px; }
+.srchbox input[type=button]{ margin-left:5px; padding:0 15px; line-height:28px; height:30px; background:#c0c0c0; border:1px solid #787878; color:#232323; font-size:12px; font-weight:500; cursor:pointer; }
+.srchbox input[type=text]{ margin-left:5px; padding:0 8px; line-height:28px; height:30px; background:#fff; border:1px solid #787878; color:#454545; font-size:12px; font-weight:500; cursor:pointer; }
+.srchbox select { margin-left:5px; padding:0 30px 0 8px; line-height:28px; height:30px; border:1px solid #787878; color:#454545; font-size:12px; font-weight:500; cursor:pointer; background:#fff url(../img/comm/bull_sel.png) no-repeat right 10px center;  }
+.srchbox label { margin-left:10px; }
+
+.tablelist{clear:both; display:inline-block; width:100%; }
+.tablelist ul{ border-top:1px solid #a0a0a0;  clear:both; margi-top:10px;   }
+.tablelist ul { width:100%; min-height:200px; height:100%; display:inline-block; clear:both; float:left; background:#fff; }
+.tablelist li { padding:0px 10px 10px 10px; float:left; display:block; height:200px; height:100%; line-height:20px; font-size:13px; border-left:1px solid #c0c0c0;  border-bottom:1px solid #c0c0c0; } 
+.tablelist .nolist{padding:400px 0px 100px; background:url(../img/error.png) no-repeat center center; border-bottom:1px solid #a0a0a0 !important; text-align:center; }
+.tablelist .nolist p{background:none; }
+.tablelist li input[type=button]{  padding:0 6px; line-height:18px; height:20px; background:#fff; border:1px solid #787878; color:#454545; font-size:12px; font-weight:500; cursor:pointer; }
+.tablelist > p { width:100%; min-height:40px; height:100%; display:inline-block; clear:both; float:left; border-bottom:1px solid #c0c0c0; background:#333333; color:#fff; }
+.tablelist > p span { border-right:1px solid #c0c0c0;  padding:10px 5px; float:left; display:block;  font-size:13px; line-height:20px;  height:auto; text-align:center; } 
+.tablelist > p span:last-child {  border-right:0  }
+.tablelist li p.nodata{ margin-top:30%; color:#a0a0a0; text-align:center; font-size:11px; line-height:15px; padding-top:150px; background:url(../img/bull/bull_info_white.png) no-reat center center; } 
+/* 주간다이어리 */
+.weekdiary li { position:relative; height:350px; overflow-y:auto; word-break:keep-all; padding-bottom:30px;}
+.weekdiary li textarea{ min-height:100px; width:100%; height:100%; overf display:block; font-family: 'Nanum Pen Script'; line-height:20px; font-size:21px; border:1px solid #d0d0d0; color:#565656; }
+.weekdiary li dl dt{ position:relative; font-weight:600; margin:10px 0 5px 0;}
+.weekdiary li dl dt input[type=button]{ position:absolute; top:0; right:0; float:right; width:20px; height:20px; border:none; text-indent:-9999px; background:url(../img/btn/btn_more.png) no-repeat center center; }
+.weekdiary li dl dd{ color:#565656; }
+.weekdiary li dl.list {margin-top:30px;}
+.weekdiary li dl.list dd{ background:url(../img/bull/bull.gif) no-repeat 0 center; padding-left:10px; }
+.weekdiary li p.result{ margin-top:25px; width:100%; display:block;background:url(../img/bull/bull_mando.png) no-repeat 2px 6px; padding-left:12px; color:#a00;  padding-left:20px; text-align:left; }
+
+.calendar{clear:both; display:inline-block; width:100%; }
+.calendar ul{ border-top:1px solid #a0a0a0;  clear:both; margi-top:10px;   }
+.calendar ul { width:100%; min-height:50px; height:100%; display:inline-block; clear:both; float:left; background:#fff; }
+.calendar ul li { padding:10px 10px 10px 10px; width:14.3%; float:left; display:block;min-height:120px;  overflow-y:auto; line-height:20px; font-size:13px; border-left:1px solid #c0c0c0;  border-bottom:1px solid #c0c0c0; } 
+.calendar ul li:nth-child(7n){ border-left:1px solid #c0c0c0; width:14.2%; }
+.calendar .nolist{padding:400px 0px 100px; background:url(../img/error.png) no-repeat center center; border-bottom:1px solid #a0a0a0 !important; text-align:center; }
+.calendar .nolist p{background:none; }
+.calendar ul li input[type=button]{  padding:0 6px; line-height:18px; height:20px; background:#fff; border:1px solid #787878; color:#454545; font-size:12px; font-weight:500; cursor:pointer; }
+.calendar > p { width:100%; min-height:40px; height:100%; display:inline-block; clear:both; float:left; border-bottom:1px solid #c0c0c0; background:#333333; color:#fff; }
+.calendar > p span { border-right:1px solid #c0c0c0; width:14.3%;   padding:10px 5px; float:left; display:block; font-size:13px; line-height:40px; height:auto; text-align:center; } 
+.calendar > p span:nth-child(7){ width:14.2% !important;  border-right:none; }
+.calendar ul li p.nodata{ margin-top:30%; color:#a0a0a0; text-align:center; font-size:11px; line-height:15px; padding-top:150px; background:url(../img/bull/bull_info_white.png) no-reat center center; } 
+
+.goalcheck {text-align:center; margin:0 auto; display:inline-block; clear:both; width:100%; padding:0; margin:0;  }
+.goalcheck span { position:relative;  display:block; float:left; background-position:center; background-repeat:no-repeat; background-size:100% auto;  }
+.goalcheck span input[type=radio],
+.goalcheck span label { position:absolute; top:0; left:0; width:100%; height:100%; display:block;  cursor:pointer; opacity:0; }
+
+.calendar .goalcheck span { width:20px; height:20px; margin:0 2px; }
+.calendar .goalcheck span:nth-child(1) { background-image:url(../img/emo/emo_wink.png);  }
+.calendar .goalcheck span:nth-child(2) { background-image:url(../img/emo/emo_smile.png); }
+.calendar .goalcheck span:nth-child(3) { background-image:url(../img/emo/emo_tt.png);    }
+
+.side_myinfo .goalcheck span { width:25px; height:25px; margin:0 3px; }
+.side_myinfo .goalcheck span:nth-child(1) { background-image:url(../img/emo/emow_wink.png);  }
+.side_myinfo .goalcheck span:nth-child(2) { background-image:url(../img/emo/emow_smile.png); }
+.side_myinfo .goalcheck span:nth-child(3) { background-image:url(../img/emo/emow_tt.png);    }
+
+ul.listview li{ position:relative; clear:both; width:100%; min-height:30px; margin-bottom:10px; display:inline-block; text-align:left; }
+ul.listview li > strong{ position:absolute; top:0; left:0;  display:block; height:100%;   line-height:30px; font-size:14px; letter-spacing:-1px; }
+ul.listview li > span{ width:100%; display:block; min-height:20px; line-height:20px; font-size:13px; }
+ul.listview li > span > input[type=button]{ margin-left:5px; padding:0 8px; line-height:20px; height:22px; background:#fff; border:1px solid #787878; color:#454545; font-size:12px; font-weight:500; cursor:pointer; }
+ 
+ul.listform li{ position:relative; clear:both; width:100%; min-height:40px; margin-bottom:10px; display:inline-block; text-align:left;   }
+ul.listform li > strong{ position:absolute; top:0; left:0;  display:block; height:100%; line-height:30px; font-size:14px; letter-spacing:-1px; }
+ul.listform li > span{ width:100%; display:block; min-height:30px; line-height:20px; font-size:13px; }
+ul.listform li > span > * { float:left; line-height:28px; }
+ul.listform li > span > input[type=button]{ margin-left:5px; padding:0 15px; line-height:28px; height:30px; background:#c0c0c0; border:1px solid #787878; color:#232323; font-size:12px; font-weight:500; cursor:pointer; }
+ul.listform li > span > input[type=text]{ margin-left:5px; padding:0 8px; line-height:28px; height:30px; background:#fff; border:1px solid #787878; color:#454545; font-size:12px; font-weight:500; cursor:pointer; }
+ul.listform li > span > select { margin-left:5px; padding:0 30px 0 8px; line-height:28px; height:30px; background:#fff; border:1px solid #787878; color:#454545; font-size:12px; font-weight:500; cursor:pointer; background:url(../img/comm/bull_sel.png) no-repeat right 10px center;  }
+ul.listform li > span > span { margin-left:10px; }
+form p.btnarea{clear:both; margin:50px auto; max-width:400px;   }
+form p.btnarea input[type="reset"],
+form p.btnarea input[type="submit"]{ float:left; margin:0 1%; height:60px; line-height:60px; text-align:center; cursor:pointer;  }
+ 
+form p.btnarea input[type="reset"]{ width:38%;  background:#ffffff; color:#232323;  border:1px solid #a0a0a0;}
+form p.btnarea input[type="submit"]{ width:58%; background:#232323; color:#ffffff; font-size:17px; }
+
+.datebtnarea{ width:100%; height:30px;  margin:20px auto; clear:both; display:inline-block; }
+.datebtnarea a, .datebtnarea strong{ float:left; display:block; margin:0 1%; height:40px; line-height:40px; text-align:center; cursor:pointer;  }
+.datebtnarea strong{  height:40px; line-height:40px; margin:0px 20px; }
+.datebtnarea a{ width:40px; background-repeat:no-repeat; background-position:center; text-indent:-9999px; background-size:70%; }
+.calprv{ background-image:url(../img/btn/btn_dem_selbox_btnl_off.png)}
+.calnxt{ background-image:url(../img/btn/btn_dem_selbox_btnr_off.png)}
+.calprv:hover{ background-image:url(../img/btn/btn_dem_selbox_btnl_on.png)}
+.calnxt:hover{ background-image:url(../img/btn/btn_dem_selbox_btnr_on.png)}
+
+/*padding과 width값이 맞아야 한다.*/
+.listform.listmem li > strong , .listview.listmem li > strong { width:150px !important; }
+.listform.listmem li > span, .listview.listmem li > span { padding:5px 0px 5px 150px !important ; }
+
+/*listmem의 리스트 스타일 1*/
+/*           thead tr th                             tbody tr td*/
+.tablelist.st01 p span, .tablelist.st01 li{ width:14.2% } 
+.tablelist.st01 p span:nth-child(7), .tablelist.st01 li:nth-child(7){ idth:14.8% } 
+ 
+ /*padding과 width값이 맞아야 한다.*/
+.listform.listproduct li > strong , .listview.listproduct li > strong { width:150px !important; }
+.listform.listproduct li > span, .listview.listproduct li > span { padding:5px 0px 5px 150px !important ; }
+
+/*listmem의 리스트 스타일 1*/
+/*               thead tr th                                 tbody tr td*/
+.tablelist.weekdiary p span, .tablelist.weekdiary li{ width:14.28% }
+.tablelist.weekdiary p span:nth-child(4), .tablelist.weekdiary li:nth-child(4){ width:14.32%; }
+
+select,
+input[type="password"],
+input[type="text"]{ border-top:1px solid #cbcbcb; border-left:1px solid #cbcbcb; border-right:1px solid #e4e4e4; border-bottom:1px solid #e4e4e4; background:#f8f8f8; }
+
+/**************************************글쓰기**************************************/
+.common_write_box { position:relative; height:auto; font-size:14px; }
+.common_write_box table { table-layout:fixed; /*테이블깨짐방지*/ width:100%; margin:0; padding:0; padding-bottom:5px; border-collapse:collapse; border:none; border-top:2px solid #666666; border-bottom:1px solid #e0e0e0; letter-spacing:-0.75px;text-align:left;}
+.common_write_box table caption {width:0; height:0; font-size:0; line-height:0; visibility:hidden}
+.common_write_box table th { padding:16px 2px 16px 25px;  border:none;  border-bottom:1px solid #d0d0d0; background:#f0f0f0; text-align:left;  font-size:15px; font-weight:500; color:#363636;}
+.common_write_box table td { overflow:hidden;padding:13px 0 13px 15px; height:13px; background:#fff; border:none; border-top:1px solid #e0e0e0 !important;  font-size:13px; color:#3a3a3a; line-height:100%; }
+.common_write_box table td > * ,
+.common_write_box table td .col > * {float:left;}
+
+.common_write_box table td select{ margin:0 5px ; height:30px; line-height:26px;  color:#565656; padding:0 10px; font-size:12px; letter-spacing:0; cursor:pointer; }
+.common_write_box table td .bttxt,
+.common_write_box table td input[type="password"],
+.common_write_box table td input[type="text"]{ height:30px; line-height:30px; padding:0 5px; }
+.common_write_box table td input[type="button"] { margin:0 5px ; height:30px; line-height:26px; border:1px solid #a0a0a0; color:#565656; padding:0 10px; font-size:12px; cursor:pointer; }
+
+.common_write_box table td label,
+.common_write_box table td input[type="radio"],
+.common_write_box table td input[type="checkbox"]{ line-height:30px; padding:0 5px; cursor:pointer;  }
+
+.common_write_box table th.th{  border-top:1px solid #e0e0e0;}
+.common_write_box table td .tip_info{ margin-left:16px; height:16px; padding-left:24px; display:inline-block; background:url(../img/bull/bull_info.png) no-repeat 0 0; font-size:12px;}
+.common_write_box table td .tip_info2{ float:left; margin-left:16px; margin-top:7px; height:16px; display:inline-block; color:#858484; font-size:12px;}
+.common_write_box table td .tip_info.eng{ font-size:13px; letter-spacing:0; margin-left:5px; }
+.common_write_box table td .tip_info2.eng{ font-size:13px; letter-spacing:0; }
+
+.common_write_box table td.t_num{ letter-spacing:0;}
+.common_write_box table td .col{ margin-bottom:10px; clear:both; height:27px;}
+.common_write_box table th span.mando{padding-right:11px; background:url(../img/bull/bull_mando.png) no-repeat top 2px right 0; }
+/*파일등록:버튼*/
+.btn_file { position:relative; float:left; height:27px; width84px;}
+.btn_file input{ position:absolute; height:27px; width:84px; opacity:0; filter:alpha(opacity=0);  z-index:990; cursor:pointer; }
+.btn_file span{position:absolute;  left:0; top:0;  height:27px; width:60px; height:13px; padding:6px 12px; background:#fff; border:1px solid #ababab; text-align:center; color:#626262; font-size:13px; cursor:pointer; }
+/*파일등록:정보*/
+.file_add{ position:relative;  height:35px}
+.file_add .info{ position:relative;float:left; margin-left:14px; margin-top:6px; font-size:12px; letter-spacing:-0.5px; }
+.file_add .info strong{font-weight:600; color:#23affb;}
+/*파일등록:목록*/
+.file_input{ position:relative; clear:both;}
+.file_input li{   padding:6px 14px 5px 12px;  margin-bottom:5px; background-position:17px 7px !important; line-height:15px;  vertical-align:bottom; letter-spacing:-1px;}
+.file_input li{ background-position: 0px -1px !important; background:#f2f1f1; border:1px solid #e3e3e3; }
+.file_input li .file{ padding-left:24px;  background:url(../img/icon/ic_attach.gif) no-repeat; width:540px; display:inline-block;  overflow:hidden; color:#615f5f ;white-space:nowrap; text-overflow:ellipsis;  word-break:break-all; word-wrap:break-word; cursor:pointer;}
+.file_input li .btn_del{ position:relative; top:2px; float:right; width:10px; height:9px; background:url(../img/btn/btn_del.gif) no-repeat 0 0; cursor:pointer;}
+

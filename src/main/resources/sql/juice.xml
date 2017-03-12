@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="juice">  
+
+	<select id="juice_flist" resultType="juicebean"> 
+      select * from juice where juc_ct = 1
+	</select> 
+	
+	<select id="juice_vlist" resultType="juicebean"> 
+      select * from juice where juc_ct = 2
+	</select> 
+	
+	<!-- 레시피 삭제 -->
+	<delete id="recipe_delete" parameterType="int">
+		delete
+		from RECIPE
+		where rcp_no = #{rcp_no}
+	</delete>
+	
+	<!-- 레시피 추가 -->
+	<update id="recipe_add" parameterType="java.util.Map">
+		update RECIPE
+		set rcp_cal = rcp_cal + #{rcp_cal}
+		where rcp_no = #{rcp_no}
+	</update>
+	
+	<select id="select_juice" resultType="juicebean" parameterType="String">
+		select * from juice where juc_tt like '%'||#{juc_tt}||'%'
+	</select>  
+	  
+	<!-- 자료실 저장 -->
+	<insert id="insert_recipe" parameterType="juicebean">
+		<!--  글번호 	회원번호	 글제목	글내용	경로	    조회수 	 작성시간	추천수	추천회원-->
+		insert into RECIPE values ( rcp_no_seq.nextval,
+									#{rcp_tt}, #{rcp_nt}, #{mem_no}, 
+									#{rcp_cal}, #{rcp_tan}, #{rcp_dan}, 
+									#{rcp_gee}, #{rcp_na}, #{rcp_col}, #{rcp_poj}, #{rcp_trs}
+		)
+	</insert>
+	
+	<!-- 레시피 총 갯수 -->
+	<select id="recipe_count" resultType="int">
+		select count(*) from RECIPE
+	</select>
+
+	<!-- 레시피 목록 -->
+	<select id="recipe_list" parameterType="java.util.Map" resultType="recipebean"> 
+     	select * from ( 
+     		select * from RECIPE where mem_no=#{mem_no}
+			) where rcp_tt like '%'||#{findname, jdbcType=VARCHAR}||'%' 
+				 or rcp_nt like '%'||#{findname, jdbcType=VARCHAR}||'%'
+	</select> 
+ 
+</mapper>
