@@ -2,6 +2,7 @@ package com.burn.fat.member.login.action;
 
 import java.io.PrintWriter;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -55,8 +56,8 @@ public class LoginAction {
 	public String logout(HttpServletRequest request, HttpServletResponse response,HttpSession session) throws Exception{
 		session= request.getSession();
 		session.removeAttribute("mem_id");
-		return "html_membership/login";
-		/*return "../index";*/
+		
+		return "html_membership/logout";
 	}
 	
 	

@@ -1,4 +1,4 @@
-drop table fboard;
+drop table fboard cascade constraint;
 drop table fcomment;
 
 create table fboard(
@@ -14,7 +14,6 @@ create table fboard(
    fcomm_cnt      number default 0
 );
 
-drop view fboardlist;
 
 create or replace view fboardlist
 as
@@ -27,8 +26,11 @@ create sequence fboard_seq
 increment by 1 start with 1 nocache;
 
 
-create sequence member_seq 
-increment by 1 start with 1 nocache;
+create or replace view fboardlist
+as
+select f_no, m.mem_id,f_sj, f_ct, f_fl,f_rc,f_dt,f_lk,f_lkno,fcomm_cnt
+from fboard f, member m 
+where f.mem_no = m.mem_no;
 
 select * from fboard;
 
@@ -37,9 +39,12 @@ select * from fboard;
 
 select * from FCOMMENT;
 select * from fcommlist;
+select * from fboard;
 
 drop sequence fboard_seq; 
 drop sequence fcomm_seq;
+
+
 
 create table fcomment(
    fcomm_no      number constraint fcomm_fcno_pk primary key,--코멘트 번호

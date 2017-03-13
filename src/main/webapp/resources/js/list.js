@@ -1,4 +1,3 @@
-
    function find_check(){
 			   if($.trim($("#find_name").val())==""){
 				   alert("검색이름을 입력하세요!");
@@ -27,3 +26,4 @@
     	     });//change end
     	
     	    });//function end
+

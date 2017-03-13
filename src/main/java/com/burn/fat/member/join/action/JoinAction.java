@@ -71,10 +71,10 @@ public class JoinAction {
 		
 		return "html_membership/join3";
 	}
-	/*@RequestMapping(value="/PutThum.brn")
+	@RequestMapping(value="/PutThum.brn")
 	public String seeThum(){
 		return "html_membership/join3";
-	}*/
+	}
 	//워너비사진 완료
 	@RequestMapping(value="/Thumbnail.brn", method=RequestMethod.POST)
 	public ModelAndView thumbnailReturn(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
@@ -128,6 +128,7 @@ public class JoinAction {
 		ModelAndView model = new ModelAndView("html_membership/join3");
 		model.addObject("wannabe",fileDBName);
 		
+		 
 		return model;
 	} 
 	

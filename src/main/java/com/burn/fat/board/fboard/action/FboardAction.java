@@ -28,7 +28,6 @@ import com.burn.fat.board.fboard.model.FcommBean;
 import com.oreilly.servlet.MultipartRequest;
 
   @Controller("fboardaction")
-
   public class FboardAction {
 
      @Autowired
@@ -39,7 +38,7 @@ import com.oreilly.servlet.MultipartRequest;
      
      ////private String saveFolder ="C:/Program Files/Apache Software Foundation/Tomcat 8.0/webapps/myhome7/resources/upload";
       //private String saveFolder="c:/sts2/spring6_mvc_bbs/src/main/webapp/resources/upload";
-    private String saveFolder="C:/upload"; //파일 저장시킬 경로
+     private String saveFolder = "C:/Users/angel/git/FinalProject/src/main/webapp/resources/upload";
      
 
     /*자료실 입력폼*/
@@ -144,7 +143,7 @@ import com.oreilly.servlet.MultipartRequest;
         
         this.bbsService.insertBbs(bbsbean); //저장메서드 호출
         
-        response.sendRedirect("bbs_list.brn");
+        response.sendRedirect("./bbs_list.brn");
         return null;
      }
      

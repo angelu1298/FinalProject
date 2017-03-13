@@ -10,12 +10,14 @@
 <meta http-equiv="Pragma" content="no-cache"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>BURN FAT</title>
-<link href="./resources/css/login.css" rel="stylesheet" type="text/css">
-<script src="./resources/js/jquery.min.js"></script>
-<script src="./resources/js/angular.js"></script>
-<script src="./resources/js/common.js"></script>
-<script src="./resources/js/jquery.form.min.js"></script>
-<script src="./resources/js/joinValidation.js"></script>
+<link href="${pageContext.request.contextPath}/resources/css/login.css" rel="stylesheet" type="text/css">
+<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/angular.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.form.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/joinValidation.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/login.js"></script>
 
 </head>
 
@@ -38,5 +40,4 @@
 			<%@ include file="/jsp/inc/gnb.jsp"%>
 			<!-- lnb 영역 -->
 			<%@ include file="/jsp/inc/lnb.jsp"%>
-
 		</header>

@@ -11,9 +11,9 @@
 <meta http-equiv="Pragma" content="no-cache"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>BURN FAT</title>
-<link href="/fat/resources/css/sub.css" rel="stylesheet" type="text/css">
-<script src="/fat/resources/js/jquery.min.js"></script>
-<script src="/fat/resources/js/common.js"></script>
+<link href="${pageContext.request.contextPath}/resources/css/sub.css" rel="stylesheet" type="text/css">
+<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
 </head>
 
 <body>
