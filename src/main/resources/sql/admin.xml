@@ -21,8 +21,7 @@
     </select>
     
 <!-- 회원 검색 결과 게시물 수 -->
-<select id="getListCount_find" parameterType="java.util.Map"
-		    resultType="int">
+<select id="getListCount_find" parameterType="java.util.Map" resultType="int">
 		select count(*) from member 
 		<where>
 			<!-- 검색 조건이 없는 경우 -->
@@ -44,8 +43,7 @@
 	</select>   
 	
 <!-- 회원 검색 목록 -->
-<select id="getMemList_find" parameterType="java.util.Map"  
-	        resultType="memberbean">	
+<select id="getMemList_find" parameterType="java.util.Map"  resultType="memberbean">	
 		select mem_no,mem_id,mem_nm,mem_ma,mem_jd,mem_st from member
 	  	       <!-- MyBatis 동적SQL문 -->
 		       <where>
@@ -65,15 +63,13 @@
 					mem_st like #{mem_st}
 				</if>
 		      </where>	  	
-	  		  order by mem_no desc
 	</select>    
 	
 	<!-- isMember -->
 	<select id="isMem" parameterType="String" resultType="memberbean">
      select * from member 
       where   mem_id=#{mem_id}
-      and 	  mem_st=0
-    </select><!-- join state가 0이면 회원 가입 -->
+    </select>
     
     <!-- 회원수정 -->
     <update id="manage_edit" parameterType="memberbean">

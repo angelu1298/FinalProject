@@ -42,7 +42,7 @@ public class JoinService {
 	}
 	
 	//아이디 중복 체크
-	public int checkId(String mem_id) throws Exception{
+	public int checkId(String mem_id){
 		return dao.checkId(mem_id);
 	}
 }

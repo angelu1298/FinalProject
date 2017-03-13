@@ -20,9 +20,9 @@
 				<li><a href="./Logout.brn">LOGOUT</a></li>
 		 		<li><a href="./Mypage.brn">MYPAGE</a></li>
 		 		
-			<%-- <c:if test="${(sessionScope.mem_id).equals("admin") }"> --%>
+			 <c:if test="${sessionScope.mem_id=='admin'}"> 
 				<li><a href="./memlist.brn">MEMBER </a></li>
-			<%-- </c:if> --%>
+			</c:if> 
 		 </c:if>
 		<c:if test="${empty sessionScope.mem_id }">
 		 	<li><a href="./Login.brn">LOGIN</a></li>

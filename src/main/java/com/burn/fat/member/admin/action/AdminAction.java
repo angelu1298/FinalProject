@@ -146,7 +146,7 @@ public class AdminAction {
           
           
           int listcount=this.service.getListCount_find(m);
-          System.out.println(listcount);
+          System.out.println("listcount"+listcount);
           
           
           //총 페이지 수
@@ -311,15 +311,15 @@ public class AdminAction {
 		out.print(mem_id);
 		out.println(mem_st);
 		
-		if(mem_st ==0){
+		if(mem_st == 0){
 			this.service.manage_delete(mem_id);
 			
 			out.print("<script>");
-			out.print("alert('회원 탈퇴되었습니다.');");
+			out.print("alert('회원 탈퇴되었습니다.')");
 			out.print("</script>");
 		}else{
 			out.print("<script>");
-			out.print("alert('이미 회원 탈퇴되었습니다.');");
+			out.print("alert('이미 회원 탈퇴되었습니다.')");
 			out.print("</script>");
 		}
 		

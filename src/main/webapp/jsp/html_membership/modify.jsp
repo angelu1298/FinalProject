@@ -14,8 +14,8 @@
 				<div class="con_con">
 					<!--회원가입 영역-->
 					<div class="Step">
-						<span class="on"><span class="num">1</span><span class="on_tit">개인 정보 수정</span></span>
-						<span class="off">2</span>
+						<span class="off">1</span>
+						<span class="on"><span class="num">2</span><span class="on_tit">개인 정보 수정</span></span>
 					</div>
 					<h4 class="h4 mt15">회원정보 수정</h4>
 					<p class="tit_tip">

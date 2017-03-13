@@ -37,7 +37,7 @@ public class JoinAction {
 	
 	@Autowired
 	private JoinService service;
-	private String saveFolder = "C:/upload";
+	private String saveFolder = "C:/gitwork/FinalProject/src/main/webapp/resources/upload";
 
 	
 	//회원가입 1단계로 이동(가입동의)
@@ -154,12 +154,13 @@ public class JoinAction {
 	}
 	
 	//ID중복 검사 ajax함수로 처리 부분
-	@RequestMapping(value="/member_idcheck.brn" , method=RequestMethod.POST)
+	@RequestMapping(value="/member_idcheck.brn")
 	public void member_idcheck(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
 		PrintWriter out=response.getWriter();
 		String mem_id =request.getParameter("mem_id");
 		
-		int result =service.checkId(mem_id);
+		int result =this.service.checkId(mem_id);
 		
 		out.println(result);
 	}
@@ -174,7 +175,7 @@ public class JoinAction {
 		String mem_id=(String)session.getAttribute("mem_id");
 		if(mem_id==null){//세션 아이디가 없는 경우
 			out.println("<script>");
-			out.println("alert('다시 로그인 해주세요!');");
+			out.println("alert('다시 로그인 해주세요!')");
 			out.println("location='Login.brn'");
 			out.println("</script>");
 		}else{
@@ -206,7 +207,7 @@ public class JoinAction {
 		
 		if(mem_id == null){  //세션 아이디 값이 없는 경우
 			out.println("<script>");
-			out.println("alert('다시 로그인 해주세요!');");
+			out.println("alert('다시 로그인 해주세요!')");
 			out.println("location='Login.brn'");
 			out.println("</script>");
 			
@@ -296,7 +297,7 @@ public class JoinAction {
 		
 		if(mem_id == null){  //세션 아이디 값이 없는 경우
 			out.println("<script>");
-			out.println("alert('다시 로그인 해주세요!');");
+			out.println("alert('다시 로그인 해주세요!')");
 			out.println("location='Login.brn'");
 			out.println("</script>");
 			
@@ -340,6 +341,30 @@ public class JoinAction {
 		
 	}
 	
+	//워너비 사진 수정
+	@RequestMapping(value="/Thumbnail_edit_ok.brn", method=RequestMethod.POST)
+	public ModelAndView thumbnail_edit_ok(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
+		
+		String rootPath = request.getSession().getServletContext().getRealPath("");
+		
+		String thumbTmpPath ="/upload/";
+		String tmpFileName="";
+		try {
+			//임시 디렉토리가 없다면 생성
+			File thumbDir = new File(rootPath+thumbTmpPath);
+			
+			if(!thumbDir.exists()){  //임시 디렉토리가 존재하지 않는다면
+				thumbDir.mkdirs();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+		
+		
+		
+	
+	} 
 	
 	
 	//회원정보 삭제 폼
@@ -352,7 +377,7 @@ public class JoinAction {
 		String mem_id=(String)session.getAttribute("mem_id");
 		if(mem_id==null){//세션 아이디가 없는 경우
 			out.println("<script>");
-			out.println("alert('다시 로그인 해주세요!');");
+			out.println("alert('다시 로그인 해주세요!')");
 			out.println("location='Login.brn'");
 			out.println("</script>");
 		}else{
@@ -384,7 +409,7 @@ public class JoinAction {
 
 		if(!isMember.getMem_id().equals(mem_id)){
 			out.println("<script>");
-			out.println("alert('아이디가 다릅니다!');");
+			out.println("alert('아이디가 다릅니다!')");
 			out.println("location='Login.brn'");
 			out.println("</script>");
 		
@@ -392,7 +417,7 @@ public class JoinAction {
 
 			if(!isMember.getMem_pw().equals(mem_pw)){
 				out.println("<script>");
-				out.println("alert('비번이 다릅니다!');");
+				out.println("alert('비번이 다릅니다!')");
 				out.println("history.back()");
 			    out.println("</script>");	
 			    
@@ -548,7 +573,7 @@ public class JoinAction {
 			        } catch (Exception e) {
 			        	e.printStackTrace();
 			        	out.println("<script>");
-						out.println("alert('문의사항 메일 보내기에 실패하였습니다.')");
+						out.println("alert('문의사항 메일 보내기에 성공2하였습니다.')");
 						out.println("history.go(-1)");  //오류 발생 시 뒤로 돌아감
 						out.println("</script>");
 					}

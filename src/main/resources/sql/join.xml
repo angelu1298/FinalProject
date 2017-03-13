@@ -20,7 +20,6 @@
 	<select id="isMember" parameterType="String" resultType="memberbean">
      select * from member 
       where   mem_id=#{mem_id}
-      and 	  mem_st=0
     </select><!-- join state가 0이면 회원 가입 -->
     
     <!--  checkId -->

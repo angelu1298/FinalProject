@@ -140,7 +140,7 @@
 			<!--검색영역-->
 			<div class="borad_srch">
 			<form method="get" action="mem_find_ok.brn"
-		  	onsubmit="return mem_find_check()">
+		  	onsubmit="return find_check()">
 				<!--한줄-->
 				<p class="col">
 					<label for="srch_sel01" class="sc_txt">검색영역</label> 

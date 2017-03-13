@@ -40,15 +40,21 @@ public class JoinDAO {
 	}
 	
 	//아이디 중복 체크
-	public int checkId(String mem_id) throws Exception{
+	public int checkId(String mem_id){
 		int result =-1;
 		try{
-			MemberBean member=(MemberBean) sqlSession.selectOne("join.checkId", mem_id);
+			MemberBean member=(MemberBean) sqlSession.selectOne("checkId", mem_id);
+			System.out.println("mem_id"+mem_id);
+			System.out.println("member"+member);
+			System.out.println("result"+result);
 			
-			if(member != null) result=1;
-		}catch (Exception e) {
-
+			if(member != null){
+				result = 1;
+			}
+		}catch(Exception e){
+			
 		}
+		System.out.println("result"+result);
 		return result;
 	}
 	

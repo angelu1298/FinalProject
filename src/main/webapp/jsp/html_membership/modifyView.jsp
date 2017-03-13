@@ -9,12 +9,12 @@
 		<%@ include file="/jsp/inc/leftMenu_log.jsp" %>
 		
 		<!-- 서브컨텐츠 영역 START -->
-		<div class="subContent nobg">
+		<div class="subContent">
 			<div class="con_con">
 					<!--회원가입 영역-->
 					<div class="Step">
-						<span class="off">1</span>
-						<span class="on"><span class="num">2</span><span class="on_tit">개인 정보 수정 완료</span></span>
+						<span class="on"><span class="num">1</span><span class="on_tit">개인 정보</span></span>
+						<span class="off">2</span>
 					</div>
 					<h4 class="h4 mt15">회원정보 확인</h4>
 					<p class="tit_tip">
