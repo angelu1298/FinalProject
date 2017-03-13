@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- ▲ Docutype은 Mapper 아이디값 찾을때, TestGall.id값을 써주면 된다. ex) TestGall.gbbs_insert, TestGall.gbbs_gall -->
+<!-- mapper" must match "(cache-ref|cache|resultMap*|parameterMap*|sql*|insert*|update*|delete*|select*)+". -->
+
+<mapper namespace="TestGall">
+
+	<!-- 자료실 저장 -->
+	<insert id="gbbs_insert" parameterType="gbbsbean">
+		<!--  글번호 	회원번호	 글제목	글내용	경로	    조회수 	 작성시간	추천수	추천회원-->
+		insert into GBOARD values ( gbbs_num_seq.nextval,
+									#{gbbs_mem_no}, #{gbbs_subject}, #{gbbs_content},
+									#{gbbs_file, jdbcType=VARCHAR},0,
+									sysdate, 0, ',', 0
+								  )
+	</insert>
+
+	<!-- 자료실 총 게시물 수 -->
+	<select id="gbbs_count" resultType="int">
+		select count(*) from GBOARD
+	</select>
+
+	<!-- 자료실 목록 (page번호를 전달받아서 startRow와 endRow를 구함) -->
+	<select id="gbbs_gall" parameterType="int" resultType="gbbsbean"> 
+	
+      select rownum, grnum, gbbs_userid, gbbs_author, gbbs_num,gbbs_mem_no,gbbs_subject,gbbs_content,gbbs_readcount,gbbs_date,gbbs_like,gbbs_likeno,gbbs_file,gbbs_comm
+       from 
+        (select rownum grnum, m.mem_id gbbs_userid, m.mem_nm gbbs_author, g.g_no gbbs_num, g.mem_no gbbs_mem_no, g.g_sj  gbbs_subject, 
+                      	    g.g_ct gbbs_content, g.g_rc gbbs_readcount, g.g_dt  gbbs_date, g.g_lk gbbs_like, g.g_lkno gbbs_likeno, 
+                      	    g.g_fl gbbs_file, g.GCOMM_CNT gbbs_comm
+			                from member m, glist g 
+			                where g.mem_no=m.mem_no order by g.g_no desc
+		) where grnum &gt;= ((#{page}-1) * #{limit} +1)  and grnum &lt;= (#{page} * #{limit}) order by grnum asc
+	
+	</select> 
+ 
+	<!-- 자료실 내용 가져오기 -->
+	<select id="gbbs_cont" resultType="gbbsbean" parameterType="int">
+		select * from (
+        select rownum grnum, m.mem_id gbbs_userid, m.mem_nm gbbs_author, g.g_no gbbs_num, g.mem_no gbbs_mem_no, g.g_sj  gbbs_subject, 
+                      	    g.g_ct gbbs_content, g.g_rc gbbs_readcount, g.g_dt  gbbs_date, g.g_lk gbbs_like, g.g_lkno gbbs_likeno, g.g_fl gbbs_file, g.GCOMM_CNT gbbs_comm
+			                from member m, gboard g 
+			                where g.mem_no = m.mem_no and g.g_no = #{num}
+        ) 
+	</select> 
+	
+	<!-- 자료실 내용 가져오기 -->
+	<select id="gbbs_contpage" resultType="gbbsbean" parameterType="int">
+		select * from (
+        select rownum grnum, m.mem_id gbbs_userid, m.mem_nm gbbs_author, g.g_no gbbs_num, g.mem_no gbbs_mem_no, g.g_sj  gbbs_subject, 
+                      	    g.g_ct gbbs_content, g.g_rc gbbs_readcount, g.g_dt  gbbs_date, g.g_lk gbbs_like, g.g_lkno gbbs_likeno, g.g_fl gbbs_file, g.GCOMM_CNT gbbs_comm
+			                from member m, gboard g
+			                where g.mem_no = m.mem_no order by g.g_no asc
+        ) where grnum = #{rownum}
+	</select> 
+	
+	<!-- 자료실 검새결과 총 게시물 수 -->
+	<select id="gbbsfind_cnt" parameterType="java.util.Map" resultType="int">
+	 
+		select count(*)
+			from (select rownum ,  m.mem_no mmem_no, m.mem_nm mmem_nm, 
+        		g.g_no gg_no, g.mem_no gmem_no, g.g_sj gg_sj, 
+				g.g_ct gg_ct, g.g_fl gg_fl, g.g_rc gg_rc, g.g_dt gg_dt, g.g_lk gg_lk, g.g_lkno gg_lkno, g.gcomm_cnt ggcomm_cnt 
+				from member m, gboard g 
+			               
+			        <if test="gfind_field=='gbbs_name'"> 
+						where g.mem_no=m.mem_no and m.mem_nm like '%'||#{gfind_name}||'%' order by g.g_dt desc
+					</if> 
+					
+					<if test="gfind_field=='gbbs_subject'">
+						where g.mem_no=m.mem_no and  g.g_sj  like '%'||#{gfind_name}||'%' order by g.g_dt desc
+					</if>
+					
+					<if test="gfind_field=='gbbs_content'">
+						where g.mem_no=m.mem_no and g.g_ct  like '%'||#{gfind_name}||'%' order by g.g_dt desc
+					</if>
+					
+					<if test="find_field==''">
+						where g.mem_no=m.mem_no and (
+							g.g_ct  like '%'||#{gfind_name}||'%'  
+						or  g.g_sj  like '%'||#{gfind_name}||'%
+						or  g.g_ct  like '%'||#{gfind_name}||'%'
+						) order by g.g_dt desc
+					</if>
+				) 	
+	</select>
+	
+	<!-- 자료실 검색 목록 (page 번호를 전달받아서 startRow와 endRow를 구함) -->
+	<select id="gbbs_find" parameterType="java.util.Map" resultType="gbbsbean">
+		
+	 select rownum, grnum, gbbs_userid, gbbs_author,gbbs_num,gbbs_mem_no,gbbs_subject,gbbs_content,gbbs_readcount,gbbs_date,gbbs_like,gbbs_likeno,gbbs_file,gbbs_comm
+       from 
+        (select rownum grnum, m.mem_id gbbs_userid, m.mem_nm gbbs_author, g.g_no gbbs_num, g.mem_no gbbs_mem_no, g.g_sj  gbbs_subject, 
+                      	    g.g_ct gbbs_content, g.g_rc gbbs_readcount, g.g_dt  gbbs_date, g.g_lk gbbs_like, g.g_lkno gbbs_likeno, 
+                      	    g.g_fl gbbs_file, g.GCOMM_CNT gbbs_comm
+			                from member m, glist g 
+			               
+			        <if test="gfind_field=='gbbs_name'"> 
+						where g.mem_no=m.mem_no and m.mem_nm like '%'||#{gfind_name}||'%' 
+					</if>
+					
+					<if test="gfind_field=='gbbs_subject'">
+						where g.mem_no=m.mem_no and g.g_sj like '%'||#{gfind_name}||'%' 
+					</if>
+					
+					<if test="gfind_field=='gbbs_content'">
+						where g.mem_no=m.mem_no and g.g_ct like '%'||#{gfind_name}||'%' 
+					</if>
+					
+					<if test="find_field==''">
+						where g.mem_no=m.mem_no and (
+								g.g_ct  like '%'||#{gfind_name}||'%'  
+							or  g.g_sj  like '%'||#{gfind_name}||'%
+							or  g.g_ct  like '%'||#{gfind_name}||'%'
+							) order by g.g_dt desc
+					</if>
+			
+			order by rownum desc
+			
+		) where grnum &gt;= ((#{page}-1) * #{limit} +1) and grnum &lt;= (#{page} * #{limit}) order by grnum asc
+		
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="gbbs_hit" parameterType="int">
+		update GBOARD
+			set G_RC = G_RC + 1
+			where G_NO = #{num}
+	</update>
+
+	<!-- 자료실 수정 -->
+	<update id="gbbs_edit" parameterType="gbbsbean"> 
+		update GBOARD
+			set  G_SJ=#{gbbs_subject},
+				 G_CT = #{gbbs_content} , g_fl = #{gbbs_file, jdbcType=VARCHAR}
+			where G_NO=#{gbbs_num}
+	</update>
+
+	<!-- 자료실 삭제 -->
+	<delete id="gbbs_delete" parameterType="int">
+		delete
+		from GBOARD
+		where G_NO = #{num}
+	</delete>
+
+	<!--  레벨 증가 -->
+	<update id="gbbs_like" parameterType="int">
+		update GBOARD
+			set G_RC = G_RC - 1 , G_LK = G_LK + 1 , G_LKNO = concat(concat(G_LKNO, #{usernum}),',')
+			where G_NO = #{gbbs_num} and G_LKNO NOT LIKE '%,'||#{usernum}||',%'
+	</update>
+
+	<!-- 코멘트 입력시 게시물의 코멘트 수 증가  -->
+	<update id="updategcommcnt" parameterType="int" >
+    	update gboard
+    		set gcomm_cnt = gcomm_cnt+1
+    	where g_no = #{gbbs_num}
+    </update>
+    
+</mapper>
