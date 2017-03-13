@@ -7,7 +7,6 @@ function id_check(){
 	$("#idcheck_text").hide();//idcheck span 아이디 영역을 숨긴다.
 	
 	var mem_id = $("#inputid").val();
-	alert(mem_id);
 	
 	//1. 입력 글자 길이 체크
 	if($.trim($("#inputid").val()).length <6){
@@ -45,7 +44,6 @@ function id_check(){
 		cache:false,
 		data:{"mem_id" : mem_id},
 		success : function(data){
-			alert(data);
 			if(data==1){
 				//중복 아이디가 있으면
 				var newtext='<font color="red">중복 아이디입니다.</font>';

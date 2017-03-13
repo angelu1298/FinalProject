@@ -25,7 +25,7 @@
 					<p class="tip_blue">
 						 (<img src="./resources/img/bull/bull_mando.png" alt="*" />)표기는 필수입력사항으로 모두 입력해주세요.
 					</p> 
-					<form action="./mem_edit_ok.brn" method="post" id="modifyform">
+					<form action="./mem_edit_ok.brn" method="post" id="modifyform" enctype="multipart/form-data">
 					<!--회원정보입력란-->
 									
 						<div class="common_write_box">
@@ -246,16 +246,16 @@
 							</tr>
 							<tr>
 								<th>
-									<span class="mando">워너비 사진</span>
+									워너비 사진
 								</th>
 								<td>
-									<c:if test="${empty wannabe }">
+									<c:if test="${empty member.mem_wb }">
 										<input type="file" id="wannabe" name="wannabe" accept=".jpeg,.gif,.jpg,.png">
 										<img src="./resources/upload/default.PNG" width="50px" height="30px">
 									</c:if>
-									<c:if test="${!empty wannabe }">
+									<c:if test="${!empty member.mem_wb}">
 										<input type="file" id="wannabe" name="wannabe" accept=".jpeg,.gif,.jpg,.png">
-										<img src="./resources/upload${wannabe }" alt="img"/>
+										<img src="./resources/upload${member.mem_wb }" alt="img" width="50px" height="30px"/>
 										<span class="bttxt" id="thumbnail">이렇게 되길 기원합니다</span>
 								</c:if>
 								</td>

@@ -20,7 +20,7 @@
 					<p class="tit_tip">
 						 회원정보는 개인정보처리방침에 따라 안전하게 보호되며 회원님의 동의 없이 공개 또는 제3자에게 제공되지 않습니다.
 					</p>
-					<form action="./mem_edit.brn" method="post">
+					<form action="./mem_edit.brn" method="post"  enctype="multipart/form-data">
 					<!--회원정보입력란-->
 									
 						<div class="common_write_box">
@@ -131,14 +131,14 @@
 							</tr>
 							<tr>
 								<th>
-									<span class="mando">워너비 사진</span>
+									워너비 사진
 								</th>
 								<td>
-									<c:if test="${empty wannabe }">
+									<c:if test="${empty member.mem_wb }">
 										<img src="./resources/upload/default.PNG" width="50px" height="30px">
 									</c:if>
-									<c:if test="${!empty wannabe }">
-										<img src="./resources/upload${wannabe }" alt="img"/>
+									<c:if test="${!empty member.mem_wb}">
+										<img src="./resources/upload${member.mem_wb }" alt="img" width="50px" height="30px"/>
 										<span class="bttxt" id="thumbnail">이렇게 되길 기원합니다</span>
 								</c:if>
 								</td>

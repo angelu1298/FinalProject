@@ -126,16 +126,19 @@ public class AdminAction {
           
           if(request.getParameter("page")!=null){
              page=Integer.parseInt(request.getParameter("page"));
+             System.out.println(page);
           }
           
           String find_name=null;         
           if(request.getParameter("find_name").trim() != null){
-             find_name=request.getParameter("find_name").trim();             
+             find_name=request.getParameter("find_name").trim(); 
+             System.out.println(find_name);
           }
           
           String find_field=null;
           if(request.getParameter("find_field")!=null){
              find_field=request.getParameter("find_field").trim();
+             System.out.println(find_field);
           }   
           
           Map m = new HashMap();
@@ -146,7 +149,7 @@ public class AdminAction {
           
           
           int listcount=this.service.getListCount_find(m);
-          System.out.println("listcount"+listcount);
+          System.out.println("listcount는?"+listcount);
           
           
           //총 페이지 수
@@ -160,7 +163,8 @@ public class AdminAction {
                          
           if (endpage > maxpage) endpage= maxpage;   
            
-          List<MemberBean> member = service.getMemList_find(m); 
+          List<MemberBean> member = this.service.getMemList_find(m); 
+          System.out.println(member);
           
           ModelAndView model=new ModelAndView("html_membership/memList");
           model.addObject("find_name",find_name);

@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.burn.fat.board.gboard.image.Thumbnail;
 import com.burn.fat.member.join.dao.JoinService;
 import com.burn.fat.member.model.MemberBean;
 import com.oreilly.servlet.MultipartRequest;
@@ -155,12 +156,11 @@ public class JoinAction {
 	}
 	
 	//ID중복 검사 ajax함수로 처리 부분
-	@RequestMapping(value="/member_idcheck.brn")
+	@RequestMapping(value="/member_idcheck.brn", method=RequestMethod.POST)
 	public void member_idcheck(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		PrintWriter out=response.getWriter();
 		String mem_id =request.getParameter("mem_id");
-		
 		int result =this.service.checkId(mem_id);
 		
 		out.println(result);
@@ -253,7 +253,9 @@ public class JoinAction {
 	    	String month=st04.nextToken(); //두번째
 	    	String day=st04.nextToken();//세번째
 
-	    	
+	    	//워너비 사진 불러오기
+	    	String mem_wb = member.getMem_wb();
+	    	System.out.println("mem_wb22"+mem_wb);
 					
 			ModelAndView mv = new ModelAndView("html_membership/modify");
 			
@@ -269,6 +271,7 @@ public class JoinAction {
 			mv.addObject("year",year);
 			mv.addObject("month",month);
 			mv.addObject("day",day);
+			mv.addObject("mem_wb",mem_wb);
 			
 			
 			return mv;
@@ -280,19 +283,17 @@ public class JoinAction {
 	
 	//회원정보 수정
 	@RequestMapping(value="/mem_edit_ok.brn", method=RequestMethod.POST)
-	public ModelAndView mem_edit_ok(HttpServletRequest request, HttpServletResponse response,HttpSession session  
-			,@RequestParam(value="inputpw")String pw, @RequestParam(value="inputname")String name, @RequestParam(value="gender")int gender
-			,@RequestParam(value="birthyear")int year, @RequestParam(value="birthmonth")int month,@RequestParam(value="birthday")int day
-			,@RequestParam(value="mobileNo1")String hp1
-			,@RequestParam(value="middleph")String hp2, @RequestParam(value="lastph")String hp3,@RequestParam(value="zipcode")int zc
-			,@RequestParam(value="address")String addr, @RequestParam(value="mem_tel1")String tel1, @RequestParam(value="mem_tel2")String tel2
-			,@RequestParam(value="mem_tel3")String tel3
-			,@RequestParam(value="detailaddr")String detailaddr, @RequestParam(value="email")String email, @RequestParam(value="domain")String domain
-			,@RequestParam(value="height")double height, @RequestParam(value="weight")double weight) throws Exception{
+	public ModelAndView mem_edit_ok(HttpServletRequest request, HttpServletResponse response,HttpSession session) throws Exception{
 		
 		PrintWriter out= response.getWriter();
 		session=request.getSession();//세션 객체를 만듬
 		
+		
+		int fileSize = 5 * 1024 * 1024; // 이진파일 최대 업로드 크기
+		String fileDBName = "";
+		MultipartRequest multi = null;
+		multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8");
+
 		//아이디 키값의 세션 아이디를 구함
 		String mem_id=(String)session.getAttribute("mem_id");
 		
@@ -303,6 +304,27 @@ public class JoinAction {
 			out.println("</script>");
 			
 		}else{	
+			String pw=multi.getParameter("inputpw").trim();
+			String name=multi.getParameter("inputname").trim();
+			int gender=Integer.parseInt(multi.getParameter("gender"));
+			int year =Integer.parseInt(multi.getParameter("birthyear"));
+			int month =Integer.parseInt(multi.getParameter("birthmonth"));
+			int day= Integer.parseInt(multi.getParameter("birthday"));
+			String hp1=multi.getParameter("mobileNo1").trim();
+			String hp2=multi.getParameter("middleph").trim();
+			String hp3=multi.getParameter("lastph").trim();
+			int zc= Integer.parseInt(multi.getParameter("zipcode"));
+			String addr=multi.getParameter("address").trim();
+			String tel1=multi.getParameter("mem_tel1").trim();
+			String tel2=multi.getParameter("mem_tel2").trim();
+			String tel3=multi.getParameter("mem_tel3").trim();
+			String detailaddr=multi.getParameter("detailaddr").trim();
+			String email=multi.getParameter("email").trim();
+			String domain =multi.getParameter("domain").trim();
+			
+			double height = Double.parseDouble(multi.getParameter("height"));
+			double weight= Double.parseDouble(multi.getParameter("weight"));
+			
 			
 			MemberBean member = service.isMember(mem_id);
 			//디비로부터 회원정보 가져옴
@@ -314,6 +336,59 @@ public class JoinAction {
 			String hp = hp1+"-"+hp2+"-"+hp3;
 			
 			
+			
+			//워너비사진 수정
+			
+			
+			
+			File thumbnail = multi.getFile("wannabe");  //첨부한 파일을 가져옴
+			
+			
+			if(thumbnail !=null){
+				String filename = thumbnail.getName();  //이진파일명 저장
+				File DelFile= new File(saveFolder+member.getMem_wb());
+				if(DelFile.exists()){  //기존 파일이 존재하면
+					DelFile.delete();  //기존 파일명 삭제
+				}
+			
+			
+			Calendar c = Calendar.getInstance();
+			int year1 = c.get(Calendar.YEAR); // 오늘 년도 구합니다.
+			int month1 = c.get(Calendar.MONTH) + 1; // 오늘 월 구합니다.
+			int date1 = c.get(Calendar.DATE); // 오늘 일 구합니다.
+
+			String homedir = saveFolder + "/" + year1 + "-" + month1 + "-" + date1;
+			// upload폴더 아래에 파일 올린 날짜로 폴더 생성합니다.
+			File path1 = new File(homedir);
+			if (!(path1.exists())) {
+				path1.mkdir();// 새로운 폴더를 생성
+			}
+			// 난수를 구합니다.
+			Random r = new Random();
+			int random = r.nextInt(100000000);
+
+			/**** 확장자 구하기 시작 ****/
+			int index = 0;
+			String fileExtension = "";
+			String refileName = "";
+
+			index = filename.lastIndexOf(".");
+			// 문자열에서 특정 문자열의 위치 값(index)를 반환한다.
+			// indexOf가 처음 발견되는 문자열에 대한 index를 반환하는 반면,
+			// lastIndexOf는 마지막으로 발견되는 문자열의 index를 반환합니다.
+			// (파일명에 점에 여러개 있을 경우 맨 마지막에 발견되는 문자열의 위치를 리턴합니다.)
+			fileExtension = filename.substring(index + 1);
+			/**** 확장자 구하기 끝 ***/
+			// 새로운 파일명을 저장
+			refileName = "wannabe" + year1 + month1 + date1 + random + "." + fileExtension;
+			// 오라클 디비에 저장될 레코드 값
+			fileDBName = "/" + year1 + "-" + month1 + "-" + date1 + "/" + refileName;
+			// 파일명 변경합니다.
+			thumbnail.renameTo(new File(homedir + "/" + refileName));
+			
+			
+			member.setMem_wb(fileDBName); //파일명 저장
+			}
 			
 			member.setMem_id(mem_id);
 			member.setMem_pw(pw);	
@@ -342,30 +417,6 @@ public class JoinAction {
 		
 	}
 	
-	//워너비 사진 수정
-	@RequestMapping(value="/Thumbnail_edit_ok.brn", method=RequestMethod.POST)
-	public ModelAndView thumbnail_edit_ok(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
-		
-		String rootPath = request.getSession().getServletContext().getRealPath("");
-		
-		String thumbTmpPath ="/upload/";
-		String tmpFileName="";
-		try {
-			//임시 디렉토리가 없다면 생성
-			File thumbDir = new File(rootPath+thumbTmpPath);
-			
-			if(!thumbDir.exists()){  //임시 디렉토리가 존재하지 않는다면
-				thumbDir.mkdirs();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-		
-		
-		
-	
-	} 
 	
 	
 	//회원정보 삭제 폼

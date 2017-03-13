@@ -232,7 +232,7 @@ public class MemberAction {
          
       }else{  //회원 아이디와 정보가 맞는 경우
          
-    	  try{
+         try{
          
          ModelAndView mv=new ModelAndView("html_membership/pwFindRslt");
          //html_membership/pwFind.jsp로 이동
@@ -315,25 +315,29 @@ public class MemberAction {
            Transport.send(mimeMessage);
 
             out.println("<script>");
-	        out.println("alert('임시 비밀번호 메일 보내기에 성공하였습니다.')");
-	        out.println("</script>");
-	        
-	        return mv;
+           out.println("alert('임시 비밀번호 메일 보내기에 성공하였습니다.')");
+           out.println("</script>");
+           
+           return mv;
 
-	        } catch (Exception e) {
-	        	e.printStackTrace();
-	        	out.println("<script>");
-				out.println("alert('임시 비밀번호 메일 보내기에 실패하였습니다.')");
-				out.println("history.go(-1)");  //오류 발생 시 뒤로 돌아감
-				out.println("</script>");
-			}
+           } catch (Exception e) {
+              e.printStackTrace();
+              out.println("<script>");
+            out.println("alert('임시 비밀번호 메일 보내기에 실패하였습니다.')");
+            out.println("history.go(-1)");  //오류 발생 시 뒤로 돌아감
+            out.println("</script>");
+         }
          
       
       }
       return null;
    }
 
+   
+   @RequestMapping("/Main.brn")
+   public String main(){
+      return "main/mainpage";
+   }
   
    
 }
-
