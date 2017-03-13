@@ -129,6 +129,20 @@
 									${member.mem_w }
 								</td>
 							</tr>
+							<tr>
+								<th>
+									<span class="mando">워너비 사진</span>
+								</th>
+								<td>
+									<c:if test="${empty wannabe }">
+										<img src="./resources/upload/default.PNG" width="50px" height="30px">
+									</c:if>
+									<c:if test="${!empty wannabe }">
+										<img src="./resources/upload${wannabe }" alt="img"/>
+										<span class="bttxt" id="thumbnail">이렇게 되길 기원합니다</span>
+								</c:if>
+								</td>
+							</tr>
 							</tbody>
 						</table>
 						<!--//회원정보입력란-->

@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="./resources/js/member2.js"></script>
 
+
 <!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
 <section class="log_container">
 
@@ -241,6 +242,22 @@
 								<td>
 									<input type="text" class="w060" maxlength="5" id="weight" name="weight" value="${member.mem_w }">
 									<span class="bttxt">kg</span>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<span class="mando">워너비 사진</span>
+								</th>
+								<td>
+									<c:if test="${empty wannabe }">
+										<input type="file" id="wannabe" name="wannabe" accept=".jpeg,.gif,.jpg,.png">
+										<img src="./resources/upload/default.PNG" width="50px" height="30px">
+									</c:if>
+									<c:if test="${!empty wannabe }">
+										<input type="file" id="wannabe" name="wannabe" accept=".jpeg,.gif,.jpg,.png">
+										<img src="./resources/upload${wannabe }" alt="img"/>
+										<span class="bttxt" id="thumbnail">이렇게 되길 기원합니다</span>
+								</c:if>
 								</td>
 							</tr>
 							</tbody>
