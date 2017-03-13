@@ -8,13 +8,15 @@
 		<%@ include file="/jsp/inc/leftMenu_log.jsp" %>
 		
 		<!-- 서브컨텐츠 영역 START -->
-		<div class="subContent">
+		<div class="subContent nobg">
 			
 		<!--로그인 영역-->
-		<div class="con_con">
+		<div class="login_area">
 					<!--회원가입 영역-->
-					<h4 class="h4 mt15">비밀번호 찾기</h4>
-					<div class="Agree_area">
+					<div class="login_box">
+					<div class="result">	
+					<h4 class="h4">비밀번호 찾기</h4>
+					
 						<p class="tit">
 							ID 회원님의 등록된 메일 주소로 임시 비밀번호를 전송하였습니다.
 						</p>
@@ -33,9 +35,12 @@
 					<!-- 비밀번호 찾기 확인 -->
 					
 					<!--버튼-->
-					<div class="btnL_area mt25">
-						<input type="submit" value="확인">
-						<input type="reset" value="취소">
+		
+					<div class="btnL_area mt25 w500">
+						<ul class="login_fot">
+							<li><a href="join1.jsp">회원가입</a></li>
+							<li><a href="./Login.brn">로그인</a></li>
+						</ul>
 					</div>
 					<!--//버튼-->	
 					

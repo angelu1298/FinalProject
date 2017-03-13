@@ -230,6 +230,7 @@ public class MemberAction {
 			
 		}else{  //회원 아이디와 정보가 맞는 경우
 			
+			try {
 			
 			ModelAndView mv=new ModelAndView("html_membership/pwFindRslt");
 			//html_membership/pwFind.jsp로 이동
@@ -240,12 +241,11 @@ public class MemberAction {
 			
 			// 메일 관련 정보  ->SMTP 서버 주소를 지정합니다.(네이버인 경우)
 	        String host = "smtp.naver.com";
-	        
-	        
+ 
 	        //관리자의 메일 발신 전용 계정 메일.....
 	        final String username = "ssheln";  //네이버 아이디     
 	        int port=465;
-	        final String password = "qwqw123";   //네이버 이메일 비밀번호
+	        final String password = "qwe123";   //네이버 이메일 비밀번호(실패/성공)
 	        
 	        
 	        //임시비밀번호 생성
@@ -271,55 +271,21 @@ public class MemberAction {
 	        String body = "Burning fat 홈페이지 임시 비밀번호 발송입니다.&nbsp; 임시 비밀번호는 "+randomNum+" 입니다."
 	        		+ "&nbsp; 다시 로그인해주세요.";
 	         
-	        //html파일이 오는 경우
-	        
-	        
-	        //서버 정보를 Properties 객체에 저장합니다.
-	        Properties props = System.getProperties();
-	          
-	          
-	        //SMTP 서버 정보 설정
-	        props.put("mail.smtp.host", host);
-	        props.put("mail.smtp.port", port);
-	        props.put("mail.smtp.auth", "true");
-	        props.put("mail.smtp.ssl.enable", "true");
-	        props.put("mail.smtp.ssl.trust", host);
-	           
-	      //저장한 Properties 객체의 값으로 세션의 인스턴스를 생성합니다.
-	      //public static Session getDefaultInstance(Properties props)
-	        
-	        Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
-	            String un=username;
-	            String pw=password;
-	            protected PasswordAuthentication getPasswordAuthentication() {
-	                return new PasswordAuthentication(un, pw);
-	            }
-	        });
-	        session.setDebug(true); //for debug
-	           
-	        Message mimeMessage = new MimeMessage(session);
-	        
-	        mimeMessage.setFrom(new InternetAddress("ssheln@naver.com"));
-	        //발신자 셋팅, 보내는 사람의 이메일 주소를 한번 더 입력.. 이메일 풀 주소를 다 작성
-	        
-	        mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(mem_ma));
-	        //수신자 셋팅
-	        
-	        mimeMessage.setSubject(subject);
-	        //제목 셋팅
-	        mimeMessage.setText(body);
-	        //내용 셋팅
-	        Transport.send(mimeMessage);
 
-			
+	        } catch (Exception e) {
+	        	e.printStackTrace();
+	        	out.println("<script>");
+				out.println("alert('임시 비밀번호 메일 보내기에 실패하였습니다.')");
+				out.println("history.go(-1)");  //오류 발생 시 뒤로 돌아감
+				out.println("</script>");
+			}
+	        
+	        
+	        
+	        
 		
-			return mv;
 		}
 		return null;
-	}
-	@RequestMapping(value="/Main.brn")
-	public String mainPage(){
-		return "main/mainpage";
 	}
 
 	

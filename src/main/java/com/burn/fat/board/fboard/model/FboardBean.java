@@ -19,6 +19,12 @@ public class FboardBean {
 	private int fcomm_cnt; //코멘트
 	
 	
+	public int getFcomm_cnt() {
+		return fcomm_cnt;
+	}
+	public void setFcomm_cnt(int fcomm_cnt) {
+		this.fcomm_cnt = fcomm_cnt;
+	}
 	public int getF_no() {
 		return f_no;
 	}

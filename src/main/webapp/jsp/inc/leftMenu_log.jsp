@@ -14,8 +14,8 @@
 			<li><a href="./Join.brn">회원가입</a></li>
 			<li><a href="#none">아이디,비밀번호 찾기</a>
 				<ul>
-					<li><a href="./IdFind.brn">아이디 찾기</a></li>
-					<li><a href="./PwFind.brn">비밀번호 찾기</a></li>
+					<li><a href="./id_find_ok1.brn">아이디 찾기</a></li>
+					<li><a href="./pwd_find_ok.brn">비밀번호 찾기</a></li>
 				</ul>
 			</li>
 			

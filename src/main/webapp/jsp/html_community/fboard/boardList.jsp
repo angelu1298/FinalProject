@@ -33,7 +33,7 @@
 			<div class="common_list_box">
 				<table cellpadding="0" cellspacing="0" border="1"
 					summary="운동게시판입니다. 제목,글쓴이,등록일,조회수,추천수를 확인할 수 있고, 등록일 기준으로 sorting 됩니다.">
-					<caption>식품게시판</caption>
+					<caption>운동게시판</caption>
 					<colgroup>
 						<col width="50px">
 						<col width="100%">

@@ -4,7 +4,7 @@
 <mapper namespace="fboard">
 
 	<!-- 자료실 저장 -->
-    <insert id="bbs_insert" parameterType="bbsbean">
+    <insert id="bbs_insert" parameterType="fboardbean">
       insert into fboard 
           (f_no,mem_no,f_sj, 
            f_ct,f_fl,f_rc,f_dt)
@@ -22,7 +22,7 @@
     
     
     <!-- 자료실 목록 (page번호를 전달받아서 startRow와 endRow를 구함)-->
-	<select id="bbs_list"  parameterType="java.util.Map"  resultType="bbsbean">
+	<select id="bbs_list"  parameterType="java.util.Map"  resultType="fboardbean">
 	    <![CDATA[
 		select * 
 		from 
@@ -70,7 +70,7 @@
 	
 	<!-- 자료실 검색 목록 (page번호를 전달받아서 startRow와 endRow를 구함)-->
 	<select id="bbs_find" parameterType="java.util.Map"  
-	        resultType="bbsbean">	
+	        resultType="fboardbean">	
 		select * from 
 		 (select 
 		        rownum rnum,f_no,mem_id,f_sj, 
@@ -106,7 +106,7 @@
     
     
     <!-- 자료실 내용 가져오기 -->
-    <select id="bbs_cont" resultType="bbsbean" parameterType="int">
+    <select id="bbs_cont" resultType="fboardbean" parameterType="int">
       select * from fboardlist where f_no=#{num}
     </select>
     
@@ -118,7 +118,7 @@
     </update>
     
     <!-- 자료실 수정 -->
-    <update id="bbs_edit" parameterType="bbsbean">
+    <update id="bbs_edit" parameterType="fboardbean">
      update fboard 
         set f_sj=#{f_sj},
             f_ct=#{f_ct}, f_fl=#{f_fl, jdbcType=VARCHAR}

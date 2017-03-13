@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.burn.fat.board.fboard.model.FboardBean;
 
-@Service("boardService")
+@Service("fboardService")
 public class FboardServiceImpl implements FboardService {
     @Autowired
 	private FboardDAOImpl bbsDAO;
 
 	@Override
-	public void insertBbs(FboardBean FboardBean) throws Exception {
-		bbsDAO.insertBbs(FboardBean);
+	public void insertBbs(FboardBean bbsbean) throws Exception {
+		bbsDAO.insertBbs(bbsbean);
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class FboardServiceImpl implements FboardService {
 	}
 
 	@Override
-	public void editBbs(FboardBean FboardBean) throws Exception {
-         bbsDAO.editBbs(FboardBean);		
+	public void editBbs(FboardBean bbsbean) throws Exception {
+         bbsDAO.editBbs(bbsbean);		
 	}
 
 	@Override

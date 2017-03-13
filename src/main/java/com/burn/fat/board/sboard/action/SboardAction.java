@@ -34,7 +34,7 @@ public class SboardAction {
 	private SboardService service;
 	@Autowired
 	private ScommService scommservice;
-	private String saveFolder = "C:/Users/angel/git/FinalProject/src/main/webapp/resources/upload";
+	private String saveFolder = "C:/upload"; //파일 저장시킬 경로
 
 	@RequestMapping(value = "/sboardWrite.brn")
 	public String sboardwrite() {

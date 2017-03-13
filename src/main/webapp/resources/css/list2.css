@@ -68,7 +68,7 @@ ul.listform li > span > input[type=button]{ margin-left:5px; padding:0 15px; lin
 ul.listform li > span > input[type=text]{ margin-left:5px; padding:0 8px; line-height:28px; height:30px; background:#fff; border:1px solid #787878; color:#454545; font-size:12px; font-weight:500; cursor:pointer; }
 ul.listform li > span > select { margin-left:5px; padding:0 30px 0 8px; line-height:28px; height:30px; background:#fff; border:1px solid #787878; color:#454545; font-size:12px; font-weight:500; cursor:pointer; background:url(../img/comm/bull_sel.png) no-repeat right 10px center;  }
 ul.listform li > span > span { margin-left:10px; }
-form p.btnarea{clear:both; margin:50px auto; max-width:400px;   }
+form p.btnarea{clear:both; margin:50px auto; max-width:400px; }
 form p.btnarea input[type="reset"],
 form p.btnarea input[type="submit"]{ float:left; margin:0 1%; height:60px; line-height:60px; text-align:center; cursor:pointer;  }
  
@@ -134,6 +134,7 @@ input[type="text"]{ border-top:1px solid #cbcbcb; border-left:1px solid #cbcbcb;
 .common_write_box table td.t_num{ letter-spacing:0;}
 .common_write_box table td .col{ margin-bottom:10px; clear:both; height:27px;}
 .common_write_box table th span.mando{padding-right:11px; background:url(../img/bull/bull_mando.png) no-repeat top 2px right 0; }
+
 /*파일등록:버튼*/
 .btn_file { position:relative; float:left; height:27px; width84px;}
 .btn_file input{ position:absolute; height:27px; width:84px; opacity:0; filter:alpha(opacity=0);  z-index:990; cursor:pointer; }
