@@ -5,6 +5,14 @@
 
 	
 <!-- ===================================================================== -->
+	
+	<!-- <my_info table 업데이트> -->
+	<insert id="my_info" parameterType="myinfobean">
+		INSERT INTO MY_INFO(MEM_ID,MEM_NO)
+		SELECT MEM_ID,MEM_NO
+		FROM MEMBER
+	</insert>
+	
 	<!-- mypage id, 키, 몸무게 가져오기	 -->
 	<select id="my_id" resultType="myinfobean" parameterType="int">
 		select * from member where mem_no=#{mem_no}

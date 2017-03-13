@@ -17,7 +17,7 @@
 	    <typeAlias alias="grocerybean"   type="com.burn.fat.food.grocery.model.GroceryBean" />   
 	    <typeAlias alias="parkbean"    type="com.burn.fat.park.model.ParkBean" />  
 	    <typeAlias alias="obsbean" type="com.burn.fat.board.oboard.model.ObsBean" />   
-        <typeAlias alias="exerbean" type="com.burn.fat.calc.exercise.model.ExerciseBean" />
+        <typeAlias alias="exercisebean" type="com.burn.fat.calc.exercise.model.ExerciseBean" />
         <typeAlias alias="myinfobean" type="com.burn.fat.member.mypage.myinfo.model.MyinfoBean" />
         <typeAlias alias="ebobean" type="com.burn.fat.board.eboard.model.EboardBean" />   
         <typeAlias alias="ecommBean" type="com.burn.fat.board.eboard.model.EcommBean" />   
