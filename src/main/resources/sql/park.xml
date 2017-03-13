@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="park"> 
+ 
+	<!-- 전국 공원 갯수 -->
+	<select id="park_count" resultType="int">
+		select count(*) from park
+	</select>
+
+	<!-- 전국 공원 갯수 -->
+	<select id="park_fcount" parameterType="java.util.Map" resultType="int">
+	
+		select count(*) from ( 
+     		 select  rownum, prk_no, prk_se ,prk_nm ,prk_ct ,prk_add , prk_l ,prk_h ,prk_sido ,prk_gungu  from 
+				(select * from park where prk_sido like '%'||#{findsido, jdbcType=VARCHAR}||'%' and prk_gungu like '%'||#{findgungu, jdbcType=VARCHAR}||'%' )
+		     		where  prk_nm like '%'||#{findname, jdbcType=VARCHAR}||'%' 	
+						or prk_ct like '%'||#{findname, jdbcType=VARCHAR}||'%' 
+		) order by rownum asc
+		
+	</select>
+
+	<!-- 공원 전체 목록(검색결과) -->
+	<select id="park_list" parameterType="java.util.Map" resultType="parkbean"> 
+	
+     	select * from ( 
+     		 select rownum pnum, prk_no, prk_se ,prk_nm ,prk_ct ,prk_add , prk_l ,prk_h ,prk_sido ,prk_gungu  from 
+				(select * from park where prk_sido like '%'||#{findsido, jdbcType=VARCHAR}||'%' and prk_gungu like '%'||#{findgungu, jdbcType=VARCHAR}||'%' )
+		     		where prk_nm like '%'||#{findname, jdbcType=VARCHAR}||'%' 	
+						 or prk_ct like '%'||#{findname, jdbcType=VARCHAR}||'%' order by prk_no desc	 
+						 
+		) where pnum &gt;= ((#{page}-1) * #{limit} +1)  and pnum &lt;= (#{page} * #{limit}) order by rownum asc	 
+		
+	</select> 
+ 
+</mapper>
