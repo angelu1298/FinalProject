@@ -271,55 +271,6 @@ public class MemberAction {
 	        String body = "Burning fat 홈페이지 임시 비밀번호 발송입니다.&nbsp; 임시 비밀번호는 "+randomNum+" 입니다."
 	        		+ "&nbsp; 다시 로그인해주세요.";
 	         
-	      }else{  //회원 아이디와 정보가 맞는 경우
-	         
-	         try {
-	         
-	         ModelAndView mv=new ModelAndView("html_membership/pwFindRslt");
-	         //html_membership/pwFind.jsp로 이동
-	         
-	         mv.addObject("member",member);
-	         
-	         
-	         
-	         // 메일 관련 정보  ->SMTP 서버 주소를 지정합니다.(네이버인 경우)
-	           String host = "smtp.naver.com";
-	           
-	      //저장한 Properties 객체의 값으로 세션의 인스턴스를 생성합니다.
-	      //public static Session getDefaultInstance(Properties props)
-	        
-				
-			
-	        
-	        Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
-	            String un=username;
-	            String pw=password;
-	            protected PasswordAuthentication getPasswordAuthentication() {
-	                return new PasswordAuthentication(un, pw);
-	            }
-	        });
-	        session.setDebug(true); //for debug
-	           
-	        Message mimeMessage = new MimeMessage(session);
-	        
-	        mimeMessage.setFrom(new InternetAddress("ssheln@naver.com"));
-	        //발신자 셋팅, 보내는 사람의 이메일 주소를 한번 더 입력.. 이메일 풀 주소를 다 작성
-	        
-	        mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(mem_ma));
-	        //수신자 셋팅
-	        
-	        mimeMessage.setSubject(subject);
-	        //제목 셋팅
-	        mimeMessage.setText(body);
-	        //내용 셋팅
-	        Transport.send(mimeMessage);
-	        
-	        
-	        out.println("<script>");
-	        out.println("alert('임시 비밀번호 메일 보내기에 성공하였습니다.')");
-	        out.println("</script>");
-	        
-	        return mv;
 
 	        } catch (Exception e) {
 	        	e.printStackTrace();
