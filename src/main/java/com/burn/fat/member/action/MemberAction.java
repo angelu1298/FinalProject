@@ -287,6 +287,12 @@ public class MemberAction {
 		}
 		return null;
 	}
+	
+	@RequestMapping(value="/Main.brn")
+	public String mainPage(){
+		return "main/mainpage";
+	}
+
 
 	
 }

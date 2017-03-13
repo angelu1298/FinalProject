@@ -8,7 +8,7 @@
 	<!-- 자료실 저장 -->
 	<insert id="gbbs_insert" parameterType="gbbsbean">
 		<!--  글번호 	회원번호	 글제목	글내용	경로	    조회수 	 작성시간	추천수	추천회원-->
-		insert into GBOARD values ( gbbs_num_seq.nextval,
+		insert into GBOARD values ( g_no_seq.nextval,
 									#{gbbs_mem_no}, #{gbbs_subject}, #{gbbs_content},
 									#{gbbs_file, jdbcType=VARCHAR},0,
 									sysdate, 0, ',', 0

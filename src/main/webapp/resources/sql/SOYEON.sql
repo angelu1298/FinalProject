@@ -127,7 +127,7 @@ create table gcomment(
 
 alter table gboard 
 add constraint gb_mem_no_FK foreign key (mem_no) 
-references member(mem_no) on delete cascade;
+references member(mem_no);
 
 alter table gcomment 
 add constraint gcomm_mem_no_FK foreign key (mem_no) 
@@ -138,7 +138,10 @@ add constraint gcomm_g_no_FK foreign key (g_no)
 references gboard(g_no);
 
 create or replace view glist
-as select from gboard g order by g_dt desc
+as 
+select * 
+from gboard 
+order by g_dt desc;
 
 create or replace view gcommlist
 as

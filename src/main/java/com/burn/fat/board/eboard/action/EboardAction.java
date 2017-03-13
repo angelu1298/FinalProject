@@ -31,7 +31,7 @@ public class EboardAction {
 	@Autowired
 	public EboardService eboService;
 	
-	private String saveFolder="D:/neonjava/EBoard/src/main/webapp/resources/upload";
+	private String saveFolder="C:/Users/angel/git/FinalProject/src/main/webapp/resources/upload";
 	
 	/* 자료실 입력폼 */
 	@RequestMapping(value="/eboardWrite.brn")
@@ -59,7 +59,7 @@ public class EboardAction {
 		
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
-		String id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("mem_id");
 		
 		int mem_no = this.eboService.eboNoCk(id);//회원번호 받아오기
 		int result = 0;
@@ -147,7 +147,8 @@ public class EboardAction {
 		
 		HttpSession session = request.getSession();
 		
-		String id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("mem_id");
+		System.out.println(id);
 		int mem_no = this.eboService.eboNoCk(id);//회원번호 받아오기
 		String mem_id = this.eboService.eboIdCk(id);//회원아이디 받아오기
 		
@@ -221,7 +222,7 @@ public class EboardAction {
 		
 		HttpSession session = request.getSession();
 		
-		String id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("mem_id");
 		int mem_no = this.eboService.eboNoCk(id);//회원번호 받아오기
 		String mem_id = this.eboService.eboIdCk(id);//회원아이디 받아오기
 		
@@ -303,9 +304,8 @@ public class EboardAction {
 //		int num=Integer.parseInt(request.getParameter("num"));
 		
 		session=request.getSession();
-		String id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("mem_id");
 		int mem_no = this.eboService.eboNoCk(id);//회원번호 받아오기
-		String mem_id = this.eboService.eboIdCk(id);//회원아이디 받아오기
 		
 		int page=1;
 		if(request.getParameter("page") != null){
@@ -390,7 +390,6 @@ public class EboardAction {
 		mv.addObject("ebobean", ebobean);
 		mv.addObject("page", page);
 		mv.addObject("mem_no",mem_no);
-		mv.addObject("mem_id",mem_id);
 		mv.addObject("id",id);
 		
 		return mv;
@@ -505,7 +504,7 @@ public class EboardAction {
 			HttpServletResponse response,HttpSession session) throws Exception{
 		
 		session=request.getSession();
-		String id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("mem_id");
 		System.out.println("e_no = " +e_no);
 		int mem_no = this.eboService.eboNoCk(id);
 		
@@ -564,7 +563,7 @@ public class EboardAction {
 		
 		HttpSession session = request.getSession();
 		
-		String id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("mem_id");
 		int mem_no = this.eboService.eboNoCk(id);//회원번호 받아오기
 		String mem_id = this.eboService.eboIdCk(id);//회원아이디 받아오기
 //		String findId = this.eboService.findId();
@@ -665,7 +664,7 @@ public class EboardAction {
 		
 		HttpSession session = request.getSession();
 		
-		String id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("mem_id");
 		int mem_no = this.eboService.eboNoCk(id);//회원번호 받아오기
 		System.err.println("--------------------1-------------------------");
 		Map m = new HashMap();
@@ -724,7 +723,7 @@ public class EboardAction {
 		   EcommBean ecommb=new EcommBean();
 		   
 		   HttpSession session = request.getSession();
-		   String mem_id = (String) session.getAttribute("id");
+		   String mem_id = (String) session.getAttribute("mem_id");
 		   int mem_no = this.eboService.eboNoCk(mem_id);//회원번호 받아오기
 		   
 		   String getcId = this.eboService.getcId(mem_no);//회원아이디 받아오기

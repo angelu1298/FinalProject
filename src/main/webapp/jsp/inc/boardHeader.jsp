@@ -17,6 +17,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/sboard.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/fboard.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/list.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/gboard.js"></script> 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
 
 </head>

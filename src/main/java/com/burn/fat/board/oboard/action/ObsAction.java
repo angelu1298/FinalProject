@@ -29,12 +29,11 @@ public class ObsAction {
 
 	@Autowired
 	private OBoardService obsService;
-	private String saveFolder = "C:/git/FinalProject/src/main/webapp/resources/upload"; 
-
+	private String saveFolder="C:/Users/angel/git/FinalProject/src/main/webapp/resources/upload";
 	@RequestMapping(value = "/obs_write.brn")
 	public String obs_write() {
 
-		return "html_community/OBOARD/boardWrite";
+		return "html_community/oboard/boardWrite";
 	}
 	
 	/*코멘트 부분*/
@@ -241,7 +240,7 @@ public class ObsAction {
 		m.put("limit", limit);
 
 		List<ObsBean> obslist = obsService.getObsList(m);
-		ModelAndView model = new ModelAndView("html_community/OBOARD/boardList");
+		ModelAndView model = new ModelAndView("html_community/oboard/boardList");
 		model.addObject("page", page);
 		model.addObject("maxpage", maxpage);
 		model.addObject("startpage", startpage);
@@ -285,13 +284,13 @@ public class ObsAction {
 
 		if (state.equals("cont")) {
 			// contM.setViewName("html_community/boardView?");
-			contM.setViewName("html_community/OBOARD/boardView");
+			contM.setViewName("html_community/oboard/boardView");
 
 			String obs_cont = obsbean.getO_ct().replace("\n", "<br/>");
 
 			contM.addObject("obs_cont", obs_cont);
 		} else if (state.equals("mod")) {
-			contM.setViewName("html_community/OBOARD/boardEdit");
+			contM.setViewName("html_community/oboard/boardEdit");
 		} 
 		contM.addObject("obsbean", obsbean);
 		contM.addObject("obsCommentList", obsCommentList);
@@ -473,7 +472,7 @@ public class ObsAction {
 
 		List<ObsBean> obslist = obsService.getObsList3(m);
 
-		ModelAndView model = new ModelAndView("/html_community/OBOARD/boardList");
+		ModelAndView model = new ModelAndView("/html_community/oboard/boardList");
 
 		model.addObject("limit", limit);
 		model.addObject("find_name", find_name);

@@ -43,7 +43,7 @@ public class GbbsAction {
 	// DAO클래스가 바뀌면 해당하는 컨트롤러를 다 바꿔줘야하기 떄문에 ,
 	// DAO클래스만 변경해서 사용할 수 있는 방법을 생각 => 다형성을 이용한다(Autowired)
 	////private String saveFolder ="C:/Program Files/Apache Software Foundation/Tomcat 8.0/webapps/myapp/resources/upload";
-    private String saveFolder="C:/STS_Workspace/spring_bbs/src/main/webapp/resources/upload";	// 파일이 업로드 될 경로를 설정해준다.
+	private String saveFolder="C:/Users/angel/git/FinalProject/src/main/webapp/resources/upload";
 
 	/*자료실 입력폼*/
 	@RequestMapping(value="/gbbs_write.brn")
