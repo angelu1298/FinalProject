@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/jsp/inc/boardHeader.jsp"%>
+<%@ include file="../../inc/subHeader.jsp"%>
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<script src="/fat/resources/js/jquery.min.js"></script>
  <script src="./resources/js/list.js"></script>
     
     
@@ -14,7 +15,7 @@
 <section class="sub_container">
 
 	<!-- 서브메뉴에 따라 Side Navigation을 다르게 부여해준다. -->
-	<%@ include file="/jsp/inc/leftMenu05.jsp"%>
+	<%@ include file="../../inc/leftMenu05.jsp"%>
 
 	<!-- 서브컨텐츠 영역 START -->
 	<div class="subContent">
@@ -32,7 +33,7 @@
 			<div class="common_list_box">
 				<table cellpadding="0" cellspacing="0" border="1"
 					summary="운동게시판입니다. 제목,글쓴이,등록일,조회수,추천수를 확인할 수 있고, 등록일 기준으로 sorting 됩니다.">
-					<caption>식품게시판</caption>
+					<caption>운동게시판</caption>
 					<colgroup>
 						<col width="50px">
 						<col width="100%">
@@ -184,4 +185,4 @@
 </section>
 <!-- // container End -->
 
-<%@ include file="/jsp/inc/footer.jsp"%>
+<%@ include file="../../inc/footer.jsp"%>

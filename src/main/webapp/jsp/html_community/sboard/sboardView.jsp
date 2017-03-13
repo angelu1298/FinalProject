@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/jsp/inc/boardHeader.jsp"%>
+<%@ include file="../../inc/boardHeader.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
 <section class="sub_container">
 
 		<!-- 서브메뉴에 따라 Side Navigation을 다르게 부여해준다. -->	
-		<%@ include file="/jsp/inc/leftMenu05.jsp" %>
+		<%@ include file="../../inc/leftMenu05.jsp" %>
 		
 		<!-- 서브컨텐츠 영역 START -->
 		<div class="subContent">
@@ -122,4 +122,4 @@
 </section>
 <!-- // container End -->
 
-<%@ include file="/jsp/inc/footer.jsp"%>
+<%@ include file="../../inc/footer.jsp"%>

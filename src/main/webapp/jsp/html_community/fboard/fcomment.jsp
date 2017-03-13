@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="/fat/resources/js/jquery.min.js"></script>
 <style>
 #re_form{
 	padding:5px 10px 40px 10px;
@@ -14,12 +15,7 @@ span#re-title{
 	font-size:12pt;
 	line-height:200%;
 }
-/* 
-#rep-content{
-	width:97%;
-	height:50px;
-	margin:10px 10px;
-} */
+
 </style>
  
 <script>
