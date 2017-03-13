@@ -74,6 +74,18 @@ $(function(){
 			$('#gender_f_label').after('<span class="tip_info2" id="gendercheck"><font color="red" >성별을 선택해주세요.</font></span>')
 			return false;
 		}
+		if($.trim($('#birthyear').val())==''){
+			alert('생년을 입력하세요');
+			return false;
+		}
+		if($.trim($('#birthmonth').val())==''){
+			alert('월을 입력하세요');
+			return false;
+		}
+		if($.trim($('#birthday').val())==''){
+			alert('일을 입력하세요');
+			return false;
+		}
 		if($.trim($('#middleph').val())=='' || $.trim($('#lastph').val())==''){
 			$('#middleph').css({'color':'red'});
 			$('#middleph').val('필수 입력');

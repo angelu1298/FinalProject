@@ -1,7 +1,88 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/jsp/inc/logHeader.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script>
+//아이디 중복 체크
+function id_check(){
+	$("#idcheck_text").hide();//idcheck span 아이디 영역을 숨긴다.
+	
+	var mem_id = $("#inputid").val();
+	alert(mem_id);
+	
+	//1. 입력 글자 길이 체크
+	if($.trim($("#inputid").val()).length <6){
+		var newtext='<font color="red">아이디는 6자 이상이어야 합니다.</font>';
+		$("#idcheck_text").text('');
+		$("#idcheck_text").show();
+		$("#idcheck_text").html(newtext);  //span 아이디 영역에 경고 문자 추가
+		$("#inputid").val("").focus();
+		return false;
+	};
+	
+	if($.trim($("#inputid").val()).length >12){
+		var newtext='<font color="red">아이디는 12자 이하이어야 합니다.</font>';
+		$("#idcheck_text").text('');
+		$("#idcheck_text").show();
+		$("#idcheck_text").html(newtext);  //span아이디 영역에 경고 문자추가
+		$("#inputid").val("").focus();
+		return false;
+	};
+	
+	//입력 아이디 패턴 유효성 검사
+	if(!(validate_userid(mem_id))){
+		var newtext='<font color="red">아이디는 영문소문자, 숫자 조합만 가능합니다.</font>';
+		$("#idcheck_text").text('');//문자 초기화
+		$("#idcheck_text").show();//span 아이디 영역을 보이게 한다
+		$("#idcheck_text").html(newtext);
+		$("#inputid").val("").focus();
+		return false;
+	};
+	
+	//아이디 중복확인
+	$.ajax({
+		type:"POST",	
+		url:"member_idcheck.brn",
+		cache:false,
+		data:{"mem_id" : mem_id},
+		success : function(data){
+			alert(data);
+			if(data==1){
+				//중복 아이디가 있으면
+				var newtext='<font color="red">중복 아이디입니다.</font>';
+				$("#idcheck_text").text('');
+				$("#idcheck_text").show();
+				$("#idcheck_text").html(newtext);
+				$("#inputid").val('').focus();
+				return false;
+				
+			}else{//중복 아이다가 없으면
+				var newtext='<font color="blue">사용가능한 아이디입니다.</font>';
+				$("#idcheck_text").text('');
+				$("#idcheck_text").show();
+				$("#idcheck_text").html(newtext);
+				$("#inputpw").focus();
+				
+			}
+		},
+		error : function(){
+			alert("data error"+mem_id);
+		}
+	});  //$.ajax
+	
+};
 
+function validate_userid(mem_id){
+	var pattern = /^[a-z0-9_]+$/;
+	
+	//test 메서드는 문자열 안에 패턴이 있는지 확인하여 있으면 true를 없으면 false를 반환
+	var result = pattern.test(mem_id);
+	  
+	return result;
+	
+	
+};
+
+</script>
 <!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
 <section class="log_container">
 
@@ -41,8 +122,9 @@
 								</th>
 								<td>
 									<input type="text" class="w200" id="inputid" name="inputid" >
-									<input type="button" class="btn_w" value="중복확인" id="idcheck">
+									<input type="button" class="btn_w" value="중복확인" id="idcheck" onclick="id_check()">
 									<span class="tip_info2">6~10자리 수 영문 또는 숫자 로만 가능</span>
+									<div id="idcheck_text"></div>
 								</td>
 							</tr>
 							<tr>
