@@ -9,6 +9,20 @@
 		<typeAlias alias="sboardbean" type="com.burn.fat.board.sboard.model.SboardBean" />	
 		<typeAlias alias="scommbean" type="com.burn.fat.board.sboard.model.ScommBean" />	
 		<typeAlias alias="memberbean" type="com.burn.fat.member.model.MemberBean" />	
+		<typeAlias alias="gbbsbean"     type="com.burn.fat.board.gboard.model.GbbsBean" />   
+	    <typeAlias alias="gcommbean"    type="com.burn.fat.board.gboard.model.GcommBean" />   
+	    <typeAlias alias="juicebean"    type="com.burn.fat.food.juice.model.JuiceBean" />   
+	    <typeAlias alias="recipebean"   type="com.burn.fat.food.juice.model.RecipeBean" />   
+	    <typeAlias alias="cuisinebean"   type="com.burn.fat.food.cuisine.model.CuisineBean" />   
+	    <typeAlias alias="grocerybean"   type="com.burn.fat.food.grocery.model.GroceryBean" />   
+	    <typeAlias alias="parkbean"    type="com.burn.fat.park.model.ParkBean" />  
+	    <typeAlias alias="obsbean" type="com.burn.fat.board.oboard.model.ObsBean" />   
+        <typeAlias alias="exerbean" type="com.burn.fat.calc.exercise.model.ExerciseBean" />
+        <typeAlias alias="myinfobean" type="com.burn.fat.member.mypage.myinfo.model.MyinfoBean" />
+        <typeAlias alias="ebobean" type="com.burn.fat.board.eboard.model.EboardBean" />   
+        <typeAlias alias="ecommBean" type="com.burn.fat.board.eboard.model.EcommBean" />   
+        <typeAlias alias="exerBean" type="com.burn.fat.member.mypage.exercise.model.ExerBean" />
+        <typeAlias alias="calendarBean" type="com.burn.fat.member.mypage.calendar.model.CalendarBean" />
 	</typeAliases>
 
 	
@@ -19,6 +33,17 @@
 		<mapper resource="sql/join.xml" />
 		<mapper resource="sql/member.xml" />
 		<mapper resource="sql/fboard.xml" />
+		<mapper resource="sql/gbbs.xml" />
+        <mapper resource="sql/gcomm.xml" />
+        <mapper resource="sql/juice.xml" />
+        <mapper resource="sql/park.xml" />
+        <mapper resource="sql/food.xml" />
+        <mapper resource="sql/oboard.xml" />
+        <mapper resource="sql/calc_exercise.xml" />
+        <mapper resource="sql/myinfo.xml"/>
+        <mapper resource="sql/eboard.xml" />
+        <mapper resource="sql/exerCalc.xml" />
+        <mapper resource="sql/my_calendar.xml" />
 	</mappers>
 
 </configuration>
