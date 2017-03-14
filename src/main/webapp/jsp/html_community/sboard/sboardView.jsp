@@ -13,7 +13,7 @@
 		
 			<h3>후기게시판</h3>
 			
-			<h4>보기</h4>
+			<h4>상세보기</h4>
 			<!--게시글-->
 			<div class="Board_view">
 				<input type="hidden" name="s_no" id="s_no" value="${sbean.s_no }" />

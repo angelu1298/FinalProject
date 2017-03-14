@@ -1,12 +1,12 @@
 create table calendar(
-cal_date varchar2(500),
-day varchar2(500),	/* 아침,점심,저녁 */
-mem_no number,
-cal_eval number, /* 하:1 중:2 상:3*/
+cal_date 	varchar2(500),
+day 		varchar2(500),	/* 아침,점심,저녁 */
+mem_no 		number,
+cal_eval 	number, /* 하:1 중:2 상:3*/
 
-e_kcal varchar2(500),	/* 운동_칼로리 */
-f_kcal varchar2(500),	/* 식단_칼로리*/
-t_kcal varchar2(500)	/* 총_칼로리 */
+e_kcal 		varchar2(500),	/* 운동_칼로리 */
+f_kcal 		varchar2(500),	/* 식단_칼로리*/
+t_kcal 		varchar2(500)	/* 총_칼로리 */
 );
 
 

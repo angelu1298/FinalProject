@@ -3,14 +3,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 	$(function() {
-		$('.scomm_re_ct').hide();
-		$('.scomm_rep_button').hide();
+		$('.scomm_re_ct_area').hide();
 		$('.reply').each(function(index, item) {
 			$(this).on('click', function() {
-				$('.scomm_re_ct').hide();
-				$('.scomm_rep_button').hide();
-				$(this).parents('li').find('.scomm_re_ct').show();
-				$(this).parents('li').find('.scomm_rep_button').show();
+				$('.scomm_re_ct_area').hide();
+				$(this).parents('li').find('.scomm_re_ct_area').show();
 			})
 		})
 		$('.deletecomm').each(function(index, item) {
@@ -76,24 +73,27 @@
 	<ul>
 		<c:forEach var="comm" items="${beanlist }">
 			<li>
-			<input type="hidden" class="scomm_no" name="scomm_no"
-					value="${comm.scomm_no }" />
-				<p>
+			<input type="hidden" class="scomm_no" name="scomm_no" value="${comm.scomm_no }" />
 				<!-- 답글인 경우 -->
 				<c:if test="${comm.scomm_re_lev != 0}"> 
-					<c:forEach var="k" begin="1" end="${comm.scomm_re_lev}">
-						&nbsp;&nbsp;			
-					</c:forEach>
-					>>	
-				</c:if>			
-					<span>${comm.mem_id } </span>
-					<!-- 작성자  -->
-					<span> ${comm.scomm_dt }</span>
-					<!-- 작성 날짜 -->
-					<span>${comm.scomm_ct }</span>
-					<!-- 코멘트 내용 -->
-				</p>
-				<p>
+					<p class="ic_reply">
+						<c:forEach var="k" begin="1" end="${comm.scomm_re_lev}">
+							<strong>reply</strong>		
+						</c:forEach>
+					</p>
+				</c:if>	
+				<c:set var="num" value="${comm.scomm_re_lev}" />
+					<div class="content st0${num}">
+						<p class="fl">
+							<span>${comm.mem_id } </span>
+							<!-- 작성자  -->
+							<span> ${comm.scomm_dt }</span>
+							<!-- 작성 날짜 -->
+						</p>
+						<!-- 코멘트 내용 -->
+						<span>${comm.scomm_ct }</span>
+					</div>
+				<p class="sbtnarea">
 					<c:if test="${sessionScope.mem_id == comm.mem_id }">
 						<span class="deletecomm">[삭제]</span>
 					</c:if>
@@ -102,16 +102,19 @@
 					</c:if>
 					<span class="reply">[답글]</span>
 				</p>
-				<p>
-					<textarea cols="100%" rows="10%" class="scomm_re_ct"></textarea>
-					<button class="scomm_rep_button" >댓글남기기</button>
-				</p>
+				<div class="scomm_re_ct_area">
+					<h5>댓글을 작성해주세요</h5>
+					<textarea cols="100%" rows="10%" class="scomm_re_ct" id="scomm_re_ct"></textarea>
+					<button class="scomm_rep_button">댓글남기기</button>
+				</div>
 			</li>
 		</c:forEach>
 	</ul>
 </c:if>
 <c:if test="${empty beanlist }">
-	<span>등록된 코멘트가 없습니다.</span>
+	<p class="nolist">등록된 코멘트가 없습니다.</p>
 </c:if>
+<div class="gcomm_ct_area">
 	<textarea cols="70" rows="20" id="scomm_ct"></textarea>
-	<button onclick="scomm_write()" >코멘트남기기</button>
+	<button onclick="scomm_write()" class="scomm_rep_buttonL">코멘트남기기</button>
+</div>

@@ -49,7 +49,6 @@
   src: url(font/NanumBarunGothic.eot?#iefix) format('embedded-opentype'),
        url(font/NanumBarunGothic.woff) format('woff'),
        url(font/NanumBarunGothic.ttf) format('truetype');
-
 }
 
 @font-face {
@@ -85,7 +84,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 *{ padding:0; margin:0; border:0; box-sizing:border-box; font-family:'Ubuntu', 'Nanum Squere Gothic', 'Nanum Gothic', "Nanum Gothic", "나눔고딕", 나눔고딕;  list-style:none; text-decoration:none; }
 a:hover{ color:#d00; }
-strong{ font-weight:600; font-family:"나눔고딕"}
+strong{ font-weight:600; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕';}
 ol, ul {  list-style:none;  }
 em,address{  font-style:normal;  }
 blockquote, q {  quotes:none;  }
