@@ -1,5 +1,7 @@
 package com.burn.fat.board.eboard.model;
 
+import java.sql.Date;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,7 +13,7 @@ public class EboardBean {
 	private String e_fl;		//업로드파일경로
 	private String e_gl;		//업로드이미지경로
 	private int e_rc;			//조회수
-	private String e_dt;		//작성시간
+	private Date e_dt;		//작성시간
 	private int e_lk;			//추천수
 	private String e_lkno;		//추천인 회원번호
 	
@@ -57,10 +59,10 @@ public class EboardBean {
 	public void setE_rc(int e_rc) {
 		this.e_rc = e_rc;
 	}
-	public String getE_dt() {
+	public Date getE_dt() {
 		return e_dt;
 	}
-	public void setE_dt(String e_dt) {
+	public void setE_dt(Date e_dt) {
 		this.e_dt = e_dt;
 	}
 	public int getE_lk() {

@@ -23,22 +23,20 @@ create table member(
     mem_st		number default 0, --가입상태(가입:0, 탈퇴:1)
     mem_dd		date default sysdate,--탈퇴날짜
     mem_rs1		varchar2(300) default null,--탈퇴사유1
-    mem_rs2		varchar2(300) default null --탈퇴사유2
+    mem_rs2		varchar2(300) default null, --탈퇴사유2
+    MY_MEMO 	VARCHAR2(1024) default '한마디 적어주세요',
+    GOAL_W 		NUMBER(5) default 0   
 );
 
 
 
 
 /***** member 테이블의 join_code 시퀀스 생성 *****/
-create sequence member_joincode_seq 
+create sequence mem_no_seq 
 increment by 1 start with 1 nocache;
 
 drop sequence member_joincode_seq; 
 
 
-
-insert into member(mem_no,mem_id,mem_pw, mem_nm,mem_bd,mem_hp,mem_ma,mem_jd)
-values(member_joincode_seq.nextval,'ss','1111','홍길동','19880909','01077778888',
-'ssheln@naver.com',sysdate);
 
 

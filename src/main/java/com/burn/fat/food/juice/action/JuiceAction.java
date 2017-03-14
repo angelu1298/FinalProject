@@ -188,7 +188,7 @@ public class JuiceAction {
  		HttpSession session = request.getSession();
 		int rcount = juiceService.getRecipelistCount(); //총 리스트 수를 
 				 		
-		int mem_no = Integer.parseInt((String)session.getAttribute("mem_no"));
+		int mem_no = ((Integer)session.getAttribute("mem_no")).intValue();
 		findname = request.getParameter("findname");
 		
 		List<RecipeBean> recipeList = new ArrayList<RecipeBean>();

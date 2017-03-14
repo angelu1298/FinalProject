@@ -4,11 +4,11 @@
 	s_sj			varchar2(100)	not null,	
 	s_ct			clob	not null,
 	s_fl			varchar2(1024),
-	s_gl			varchar2(1024),
 	s_rc			number	default 0,
 	s_dt			date default sysdate,
 	s_lk			number	default 0,
-	S_lkno			varchar2(2048)
+	S_lkno			varchar2(2048),
+	scomm_cnt		number
 );
 
 create table scomment(
