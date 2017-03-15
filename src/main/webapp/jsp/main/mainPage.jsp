@@ -18,6 +18,7 @@
 					$(".centerbox > ul > li").removeClass("on")
 					$(this).parents("li").addClass("on");
 				})
+				parent.document.getElementById('talkframe').src = "http://127.0.0.1:3000?mem_id=${sessionScope.mem_id}";
 			})
 		</script>
 			
