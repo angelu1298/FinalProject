@@ -1,4 +1,4 @@
-drop table member;
+drop table member cascade constraint;
 delete from member;
 
 select * from member;

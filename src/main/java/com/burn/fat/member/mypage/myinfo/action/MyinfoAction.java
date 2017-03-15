@@ -12,11 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.burn.fat.member.mypage.myinfo.dao.MyinfoService;
+import com.burn.fat.member.mypage.myinfo.dao.StatisticsService;
 import com.burn.fat.member.mypage.myinfo.model.MyinfoBean;
 
 @Controller
 public class MyinfoAction {
 
+	
+	@Autowired
+	StatisticsService service;
+	
 	@Autowired
 	private MyinfoService myinfoService;
 	//private String saveFolder = "C:/eeworkspace/OBOARD_RABBIT2/src/main/webapp/resources/upload"; // 파일
@@ -37,6 +42,14 @@ public class MyinfoAction {
 		MyinfoBean myinfobean_memo = this.myinfoService.mymemo(mem_no);
 		
 		Calendar cal = Calendar.getInstance();
+	   	int goalMemNum = service.getGoalNum(cal.get(Calendar.YEAR)*10000+(cal.get(Calendar.MONTH)+1)*100+(cal.get(Calendar.DATE)-1));
+	   	int entireMemNum = service.getEntireMemNum(cal.get(Calendar.YEAR)*10000+(cal.get(Calendar.MONTH)+1)*100+(cal.get(Calendar.DATE)-1));
+	   	int goalMemPercent=0;
+	   	if(entireMemNum==0){
+	   		goalMemPercent=0;
+	   	}else{
+	   		goalMemPercent = goalMemNum/entireMemNum*100;
+	   	}
 		   int year = request.getParameter("y") == null ? cal.get(Calendar.YEAR) : Integer.parseInt(request.getParameter("y"));
 		   int month = request.getParameter("m") == null ? cal.get(Calendar.MONTH) : (Integer.parseInt(request.getParameter("m")) - 1);
 
@@ -64,7 +77,7 @@ public class MyinfoAction {
 		      nextYear++;
 		      nextMonth = 1;
 		   }
-     
+	
 			ModelAndView contM = new ModelAndView("html_mypage/mypage_main");
 			int lastDay =cal.getActualMaximum(Calendar.DATE);
 			System.out.println(lastDay+"  "+bgnWeek);
@@ -78,6 +91,7 @@ public class MyinfoAction {
 			contM.addObject("lastDay",lastDay);
 			contM.addObject("calMonth",calMonth);
 			contM.addObject("calDate",calDate);
+			contM.addObject("goalMemPercent",goalMemPercent);
 			contM.addObject("myinfobean",myinfobean);
 			contM.addObject("myinfobean_memo",myinfobean_memo);
 			
@@ -141,6 +155,7 @@ public class MyinfoAction {
 		return null;
 		
 	}
+	
 	
 	
 }

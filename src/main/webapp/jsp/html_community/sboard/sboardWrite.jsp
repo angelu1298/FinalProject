@@ -3,7 +3,7 @@
 
 <%@ include file="../../inc/boardHeader.jsp"%>
 <!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
 <section class="sub_container">
 
 	<%@ include file="/jsp/inc/leftMenu05.jsp"%>

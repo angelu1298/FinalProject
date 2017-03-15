@@ -2,8 +2,7 @@
 <%@ include file="../../inc/subHeader.jsp"%>
 
 <script src="./resources/js/jquery.min.js"></script>
-<script type="text/javascript" src="./resources/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script>
 $(function(){
 

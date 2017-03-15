@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="./resources/js/jquery.js"></script>	 
 	<div class="side_myinfo">
 			
@@ -26,7 +27,7 @@
 			<dd><strong>현재 키</strong><span>${obsbean.mem_h }</span></dd>
 						
 			<dd><strong>목표 몸무게</strong><span>100kg</span></dd>
-			<dd>어제는 총 <em>55%</em>의 회원이 목표를 달성!</dd>
+			<dd>어제는 총 <c:if test="${!empty goalMemPercent }" ><em>${goalMemPercent }</em></c:if>의 회원이 목표를 달성!</dd>
 			<dd>
 				<strong>목표달성</strong>
 				<p class="goalcheck">

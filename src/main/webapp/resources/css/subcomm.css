@@ -72,7 +72,7 @@ nav.snb > ul > li > ul > li:hover {  nd:rgba(0,0,0,0.9); }
 
 .side_myinfo form{ height:100%; }
 .side_myinfo input[type=submit] {position:fixed; bottom:0; left:0; width:100%; height:50px; background:#fff;}
-.info_list a{ width:50%; float:left; height:50px; line-height:50px; display:block;   }
+.info_list a{ width:50%; float:left; height:50px; line-height:50px; display:block;}
 
 .subContent h3{ width:100%; clear:both; padding:0px 20px 20px 10px; border-bottom:1px solid #000; color:#232323; font-size:30px; font-weight:500; text-align:left; break-word:keep-all; }
 .subContent h4{ width:100%; clear:both; margin:10px 0; padding:5px; color:#787878; font-size:17px; font-weight:500; text-align:left; break-word:keep-all; color:#454545; }

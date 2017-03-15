@@ -18,7 +18,7 @@
 			</dd>
 			<dd><strong>ID</strong><span>라이언</span></dd>
 			<dd><strong>목표 몸무게</strong><span>100kg</span></dd>
-			<dd>어제는 총 <em>55%</em>의 회원이 목표를 달성!</dd>
+			<dd>어제는 총<em>${goalMemPercent }%</em>의 회원이 목표를 달성!</dd>
 			<dd>
 				<strong>목표달성</strong>
 				<p class="goalcheck">
@@ -31,7 +31,7 @@
 				<a href="myScrap.jsp">스크랩목록</a>
 				<a href="myBio.jsp">바이오리듬</a>
 				<a href="myBmi.jsp">BMI</a>
-				<a href="myStatic.jsp">통계</a>
+				<a href="./Statistics.brn">통계</a>
 			</dd>
 			
 		</dl>

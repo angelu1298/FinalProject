@@ -102,10 +102,10 @@
 					</c:if>
 					<span class="reply">[답글]</span>
 				</p>
-				<div class="scomm_re_ct_area">
+				<div class="scomm_re_ct_area comm_re_ct_area">
 					<h5>댓글을 작성해주세요</h5>
-					<textarea cols="100%" rows="10%" class="scomm_re_ct" id="scomm_re_ct"></textarea>
-					<button class="scomm_rep_button">댓글남기기</button>
+					<textarea cols="100%" rows="10%" class="scomm_re_ct comm_re_ct" id="scomm_re_ct"></textarea>
+					<button class="scomm_rep_button comm_rep_button">댓글남기기</button>
 				</div>
 			</li>
 		</c:forEach>
@@ -114,7 +114,8 @@
 <c:if test="${empty beanlist }">
 	<p class="nolist">등록된 코멘트가 없습니다.</p>
 </c:if>
-<div class="gcomm_ct_area">
+
+<div class="scomm_ct_area comm_re_ct_area">
 	<textarea cols="70" rows="20" id="scomm_ct"></textarea>
-	<button onclick="scomm_write()" class="scomm_rep_buttonL">코멘트남기기</button>
+	<button onclick="scomm_write()" class="scomm_rep_buttonL comm_re_ct_area">코멘트남기기</button>
 </div>

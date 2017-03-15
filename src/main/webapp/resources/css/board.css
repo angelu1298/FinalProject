@@ -185,10 +185,8 @@ li p span.author{ background-image:url(../img/ic/ic_write.png);}
 .commentList ul li .content p {clear:both; width:100%; margin:5px 0;}
 .commentList .nolist{ padding:30px; height:80px; text-align:center; color:#a0a0a0; font-size:12px; border-bottom:1px solid #a0a0a0; }
 .commentList ul li .sbtnarea{ position:absolute; top:10px; right:10px; font-size:12px; line-height:17px;  display:inline-block; }
-.commentList ul li > p > span, .gcomm_rep_button, .gcomm_rep_buttonL{ cursor:pointer; display:block; margin-left:5px; padding:0 7px; height:18px; line-height:18px; float:left; font-size:11px; }
-.commentList ul li > p > span, .gcomm_rep_button, .scomm_rep_buttonL{ cursor:pointer; display:block; margin-left:5px; padding:0 7px; height:18px; line-height:18px; float:left; font-size:11px; }
-.commentList ul li > .sbtnarea span.deletecomm , .commentList ul li span.reply, .gcomm_rep_button, .gcomm_rep_buttonL { color:#a0a0a0; background:#fff; border:1px solid #a0a0a0; border-radius:2px; font-size:11px;}
-.commentList ul li > .sbtnarea span.deletecomm , .commentList ul li span.reply, .scomm_rep_button, .scomm_rep_buttonL { color:#a0a0a0; background:#fff; border:1px solid #a0a0a0; border-radius:2px; font-size:11px;}
+.commentList ul li > p > span, .comm_rep_button, .comm_rep_buttonL{ cursor:pointer; display:block; margin-left:5px; padding:0 7px; height:18px; line-height:18px; float:left; font-size:11px; }
+.commentList ul li > .sbtnarea span.deletecomm , .commentList ul li span.reply, .comm_rep_button, .comm_rep_buttonL { color:#a0a0a0; background:#fff; border:1px solid #a0a0a0; border-radius:2px; font-size:11px;}
 .commentList textarea{ padding:5px; width:100%; display:block; ight:50px; border:1px solid #a0a0a0;}
 /*코멘트 리플여부*/
 .ic_reply{ position:absolute; top:0; left:0; display:inline-block; height:100%; }
@@ -203,19 +201,13 @@ li p span.author{ background-image:url(../img/ic/ic_write.png);}
 .content.st08{padding-left:280px;}
 
 /*코멘트 : 대댓글*/
-.gcomm_re_ct_area{ position:relative; padding-right:90px; padding-left:10px; }
-.gcomm_re_ct_area textarea{margin-top:10px; height:50px;}
-.gcomm_rep_button{ position:absolute; bottom:0px; right:0; display:block; height:50px; width:80px; z-index:1000; line-height:50px; font-size:11px;  border:1px solid #232323; background:#454545; color:#fff;}
+.comm_re_ct_area{ position:relative; padding-right:90px; padding-left:10px; }
+.comm_re_ct_area textarea{margin-top:10px; height:50px;}
+.comm_rep_button{ position:absolute; bottom:0px; right:0; display:block; height:50px; width:80px; z-index:1000; line-height:50px; font-size:11px;  border:1px solid #232323; background:#454545; color:#fff;}
 /*코멘트 : 댓글*/
-.gcomm_ct_area{position:relative;position:relative; padding-right:110px;   }
-.gcomm_ct_area textarea{margin-top:10px; height:50px;}
-/*후기코멘트 : 대댓글*/
-.scomm_re_ct_area{ position:relative; padding-right:90px; padding-left:10px; }
-.scomm_re_ct_area textarea{margin-top:10px; height:50px;}
-.scomm_rep_button{ position:absolute; bottom:0px; right:0; display:block; height:50px; width:80px; z-index:1000; line-height:50px; font-size:11px;  border:1px solid #232323; background:#454545; color:#fff;}
-/*후기코멘트 : 댓글*/
-.scomm_ct_area{position:relative;position:relative; padding-right:110px;   }
-.scomm_ct_area textarea{margin-top:10px; height:50px;}
+.comm_ct_area{position:relative;position:relative; padding-right:110px;   }
+.comm_ct_area textarea{margin-top:10px; height:50px;}
+
 /* 갤러리  */ 
 .gallbox{ clear:both; position:relative; margin:0px auto;  width:100%; padding:0 50px; background:#e0e0e0; }
 .gallbox > ul, .gallbox ul > li{list-style:none; margin:0; padding:0; padding-bottom:20px; }

@@ -31,7 +31,7 @@
 				<a href="myScrap.jsp">스크랩목록</a>
 				<a href="myBio.jsp">바이오리듬</a>
 				<a href="myBmi.jsp">BMI</a>
-				<a href="myStatic.jsp">통계</a>
+				<a href="./Statistics.brn">통계</a>
 			</dd>
 			
 		</dl>

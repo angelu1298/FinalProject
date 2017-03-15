@@ -45,6 +45,7 @@
         <mapper resource="sql/eboard.xml" />
         <mapper resource="sql/exerCalc.xml" />
         <mapper resource="sql/my_calendar.xml" />
+        <mapper resource="sql/statistics.xml" />
 	</mappers>
 
 </configuration>
