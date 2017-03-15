@@ -20,6 +20,7 @@
 			  		
 					$(".modal_bg").html();
 					$(".modal_bg").removeClass("off"); 
+					$(".modal_bg").animate({"opacity":"1"});
 					
 					var loc01 = Number($(this).siblings(".location01").val());
 					var loc02 = Number($(this).siblings(".location02").val());

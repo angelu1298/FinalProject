@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	
 	<nav class="lnb">
-		<h1><a href="/fat/" title="메인으로 이동">main</a></h1>
+		<h1><a href="./Main.brn" title="메인으로 이동">main</a></h1>
 										
 			<ul>
 				
@@ -27,7 +27,8 @@
 				<li>
 					<a href="#none">WORKOUT</a>
 					<ul>
-						<li><a href="./cal_diet.brn">CALCULATOR</a></li>
+						<li><a href="./cal_diet.brn">DIET CALCULATOR</a></li>
+						<li><a href="./cal_diet.brn">EXERCISE CALCULATOR</a></li>
 						<li><a href="./parkList.brn">우리집 공원찾기</a></li>
 					</ul>
 				</li>
@@ -43,7 +44,5 @@
 			            <li><a href="./gbbs_gall.brn">갤러리</a></li>
 					</ul>
 				</li>
-				 
 			</ul>
-		
 	</nav>

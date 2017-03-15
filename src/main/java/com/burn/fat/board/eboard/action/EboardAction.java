@@ -369,16 +369,16 @@ public class EboardAction {
 		
 		if(state.equals("cont")){ //글내용보기
 			this.eboService.eboHit(num);//조회수 증가
-			mv.setViewName("html_community/eboardView");
+			mv.setViewName("html_community/eboard/eboardView");
 			
 			//글내용 중 엔터키 친부분을 다음줄로 개행 처리
 			String e_ct=ebobean.getE_ct().replace("\n","<br/>");
 			
 			mv.addObject("e_ct",e_ct);
 		}else if(state.equals("edit")){//수정일떄
-			mv.setViewName("html_community/eboardEdit");
+			mv.setViewName("html_community/eboard/eboardEdit");
 		}else if(state.equals("comm")){//코멘트
-			mv.setViewName("html_community/eboardView");
+			mv.setViewName("html_community/eboard/eboardView");
 		}
 		
 		//좋아요

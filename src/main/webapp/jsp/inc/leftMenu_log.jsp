@@ -14,8 +14,9 @@
 			<li><a href="./Join.brn">회원가입</a></li>
 			<li><a href="#none">아이디,비밀번호 찾기</a>
 				<ul>
-					<li><a href="./id_find_ok1.brn">아이디 찾기</a></li>
-					<li><a href="./pwd_find_ok.brn">비밀번호 찾기</a></li>
+					<li><a href="./idFind.brn">아이디 찾기</a></li>
+					<li><a href="./pwFind.brn">비밀번호 찾기</a></li>
+
 				</ul>
 			</li>
 			
@@ -24,7 +25,7 @@
 		
 			
 	
-			<li><a href="./Modify.brn">회원정보수정</a></li>
+			<li><a href="./mem_modify.brn">회원정보수정</a></li>
 			
 			<li><a href="./mem_drop.brn">회원탈퇴</a></li>
 			

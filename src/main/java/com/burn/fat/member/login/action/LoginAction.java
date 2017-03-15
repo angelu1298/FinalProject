@@ -37,14 +37,20 @@ public class LoginAction {
 		ModelAndView model = new ModelAndView("main/mainpage");
 		PrintWriter out = response.getWriter();
 			if(member==null){
-				out.print("<script>alert('�벑濡앸릺吏� �븡�� �쉶�썝�엯�땲�떎.');history.go(-1)</script>");
+				out.print("<script>alert('아이디가 맞지 않습니다.');history.go(-1)</script>");
 				return null;
 			}else{
 				if(check_pass.equals(member.getMem_pw())){
+					//admin 아이디, 패스워드 일치시
+					if("admin".equals(check_id) && "welcome1".equals(check_pass)){
+					}
+					
 					session.setAttribute("mem_id", check_id);
 					session.setAttribute("mem_no", member.getMem_no());
+					
+					
 				}else{
-					out.print("<script>alert('鍮꾨�踰덊샇媛� �씪移섑븯吏� �븡�뒿�땲�떎.');history.go(-1)</script>");
+					out.print("<script>alert('비밀번호가 맞지 않습니다.');history.go(-1)</script>");
 					return null;
 				}
 			}

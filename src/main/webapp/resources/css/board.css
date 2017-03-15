@@ -207,7 +207,7 @@ li p span.author{ background-image:url(../img/ic/ic_write.png);}
 /*코멘트 : 댓글*/
 .comm_ct_area{position:relative;position:relative; padding-right:110px;   }
 .comm_ct_area textarea{margin-top:10px; height:50px;}
-
+.comm_rep_buttonL{ position:absolute; top:0; right:0; display:block; height:50px; width:100px; z-index:1000; line-height:50px; }
 /* 갤러리  */ 
 .gallbox{ clear:both; position:relative; margin:0px auto;  width:100%; padding:0 50px; background:#e0e0e0; }
 .gallbox > ul, .gallbox ul > li{list-style:none; margin:0; padding:0; padding-bottom:20px; }

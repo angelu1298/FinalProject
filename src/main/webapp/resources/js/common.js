@@ -46,17 +46,3 @@ $(window).resize(function(e) {
 	resizeWin();
 }); 
 
-// 탭메뉴 클릭시, display 반전
-$(function(){
-	
-	$(".tabmenu li").click(function(){
-		
-		if($(".findForm01").hasClass("off")){
-			$(".findForm01").removeClass("off");
-			$(".findForm02").addClass("off");
-		} else {
-			$(".findForm02").removeClass("off");
-			$(".findForm01").addClass("off");			
-		}
-	})
-}) 

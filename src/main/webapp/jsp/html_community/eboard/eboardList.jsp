@@ -5,7 +5,7 @@
 <!-- 임시 아이디 세션 생성 -->
 <%-- <% session.setAttribute("id","testId"); %> --%>
 <script src="./resources/js/jquery.min.js"></script>
-<script src="./resources/js/list.js"></script>
+<script src="./resources/js/list_eboard.js"></script>
 <script>
    $("#viewcount").val("${limit}").prop("selected", true);
 </script>

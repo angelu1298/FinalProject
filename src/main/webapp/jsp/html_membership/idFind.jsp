@@ -2,56 +2,6 @@
 <%@ include file="/jsp/inc/logHeader.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="./resources/js/jquery.min.js"></script>
-<script>
-//탭메뉴 클릭시, display 반전
-$(function(){
-	
-	$(".tabmenu li").click(function(){
-		
-		if($(".findForm01").hasClass("off")){
-			$(".findForm01").removeClass("off");
-			$(".findForm02").addClass("off");
-		} else {
-			$(".findForm02").removeClass("off");
-			$(".findForm01").addClass("off");			
-		}
-	})
-}) 
-
-
- function check(){
-	 if($.trim($("#mem_nm").val())==""){
-		 alert("이름을 입력하세요!");
-		 $("#mem_nm").val("").focus();
-		 return false;
-	 }
-
- }
- 
- function domain_list() {
-		/*리스트에서 직접입력을 선택했을때*/
-		 if($("#mail_list").val()=="0") // 직접입력
-		 {
-			//@뒤의 도메인입력란을 공백처리
-		    $("#mem_madomain").val("");
-		    
-		    //@뒤의 도메인입력란을 쓰기 가능
-		    $("#mem_madomain").attr("readOnly",false);
-		    
-		    //도메인입력란으로 입력대기상태
-		    $("#mem_madomain").focus();
-		}
-		 else { //리스트목록을 선택했을때
-			 /* num변수에는 해당리스트 목록번호가 저장되어 있습니다.
-			  * 해당리스트 번호의 option value값이 도메인입력란에 선택됩니다.
-			  * options속성은 select객체의 속성으로서 해당리스트 번호의 value값을 가져온다
-			*/
-		      $("#mem_madomain").val($("#mail_list").val());
-		      $("#mem_madomain").attr("readOnly",true);
-		 }
-	 }
-</script>
-
 <!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
 <section class="log_container">
 
@@ -63,7 +13,58 @@ $(function(){
 			
 			<!--로그인 영역-->
 			<div class="login_area">
+				<script>
+
+				$(function(){
+					
+					$(".tabmenu li").click(function(){
+						
+						if($(".findForm01").hasClass("off")){
+							$(".findForm01").removeClass("off");
+							$(".findForm02").addClass("off");
+						} else {
+							$(".findForm02").removeClass("off");
+							$(".findForm01").addClass("off");		
+							
+						}
+					})
+
+					 
+				}) 
 				
+				 function check(){
+						 if($.trim($("#mem_nm").val())==""){
+							 alert("이름을 입력하세요!");
+							 $("#mem_nm").val("").focus();
+							 return false;
+						 }
+
+					 }
+				
+				 function domain_list() {
+							
+					 /*리스트에서 직접입력을 선택했을때*/
+						 if($("#mail_list").val()=="0") // 직접입력
+						 {
+							//@뒤의 도메인입력란을 공백처리
+						    $("#mem_madomain").val("");
+						    
+						    //@뒤의 도메인입력란을 쓰기 가능
+						    $("#mem_madomain").attr("readOnly",false);
+						    
+						    //도메인입력란으로 입력대기상태
+						    $("#mem_madomain").focus();
+						}
+						 else { //리스트목록을 선택했을때
+							 /* num변수에는 해당리스트 목록번호가 저장되어 있습니다.
+							  * 해당리스트 번호의 option value값이 도메인입력란에 선택됩니다.
+							  * options속성은 select객체의 속성으로서 해당리스트 번호의 value값을 가져온다
+							*/
+						      $("#mem_madomain").val($("#mail_list").val());
+						      $("#mem_madomain").attr("readOnly",true);
+						 }
+					 }
+				</script>
 				<!--탭-->
 				<div class="tabarea">
 					<ul class="tabmenu">
@@ -85,7 +86,7 @@ $(function(){
 							<li>
 								<strong>생년월일</strong>
 								<select name="mem_bd1" id="mem_bd1">
-								
+									<option>-선택-</option> 
 									<c:forEach var="i" begin="1" end="68" step="1" >
 										<c:set var="j" value="${2018-i}" scope="page"></c:set>
 							        <option value="${j}">${j}</option>
@@ -94,7 +95,7 @@ $(function(){
 								
 								<span class="bttxt">년</span> 
 								<select name="mem_bd2" id="mem_bd2">
-								
+									<option>-선택-</option> 
 									<c:forEach var="num" begin="1" end="12" step="1">
 							        <option value="${num}">${num}</option>
 							        </c:forEach>
@@ -102,6 +103,7 @@ $(function(){
 								
 								<span class="bttxt">월</span> 
 								<select name="mem_bd3" id="mem_bd3">
+									<option>-선택-</option> 
 									<c:forEach var="num" begin="1" end="31" step="1">
 							        <option value="${num}">${num}</option>
 							        </c:forEach>
@@ -112,11 +114,11 @@ $(function(){
 							</li>
 							<li>	
 								<strong>휴대전화번호</strong>
-								<%@ include file="phone_number.jsp" %>
 							     <select name="mem_hp1" id="mem_hp1">
-							      <c:forEach var="p" items="${phone}">
-							       <option value="${p}">${p}</option>
-							      </c:forEach>
+							     		<option value="010">010</option>
+						            	<option value="011">011</option>
+						            	<option value="016">016</option>
+						            	<option value="019">019</option>
 							     </select>
 							     <span class="bttxt">-</span>
 							     <input name="mem_hp2" id="mem_hp2" size="4"
@@ -145,7 +147,7 @@ $(function(){
 							<li>
 								<strong>생년월일</strong>
 								<select name="mem_bd1" id="mem_bd1">
-								
+									<option>-선택-</option> 
 									<c:forEach var="i" begin="1" end="68" step="1" >
 										<c:set var="j" value="${2018-i}" scope="page"></c:set>
 							        <option value="${j}">${j}</option>
@@ -154,7 +156,7 @@ $(function(){
 								
 								<span class="bttxt">년</span> 
 								<select name="mem_bd2" id="mem_bd2">
-								
+									<option>-선택-</option> 
 									<c:forEach var="num" begin="1" end="12" step="1">
 							        <option value="${num}">${num}</option>
 							        </c:forEach>
@@ -162,6 +164,7 @@ $(function(){
 								
 								<span class="bttxt">월</span> 
 								<select name="mem_bd3" id="mem_bd3">
+									<option>-선택-</option> 
 									<c:forEach var="num" begin="1" end="31" step="1">
 							        <option value="${num}">${num}</option>
 							        </c:forEach>
@@ -171,7 +174,7 @@ $(function(){
 							</li>
 							<li>	
 								<strong>이메일주소</strong>
-								<input type="text" class="w120" id="mem_maid" name="mem_maid"><span class="bttxt"> </span>
+								<input type="text" class="w120" id="mem_maid" name="mem_maid">
 								<span class="bttxt">@</span>
 									
 								<input name="mem_madomain" id="mem_madomain" 
@@ -182,7 +185,6 @@ $(function(){
 							        <option value="daum.net">daum.net</option>
 							        <option value="nate.com">nate.com</option>
 							        <option value="naver.com">naver.com</option>
-							        <option value="hotmail.com">hotmail.com</option>
 							        <option value="gmail.com">gmail.com</option>
 							        <option value="0">직접입력</option>
 							      </select> 

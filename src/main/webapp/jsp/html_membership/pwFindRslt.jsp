@@ -21,14 +21,14 @@
 							ID 회원님의 등록된 메일 주소로 임시 비밀번호를 전송하였습니다.
 						</p>
 						<p class="tit">
-							등록된 메일 주소:
+							등록된 메일 주소:${member.mem_ma }
 						</p>
 						
 						
 						<ul>
 							<li>▶ 임시 비밀번호는 회원 가입시의 이메일로 발송됩니다.</li>
 							<li>▶ 기타 문의 사항은
-							 <a href="#">Burning fat</a> 으로 문의해주세요.</li>
+							 <a href="./inquiry.brn">Burning fat</a> 으로 문의해주세요.</li>
 							
 						</ul>
 					
@@ -38,7 +38,7 @@
 		
 					<div class="btnL_area mt25 w500">
 						<ul class="login_fot">
-							<li><a href="join1.jsp">회원가입</a></li>
+							<li><a href="./Join.brn">회원가입</a></li>
 							<li><a href="./Login.brn">로그인</a></li>
 						</ul>
 					</div>

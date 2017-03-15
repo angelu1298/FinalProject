@@ -53,8 +53,10 @@ public class ParkAction {
 		
 		List<ParkBean> parkList = new ArrayList<ParkBean>();
 		
-		String mem_sido = (String) session.getAttribute("mem_sido");
-		String mem_gungu = (String) session.getAttribute("mem_gungu");
+		
+		
+		String mem_sido = "서울특별시";
+		String mem_gungu = "강남구";
 
 		int page = 1;
 		

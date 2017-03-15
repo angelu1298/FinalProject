@@ -91,7 +91,6 @@
 							        <option value="daum.net">daum.net</option>
 							        <option value="nate.com">nate.com</option>
 							        <option value="naver.com">naver.com</option>
-							        <option value="hotmail.com">hotmail.com</option>
 							        <option value="gmail.com">gmail.com</option>
 							        <option value="0">직접입력</option>
 							      </select> 
