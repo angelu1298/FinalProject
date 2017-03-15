@@ -21,28 +21,4 @@ public class JoinService {
 	public void insertWannabe(Map<String, String> map) {
 		dao.insertWannabe(map);
 	}
-	
-	public MemberBean isMember(String mem_id) {
-		
-		
-		return dao.isMember(mem_id);
-	}
-	
-	//회원 정보 수정
-	public void updateMember(MemberBean member) {
-		
-		dao.updateMember(member);
-	}
-	
-	//회원 삭제
-	public void deleteMember(MemberBean member) {
-		
-		
-		dao.deleteMember(member);
-	}
-	
-	//아이디 중복 체크
-	public int checkId(String mem_id){
-		return dao.checkId(mem_id);
-	}
 }

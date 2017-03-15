@@ -7,54 +7,11 @@
     		select mem_no_seq.nextval from dual
     	</selectKey>
 		insert into member (mem_no, mem_id, mem_pw, mem_nm, mem_sx, mem_bd, mem_hp, mem_tel, mem_zc, mem_add1, mem_add2,
-		mem_ma, mem_h, mem_w,mem_jd)
+		mem_ma, mem_h, mem_w)
 		 values(#{mem_no}, #{mem_id}, #{mem_pw}, #{mem_nm}, #{mem_sx}, #{mem_bd},
-		#{mem_hp}, #{mem_tel}, #{mem_zc},#{mem_add1},#{mem_add2},#{mem_ma}, #{mem_h},#{mem_w},sysdate)
+		#{mem_hp}, #{mem_tel}, #{mem_zc},#{mem_add1},#{mem_add2},#{mem_ma}, #{mem_h},#{mem_w})
 	</insert>
 	<update id="wannabeinsert" parameterType="java.util.Map">
 		update member set  mem_wb = #{mem_wb, jdbcType=VARCHAR} where mem_id=#{mem_id}
 	</update>
-	
-	
-	<!-- isMember -->
-	<select id="isMember" parameterType="String" resultType="memberbean">
-     select * from member 
-      where   mem_id=#{mem_id}
-    </select><!-- join state가 0이면 회원 가입 -->
-    
-    <!--  checkId -->
-	<select id=" checkId" parameterType="String" resultType="memberbean">
-     select * from member 
-      where   mem_id=#{mem_id}
-    </select>
-    
-   
-    
-    <!-- 회원수정 -->
-    <update id="updateMember" parameterType="memberbean">
-     update member
-        set mem_pw=#{mem_pw},     mem_nm=#{mem_nm},
-            mem_sx=#{mem_sx},     mem_bd=#{mem_bd},
-            mem_hp=#{mem_hp}, 	  mem_tel=#{mem_tel},
-            mem_zc=#{mem_zc},     mem_add1=#{mem_add1},
-            mem_add2=#{mem_add2}, mem_ma=#{mem_ma},
-            mem_h=#{mem_h}, 	  mem_w=#{mem_w} 
-     where mem_id=#{mem_id}
-    </update> 
-    
-
-    
-    
-    <!-- 탈퇴 회원 join_state 값을 1로 설정-->
-    <update id="deleteMember" parameterType="memberbean">
-      update member 
-         set mem_rs1=#{mem_rs1},
-         	 mem_rs2=#{mem_rs2},
-         	 mem_st=#{mem_st},
-             mem_dd=sysdate
-       where mem_id=#{mem_id}
-    </update>
-    
-    
-	
 </mapper>

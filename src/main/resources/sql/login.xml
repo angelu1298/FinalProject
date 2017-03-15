@@ -11,6 +11,5 @@
 		select *
 		from member
 		where mem_id=#{check_id}
-		and mem_st =0
 	</select>
 </mapper>

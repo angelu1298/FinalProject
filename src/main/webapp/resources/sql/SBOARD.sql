@@ -1,15 +1,17 @@
-﻿create table SBOARD(
-	s_no			number	constraint sb_sno_PK primary key,
-	mem_no			number,
-	s_sj			varchar2(100)	not null,	
-	s_ct			clob	not null,
-	s_fl			varchar2(1024),
-	s_gl			varchar2(1024),
-	s_rc			number	default 0,
-	s_dt			date default sysdate,
-	s_lk			number	default 0,
-	S_lkno			varchar2(2048)
+ create table SBOARD(
+   s_no         number   constraint sb_sno_PK primary key,
+   mem_no         number,
+   s_sj         varchar2(100)   not null,   
+   s_ct         clob   not null,
+   s_fl         varchar2(1024),
+   s_rc         number   default 0,
+   s_dt         date default sysdate,
+   s_lk         number   default 0,
+   S_lkno         varchar2(2048),
+   scomm_cnt      number
 );
+
+drop table sboard cascade constraint;
 
 create table scomment(
 	scomm_no		number constraint scomm_scno_pk primary key,
