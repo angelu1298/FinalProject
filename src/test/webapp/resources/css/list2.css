@@ -1,0 +1,306 @@
+@CHARSET "UTF-8";
+
+ h5.tittip{ font-size:17px; height:30px; line-height:30px; margin-bottom:10px;  padding-left:45px; background:url(../img/ic/ic_eat.png) no-repeat 10px center;}	 
+.stxt { color:#d03e4b; font-size:13px; margin:10px 0 0 5px;  padding-left:20px; background:url(../img/bull/bull_star.png) no-repeat 0 0; }
+
+.tablelist{clear:both; display:inline-block; width:100%; }
+.tablelist ul{ border-top:1px solid #a0a0a0;  clear:both; margi-top:10px;   }
+.tablelist ul { width:100%; min-height:200px; height:100%; display:inline-block; clear:both; float:left; background:#fff; }
+.tablelist li { padding:0px 10px 10px 10px; float:left; display:block; height:200px; height:100%; line-height:20px; font-size:13px; border-left:1px solid #c0c0c0;  border-bottom:1px solid #c0c0c0; } 
+.tablelist .nolist{padding:400px 0px 100px; background:url(../img/error.png) no-repeat center center; border-bottom:1px solid #a0a0a0 !important; text-align:center; }
+.tablelist .nolist p{background:none; }
+.tablelist li input[type=button]{  padding:0 6px; line-height:18px; height:20px; background:#fff; border:1px solid #787878; color:#454545; font-size:12px; font-weight:500; cursor:pointer; }
+.tablelist > p { width:100%; min-height:40px; height:100%; display:inline-block; clear:both; float:left; border-bottom:1px solid #c0c0c0; background:#333333; color:#fff; }
+.tablelist > p span { border-right:1px solid #c0c0c0;  padding:10px 5px; float:left; display:block;  font-size:13px; line-height:20px;  height:auto; text-align:center; } 
+.tablelist > p span:last-child {  border-right:0  }
+.tablelist li p.nodata{ margin-top:30%; color:#a0a0a0; text-align:center; font-size:11px; line-height:15px; padding-top:150px; background:url(../img/bull/bull_info_white.png) no-reat center center; } 
+
+/* 주간다이어리 */
+.weekdiary li { position:relative; height:350px; overflow-y:auto; word-break:keep-all; padding-bottom:30px;}
+.weekdiary li textarea{ min-height:100px; width:100%; height:100%; overf display:block; font-family: 'Nanum Pen Script'; line-height:20px; font-size:21px; border:1px solid #d0d0d0; color:#565656; }
+.weekdiary li dl dt{ position:relative; font-weight:600; margin:10px 0 5px 0;}
+.weekdiary li dl dt input[type=button]{ position:absolute; top:0; right:0; float:right; width:20px; height:20px; border:none; text-indent:-9999px; background:url(../img/btn/btn_more.png) no-repeat center center; }
+.weekdiary li dl dd{ color:#565656; }
+.weekdiary li dl.list {margin-top:30px;}
+.weekdiary li dl.list dd{ background:url(../img/bull/bull.gif) no-repeat 0 center; padding-left:10px; }
+.weekdiary li p.result{ margin-top:25px; width:100%; display:block;background:url(../img/bull/bull_mando.png) no-repeat 2px 6px; padding-left:12px; color:#a00;  padding-left:20px; text-align:left; }
+
+.calendar{clear:both; display:inline-block; width:100%; }
+.calendar ul{ border-top:1px solid #a0a0a0;  clear:both; margi-top:10px;   }
+.calendar ul { width:100%; min-height:50px; height:100%; display:inline-block; clear:both; float:left; background:#fff; }
+.calendar ul li { padding:10px 10px 10px 10px; width:14.3%; float:left; display:block;min-height:120px;  overflow-y:auto; line-height:20px; font-size:13px; border-left:1px solid #c0c0c0;  border-bottom:1px solid #c0c0c0; } 
+.calendar ul li:nth-child(7n){ border-left:1px solid #c0c0c0; width:14.2%; }
+.calendar .nolist{padding:400px 0px 100px; background:url(../img/error.png) no-repeat center center; border-bottom:1px solid #a0a0a0 !important; text-align:center; }
+.calendar .nolist p{background:none; }
+.calendar ul li input[type=button]{  padding:0 6px; line-height:18px; height:20px; background:#fff; border:1px solid #787878; color:#454545; font-size:12px; font-weight:500; cursor:pointer; }
+.calendar > p { width:100%; min-height:40px; height:100%; display:inline-block; clear:both; float:left; border-bottom:1px solid #c0c0c0; background:#333333; color:#fff; }
+.calendar > p span { border-right:1px solid #c0c0c0; width:14.3%;   padding:10px 5px; float:left; display:block; font-size:13px; line-height:40px; height:auto; text-align:center; } 
+.calendar > p span:nth-child(7){ width:14.2% !important;  border-right:none; }
+.calendar ul li p.nodata{ margin-top:30%; color:#a0a0a0; text-align:center; font-size:11px; line-height:15px; padding-top:150px; background:url(../img/bull/bull_info_white.png) no-reat center center; } 
+
+.goalcheck {text-align:center; margin:0 auto; display:inline-block; clear:both; width:100%; padding:0; margin:0;  }
+.goalcheck span { position:relative;  display:block; float:left; background-position:center; background-repeat:no-repeat; background-size:100% auto;  }
+.goalcheck span input[type=radio],
+.goalcheck span label { position:absolute; top:0; left:0; width:100%; height:100%; display:block;  cursor:pointer; opacity:0; }
+
+.calendar .goalcheck span { width:20px; height:20px; margin:0 2px; }
+.calendar .goalcheck span:nth-child(1) { background-image:url(../img/emo/emo_wink.png);  }
+.calendar .goalcheck span:nth-child(2) { background-image:url(../img/emo/emo_smile.png); }
+.calendar .goalcheck span:nth-child(3) { background-image:url(../img/emo/emo_tt.png);    }
+
+.side_myinfo .goalcheck span { width:25px; height:25px; margin:0 3px; }
+.side_myinfo .goalcheck span:nth-child(1) { background-image:url(../img/emo/emow_wink.png);  }
+.side_myinfo .goalcheck span:nth-child(2) { background-image:url(../img/emo/emow_smile.png); }
+.side_myinfo .goalcheck span:nth-child(3) { background-image:url(../img/emo/emow_tt.png);    }
+
+ul.listview li{ position:relative; clear:both; width:100%; min-height:30px; margin-bottom:10px; display:inline-block; text-align:left; }
+ul.listview li > strong{ position:absolute; top:0; left:0;  display:block; height:100%;   line-height:30px; font-size:14px; letter-spacing:-1px; }
+ul.listview li > span{ width:100%; display:block; min-height:20px; line-height:20px; font-size:13px; }
+ul.listview li > span > input[type=button]{ margin-left:5px; padding:0 8px; line-height:20px; height:22px; background:#fff; border:1px solid #787878; color:#454545; font-size:12px; font-weight:500; cursor:pointer; }
+ 
+ul.listform li{ position:relative; clear:both; width:100%; min-height:40px; margin-bottom:10px; display:inline-block; text-align:left;   }
+ul.listform li > strong{ position:absolute; top:0; left:0;  display:block; height:100%; line-height:30px; font-size:14px; letter-spacing:-1px; }
+ul.listform li > span{ width:100%; display:block; min-height:30px; line-height:20px; font-size:13px; }
+ul.listform li > span > * { float:left; line-height:28px; }
+ul.listform li > span > input[type=button]{ margin-left:5px; padding:0 15px; line-height:28px; height:30px; background:#c0c0c0; border:1px solid #787878; color:#232323; font-size:12px; font-weight:500; cursor:pointer; }
+ul.listform li > span > input[type=text]{ margin-left:5px; padding:0 8px; line-height:28px; height:30px; background:#fff; border:1px solid #787878; color:#454545; font-size:12px; font-weight:500; cursor:pointer; }
+ul.listform li > span > select { margin-left:5px; padding:0 30px 0 8px; line-height:28px; height:30px; background:#fff; border:1px solid #787878; color:#454545; font-size:12px; font-weight:500; cursor:pointer; background:url(../img/comm/bull_sel.png) no-repeat right 10px center;  }
+ul.listform li > span > span { margin-left:10px; }
+
+.juicemake{ position:relative !important; width:100%; padding-right:350px; min-height:400px; display:inline-block; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕';}
+.juiceitemlist{ display:block; width:100%; height:100%; margin-top:20px;  display:inline-block; clear:both; }
+.juiceitemlist > ul {display:inline-block; overflow-x:hidden; overflow-y:auto; width:48%; margin-right:2%; float:left; height:400px; display:block; overflow-y:auto; }
+.juiceitemlist > ul > li { float: left;  padding:40px 0px 10px 0px; height:70px; width:70px; margin:10px; text-align:center; line-height:20px; border:1px solid #a0a0a0; border-radius:50px; font-size:13px; cursor:pointer; }
+	        
+.in_blender { position:absolute; top:0; right:0;  width:350px; height:350px; z-index:1; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; }
+.in_blender > ul {  border-top:none; display:inline-block; width:100%; height:100%; display:block; background:#fff; }
+.in_blender > ul > li { float: left;  padding:40px 0px 10px 0px; height:70px; width:70px; margin:10px; text-align:center; line-height:20px; border:1px solid #a0a0a0; border-radius:50px; font-size:13px; cursor:pointer; }
+			
+.juicemake .makebtn { position:absolute; bottom:0; right:0 !important; margin:0;   height:50px; line-height:50px;  display:block;  }
+.juicemake .makebtn .btn_make{ width:350px; height:50px; line-height:50px; display:inline-block; color:#fff;  font-size:15px; letter-spacing:-1px; background:#232323; }
+.food_list .nolist{ padding:400px 0 30px 0; text-align:center; background: url(../img/comm/animat-search.gif) no-repeat center 50px; background-size:300px; opacity:0.7; }
+.food_list .nolist strong{ clear:both; display:block; width:100%; font-size:30px; font-weight:400 !important; letter-spacing:-1px; }
+.food_list .nolist .tip{ clear:both; margin-top:10px; font-size:13px; color:#232323; padding:0 20px; display:inline-block; width:auto;  background:url(../img/bull/bull_mando.png) no-repeat left center;}
+ 
+.food_list{text-align:center; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; }
+.food_list ul{ display:inline-block; width:auto; cursor:default; }
+.food_list ul > li{ position:relative; width:250px; height:220px; display:block; padding:25px 35px; float:left; margin:0 10px 10px 0 ; border:1px solid #d0d0d0; background:#f0f0f0; }
+.food_list ul > li:hover{ background:#fff; border:1px solid #a0a0a0; }
+.food_list ul > li > dl{ text-align:left; }
+.food_list ul > li > dl > dt > strong { clear:both; width:100%; display:block; margin-bottom:10px; letter-spacing:-1px; font-size:17px; font-weight:500; color:#232323; }
+.food_list ul > li > dl > dt > span {font-size:13px; color:#565656;}
+.food_list ul > li > dl > dd{ display:none;  clear:both; position:absolute; top:0; left:0; width:250px; height:220px; padding: 30px  30px ; background:rgba(0,0,0,0.85); color:#fff;  font-size:11px;}
+.food_list ul > li.on > dl > dd{ display:block;  }
+.food_list ul > li > dl > dd > span{clear:both; font-size:11px; }
+.food_list ul > li > dl > dd > ol > li{ line-height:20px; }
+.food_list ul > li > dl > dd > ol > li span{ width:100px; display:inline-block;  }
+
+.food_list ul > li > dl > dt > p { position:absolute; bottom:65px; left:50px;  }
+.food_list ul > li > dl > dt > p > input[type=button]{ float:left; margin-right:10px; padding:0 18px; height:28px; line-height:25px; background:#fff; border-radius:15px; border:1px solid #a0a0a0; color:#787878; letter-spacing:-1px; font-size:11px; }
+.food_list ul > li:hover > dl > dt > p > input[type=button]{ border:1px solid #787878; color:#454545; background:#f0f0f0; 	}
+.food_list ul > li > dl > dt > p > input[type=button]:hover{ background:#787878; color:#fff; border:1px solid #232323; 	}
+.food_list ul > li .btn_del_rec{}
+
+.food_list ul > li .btn_view_large{position:absolute; bottom:0px; left:0px;    line-height:30px; height:32px; width:150px; padding:0 10px;}
+.food_list ul > li .btn_add_today{ position:absolute; bottom:20px; left:50px;  border:1px solid #c0c0c0;  line-height:30px; height:32px; width:150px; padding:0 10px; letter-spacing:-1px; font-size:11px; border-radius:30px; background-size:50%; background:#e0e0e0 ;   }
+.food_list ul > li:hover .btn_add_today{ background-color:#fff; color:#d03e4b; border:1px solid #d03e4b; }
+.food_list ul > li .btn_add_today:hover{ background-color:#d03e4b; color:#fff; border:1px solid #d00; }
+.food_list ul > li .btn_cls{ position:absolute; top:10px; right:10px; background:rgba(255,255,255,0) url(../img/btn/btn_Lclose_white.gif) no-repeat center; border:0; padding:0; width:25px; height:25px;  color:#fff;  text-indent:-9999px; }
+
+
+form p.btn_Larea{clear:both; margin:50px auto; max-width:400px; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕',NanumGothic,'나눔고딕'; }
+form p.btn_Larea input[type="reset"],
+form p.btn_Larea input[type="submit"],
+form p.btn_Larea input[type="button"],
+form p.btn_Larea a{ float:left; margin:0 1%; height:50px; line-height:50px; text-align:center; cursor:pointer;  }
+ 
+form p.btn_Larea a,
+form p.btn_Larea input[type="reset"]{ width:38%;  background:#ffffff; color:#232323;  border:1px solid #a0a0a0;}
+form p.btn_Larea input[type="submit"],
+form p.btn_Larea input[type="button"]{ width:58%; background:#232323; color:#ffffff; font-size:15px; letter-spacing:-1px; }
+
+form p.btnarea{clear:both; margin:50px auto; max-width:400px; }
+form p.btnarea input[type="reset"],
+form p.btnarea input[type="submit"]{ float:left; margin:0 1%; height:60px; line-height:60px; text-align:center; cursor:pointer;  }
+ 
+form p.btnarea input[type="reset"]{ width:38%;  background:#ffffff; color:#232323;  border:1px solid #a0a0a0;}
+form p.btnarea input[type="submit"]{ width:58%; background:#232323; color:#ffffff; font-size:17px; }
+
+.datebtnarea{ width:100%; height:30px;  margin:20px auto; clear:both; display:inline-block; }
+.datebtnarea a, .datebtnarea strong{ float:left; display:block; margin:0 1%; height:40px; line-height:40px; text-align:center; cursor:pointer;  }
+.datebtnarea strong{  height:40px; line-height:40px; margin:0px 20px; }
+.datebtnarea a{ width:40px; background-repeat:no-repeat; background-position:center; text-indent:-9999px; background-size:70%; }
+.calprv{ background-image:url(../img/btn/btn_dem_selbox_btnl_off.png)}
+.calnxt{ background-image:url(../img/btn/btn_dem_selbox_btnr_off.png)}
+.calprv:hover{ background-image:url(../img/btn/btn_dem_selbox_btnl_on.png)}
+.calnxt:hover{ background-image:url(../img/btn/btn_dem_selbox_btnr_on.png)}
+
+/*padding과 width값이 맞아야 한다.*/
+.listform.listmem li > strong , .listview.listmem li > strong { width:150px !important; }
+.listform.listmem li > span, .listview.listmem li > span { padding:5px 0px 5px 150px !important ; }
+
+/*listmem의 리스트 스타일 1*/
+/*           thead tr th                             tbody tr td*/
+.tablelist.st01 p span, .tablelist.st01 li{ width:14.2% } 
+.tablelist.st01 p span:nth-child(7), .tablelist.st01 li:nth-child(7){ idth:14.8% } 
+ 
+ /*padding과 width값이 맞아야 한다.*/
+.listform.listproduct li > strong , .listview.listproduct li > strong { width:150px !important; }
+.listform.listproduct li > span, .listview.listproduct li > span { padding:5px 0px 5px 150px !important ; }
+
+/*listmem의 리스트 스타일 1*/
+/*               thead tr th                                 tbody tr td*/
+.tablelist.weekdiary p span, .tablelist.weekdiary li{ width:14.28% }
+.tablelist.weekdiary p span:nth-child(4), .tablelist.weekdiary li:nth-child(4){ width:14.32%; }
+
+select,
+input[type="password"],
+input[type="text"]{ border-top:1px solid #cbcbcb; border-left:1px solid #cbcbcb; border-right:1px solid #e4e4e4; border-bottom:1px solid #e4e4e4; background:#f8f8f8; }
+
+/**************************************글쓰기**************************************/
+.common_write_box { position:relative; height:auto; font-size:14px; }
+.common_write_box table { table-layout:fixed; /*테이블깨짐방지*/ width:100%; margin:0; padding:0; padding-bottom:5px; border-collapse:collapse; border:none; border-top:2px solid #666666; border-bottom:1px solid #e0e0e0; letter-spacing:-0.75px;text-align:left;}
+.common_write_box table caption {width:0; height:0; font-size:0; line-height:0; visibility:hidden}
+.common_write_box table th { padding:16px 2px 16px 25px;  border:none;  border-bottom:1px solid #d0d0d0; background:#f0f0f0; text-align:left;  font-size:15px; font-weight:500; color:#363636;}
+.common_write_box table td { overflow:hidden;padding:13px 0 13px 15px; height:13px; background:#fff; border:none; border-top:1px solid #e0e0e0 !important;  font-size:13px; color:#3a3a3a; line-height:100%; }
+.common_write_box table td > * ,
+.common_write_box table td .col > * {float:left;}
+
+.common_write_box table td select{ margin:0 5px ; height:30px; line-height:26px;  color:#565656; padding:0 10px; font-size:12px; letter-spacing:0; cursor:pointer; }
+.common_write_box table td .bttxt,
+.common_write_box table td input[type="password"],
+.common_write_box table td input[type="text"]{ height:30px; line-height:30px; padding:0 5px; }
+.common_write_box table td input[type="button"] { margin:0 5px ; height:30px; line-height:26px; border:1px solid #a0a0a0; color:#565656; padding:0 10px; font-size:12px; cursor:pointer; }
+
+.common_write_box table td label,
+.common_write_box table td input[type="radio"],
+.common_write_box table td input[type="checkbox"]{ line-height:30px; padding:0 5px; cursor:pointer;  }
+
+.common_write_box table th.th{  border-top:1px solid #e0e0e0;}
+.common_write_box table td .tip_info{ margin-left:16px; height:16px; padding-left:24px; display:inline-block; background:url(../img/bull/bull_info.png) no-repeat 0 0; font-size:12px;}
+.common_write_box table td .tip_info2{ float:left; margin-left:16px; margin-top:7px; height:16px; display:inline-block; color:#858484; font-size:12px;}
+.common_write_box table td .tip_info.eng{ font-size:13px; letter-spacing:0; margin-left:5px; }
+.common_write_box table td .tip_info2.eng{ font-size:13px; letter-spacing:0; }
+
+.common_write_box table td.t_num{ letter-spacing:0;}
+.common_write_box table td .col{ margin-bottom:10px; clear:both; height:27px;}
+.common_write_box table th span.mando{padding-right:11px; background:url(../img/bull/bull_mando.png) no-repeat top 2px right 0; }
+
+/*파일등록:버튼*/
+.btn_file { position:relative; float:left; height:27px; width84px;}
+.btn_file input{ position:absolute; height:27px; width:84px; opacity:0; filter:alpha(opacity=0);  z-index:990; cursor:pointer; }
+.btn_file span{position:absolute;  left:0; top:0;  height:27px; width:60px; height:13px; padding:6px 12px; background:#fff; border:1px solid #ababab; text-align:center; color:#626262; font-size:13px; cursor:pointer; }
+/*파일등록:정보*/
+.file_add{ position:relative;  height:35px}
+.file_add .info{ position:relative;float:left; margin-left:14px; margin-top:6px; font-size:12px; letter-spacing:-0.5px; }
+.file_add .info strong{font-weight:600; color:#23affb;}
+/*파일등록:목록*/
+.file_input{ position:relative; clear:both;}
+.file_input li{   padding:6px 14px 5px 12px;  margin-bottom:5px; background-position:17px 7px !important; line-height:15px;  vertical-align:bottom; letter-spacing:-1px;}
+.file_input li{ background-position: 0px -1px !important; background:#f2f1f1; border:1px solid #e3e3e3; }
+.file_input li .file{ padding-left:24px;  background:url(../img/icon/ic_attach.gif) no-repeat; width:540px; display:inline-block;  overflow:hidden; color:#615f5f ;white-space:nowrap; text-overflow:ellipsis;  word-break:break-all; word-wrap:break-word; cursor:pointer;}
+.file_input li .btn_del{ position:relative; top:2px; float:right; width:10px; height:9px; background:url(../img/btn/btn_del.gif) no-repeat 0 0; cursor:pointer;}
+
+/********************* 지도(서브페이지, 메인페이지 공통으로 사용하는 부분(컴포넌트 스타일 / 지도) **************************/
+/*라디오 버튼으로 만든 셀렉트박스*/
+.selbox{ position:relative; float:left; margin:0 10px 0 0; height:auto; min-height:30px; line-height:30px; width:100px; float:left; overflow:visible; }
+.selbox > p > input[type="text"] { background:#fff0f0 url(../img/comm/bull_sel.png) no-repeat 85px center; background-size:6px; width:100%; height:30px; overflow:hidden; text-overflow:ellipsis; word-break:normal; white-space:nowrap; font-size:13px; text-align:left; }
+.selbox:hover > p > input[type="text"] { background-size:10px;  }
+/*라디오 버튼으로 만든 셀렉트박스 : 라디도 버튼으로 선택하면, 값이 입력되는 인풋박스 !*/
+input[type="text"].srchname{ border:1px solid #a0a0a0; height:auto; min-height:30px; line-height:30px; width:210px; margin-top:12px; padding:0 10px; float:left; overflow:hidden;}
+
+/*라디오 버튼으로 만든 셀렉트박스 : 클릭 >열렸을 때, 보여지는 목록*/
+.selbox > .sellayer{ position:absolute; top:30px; left:5px; z-index:9999; background:#fff; border:1px solid #a0a0a0; border-top:1px solid #d0d0d0; width:100%; margin:0; padding:0; max-height:300px; overflow:visible; overflow-y:auto; cursor:pointer; }
+.selbox > .sellayer > input[type="radio"] { display:none; } 
+.selbox > .sellayer > label{ margin:0; padding:0; clear:both; display: block; width:100%; height:25px; line-height:25px; border-bottom:1px solid #d0d0d0;  background:rgba(255,250,250,1); cursor:pointer; text-align:left;  font-size:12px !important; background:#fff; font-weight:500; }
+
+.selsearch { position:relative; margin:0 auto ; display:inline-block; }
+ 
+/*인증현황*/
+.mapArea{ position:relative; display:block; width:550px; height:450px; margin:0 auto 60px auto; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; }
+/*약국검색 검색영역*/
+.mapArea > .fl{  position:absolute; top:0; left:0; width:230px; padding:0; float:left; display:block; }
+/*약국검색 지도영역*/
+.mapArea > .fr{ padding:0 0 0 250px; ; float:right; display:inline-block; }
+ 
+/*지도 : 전체스타일*/	
+.mapArea > .fr > div {  position:relative; display:block;  margin:0 auto; background-repeat:no-repeat;  background-position:10px 0px; width:300px; height:420px; }
+/*지도  : 지역별*/
+.mapArea > .fr > .normal{ background-image:url(../img/map/map_normal.png) }
+.mapArea > .fr > .busan{ background-image:url(../img/map/map_busan.png) }
+.mapArea > .fr > .chungbuk{ background-image:url(../img/map/map_chungbuk.png) }
+.mapArea > .fr > .chungnam{ background-image:url(../img/map/map_chungnam.png) }
+.mapArea > .fr > .daegu{ background-image:url(../img/map/map_daegu.png) }
+.mapArea > .fr > .daejeon{ background-image:url(../img/map/map_daejeon.png) }
+.mapArea > .fr > .gangwon{ background-image:url(../img/map/map_gangwon.png) }
+.mapArea > .fr > .gwangju{ background-image:url(../img/map/map_gwangju.png) }
+.mapArea > .fr > .gyeongnam{ background-image:url(../img/map/map_gyeongnam.png) }
+.mapArea > .fr > .gyeongbuk{ background-image:url(../img/map/map_gyeongbuk.png) }
+.mapArea > .fr > .gyeonggi{ background-image:url(../img/map/map_gyeonggi.png) }
+.mapArea > .fr > .incheon{ background-image:url(../img/map/map_incheon.png) }
+.mapArea > .fr > .jeju{ background-image:url(../img/map/map_jeju.png) }
+.mapArea > .fr > .jeonbuk{ background-image:url(../img/map/map_jeonbuk.png) }
+.mapArea > .fr > .jeonnam{ background-image:url(../img/map/map_jeonnam.png) }
+.mapArea > .fr > .seoul{ background-image:url(../img/map/map_seoul.png) }
+.mapArea > .fr > .ulsan{ background-image:url(../img/map/map_ulsan.png) }
+.mapArea > .fr > .sejong{ background-image:url(../img/map/map_sejong.png) }
+
+.mapArea > .fr > div > a{ padding-top:15px; line-height:20px; height:35px; display:inline-block; letter-spacing:-1px; color:#454545; font-size:12px; position:absolute; background-repeat: no-repeat; background-position:center top; background-image:url(../img/map/ic_picker_s_off.png);  }
+.mapArea > .fr > div > a:hover, .mapArea > .fr > div > a.on{ background-image:url(../img/map/ic_picker_s_on.png); font-weight:600; }				
+
+.Map_seoul{ top:65px; left:70px; }/*서울특별시*/
+.Map_incheon{ top:80px; left:20px; }/*인천광역시*/
+.Map_gyeonggi{ top:100px; left:100px; }/*경기도*/
+.Map_gangwon{ top:60px; left:170px; }/*강원*/
+.Map_chungnam{ top:140px; left:50px; }/*충청남도*/
+.Map_chungbuk{ top:115px; left:140px; }/*충청북도*/
+.Map_daejeon{ top:185px; left:115px; background-position:0 15px !important; padding-top:0; padding-left:15px; }/*대전광역시*/
+.Map_sejong{ top:130px; left:105px; background-position:0 15px !important;  padding-top:0; padding-left:15px;  } /*세종특별자치시*/ 
+.Map_gyeongnam{ top:265px; left:150px; }/*경상남도*/ 
+.Map_busan{ top:280px; left:190px; }/*부산광역시*/ 
+.Map_ulsan{ top:240px; left:220px; }/*울산광역시*/ 
+.Map_gyeongbuk{ top:160px; left:200px; }/*경상북도*/
+.Map_daegu{ top:210px; left:175px }/*대구광역시*/ 
+.Map_jeonbuk{ top:225px; left:80px; }/*전라북도*/
+.Map_jeonnam{ top:320px; left:55px; }/*전라남도*/ 
+.Map_gwangju{ top:275px; left:55px; }/*광주광역시*/ 
+.Map_jeju{ top:380px; left:45px; } /*제주특별자치도*/  
+		
+.mapArea .srchbox{  position:relative; padding:250px 0px 0px 0px; width:100%; box-sizing:border-box; display:inline-block;  color: #343434; text-align:center; }
+.mapArea .srchbox p{ float:none;   margin:0 auto; display:inline-block; }
+.mapArea .srchbox .txtlocal{ margin-right:5px;}
+.mapArea .srchbox .sc_txt{ width:52px; text-align:left; }
+.mapArea .srchbox a.btn_srch:hover,.borad_srch a.btn_srch:focus{ background:#b91120; }
+.mapArea .srchbox select { float:left; box-sizing:border-box; height:45px;  padding:5px 10px; line-height:25px; border:1px solid #c0c0c0;}
+.mapArea .srchbox input[type=submit] { float:left; margin:15px 0 0 0; display:inline-block; line-height:40px; height:40px; padding:0 0; width:220px; font-weight:600; color:#fff; background:#d03e4b; }
+.mapArea .srchbox input[type=button]{ margin-left:5px; padding:0 15px; line-height:28px; height:30px; background:#c0c0c0; border:1px solid #787878; color:#232323; font-size:12px; font-weight:500; cursor:pointer; }
+.mapArea .srchbox input[type=text]{ margin-left:5px; padding:0 8px; line-height:28px; height:30px; background:#fff; border:1px solid #787878; color:#454545; font-size:12px; font-weight:500; cursor:pointer; }
+.mapArea .srchbox select { margin-left:5px; padding:0 30px 0 8px; line-height:28px; height:30px; border:1px solid #787878; color:#454545; font-size:12px; font-weight:500; cursor:pointer; background:#fff url(../img/comm/bull_sel.png) no-repeat right 10px center;  }
+.mapArea .srchbox .rs_txt{ position:absolute; top:20px; left:0; padding:130px 0 30px 0; width:100%;  font-size:13px; letter-spacing:-0.5px; line-height:25px; text-align:center; background:url(../img/map/park.png) no-repeat center 30px; }
+.mapArea .srchbox .rs_txt strong{ margin:2px; ; padding:0 ; line-height:20px; color:#d03e4b; font-size:17px; }
+
+
+/************************************** 목록보기 **************************************/
+/*목록게시판 default*/
+.commtable { position:relative; height:auto; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕';}
+.commtable p.tip{ margin-bottom:10px; }
+.commtable table { table-layout:fixed; /*테이블깨짐방지*/ width:100%; margin:0; padding:0; padding-bottom:5px; border-collapse:collapse; border:none; border-bottom:1px solid #e0e0e0;  }
+.commtable table caption {width:0; height:0; font-size:0; line-height:0; visibility:hidden}
+.commtable table th { padding:10px 0 10px 0; background:#fff0f0; border:none; border-bottom:1px solid #e0e0e0; border-right:1px solid #e0e0e0; font-size:13px; font-weight:600;  height:20px; text-align:center; font-size:12px; word-break:keep-all; }
+.commtable table thead th { background:#565656; border-right:1px solid #c0c0c0; border-bottom:1px solid #c0c0c0; color:#fff; }
+.commtable table td { overflow:hidden; padding:10px 0 10px 0; height:35px; background:#fff; border:none; border-right:1px solid #e0e0e0;  border-top:1px solid #e0e0e0 !important; text-align:center; font-size:12px; color:#454545; line-height:100%;}
+.commtable table td.tit{ padding-left:20px; font-size:13px; font-weight:600; text-align:left; color:#d03e4b; }
+.commtable table td.al_l{ padding-left:10px; text-align:left;  }
+.commtable table td .btn_showmap{ display:block; width:20px; height:20px; text-indent:-9999px; background:#fff url(../img/map/ic_picker_s_off.png) no-repeat center center; margin:0 auto;  }
+.commtable table th:last-child{ border-right:none; }
+.commtable table td:last-child{ border-right:none; }
+.commtable table tfoot tr td ,.commtable table tfoot tr th { font-weight:600;  font-size:11px; }
+.commtable table tfoot tr:last-child td ,.commtable table tfoot tr:last-child th { color:#d03e4b; font-size:13px; }  
+.commtable table tfoot tr td { background:#fff2f2 !important; }
+.commtable table tfoot tr td input[type=text]{ width:100%; text-align:center; background:none; border:none; }
+.resultbox{ background:#f0f0f0; border:1px solid #e0e0e0;  padding:40px 0 ; text-align:center; margin-top:10px; font-size:13px; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕';}
+.resultbox .summary01 { margin-bottom:20px; font-size:17px; }
+.resultbox .summary01 strong{ color:#d03e4b; font-size:19px; margin:0 3px; }
+.resultbox .summary01 input{ border:none; width:100%; clear:both; text-align:center; margin-bottom:5px; background:none; }
+.resultbox .summary02 { color:#565656; font-size:15px; }
+

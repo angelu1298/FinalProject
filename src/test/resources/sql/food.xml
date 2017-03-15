@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="food">  
+
+	<!-- CUISINE 전체 갯수 -->
+	<select id="cuisine_count" resultType="int">
+		select count(*) from CUISINE
+	</select>
+
+	<!-- CUISINE 검색결과 갯수 -->
+	<select id="cuisine_fcount" parameterType="java.util.Map" resultType="int">
+		select count(*) from ( 
+     		 select rownum cnum, cus_no, cus_tt, cus_once, cus_cal, cus_tan, cus_dan, cus_gee, cus_swt, cus_na, cus_col, cus_poj, cus_trs from 
+				(select * from CUISINE where cus_tt like '%'||#{findname, jdbcType=VARCHAR}||'%' order by cus_no desc )
+		) 
+	</select>
+
+	<!-- CUISINE 전체 목록(검색결과) -->
+	<select id="cuisine_list" parameterType="java.util.Map" resultType="cuisinebean"> 
+     	select * from ( 
+     		 select rownum cnum, cus_no, cus_tt, cus_once, cus_cal, cus_tan, cus_dan, cus_gee, cus_swt, cus_na, cus_col, cus_poj, cus_trs from 
+				(select * from CUISINE where cus_tt like '%'||#{findname, jdbcType=VARCHAR}||'%' order by cus_no desc )	 
+		) where cnum &gt;= ((#{page}-1) * #{limit} +1)  and cnum &lt;= (#{page} * #{limit}) order by rownum asc	 
+	</select> 
+
+	<!-- CUISINE 추가 -->
+	<update id="cuisine_add" parameterType="java.util.Map">
+		update RECIPE
+		set G_RC = G_RC + 1
+		where rcp_no = #{rcp_no}
+	</update>
+ 
+	<!-- 전체 갯수 -->
+	<select id="grocery_count" resultType="int">
+		select count(*) from GROCERY
+	</select>
+
+	<!-- 검색결과 갯수 -->
+	<select id="grocery_fcount" parameterType="java.util.Map" resultType="int">
+		select count(*) from ( 
+     		 select rownum cnum, grc_no, grc_tt, grc_once, grc_cal, grc_tan, grc_dan, grc_gee, grc_swt, grc_na, grc_col, grc_poj, grc_trs from 
+				(select * from GROCERY where grc_tt like '%'||#{findname, jdbcType=VARCHAR}||'%' order by grc_no desc )
+		) 
+	</select>
+
+	<!-- 요리 전체 목록(검색결과) -->
+	<select id="grocery_list" parameterType="java.util.Map" resultType="grocerybean"> 
+     	select * from ( 
+     		 select rownum cnum, grc_no, grc_tt, grc_once, grc_cal, grc_tan, grc_dan, grc_gee, grc_swt, grc_na, grc_col, grc_poj, grc_trs from 
+				(select * from GROCERY where grc_tt like '%'||#{findname, jdbcType=VARCHAR}||'%' order by grc_no desc )	 
+		) where cnum &gt;= ((#{page}-1) * #{limit} +1)  and cnum &lt;= (#{page} * #{limit}) order by rownum asc	 
+	</select> 
+
+</mapper>

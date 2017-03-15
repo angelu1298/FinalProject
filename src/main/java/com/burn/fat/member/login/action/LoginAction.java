@@ -34,7 +34,7 @@ public class LoginAction {
 				@RequestParam(value="check_id") String check_id, @RequestParam(value="check_pass") String check_pass,HttpSession session) throws Exception {
 		MemberBean member = service.getMemberById(check_id);
 		session= request.getSession();
-		ModelAndView model = new ModelAndView("main/mainpage");
+		ModelAndView model = new ModelAndView("main/mainPage");
 		PrintWriter out = response.getWriter();
 			if(member==null){
 				out.print("<script>alert('아이디가 맞지 않습니다.');history.go(-1)</script>");
