@@ -27,6 +27,7 @@
 
 	
 	<mappers>
+		<mapper resource="sql/main.xml" />
 		<mapper resource="sql/admin.xml" />
 		<mapper resource="sql/sboard.xml" />
 		<mapper resource="sql/scomm.xml" />

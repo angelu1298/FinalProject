@@ -33,13 +33,15 @@ public class CuisineAction {
 	@Autowired
 	private CuisineServiceImpl cuisineService;  
 
-	/* CUISINE 오늘 식단에 추가하기 */
+	/* CUISINE 오늘 식단에 추가하기  추가 모달창 */
 	@RequestMapping(value="/cuisineAddToday.brn")
 	public String cuisineAddToday(){
+		
 		return "html_food/cuisineAddToday"; 
+		
 	}
 
-	/* CUISINE 오늘의 식단에 추가 모달창 */
+	/* CUISINE 오늘의 식단에 */
 	@RequestMapping(value="/cuisineAddTodayOk.brn")
 	public ModelAndView cuisineAddTodayOk( HttpServletRequest request, HttpServletResponse response
 			, @RequestParam(value="quantity", defaultValue="1") float quantity ) throws Exception{
@@ -47,15 +49,15 @@ public class CuisineAction {
 		response.setContentType("text/html;charset=UTF-8");
 		
 		CuisineBean cuisinebean = new CuisineBean();
-		
+		/*
 		int cus_no = Integer.parseInt(request.getParameter("cus_no"));
 		int cus_cal =Integer.parseInt(request.getParameter("cus_cal"));
-		
+		*/
 		Map m = new HashMap();
 		
-		m.put("cus_no", cus_no);
+		/*m.put("cus_no", cus_no);
 		m.put("cus_cal", cus_cal);
-		m.put("quantity", quantity);
+		m.put("quantity", quantity);*/
 		
 		//디비로 부터 레코드 삭제합니다.
 		this.cuisineService.addtodayCuisine(m);

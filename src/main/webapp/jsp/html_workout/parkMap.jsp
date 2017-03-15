@@ -5,6 +5,7 @@
 			// 모달창 닫기
 			$(".btn_close").click(function(){
 				 $(".modal_bg").addClass("off");
+				 $(".modal_bg").animate({"opacity":"0"});
 			 })
 		})
 	</script>
