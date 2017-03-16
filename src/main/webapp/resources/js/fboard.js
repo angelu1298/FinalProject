@@ -48,34 +48,5 @@
 		})
 	}
 
-  
-  function fcomm_write(){
-
-	 
-		if( $('#fcomm_ct').val().trim()==''){
-			alert('코멘트를 입력하세요');
-			return false;
-		}
-		var f_no = $('#f_no').val();
-		var fcomm_ct = $('#fcomm_ct').val();
-		$.ajax({
-			type: "post",
-			data : {"f_no": f_no,
-					"fcomm_ct": fcomm_ct},
-			url: "writeReplyAjax.brn",
-			success : function(data){
-				if(data==1){
-				$('.commentList').empty();
-				$('.commentList').load("listReplyAjax.brn",'f_no='+f_no);
-				}else{
-					alert('실패!!'+data);
-				}
-			},
-			error: function(data, status){
-				alert('실패 ㅠㅠ '+data + status);
-			}
-		})
-	}
-  
  
   
