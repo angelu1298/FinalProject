@@ -1,46 +1,39 @@
 create table calendar(
-cal_date 	varchar2(500),
-day 		varchar2(500),	/* 아침,점심,저녁 */
-mem_no 		number,
-cal_eval 	number, /* 하:1 중:2 상:3*/
+cal_date varchar2(50),
+day varchar2(500),			/* 아침,점심,저녁 */
+mem_no number,
 
-e_kcal 		varchar2(500),	/* 운동_칼로리 */
-f_kcal 		varchar2(500),	/* 식단_칼로리*/
-t_kcal 		varchar2(500),	/* 총_칼로리 */
-cus_no		number, --음식 번호
-eat_cal		number(10,5)
+e_kcal varchar2(500),		/* 운동_칼로리 */
+cal_eval varchar2(10),		/* 하:1 중:2 상:3*/
+
+y varchar2(50), 					/* 년도 */
+m varchar2(50), 					/* 달    */
+d varchar2(50), 					/* 일   */
+
+exer_tt varchar2(1000),		/* 운동제목 */
+cus_tt varchar2(500),		/* 음식제목 */
+grc_tt varchar2(500),		/* 식품제목 */
+cus_kcal number(10,5),		/* 음식검색에서 계산된 칼로리 */
+grc_kcal number(10,5)		/* 식품검색에서 계산된 칼로리 */
 );
 
 
 select * from calendar;
 
+select * from calendar
+		where mem_no = 1;
+		
  delete calendar;
 drop table calendar;
 
-insert into calendar
-(cal_date, day, mem_no, e_kcal)
-values('20170301','morning',1,500);
-
-insert into calendar
-(cal_date, day, mem_no, e_kcal)
-values('20170301','lunch',1,600);
-
-insert into calendar
-(cal_date, day, mem_no, e_kcal)
-values('20170305','morning',1,700);
-
-insert into calendar
-(cal_date, day, mem_no, e_kcal)
-values('20170306','morning',1,700);
-
-insert into calendar
-(cal_date, day, mem_no, e_kcal)
-values('20170307','morning',1,700);
+-- view
+create or replace view top
+as
+select cu.cus_tt
+from cuisine cu, calendar ca
+where ca.cus_no = cu.cus_no
 
 
-insert into calendar
-(cal_date, day, mem_no, e_kcal)
-values('2017312','morning',1,1200);
 
 --/* 아침 */
 --m_e_kcal number,	/* 아침_운동_칼로리 */

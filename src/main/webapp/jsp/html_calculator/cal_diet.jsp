@@ -32,14 +32,25 @@
 	<section class="sub_container">
 	
 		<!-- 서브메뉴에 따라 Side Navigation을 다르게 부여해준다. -->	
-		<%@ include file="../inc/myinfo.jsp" %>
+		<script>
+			$(function(){
+				$(".side_myinfo").load("my_info.brn");
+			})
+		</script>
+		
+		<div class="side_myinfo">
+			
+		</div>
 		
 		<!-- 서브컨텐츠 영역 START -->
 		<div class="subContent">
-				<script>
+			<script>
 			$(function() {
 				//유효성검사 
-			
+				$(":input:radio[name=gender]").click(function(){
+					$(":input:radio[name=gender]:checked").val()=='남' ? $('#man').prop('src',"resources/img/cal/man-click-running.png"):$('#man').prop('src',"resources/img/cal/man-running.png"); 
+					$(":input:radio[name=gender]:checked").val()=='여' ? $('#woman').prop('src',"resources/img/cal/girl-click-running.png"):$('#woman').prop('src',"resources/img/cal/girl-running.png"); 
+				})
 				$(".goal_weight").keyup(function() {
 					if($('.goal_weight').val() > 150){
 						alert('병원가세요');
@@ -49,16 +60,9 @@
 						$('.goal_weight').val('');
 					}   */
 				});
-				
-				
-				function setImageRadio(){ 
-					document.getElementById('man').src= 
-					(document.getElementsByName('gender')[0].checked==true)?"resources/img/cal/man-click-running.png":"resources/img/cal/man-running.png"; 
-			
-					document.getElementById('woman').src= 
-					(document.getElementsByName('gender')[1].checked==true)?"resources/img/cal/girl-click-running.png":"resources/img/cal/girl-running.png"; 
-			
-					};
+				$('#man').click(function(){
+					
+				})
 				
 				$("#picker").datepicker();
 				
@@ -89,8 +93,8 @@
 							}
 						})
 					})
-				});
 				
+				});
 			});
 			</script>
 			<div class="cal_diet">
@@ -122,15 +126,9 @@
 						 <ul>
 						 	<li>
 								<input type="radio" name="gender" value="남"  > 
-								<img src="resources/img/cal/man-running.png" id="man"
-									onClick="document.getElementsByName('gender')[0].checked=true; setImageRadio();" 
-									onmouseover="this.src='resources/img/cal/man-click-running.png'"
-									onmouseout="this.src='resources/img/cal/man-running.png'"> 
-								<input type="radio" name="gender" value="여" >
-								<img src="resources/img/cal/girl-running.png" id="woman"
-									onClick="document.getElementsByName('gender')[1].checked=true; setImageRadio();"
-									onmouseover="this.src='resources/img/cal/girl-click-running.png'"
-									onmouseout="this.src='resources/img/cal/girl-running.png'"> 
+								<img src="resources/img/cal/man-running.png" id="man"> 
+								<input type="radio" name="gender"  value="여" >
+								<img src="resources/img/cal/girl-running.png" id="woman" > 
 							</li>
 								현재 체중&nbsp;<input type="text" size="5px" name="now_weight" class="now_weight" />
 							<li>

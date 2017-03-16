@@ -1,5 +1,6 @@
 package com.burn.fat.member.mypage.exercise.action;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,7 @@ import com.burn.fat.member.mypage.exercise.model.ExerBean;
 public class ExerCalc {
 	
 	CalendarBean calendarBean;
+	ExerBean exerbean;
 	
 	@Autowired
 	public ExerService exerService;
@@ -30,24 +32,300 @@ public class ExerCalc {
 	@Autowired
 	public CalendarService calService;
 	
-	@RequestMapping(value="/mypage_main_weekly_please.brn")
-	public ModelAndView mypage_main_weekly_please(
+	//주간달력으로 간다
+	@RequestMapping(value="/goweekly.brn")
+	public ModelAndView goweekly(
+			@RequestParam("y") String y,
+			@RequestParam("m") String m,
+			@RequestParam("d") String d,
+			HttpServletRequest request,
+			HttpServletResponse response,
+			HttpSession session) throws Exception {
+		
+		System.err.println("주간달력으로 간다-----------------------------------------------------------");
+		System.err.println("y = " + y);
+			
+		int m2 = Integer.parseInt(m);
+		int d2 = Integer.parseInt(d);
+		System.err.println("m2 = " + m2); 
+		System.err.println("d2 = " + d2); 
+			
+			
+			
+		System.err.println("m = " + m); 
+		System.err.println("d = " + d);
+		int mem_no = (Integer) session.getAttribute("mem_no");
+		String cal_date = y+m+d;
+			
+		Map<String, Object> m3 = new HashMap<String, Object>();
+		m3.put("cal_date", cal_date);//해당 날짜
+		m3.put("mem_no", mem_no);//회원번호
+		
+		ModelAndView mv = new ModelAndView("html_mypage/mypage_main_weekly");
+			
+			List<CalendarBean> calendarList2 = this.calService.getE_kcal(m3);
+			mv.addObject("y",y);
+			mv.addObject("m",m2);
+			mv.addObject("d",d2);
+			mv.addObject("calendarList2", calendarList2);
+			return mv;
+			
+			
+		}
+	
+	/*--------------------------------------------------------------------------------------------------------*/
+	//평가 저장
+	@RequestMapping(value="/cal_eval.brn")
+	public int cal_eval(
+			@RequestParam("emo_eval") String emo_eval,
+			@RequestParam("y") String y,
+			@RequestParam("m") String m,
+			@RequestParam("d") String d,
 			HttpServletRequest request, 
 			HttpServletResponse response,
 			HttpSession session) throws Exception{
-		ModelAndView mv = new ModelAndView("html_mypage/mypage_main_weekly");
-		return mv;
+		PrintWriter out = response.getWriter();
+		int mem_no = (Integer) session.getAttribute("mem_no");
+		String cal_date = y+m+d;
+		System.err.println("y-------------평가" + y);
+		System.err.println("m-------------평가" + m);
+		System.err.println("d-------------평가" + d);
+		
+		Map<String, Object> m1 = new HashMap<String, Object>();
+		m1.put("emo_eval", emo_eval);
+		m1.put("cal_date", cal_date);
+		m1.put("mem_no", mem_no);
+		int result = 0;
+		int check = this.calService.getEmo_eval(m1);
+		//평가값 저장
+		if(check!=1 ||check!=2||check!=3){
+			this.calService.setEmo_eval(m1);
+			result=1;
+		}
+		else{
+			result=0;
+		}
+		return result;
+		
 	}
 	
-	@RequestMapping(value="/mypage_main_weekly_start.brn")
-	public ModelAndView week_list_start(
-			HttpServletRequest request, 
+	//평가 값 불러오기
+		@RequestMapping(value="/getCal_eval.brn")
+		public ModelAndView getCal_eval(
+		@RequestParam("y") String y,
+		@RequestParam("m") String m,
+		@RequestParam("d") String d,
+		HttpServletRequest request, 
+		HttpServletResponse response,
+		HttpSession session) throws Exception{
+			
+		int mem_no = (Integer) session.getAttribute("mem_no");
+		String cal_date = y+m+d;
+			
+		Map<String, Object> m1 = new HashMap<String, Object>();
+		m1.put("cal_date", cal_date);
+		m1.put("mem_no", mem_no);
+			
+		//평가값 불러오기
+		int cal_eval = this.calService.getEmo_eval(m1);
+			
+		ModelAndView mv = new ModelAndView("html_mypage/mypage_main");
+		mv.addObject("cal_eval", cal_eval);
+		mv.addObject("cal_date", cal_date);
+		
+		return mv;
+			
+	}
+		
+	
+	/********************* 식품부분******************************************/			
+	//맨처음 아침 로드 
+		@RequestMapping(value="/goweekly_m_gro.brn")
+		public ModelAndView goweekly_m_gro(
+				@RequestParam("y") String y,
+				@RequestParam("m") String m,
+				@RequestParam("d") String d,
+				@RequestParam("wholeDay") String wholeDay,
+				HttpServletRequest request,
+				HttpServletResponse response,
+				HttpSession session) throws Exception {
+			
+			int mem_no = (Integer) session.getAttribute("mem_no");
+			String cal_date = y+m+d;
+			System.err.println("아침식단cal_date@@@@@@@@@@@@@@@@@@@@@@2 = " + cal_date);
+			System.err.println("wholeDay@@@@@@@@@@@@@@@@@@@@@@2 = " + wholeDay);
+			Map<String, Object> m3 = new HashMap<String, Object>();
+			m3.put("cal_date", cal_date);//해당 날짜
+			m3.put("mem_no", mem_no);//회원번호
+			
+			m3.put("day", wholeDay);
+
+			
+			//아침 식품불러오기
+			 List<CalendarBean> grocery = this.calService.getGrocery(m3);
+			System.err.println("아침식품calendar = " + grocery);
+			
+			ModelAndView mv = new ModelAndView("html_mypage/food_load");
+			mv.addObject("grocery",grocery);
+			return mv;
+		}
+		
+		
+		//맨처음 점심 로드 
+		@RequestMapping(value="/goweekly_l_gro.brn")
+		public ModelAndView goweekly_l_gro(
+			@RequestParam("y") String y,
+			@RequestParam("m") String m,
+			@RequestParam("d") String d,
+			@RequestParam("wholeDay") String wholeDay,
+			HttpServletRequest request,
 			HttpServletResponse response,
-			HttpSession session) throws Exception{
-		ModelAndView mv = new ModelAndView("html_mypage/mypage_main_weekly");
-		return mv;
-	}
+			HttpSession session) throws Exception {
+				
+			int mem_no = (Integer) session.getAttribute("mem_no");
+			String cal_date = y+m+d;
+				
+			Map<String, Object> m3 = new HashMap<String, Object>();
+			m3.put("cal_date", cal_date);//해당 날짜
+			m3.put("mem_no", mem_no);//회원번호
+				
+			m3.put("day", wholeDay);
+
+
+			//점심 식단불러오기
+			 List<CalendarBean> grocery = this.calService.getGrocery(m3);
+			
+			ModelAndView mv = new ModelAndView("html_mypage/food_load");
+			mv.addObject("grocery",grocery);
+				
+			return mv;
+		}
+		
+			
+		//맨처음 저녁 로드 
+		@RequestMapping(value="/goweekly_d_gro.brn")
+		public ModelAndView goweekly_d_gro(
+				@RequestParam("y") String y,
+				@RequestParam("m") String m,
+				@RequestParam("d") String d,
+				@RequestParam("wholeDay") String wholeDay,
+				HttpServletRequest request,
+				HttpServletResponse response,
+				HttpSession session) throws Exception {
+						
+			int mem_no = (Integer) session.getAttribute("mem_no");
+			String cal_date = y+m+d;
+						
+			Map<String, Object> m3 = new HashMap<String, Object>();
+			m3.put("cal_date", cal_date);//해당 날짜
+			m3.put("mem_no", mem_no);//회원번호
+						
+			m3.put("day", wholeDay);
+			
+			//저녁 식단불러오기
+			 List<CalendarBean> grocery = this.calService.getGrocery(m3);
+			
+			ModelAndView mv = new ModelAndView("html_mypage/food_load");
+			mv.addObject("grocery",grocery);
+				
+			return mv;
+		}	
 	
+	/********************* 음식부분******************************************/			
+	//맨처음 아침 로드 
+		@RequestMapping(value="/goweekly_m_food.brn")
+		public ModelAndView goweekly_m_food(
+				@RequestParam("y") String y,
+				@RequestParam("m") String m,
+				@RequestParam("d") String d,
+				@RequestParam("wholeDay") String wholeDay,
+				HttpServletRequest request,
+				HttpServletResponse response,
+				HttpSession session) throws Exception {
+			
+			int mem_no = (Integer) session.getAttribute("mem_no");
+			String cal_date = y+m+d;
+			System.err.println("아침식단cal_date = " + cal_date);
+			Map<String, Object> m3 = new HashMap<String, Object>();
+			m3.put("cal_date", cal_date);//해당 날짜
+			m3.put("mem_no", mem_no);//회원번호
+			
+			m3.put("day", wholeDay);
+
+			
+			//아침 식단불러오기
+			 List<CalendarBean> cuisine = this.calService.getCuisine(m3);
+			System.err.println("아침음식cuisine = " + cuisine);
+			
+			ModelAndView mv = new ModelAndView("html_mypage/food_load");
+			mv.addObject("cuisine",cuisine);
+			return mv;
+		}
+		
+		
+		//맨처음 점심 로드 
+		@RequestMapping(value="/goweekly_l_food.brn")
+		public ModelAndView goweekly_l_food(
+			@RequestParam("y") String y,
+			@RequestParam("m") String m,
+			@RequestParam("d") String d,
+			@RequestParam("wholeDay") String wholeDay,
+			HttpServletRequest request,
+			HttpServletResponse response,
+			HttpSession session) throws Exception {
+				
+			int mem_no = (Integer) session.getAttribute("mem_no");
+			String cal_date = y+m+d;
+				
+			Map<String, Object> m3 = new HashMap<String, Object>();
+			m3.put("cal_date", cal_date);//해당 날짜
+			m3.put("mem_no", mem_no);//회원번호
+				
+			m3.put("day", wholeDay);
+
+
+			//점심 식단불러오기
+			 List<CalendarBean> cuisine = this.calService.getCuisine(m3);
+			
+			ModelAndView mv = new ModelAndView("html_mypage/food_load");
+			mv.addObject(cuisine);
+				
+			return mv;
+		}
+		
+			
+		//맨처음 저녁 로드 
+		@RequestMapping(value="/goweekly_d_food.brn")
+		public ModelAndView goweekly_d_food(
+				@RequestParam("y") String y,
+				@RequestParam("m") String m,
+				@RequestParam("d") String d,
+				@RequestParam("wholeDay") String wholeDay,
+				HttpServletRequest request,
+				HttpServletResponse response,
+				HttpSession session) throws Exception {
+						
+			int mem_no = (Integer) session.getAttribute("mem_no");
+			String cal_date = y+m+d;
+						
+			Map<String, Object> m3 = new HashMap<String, Object>();
+			m3.put("cal_date", cal_date);//해당 날짜
+			m3.put("mem_no", mem_no);//회원번호
+						
+			m3.put("day", wholeDay);
+			
+			//저녁 식단불러오기
+			 List<CalendarBean> cuisine = this.calService.getCuisine(m3);
+			
+			ModelAndView mv = new ModelAndView("html_mypage/food_load");
+			mv.addObject(cuisine);
+				
+			return mv;
+		}	
+			
+		
+		
+	/********************* 운동부분 EXERCISE ******************************************/			
 	//맨처음 아침 로드 
 	@RequestMapping(value="/goweekly_m_click.brn")
 	public ModelAndView goweekly_m_click(
@@ -62,16 +340,18 @@ public class ExerCalc {
 		int mem_no = (Integer) session.getAttribute("mem_no");
 		String cal_date = y+m+d;
 		
-		Map m3 = new HashMap();
+		Map<String, Object> m3 = new HashMap<String, Object>();
 		m3.put("cal_date", cal_date);//해당 날짜
 		m3.put("mem_no", mem_no);//회원번호
 		
 		m3.put("day", wholeDay);
-		String e_kcal = this.calService.getE_kcal2(m3);
+
+		//운동칼로리 불러오기
+		List<CalendarBean> calendarBean = this.calService.getE_kcal2(m3);
 		
-		ModelAndView mv = new ModelAndView("html_mypage/cal_morning");
+		ModelAndView mv = new ModelAndView("html_mypage/exercise_load");
 		
-		mv.addObject("m_e_kcal", e_kcal);
+		mv.addObject("calendarBean", calendarBean);
 		
 		return mv;
 	}
@@ -91,16 +371,17 @@ public class ExerCalc {
 			int mem_no = (Integer) session.getAttribute("mem_no");
 			String cal_date = y+m+d;
 			
-			Map m3 = new HashMap();
+			Map<String, Object> m3 = new HashMap<String, Object>();
 			m3.put("cal_date", cal_date);//해당 날짜
 			m3.put("mem_no", mem_no);//회원번호
 			
 			m3.put("day", wholeDay);
-			String l_e_kcal = this.calService.getE_kcal2(m3);
 			
-			ModelAndView mv = new ModelAndView("html_mypage/cal_lunch");
+			List<CalendarBean> calendarBean = this.calService.getE_kcal2(m3);
 			
-			mv.addObject("l_e_kcal", l_e_kcal);
+			ModelAndView mv = new ModelAndView("html_mypage/exercise_load");
+			
+			mv.addObject("calendarBean", calendarBean);
 			
 			return mv;
 		}
@@ -122,71 +403,25 @@ public class ExerCalc {
 				int mem_no = (Integer) session.getAttribute("mem_no");
 				String cal_date = y+m+d;
 					
-				Map m3 = new HashMap();
+				Map<String, Object> m3 = new HashMap<String, Object>();
 				m3.put("cal_date", cal_date);//해당 날짜
 				m3.put("mem_no", mem_no);//회원번호
 					
 				m3.put("day", wholeDay);
-				String d_e_kcal = this.calService.getE_kcal2(m3);
-					
-				ModelAndView mv = new ModelAndView("html_mypage/cal_dinner");
-					
-				mv.addObject("d_e_kcal", d_e_kcal);
+				
+				
+				List<CalendarBean> calendarBean = this.calService.getE_kcal2(m3);
+				
+				ModelAndView mv = new ModelAndView("html_mypage/exercise_load");
+				
+				mv.addObject("calendarBean", calendarBean);
 				
 				return mv;
 			}	
 		
-	//눌렀을때
-	@RequestMapping(value="/goweekly.brn")
-	public ModelAndView goweekly(
-			@RequestParam("y") String y,
-			@RequestParam("m") String m,
-			@RequestParam("d") String d,
-			HttpServletRequest request,
-			HttpServletResponse response,
-			HttpSession session) throws Exception {
-		
-		int mem_no = (Integer) session.getAttribute("mem_no");
-		String cal_date = y+m+d;
-		
-		Map m3 = new HashMap();
-		m3.put("cal_date", cal_date);//해당 날짜
-		m3.put("mem_no", mem_no);//회원번호
-		
-		ModelAndView mv = new ModelAndView("html_mypage/mypage_main_weekly");
-		
-		if(request.getParameter("wholeDay")!=null){
-			String wholeDay = request.getParameter("wholeDay");
-			 
-			/*if(wholeDay.equals("morning")){//아침로드
-				m3.put("day", wholeDay);
-				String m_e_kcal = this.calService.getE_kcal2(m3);
-				mv.addObject("m_e_kcal",m_e_kcal);
-				return mv;
-				
-			}else if(wholeDay.equals("lunch")){//점심로드
-				m3.put("day", wholeDay);
-				String l_e_kcal = this.calService.getE_kcal2(m3);
-				mv.addObject("l_e_kcal",l_e_kcal);
-				return mv;
-				
-			}else if(wholeDay.equals("dinner")){//저녁로드
-				m3.put("day", wholeDay);
-				String d_e_kcal = this.calService.getE_kcal2(m3);
-				mv.addObject("d_e_kcal",d_e_kcal);
-				return mv;
-			}*/
 			
-		}
-			
-			List<CalendarBean> calendarList = this.calService.getE_kcal(m3);
-			mv.addObject("y",y);
-			mv.addObject("m",m);
-			mv.addObject("d",d);
-			mv.addObject("calendarList", calendarList);
-			return mv;
-		
-	}
+	
+	
 	
 	//아침_운동_칼로리 저장
 	@RequestMapping(value="/m_e_kcal_save.brn")
@@ -201,22 +436,30 @@ public class ExerCalc {
 			HttpSession session) throws Exception{
 		
 		int mem_no = (Integer) session.getAttribute("mem_no");
-//		System.out.println("아침운동칼로리저장wholeDay="+ wholeDay);
 		
 		System.err.println("---------------------아침운동칼로리저장wholeDay="+ wholeDay);
 		int kcal2 = Integer.parseInt(kcal);
 		
+		
 		String cal_date = y+m+d;
+		System.err.println("---YMDcal_date="+ cal_date);
 		//운동_칼로리_저장
-		Map m2 = new HashMap();
+		Map<String, Object> m2 = new HashMap<String, Object>();
 		m2.put("kcal", kcal2);//칼로리
 		m2.put("day", wholeDay);//아침인지 점심인지 저녁인지 
 		m2.put("cal_date", cal_date);//해당 날짜
+		m2.put("y", y);//해당 날짜
+		m2.put("m", m);//해당 날짜
+		m2.put("d", d);//해당 날짜
 		m2.put("mem_no", mem_no);//회원번호
+		
+		String erc_nm = exerbean.getImsiEN();
+		System.err.println("---erc_nm="+ erc_nm);
+		m2.put("exer_tt", erc_nm);//운동제목
 		
 		this.calService.setE_kcal(m2);
 		
-		response.sendRedirect("goweekly.brn?wholeDay="+wholeDay+"&y="+y+"&m="+m+"&d="+d);
+		response.sendRedirect("goweekly.brn?y="+y+"&m="+m+"&d="+d);
 		
 	}
 	
@@ -236,18 +479,22 @@ public class ExerCalc {
 		System.out.println("wholeDay="+ wholeDay);
 		int kcal2 = Integer.parseInt(kcal);
 		
+		String erc_nm = exerbean.getImsiEN();
 		String cal_date = y+m+d;
 		//운동_칼로리_저장
-		Map m5 = new HashMap();
+		Map<String, Object> m5 = new HashMap<String, Object>();
 		m5.put("kcal", kcal2);//칼로리
 		m5.put("day", wholeDay);//아침인지 점심인지 저녁인지 
 		m5.put("cal_date", cal_date);//해당 날짜
+		m5.put("y", y);//해당 날짜
+		m5.put("m", m);//해당 날짜
+		m5.put("d", d);//해당 날짜
 		m5.put("mem_no", mem_no);//회원번호
+		m5.put("exer_tt", erc_nm);//운동제목
 		
 		this.calService.setE_kcal(m5);
 		
-		response.sendRedirect("goweekly.brn?wholeDay="+wholeDay+"&y="+y+"&m="+m+"&d="+d);
-		
+		response.sendRedirect("goweekly.brn?y="+y+"&m="+m+"&d="+d);		
 	}
 	
 	//저녁_운동_칼로리 저장
@@ -266,53 +513,25 @@ public class ExerCalc {
 		System.out.println("wholeDay="+ wholeDay);
 		int kcal2 = Integer.parseInt(kcal);
 		
+		String erc_nm = exerbean.getImsiEN();
 		String cal_date = y+m+d;
 		//운동_칼로리_저장
-		Map m4 = new HashMap();
+		Map<String, Object> m4 = new HashMap<String, Object>();
 		m4.put("kcal", kcal2);//칼로리
 		m4.put("day", wholeDay);//아침인지 점심인지 저녁인지 
 		m4.put("cal_date", cal_date);//해당 날짜
+		m4.put("y", y);//해당 날짜
+		m4.put("m", m);//해당 날짜
+		m4.put("d", d);//해당 날짜
 		m4.put("mem_no", mem_no);//회원번호
+		m4.put("exer_tt", erc_nm);//운동제목
 		
 		this.calService.setE_kcal(m4);
 		
-		response.sendRedirect("goweekly.brn?wholeDay="+wholeDay+"&y="+y+"&m="+m+"&d="+d);
-		
+		response.sendRedirect("goweekly.brn?y="+y+"&m="+m+"&d="+d);		
 	}
-	/*
-	//운동칼로리 가져오기
-	@RequestMapping(value="/e_kcal_get.brn")
-	public ModelAndView e_kcal_get(
-			@RequestParam("wholeDay") String wholeDay,
-			@RequestParam("y") String y,
-			@RequestParam("m") String m,
-			@RequestParam("d") String d,
-			HttpServletRequest request, 
-			HttpServletResponse response,
-			HttpSession session) throws Exception{
-		
-		int mem_no = (Integer) session.getAttribute("mem_no");
-		System.err.println("---------------------운동칼로리가져오기");
-		
-		String cal_date = y+m+d;
-		
-			
-		Map m3 = new HashMap();
-		m3.put("day", wholeDay);//아침인지 점심인지 저녁인지 
-		m3.put("cal_date", cal_date);//해당 날짜
-		m3.put("mem_no", mem_no);//회원번호
-		List<CalendarBean> calendarList = this.calService.getE_kcal(m3);
-		
-		ModelAndView mv = new ModelAndView("html_mypage/forwardStep");
-		mv.addObject("y",y);
-		mv.addObject("m",m);
-		mv.addObject("d",d);
-		mv.addObject("calendarList",calendarList);
-		return mv;
-		
-	}
-	*/
 	
+	//결과칼로리 어디로 가야할지 경로지정
 	@RequestMapping(value="/mypage_main_weekly.brn")
 	public void week_list(
 			@RequestParam("kcal") String kcal,
@@ -337,6 +556,7 @@ public class ExerCalc {
 		
 	}
 	
+	//마이페이지 - 운동계산기 시작
 	@RequestMapping(value="/cal_exer_start.brn")
 	public ModelAndView cal_exer(
 			@RequestParam("wholeDay") String wholeDay,
@@ -347,12 +567,14 @@ public class ExerCalc {
 			HttpServletResponse response,
 			HttpSession session) throws Exception{
 		
+		System.err.println("y+m+d2222222222222222222222222222222222222----------------- = " + y+m+d);
+		System.err.println("y+m+d뜨는가용ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ = " + y+m+d);
 		int mem_no = (Integer)session.getAttribute("mem_no");
 		System.err.println("y+m+d----------------- = " + y+m+d);
 		session.setAttribute("wholeDay", wholeDay);
 		
 	/*	//날짜, day, mem_no저장
-		Map m = new HashMap();
+		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("day", wholeDay);
 		m.put("cal_date", cal_date);
 		m.put("mem_no", mem_no);
@@ -392,7 +614,11 @@ public class ExerCalc {
 			HttpServletRequest request, 
 			HttpServletResponse response) throws Exception{
 		
-		System.err.println("2");
+		System.err.println("erc_nm@@@@@@@@@@@@@@@@@@@@@@22 = " +erc_nm);
+		exerbean = new ExerBean();
+		exerbean.setImsiEN(erc_nm);
+		
+		
 		int time = Integer.parseInt(request.getParameter("time"));
 		int weight = Integer.parseInt(request.getParameter("weight"));
 		
@@ -404,7 +630,7 @@ public class ExerCalc {
 			erc_sx = 2;
 		}
 		
-		Map m = new HashMap();
+		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("erc_nm", erc_nm);
 		m.put("time", time);
 		m.put("erc_sx", erc_sx);
@@ -455,53 +681,4 @@ public class ExerCalc {
 		return mv;
 	}
 	
-	/*@RequestMapping(value="/calculator_exercise_ok.brn")
-	public ModelAndView calculator_exercise_ok(
-			@RequestParam("erc_ty") String erc_ty,
-			HttpServletRequest request, 
-			HttpServletResponse response) throws Exception{
-		
-		
-		ModelAndView mv = new ModelAndView("html_calculator/cal_exercise");
-		
-		if(erc_ty.equals("걷기/달리기")){
-			erc_ty = "걷기,달리기";
-			//운동이름 받아오기
-			List<ExerBean> erc_nm = this.exerService.getErc_nm(erc_ty);
-			mv.addObject("erc_nm", erc_nm);
-			
-		}else if(erc_ty.equals("구기운동")){
-			erc_ty = "구기운동";
-			//운동이름 받아오기
-			List<ExerBean> erc_nm = this.exerService.getErc_nm(erc_ty);
-			mv.addObject("erc_nm", erc_nm);
-			
-		}else if(erc_ty.equals("댄스")){
-			erc_ty = "댄스";
-			//운동이름 받아오기
-			List<ExerBean> erc_nm = this.exerService.getErc_nm(erc_ty);
-			mv.addObject("erc_nm", erc_nm);
-			
-		}else if(erc_ty.equals("생활체육")){
-			erc_ty = "생활체육";
-			//운동이름 받아오기
-			List<ExerBean> erc_nm = this.exerService.getErc_nm(erc_ty);
-			mv.addObject("erc_nm", erc_nm);
-			
-		}else if(erc_ty.equals("수중운동")){
-			erc_ty = "수중운동";
-			//운동이름 받아오기
-			List<ExerBean> erc_nm = this.exerService.getErc_nm(erc_ty);
-			mv.addObject("erc_nm", erc_nm);
-			
-		}else{
-			erc_ty = "기타";
-			//운동이름 받아오기
-			List<ExerBean> erc_nm = this.exerService.getErc_nm(erc_ty);
-			mv.addObject("erc_nm", erc_nm);
-			
-		}
-		
-		return mv;
-	}*/
 }

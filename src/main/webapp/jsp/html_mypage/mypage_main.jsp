@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 
 	<%@ include file="../inc/subHeader.jsp" %>
-
+	
 	<!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
 	<section class="sub_container">
 	
@@ -15,11 +15,12 @@
 		<div class="side_myinfo">
 			
 		</div>
-
+		
 		<!-- 서브컨텐츠 영역 START -->
 		<div class="subContent">
 		
 			<h3>마이페이지</h3>
+			
 			
 			<h4>월별</h4>
 			<%@ include file="../html_mypage/month_list.jsp" %>

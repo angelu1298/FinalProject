@@ -12,25 +12,105 @@
 	<!-- 운동 칼로리 저장 -->
 	<insert id="setE_kcal" parameterType="java.util.Map">
 		insert into calendar
-		(cal_date, day, e_kcal, mem_no)
-		values(#{cal_date}, #{day}, #{kcal}, #{mem_no})
+		(cal_date, e_kcal, day, mem_no, y, m, d, exer_tt)
+		values(#{cal_date}, #{kcal}, #{day}, #{mem_no}, #{y}, #{m}, #{d}, #{exer_tt})
 	</insert>
 
+<!-- <update id="setE_kcal" parameterType="java.util.Map">
+		update calendar
+		set cal_date = #{cal_date}, day = #{day},
+			e_kcal = #{kcal}, mem_no = #{mem_no}
+	</update> -->
 	
 	<!-- 운동 칼로리 가져오기 -->
 	<select id="getE_kcal" parameterType="java.util.Map" resultType="calendarBean">
 		select * from calendar
 		where mem_no = #{mem_no}
-		  and cal_date = #{cal_date}
 	</select>
 	
-	<select id="getE_kcal2" parameterType="java.util.Map" resultType="String">
-		select e_kcal from calendar
+	<select id="getE_kcal2" parameterType="java.util.Map" resultType="calendarBean">
+		select cal_date, day, mem_no, e_kcal, cal_eval, y, m, d, 
+				exer_tt, cus_tt, grc_tt, cus_kcal, grc_kcal 
+				from calendar
 		where mem_no = #{mem_no}
 		  and cal_date = #{cal_date}
 		  and day = #{day}
 	</select>
+<!-- 	<select id="getE_kcal2" parameterType="java.util.Map" resultType="String">
+		select e_kcal from calendar
+		where mem_no = #{mem_no}
+		  and cal_date = #{cal_date}
+		  and day = #{day}
+	</select> -->
 	
+	<!-- 평가 값 저장 -->
+	<update id="setEmo_eval" parameterType="java.util.Map" >
+		update calendar
+		set cal_eval = #{emo_eval}
+      		 where mem_no = #{mem_no}
+       			and cal_date = #{cal_date}
+	</update>
+	
+	<!-- 평가 값 불러오기 -->
+	<select id="getEmo_eval" parameterType="java.util.Map" resultType="int">
+		select cal_eval from calendar
+			where mem_no = #{mem_no}
+				and cal_date = #{cal_date}
+	</select>
+	
+	<!-- 월간 : 평가 불러오기 -->
+	<select id="getTotal" parameterType="int" resultType="calendarBean">
+		select * from calendar
+			where mem_no = #{mem_no}
+	</select>
+	
+	 <!-- 마이페이지에 식단 저장 -->
+	<insert id="setCuisineIn" parameterType="java.util.Map">
+		insert into calendar
+		(cal_date, cus_kcal, day, mem_no, cus_tt)
+		values(#{cal_date}, #{cus_kcal}, #{day}, #{mem_no}, #{cus_tt})
+	</insert>
+	
+	<update id="setCuisine" parameterType="java.util.Map">
+		update calendar
+			set cus_kcal = #{cus_kcal},
+				cus_tt = #{cus_tt}
+	      	 where mem_no = #{mem_no}
+	       		and cal_date = #{cal_date}
+	      		and day = #{day}
+	</update>
+	
+	<!-- 마이페이지에 식단 불러오기 -->
+	<select id="getCuisine" parameterType="java.util.Map" resultType="calendarBean">
+		select cus_kcal, cus_tt from calendar
+			where mem_no = #{mem_no}
+				and cal_date = #{cal_date}
+				and day = #{day}
+	</select>
+	
+	 <!-- 마이페이지에 식단 저장 -->
+	<update id="setGrocery" parameterType="java.util.Map">
+		update calendar
+			set grc_kcal = #{grc_kcal},
+				grc_tt = #{grc_tt}
+	      	 where mem_no = #{mem_no}
+	       		and cal_date = #{cal_date}
+	      		and day = #{day}
+	</update>
+	 <!-- 마이페이지에 식단 저장 -->
+	<insert id="setGroceryIn" parameterType="java.util.Map">
+		insert into calendar
+		(cal_date, grc_kcal, day, mem_no, grc_tt)
+		values(#{cal_date}, #{grc_kcal}, #{day}, #{mem_no}, #{grc_tt})
+	</insert>
+	
+	<!-- 마이페이지에 식단 불러오기 -->
+	<select id="getGrocery" parameterType="java.util.Map" resultType="calendarBean">
+		select grc_kcal, grc_tt from calendar
+			where mem_no = #{mem_no}
+				and cal_date = #{cal_date}
+				and day = #{day}
+	</select>
 </mapper>
 
 

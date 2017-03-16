@@ -4,22 +4,31 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CalendarBean {
-	private int cal_date;  	//날짜 
+	private String cal_date;  	//날짜 
 	private String day;		/* 아침,점심,저녁 */
 	private int mem_no;		//회원번호
-	private int cal_eval;	//평가 ( 하:1 중:2 상:3 )
 	
 	private String e_kcal;	/* 운동_칼로리 */
-	private String f_kcal;	/* 식단_칼로리*/
-	private String t_kcal;	/* 총_칼로리 */
-	private String imsiY;	//임시저장 날짜 Y
-	private String imsiM;	//임시저장 날짜 M
-	private String imsiD;	//임시저장 날짜 D
+	private int cal_eval;	//평가 ( 하:1 중:2 상:3 )
 	
-	public int getCal_date() {
+	private String imsiY;	//임시저장 날짜 Y
+	private String imsiM;	//임시저장 날짜 M 
+	private String imsiD;	//임시저장 날짜 D
+
+	private String y;
+	private String m;
+	private String d;
+	
+	private String exer_tt;		/* 운동제목 */
+	private String cus_tt;		/* 음식제목 */
+	private String grc_tt;		/* 식품제목 */
+	private int cus_kcal;		/* 음식검색에서 계산된 칼로리 */
+	private int grc_kcal;		/* 식품검색에서 계산된 칼로리 */
+	
+	public String getCal_date() {
 		return cal_date;
 	}
-	public void setCal_date(int cal_date) {
+	public void setCal_date(String cal_date) {
 		this.cal_date = cal_date;
 	}
 	public String getDay() {
@@ -34,29 +43,17 @@ public class CalendarBean {
 	public void setMem_no(int mem_no) {
 		this.mem_no = mem_no;
 	}
-	public int getCal_eval() {
-		return cal_eval;
-	}
-	public void setCal_eval(int cal_eval) {
-		this.cal_eval = cal_eval;
-	}
 	public String getE_kcal() {
 		return e_kcal;
 	}
 	public void setE_kcal(String e_kcal) {
 		this.e_kcal = e_kcal;
 	}
-	public String getF_kcal() {
-		return f_kcal;
+	public int getCal_eval() {
+		return cal_eval;
 	}
-	public void setF_kcal(String f_kcal) {
-		this.f_kcal = f_kcal;
-	}
-	public String getT_kcal() {
-		return t_kcal;
-	}
-	public void setT_kcal(String t_kcal) {
-		this.t_kcal = t_kcal;
+	public void setCal_eval(int cal_eval) {
+		this.cal_eval = cal_eval;
 	}
 	public String getImsiY() {
 		return imsiY;
@@ -76,6 +73,55 @@ public class CalendarBean {
 	public void setImsiD(String imsiD) {
 		this.imsiD = imsiD;
 	}
+	public String getY() {
+		return y;
+	}
+	public void setY(String y) {
+		this.y = y;
+	}
+	public String getM() {
+		return m;
+	}
+	public void setM(String m) {
+		this.m = m;
+	}
+	public String getD() {
+		return d;
+	}
+	public void setD(String d) {
+		this.d = d;
+	}
+	public String getExer_tt() {
+		return exer_tt;
+	}
+	public void setExer_tt(String exer_tt) {
+		this.exer_tt = exer_tt;
+	}
+	public String getCus_tt() {
+		return cus_tt;
+	}
+	public void setCus_tt(String cus_tt) {
+		this.cus_tt = cus_tt;
+	}
+	public String getGrc_tt() {
+		return grc_tt;
+	}
+	public void setGrc_tt(String grc_tt) {
+		this.grc_tt = grc_tt;
+	}
+	public int getCus_kcal() {
+		return cus_kcal;
+	}
+	public void setCus_kcal(int cus_kcal) {
+		this.cus_kcal = cus_kcal;
+	}
+	public int getGrc_kcal() {
+		return grc_kcal;
+	}
+	public void setGrc_kcal(int grc_kcal) {
+		this.grc_kcal = grc_kcal;
+	}
+	
 
 	
 }

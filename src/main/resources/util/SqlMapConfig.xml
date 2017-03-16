@@ -47,6 +47,8 @@
         <mapper resource="sql/my_calendar.xml" />
         <mapper resource="sql/statistics.xml" />
         <mapper resource="sql/scrap.xml" />
+        <mapper resource="sql/exerCalc.xml" />
+		<mapper resource="sql/my_calendar.xml" />
 	</mappers>
 
 </configuration>

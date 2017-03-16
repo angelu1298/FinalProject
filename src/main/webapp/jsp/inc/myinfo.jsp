@@ -5,7 +5,6 @@
 <%@ page import="com.burn.fat.member.mypage.myinfo.model.*" %>
 
 
-		<form>
  		<input type="hidden" name="mem_no" id="mem_no" value="${myinfobean.mem_no}" />
 		<input type="hidden" name="mem_id" id="mem_id" value="${myinfobean.mem_id}" />	
 		<c:set var="member_bmi" value="${ myinfobean.mem_w / ((myinfobean.mem_h/100) * (myinfobean.mem_h/100)) }"/>
@@ -54,10 +53,6 @@
 			</dd>
 			
 		</dl>
-		<p>
-			<input type="submit" value="등록하기" />
-		</p>
-		</form>
 		
 		
 		<script>

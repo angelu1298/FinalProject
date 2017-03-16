@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../../inc/subHeader.jsp"%>
 <!-- 임시 아이디 세션 생성 -->
-<%-- <% session.setAttribute("id","testId"); %> --%>
 <script src="./resources/js/jquery.min.js"></script>
 <script src="./resources/js/list_eboard.js"></script>
 <script>

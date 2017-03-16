@@ -37,8 +37,8 @@ public class JuiceDAOImpl {
 		return sqlSession.insert("insert_recipe", recipebean);		
 	}
 
-	public int getRecipelistCount() throws Exception{
-		int rcount=((Integer)sqlSession.selectOne("recipe_count")).intValue();
+	public int getRecipelistCount(int mem_no) throws Exception{
+		int rcount=((Integer)sqlSession.selectOne("recipe_count",mem_no)).intValue();
 		return rcount;
 	}
 

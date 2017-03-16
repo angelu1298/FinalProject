@@ -11,7 +11,15 @@ public class ExerBean {
 	private int erc_maxw;
 	private int erc_ten;
 	private int erc_hun;
+	private String imsiEN;	//임시저장 운동이름
 	
+	
+	public String getImsiEN() {
+		return imsiEN;
+	}
+	public void setImsiEN(String imsiEN) {
+		this.imsiEN = imsiEN;
+	}
 	public String getErc_ty() {
 		return erc_ty;
 	}

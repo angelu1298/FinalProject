@@ -178,7 +178,6 @@ public class JuiceAction {
    public ModelAndView recipeList(HttpServletRequest request, HttpServletResponse response, @RequestParam(value="findname", defaultValue="") String findname) throws Exception{
 
        HttpSession session = request.getSession();
-      int rcount = juiceService.getRecipelistCount(); //총 리스트 수를 
                    
       int mem_no = (Integer)session.getAttribute("mem_no");
       
@@ -191,6 +190,7 @@ public class JuiceAction {
       m.put("findname", findname);
       
       recipeList = juiceService.getRecipeList(m);
+      int rcount = juiceService.getRecipelistCount(mem_no); //총 리스트 수를 
       ModelAndView model = new ModelAndView("html_recipe/recipeList");
 
       model.addObject("rcount", rcount);

@@ -31,8 +31,8 @@ public class JuiceServiceImpl {
 		JuiceDAO.makeRecipe(recipebean);
 	}   
 
-	public int getRecipelistCount() throws Exception {
-		return JuiceDAO.getRecipelistCount();
+	public int getRecipelistCount(int mem_no) throws Exception {
+		return JuiceDAO.getRecipelistCount(mem_no);
 	}
 
 	public List<RecipeBean> getRecipeList(Map m) throws Exception {

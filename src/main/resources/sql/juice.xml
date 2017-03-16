@@ -46,8 +46,9 @@
    </insert>
    
    <!-- 레시피 총 갯수 -->
-   <select id="recipe_count" resultType="int">
-      select count(*) from RECIPE
+   <select id="recipe_count" resultType="int" parameterType="int">
+      select count(*) from RECIPE 
+      where mem_no=#{mem_no}
    </select>
 
    <!-- 레시피 목록 -->

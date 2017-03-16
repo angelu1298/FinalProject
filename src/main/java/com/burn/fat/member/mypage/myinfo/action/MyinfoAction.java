@@ -2,6 +2,7 @@ package com.burn.fat.member.mypage.myinfo.action;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.burn.fat.member.model.MemberBean;
+import com.burn.fat.member.mypage.calendar.dao.CalendarService;
+import com.burn.fat.member.mypage.calendar.model.CalendarBean;
 import com.burn.fat.member.mypage.myinfo.dao.MyinfoService;
 
 @Controller
@@ -21,6 +24,9 @@ public class MyinfoAction {
 
 	@Autowired
 	private MyinfoService myinfoService;
+	
+	 @Autowired
+	private CalendarService calendarService;
 
 	/* 마이페이지 레프트단 초기화면 */
 	@RequestMapping(value = "/my_view.brn")
@@ -51,6 +57,8 @@ public class MyinfoAction {
 		   int bgnWeek = cal.get(Calendar.DAY_OF_WEEK);
 		   int calMonth = cal.get(Calendar.MONTH);
 		   int calDate = cal.get(Calendar.DATE);
+		   int lastDay =cal.getActualMaximum(Calendar.DATE);
+		   cal.set(year, month,lastDay);
 		   // 다음/이전월 계산
 		   // - MONTH 계산시 표기월로 계산하기 때문에 +1을 한 상태에서 계산함
 		   int prevYear = year;
@@ -69,8 +77,10 @@ public class MyinfoAction {
 		      nextYear++;
 		      nextMonth = 1;
 		   }
+	         //평가가져올때 이용할 calendarList
+	         List<CalendarBean> calendarList = this.calendarService.getTotal(mem_no);
      
-			int lastDay =cal.getActualMaximum(Calendar.DATE);
+			int lastDate =cal.get(Calendar.DAY_OF_WEEK);
 			contM.addObject("year",year);
 			contM.addObject("month",month);
 			contM.addObject("bgnWeek",bgnWeek);
@@ -79,9 +89,12 @@ public class MyinfoAction {
 			contM.addObject("nextYear",nextYear);
 			contM.addObject("nextMonth",nextMonth);
 			contM.addObject("lastDay",lastDay);
+			contM.addObject("lastDate",lastDate);
 			contM.addObject("calMonth",calMonth);
 			contM.addObject("calDate",calDate);
 			contM.addObject("myinfobean",myinfobean);
+			 //평가가져올때 이용할 calendarList
+	         contM.addObject("calendarList",calendarList);
 			
 			return contM;
 			
