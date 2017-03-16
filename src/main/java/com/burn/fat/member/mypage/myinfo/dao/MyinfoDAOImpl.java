@@ -1,14 +1,12 @@
 package com.burn.fat.member.mypage.myinfo.dao;
 
-import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.burn.fat.member.mypage.myinfo.model.MyinfoBean;
-//import com.burn.fat.model.ObsBean;
+import com.burn.fat.member.model.MemberBean;
 
 @Repository
 public class MyinfoDAOImpl {
@@ -16,29 +14,27 @@ public class MyinfoDAOImpl {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	/*=================================================*/
-	/*¾ÆÀÌµğ¸¦ ±âÁØÀ¸·Î mypageÁ¤º¸ °¡Á®¿À±â*/
-	public MyinfoBean getMyCont(int mem_no) throws Exception{
-		return (MyinfoBean)sqlSession.selectOne("my_id",mem_no);
-		 
+	/*ì²˜ìŒ ê°’ ê°€ì ¸ì˜´*/
+    public MemberBean getMyinfo(int mem_no) throws Exception {
+    	return sqlSession.selectOne("getmyinfo", mem_no);
+    }
+    
+    /*member í…Œì´ë¸”ì—ì„œ ë³¸ì¸ì˜ í‚¤, ëª¸ë¬´ê²Œ ê°€ì ¸ì˜¤ê¸°*/
+	public MemberBean getmemberinfo(int mem_no) throws Exception {
+		return (MemberBean) sqlSession.selectOne("getmember", mem_no);
+	}
+    
+    /*ì¢Œìš°ëª…  ì—…ë°ì´íŠ¸*/
+    public MemberBean memo_update(Map m) throws Exception{
+		return sqlSession.selectOne("memo_update",m);
+		
 	}
 	
-	/*mem_no¸¦ ±âÁØÀ¸·Î my_memo °¡Á®¿À±â*/
-	public MyinfoBean mymemo(int mem_no) throws Exception {
-		return (MyinfoBean)sqlSession.selectOne("my_memo",mem_no);
-	}
-
-	/*mem_no¸¦ ±âÁØÀ¸·Î my_memo update*/
-	public MyinfoBean my_update(MyinfoBean myinfobean) {
-		return (MyinfoBean)sqlSession.selectOne("my_update",myinfobean);
+     /*ëª©í‘œëª¸ë¬´ê²Œ ì—…ë°ì´íŠ¸*/
+	public MemberBean w_update(Map m) throws Exception{
+		return sqlSession.selectOne("w_update",m);
 	}
 	
-	/*mem_no¸¦ ±âÁØÀ¸·Î  goal_w update*/
-	public MyinfoBean goal_w_update(MyinfoBean myinfobean) throws Exception{
-		return (MyinfoBean)sqlSession.selectOne("my_w_update",myinfobean);
-	}
-	
-
 }
 
 

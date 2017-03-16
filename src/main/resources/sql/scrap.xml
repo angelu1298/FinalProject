@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Test">
+
+	<!-- oboard 스크랩 -->
+		<!-- session id가 oboard에서 스크랩한 게시물 select -->
+		<select id="obs_scrap" resultType="obsbean" parameterType="int">
+			select * 
+			from oboard
+			where o_lkno like '%,'||#{mem_no}||',%'
+			order by o_no desc 
+		</select>
+		
+		<select id="o_scrap_count" resultType="int" parameterType="int">
+			select count(*) from 
+				(
+					select * 
+					from oboard
+					where o_lkno like '%,'||#{mem_no}||',%'
+				)
+		</select>
+		
+		
+	<!-- eboard 스크랩 -->
+		<!-- session id가 oboard에서 스크랩한 게시물 select -->
+		<select id="ebs_scrap" resultType="ebobean" parameterType="int">
+			select * 
+			from eboard
+			where e_lkno like '%,'||#{mem_no}||',%'
+			order by e_no desc 
+		</select>
+		
+		<select id="e_scrap_count" resultType="int" parameterType="int">
+			select count(*) from 
+				(
+					select * 
+					from eboard
+					where e_lkno like '%,'||#{mem_no}||',%'
+				)
+		</select>
+		
+		
+		
+	<!-- gboard 스크랩 -->
+		<!-- session id가 oboard에서 스크랩한 게시물 select -->
+		<select id="gbs_scrap" resultType="gbbsbean" parameterType="int">
+			select * 
+			from gboard
+			where g_lkno like '%,'||#{mem_no}||',%'
+			order by g_no desc 
+		</select>
+		
+		<select id="g_scrap_count" resultType="int" parameterType="int">
+			select count(*) from 
+				(
+					select * 
+					from gboard
+					where g_lkno like '%,'||#{mem_no}||',%'
+				)
+		</select>
+		
+	<!-- fboard 스크랩 -->
+		<!-- session id가 oboard에서 스크랩한 게시물 select -->
+		<select id="fbs_scrap" resultType="fboardbean" parameterType="int">
+			select * 
+			from fboard
+			where f_lkno like '%,'||#{mem_no}||',%'
+			order by f_no desc 
+		</select>
+		
+		<select id="f_scrap_count" resultType="int" parameterType="int">
+			select count(*) from 
+				(
+					select * 
+					from fboard
+					where f_lkno like '%,'||#{mem_no}||',%'
+				)
+		</select>
+		
+		
+		<!-- sboard 스크랩 -->
+		<!-- session id가 oboard에서 스크랩한 게시물 select -->
+		<select id="sbs_scrap" resultType="sboardbean" parameterType="int">
+			select * 
+			from soard
+			where s_lkno like '%,'||#{mem_no}||',%'
+			order by s_no desc 
+		</select>
+		
+		<select id="s_scrap_count" resultType="int" parameterType="int">
+			select count(*) from 
+				(
+					select * 
+					from sboard
+					where s_lkno like '%,'||#{mem_no}||',%'
+				)
+		</select>
+	
+		
+	
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

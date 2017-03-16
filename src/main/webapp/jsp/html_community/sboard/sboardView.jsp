@@ -21,7 +21,7 @@
 				<!--LIKE-->
 				<div class="likeArea">
 					<ul> 
-						<li><a href="#" class="btn_scrap" title="스크랩" onclick="scrap_ok()"><span>스크랩하기</span></a></li>
+						<li><a href="#" class="btn_scrap" title="스크랩" onclick="s_scrap_ok()"><span>스크랩하기</span></a></li>
 					</ul>
 				</div>
 				<!--//LIKE-->

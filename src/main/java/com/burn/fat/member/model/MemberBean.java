@@ -27,6 +27,8 @@ public class MemberBean {
 	private Date mem_dd;
 	private String mem_rs1;
 	private String mem_rs2;
+	private String my_memo;
+	private int goal_w;
 	
 	public int getMem_no() {
 		return mem_no;
@@ -186,6 +188,22 @@ public class MemberBean {
 
 	public void setMem_rs2(String mem_rs2) {
 		this.mem_rs2 = mem_rs2;
+	}
+
+	public String getMy_memo() {
+		return my_memo;
+	}
+
+	public void setMy_memo(String my_memo) {
+		this.my_memo = my_memo;
+	}
+
+	public int getGoal_w() {
+		return goal_w;
+	}
+
+	public void setGoal_w(int goal_w) {
+		this.goal_w = goal_w;
 	}
 
 }

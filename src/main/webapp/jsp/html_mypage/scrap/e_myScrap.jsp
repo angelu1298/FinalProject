@@ -1,37 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="../../inc/subHeader.jsp"%>
-<!-- 임시 아이디 세션 생성 -->
-<%-- <% session.setAttribute("id","testId"); %> --%>
-<script src="./resources/js/jquery.min.js"></script>
-<script src="./resources/js/list_eboard.js"></script>
-<script>
-   $("#viewcount").val("${limit}").prop("selected", true);
-</script>
-    
-	<!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
-	<section class="sub_container">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-		<!-- 서브메뉴에 따라 Side Navigation을 다르게 부여해준다. -->	
-		<%@ include file="../../inc/leftMenu05.jsp" %>
-		
-		<!-- 서브컨텐츠 영역 START -->
-		<div class="subContent">
-	<!-- 	<div class="btnB_area">
-		<div class="fr">
-			<input type="button" value="글쓰기" class="white"
-			   onclick="location='eboardWrite.brn'" />
-			   </div></div> -->
-			<h3>운동게시판</h3>
-			
-			<h4>목록</h4>
-		
-			<!-- form -->
-			<form action="eboardView.jsp"  method="post">
-			<p class="srch_result">
-				<span class="rs_txt"><strong>${listcount }</strong>건이 검색되었습니다.</span>
-			</p>
+<!-- form -->
+	<p class="srch_result">
+		<span class="rs_txt">
+			<strong>운동게시판 스크랩</strong>은 
+			<strong>${listcount}</strong>건이
+			검색되었습니다.
+		</span>
+	</p>
 			<!--테이블-->
 			<div class="common_list_box">
 				<table cellpadding="0" cellspacing="0" border="1" summary="운동게시판입니다. 제목,글쓴이,등록일,조회수,추천수를 확인할 수 있고, 등록일 기준으로 sorting 됩니다.">
@@ -135,55 +113,4 @@
 						<a href="#none" class="pre" title="맨뒤">&gt;&gt;</a>
 					</p> -->
 				</div>
-				<!--//페이징 -->	
-		 		<div class="btnB_area">
-					<div class="fr">
-						<a href="./eboardWrite.brn" class="black">글쓰기</a>
-					</div>
-			   </div>
-				
-			</form>		
-			<!-- //form -->
-				
-				<!--검색영역-->
-				<!--한줄-->
-				 <form method="get" action="ebo_find_ok.brn"
-				 	onsubmit="return find_check()">
-				<div class="borad_srch" id="bbsfind">
-					<span class="fl ml20">
-							<select id="viewcount fl" name="limit">
-								<option value="20">20개보기</option>
-								<option value="50">50개보기</option>
-								<option value="100">100개보기</option>
-							</select> 
-					</span>
-				<p class="col">
-					<label for="srch_sel01" class="sc_txt">검색영역</label>
-					<select class="w180 mr10" id="srch_sel01" name="find_field">
-						<option value="ebo_tot">전체</option>
-						<option value="ebo_id">작성자</option>
-		       			<option value="ebo_subject">글제목</option>
-		       			<option value="ebo_content">글내용</option>
-					</select>
-					<label for="srch_txt" class="dnone"></label><input type="text" name="find_name" id="srch_txt" class="w280 mr10" value=""/>
-					<input type="submit" class="input_button" value="검색" />
-				</p>
-				<!--한줄-->
-			</div>
-			<!-- //form -->
-				</form>
-			<!--//검색영역-->
-			
-		<!-- 	<div class="btnB_area">
-		<div class="fr">
-			<input type="button" value="글쓰기" class="black"
-			   onclick="location='eboardWrite.brn'" />
-			   </div></div> -->
-			   
-			
-		</div>
-		<!-- 서브컨텐츠 영역 END -->
-	</section>
-	<!-- // container End -->
-
-<%@ include file="../../inc/footer.jsp"%>
+</form>

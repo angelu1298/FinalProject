@@ -182,8 +182,7 @@ public class SboardAction {
 			@RequestParam(value = "s_no", required = true) int s_no) throws Exception {
 
 		HttpSession session = request.getSession();
-		String mem_no = (String) session.getAttribute("mem_no");
-		mem_no = "2";
+		int mem_no = ((Integer) session.getAttribute("mem_no")).intValue();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("s_no", s_no);
 		map.put("mem_no", mem_no);
@@ -192,7 +191,8 @@ public class SboardAction {
 		if (s_lkno != null) {
 			StringTokenizer token = new StringTokenizer(s_lkno, ",");
 			while (token.hasMoreTokens()) {
-				if (token.nextToken().equals(mem_no)) {
+				int lkno = Integer.parseInt(token.nextToken());
+				if (lkno==mem_no) {
 					check = 1;
 				}
 			}

@@ -28,7 +28,7 @@ function delete_check(){
 		
 	}
 }
-function scrap_ok(){
+function s_scrap_ok(){
 	var s_no = $('#s_no').val();
 	$.ajax({
 		type : "post",

@@ -47,8 +47,8 @@
 						<c:if test="${slist !=null }">
 							<c:forEach items="${slist }" var="list">
 								<tr>
-									<td><c:out value="${num }" /><c:set var="num" value="${num-1}"/>	</td>
-									<td><a href="sboardcont.brn?s_no=${list.s_no}&page=${page}&state=cont">${list.s_sj }</a>[ ${list.scomm_cnt }]</td>
+									<td><c:out value="${num }" /><c:set var="num" value="${num-1}"/></td>
+									<td><a href="sboardcont.brn?s_no=${list.s_no}&page=${page}&state=cont">${list.s_sj }</a>[${list.scomm_cnt }]</td>
 									<td>${list.mem_id }</td>
 									<td>${list.s_dt }</td>
 									<td>${list.s_rc }</td>
@@ -70,26 +70,39 @@
 				<!--페이징 -->
 				<div class="paginate">
 					<p>
-					<a href="sboardList.brn?page=1" class="pre" title="맨앞">&lt;&lt;</a>
-					<c:if test="${page > 1 }">
-						<a href="sboardList.brn?page=${page-1}" class="pre" title="이전페이지">&lt;</a>
-					</c:if>		
+						<c:if test="${page <=1 }">
+							<span>&lt;&lt;</span>
+							<span>&lt;</span>
+						</c:if>
 						
-					<c:forEach var="a" begin="${startpage}" end="${endpage}">
-						<c:if test="${a == page }">
-							<a href="#">${a}</a>
+						<c:if test="${page > 1 }">
+							<a href="sboardList.brn?page=${1}&limit=${limit}" class="pre" title="맨앞">&lt;&lt;</a>
+							<a href="sboardList.brn?page=${page-1}&limit=${limit}" class="pre" title="이전페이지">&lt;</a>
+						</c:if>		
+						
+						<c:forEach var="a" begin="${startpage}" end="${endpage}">
+							<c:if test="${a == page }">
+								<strong>${a}</strong>
+							</c:if>
+							<c:if test="${a != page }">
+								<a href="sboardList.brn?page=${a}&limit=${limit}"><strong>${a}</strong></a>
+							</c:if>
+						</c:forEach>			
+						<c:if test="${page < maxpage }">
+							<a href="sboardList.brn?page=${page+1}&limit=${limit}">&gt;</a>
+							<a href="sboardList.brn?page=${maxpage }&limit=${limit}" class="next" title="맨뒤">&gt;&gt;</a>
+						</c:if>			
+						<c:if test="${page >= maxpage }">
+								<span>&gt;</span>
+								<span>&gt;&gt;</span>
 						</c:if>
-						<c:if test="${a != page }">
-							<a href="sboardList.brn?page=${a}"><strong>${a}</strong></a>
-						</c:if>
-					</c:forEach>			
-					
-					<c:if test="${page < maxpage }">
-						<a href="sboardList.brn?page=${page+1}">&gt;</a>
-					</c:if>			
-						<a href="sboardList.brn?page=${maxpage }" class="next" title="맨뒤">&gt;&gt;</a>
 					</p>
 				</div>
+			<div class="btnB_area">
+				<div class="fr">
+					<a href="./sboardWrite.brn" class="black">글쓰기</a>
+				</div>
+			</div>
 			</form>
 			<!-- //form -->
 				<!--//페이징 -->	<!--검색영역-->
@@ -116,11 +129,13 @@
 						   })
 					})
 					</script>
-					<select id="viewcount" name="limit">
-						<option value="20" >20줄보기</option>
-						<option value="50">50줄보기</option>
-						<option value="100">100줄보기</option>
-					</select> 
+					<span class="fl ml20">
+							<select id="viewcount fl" name="limit">
+								<option value="20">20개보기</option>
+								<option value="50">50개보기</option>
+								<option value="100">100개보기</option>
+							</select> 
+					</span>
 				<p class="col">
 					<label for="srch_sel01" class="sc_txt">검색영역</label>
 					<select class="w180 mr10" id="srch_sel01" name="find_field">
@@ -129,17 +144,12 @@
 					       <option value="s_sj">글제목</option>
 					       <option value="s_ct">글내용</option>
 					</select>
-					<label for="srch_txt" class="dnone"></label><input type="text" name="find_name" id="srch_txt" class="w280 mr10" value="검색어를 입력하세요"/>
+					<label for="srch_txt" class="dnone"></label><input type="text" name="find_name" id="srch_txt" class="w280 mr10" placeholder="검색어를 입력하세요"/>
 					<input type="submit" class="btn_srch" value="검색" />
 				</p>
 				<!--한줄-->
 			</div>
 			</form>
-			<div class="btnB_area">
-				<div class="fr">
-					<a href="./sboardWrite.brn" class="black">글쓰기</a>
-				</div>
-			</div>
 		</div>
 		<!-- 서브컨텐츠 영역 END -->
 		

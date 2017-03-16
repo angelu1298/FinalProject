@@ -1,42 +1,43 @@
 package com.burn.fat.member.mypage.myinfo.dao;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.burn.fat.member.mypage.myinfo.model.MyinfoBean;
-//import com.burn.fat.model.ObsBean;
+import com.burn.fat.member.model.MemberBean;
 
 @Service("MyinfoService")
 public class MyinfoServiceImpl implements MyinfoService {
     @Autowired
 	private MyinfoDAOImpl myinfoDAO;
 
-
-	/*****************************************************************8*/
-	  /*¸¶ÀÌÆäÀÌÁö id¹× Á¤º¸µé*/
-		@Override
-	    public MyinfoBean getMyCont(int mem_no) throws Exception {
-	    	return myinfoDAO.getMyCont(mem_no);
-	    }
+	@Override
+    public MemberBean getMyinfo(int mem_no) throws Exception {
+    	
+    	return myinfoDAO.getMyinfo(mem_no);
+    }
+	
+	/*memberí…Œì´ë¸”ì—ì„œ ë³¸ì¸ì˜ í‚¤ ëª¸ë¬´ê²Œ ê°€ì ¸ì˜¤ê¸°*/
+	public MemberBean getmemberinfo(int mem_no) throws Exception {
+		return myinfoDAO.getmemberinfo(mem_no);
+	}
+	
 		
-		/*¸¶ÀÌÆäÀÌÁö memo °¡Á®¿À±â*/
-		@Override
-		public MyinfoBean mymemo(int mem_no) throws Exception{
-			return myinfoDAO.mymemo(mem_no);
-		}
+	/*my_memoì¢Œìš°ëª… update*/
+	@Override
+	public MemberBean memo_update(Map m) throws Exception{
+		return myinfoDAO.memo_update(m);
 		
-		/*¸¶ÀÌÆäÀÌÁö memo update */
-		@Override
-		public MyinfoBean my_update(MyinfoBean myinfobean) throws Exception{
-			return myinfoDAO.my_update(myinfobean);
-		}
+	}
 		
-		public MyinfoBean goal_w_update(MyinfoBean myinfobean) throws Exception{
-			return myinfoDAO.goal_w_update(myinfobean);
-		}
+		
+	/*my_memoì¢Œìš°ëª… update*/
+	@Override
+	public MemberBean w_update(Map m) throws Exception{
+		return myinfoDAO.w_update(m);
+	}
+		
 
 	
 }

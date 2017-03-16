@@ -3,50 +3,26 @@
 
 <mapper namespace="Test">
 
-	
-<!-- ===================================================================== -->
-	
-	<!-- <my_info table 업데이트> -->
-	<insert id="my_info" parameterType="myinfobean">
-		INSERT INTO MY_INFO(MEM_ID,MEM_NO)
-		SELECT MEM_ID,MEM_NO
-		FROM MEMBER
-	</insert>
-	
-	<!-- mypage id, 키, 몸무게 가져오기	 -->
-	<select id="my_id" resultType="myinfobean" parameterType="int">
+	<!-- 처음	 -->
+	<select id="getmyinfo" resultType="memberbean" parameterType="int">
 		select * from member where mem_no=#{mem_no}
 	</select>
 	
-	<!-- mypage memo 가져오기	 -->
-	<select id="my_memo" resultType="myinfobean" parameterType="int">
-		select * from my_info where mem_no=#{mem_no}
-	</select>
-	
 	<!-- my_memo 수정 -->
-	<update id="my_update" parameterType="myinfobean">
-		update my_info
+	<update id="memo_update" parameterType="memberbean">
+		update member
 		set my_memo=#{my_memo}
 		where mem_no=#{mem_no}
 	</update>
 	
 	<!-- my_w 수정 -->
-	<update id="my_w_update" parameterType="myinfobean">
-		update my_info
+	<update id="w_update" parameterType="java.util.Map">
+		update member
 		set goal_w=#{goal_w}
 		where mem_no=#{mem_no}
 	</update>
-
-
-	<!-- 자료실 수정 <update id="obs_edit" parameterType="obsbean"> update oboard 
-		set mem_no#{mem_no}, o_sj=#{o_sj}, o_ct=#{o_ct, o_fl=#{o_fl, jdbcType=VARCHAR} 
-		where o_no=#{o_no} </update> 답변글 레벨 증가 <update id="bbs_Level" parameterType="bbsbean"> 
-		update bbs6 set bbs_re_seq=bbs_re_seq+1 where bbs_re_ref=#{bbs_re_ref} and 
-		bbs_re_seq > #{bbs_re_seq} </update> 답변글 저장 <insert id="bbs_reply" parameterType="bbsbean"> 
-		insert into bbs6( bbs_num, bbs_name, bbs_subject,bbs_content, bbs_pass,bbs_re_ref,bbs_re_lev, 
-		bbs_re_seq, bbs_readcount, bbs_date) values( bbs6_num_seq.nextval,#{bbs_name},#{bbs_subject}, 
-		#{bbs_content},#{bbs_pass},#{bbs_re_ref},#{bbs_re_lev}, #{bbs_re_seq},0,sysdate) 
-		</insert> -->
+	
+	
 </mapper>
 
 

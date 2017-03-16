@@ -1,6 +1,8 @@
 package com.burn.fat.member.mypage.myinfo.action;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,45 +13,35 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.burn.fat.member.model.MemberBean;
 import com.burn.fat.member.mypage.myinfo.dao.MyinfoService;
-import com.burn.fat.member.mypage.myinfo.dao.StatisticsService;
-import com.burn.fat.member.mypage.myinfo.model.MyinfoBean;
 
 @Controller
 public class MyinfoAction {
 
-	
-	@Autowired
-	StatisticsService service;
-	
 	@Autowired
 	private MyinfoService myinfoService;
-	//private String saveFolder = "C:/eeworkspace/OBOARD_RABBIT2/src/main/webapp/resources/upload"; // 파일
-																									// 저장시킬
-	
+
 	/* 마이페이지 레프트단 초기화면 */
 	@RequestMapping(value = "/my_view.brn")
 	public ModelAndView my_view(HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) throws Exception {
-		
-		String mem_id = (String)session.getAttribute("mem_id");
+	
 		int mem_no = ((Integer)session.getAttribute("mem_no")).intValue();
 		
-		System.out.println("mem_id = "+mem_id);
-		System.out.println("mem_no = "+mem_no);
 		
-		MyinfoBean myinfobean = this.myinfoService.getMyCont(mem_no);
-		MyinfoBean myinfobean_memo = this.myinfoService.mymemo(mem_no);
+		MemberBean myinfobean = this.myinfoService.getMyinfo(mem_no);
 		
+		ModelAndView contM = new ModelAndView("html_mypage/mypage_main");
+
+		contM.addObject("myinfobean", myinfobean);
+		
+	
+ 	
+		//MyinfoBean myinfobean = this.myinfoService.getMyCont(mem_no);
+		//MyinfoBean myinfobean_memo = this.myinfoService.mymemo(mem_no);
+	
 		Calendar cal = Calendar.getInstance();
-	   	int goalMemNum = service.getGoalNum(cal.get(Calendar.YEAR)*10000+(cal.get(Calendar.MONTH)+1)*100+(cal.get(Calendar.DATE)-1));
-	   	int entireMemNum = service.getEntireMemNum(cal.get(Calendar.YEAR)*10000+(cal.get(Calendar.MONTH)+1)*100+(cal.get(Calendar.DATE)-1));
-	   	int goalMemPercent=0;
-	   	if(entireMemNum==0){
-	   		goalMemPercent=0;
-	   	}else{
-	   		goalMemPercent = goalMemNum/entireMemNum*100;
-	   	}
 		   int year = request.getParameter("y") == null ? cal.get(Calendar.YEAR) : Integer.parseInt(request.getParameter("y"));
 		   int month = request.getParameter("m") == null ? cal.get(Calendar.MONTH) : (Integer.parseInt(request.getParameter("m")) - 1);
 
@@ -77,10 +69,8 @@ public class MyinfoAction {
 		      nextYear++;
 		      nextMonth = 1;
 		   }
-	
-			ModelAndView contM = new ModelAndView("html_mypage/mypage_main");
+     
 			int lastDay =cal.getActualMaximum(Calendar.DATE);
-			System.out.println(lastDay+"  "+bgnWeek);
 			contM.addObject("year",year);
 			contM.addObject("month",month);
 			contM.addObject("bgnWeek",bgnWeek);
@@ -91,13 +81,37 @@ public class MyinfoAction {
 			contM.addObject("lastDay",lastDay);
 			contM.addObject("calMonth",calMonth);
 			contM.addObject("calDate",calDate);
-			contM.addObject("goalMemPercent",goalMemPercent);
 			contM.addObject("myinfobean",myinfobean);
-			contM.addObject("myinfobean_memo",myinfobean_memo);
 			
 			return contM;
+			
+
+		
+		
+		
 	}
 /***************************************************************************	*/
+	/* 마이페이지 레프트단 초기화면 */
+	@RequestMapping(value = "/my_info.brn")
+	public ModelAndView my_info(HttpServletRequest request, HttpServletResponse response,
+			HttpSession session) throws Exception {
+		
+		String mem_id = (String)session.getAttribute("mem_id");
+		int mem_no = ((Integer)session.getAttribute("mem_no")).intValue();
+		
+		System.out.println("mem_id 마이인포= "+mem_id);
+		System.out.println("mem_no 마이인포= "+mem_no);
+		
+		MemberBean myinfobean = this.myinfoService.getMyinfo(mem_no);
+		
+		System.out.println("여기는?1-------" + myinfobean);
+		ModelAndView contM = new ModelAndView("inc/myinfo");
+
+		System.out.println("여기는?2");
+		contM.addObject("myinfobean", myinfobean);
+		
+		return contM;
+	}
 	
 	@RequestMapping(value = "/memo_edit.brn")
 	public ModelAndView memo_edit(HttpServletRequest request, HttpServletResponse response,
@@ -109,22 +123,23 @@ public class MyinfoAction {
 		System.out.println("mem_no = "+mem_no);
 		System.out.println("my_memo = "+my_memo);
 		
-		MyinfoBean myinfobean = new MyinfoBean();
+		/*수정*/
+		//MemberBean myinfobean = new MemberBean();
 		
-		myinfobean.setMem_no(mem_no);
-		myinfobean.setMy_memo(my_memo);
+		Map m = new HashMap();
+
+		m.put("mem_no", mem_no);
+		m.put("my_memo", my_memo);
 				
-		this.myinfoService.my_update(myinfobean);// 수정메서드 호출
+		this.myinfoService.memo_update(m);// 수정메서드 호출
 
 		System.out.println("*****************************");
-		System.out.println("update success");
+		System.out.println("memo_update update success");
 		System.out.println("*****************************");
 
 		response.sendRedirect("my_view.brn");
 	
-			
 		return null;
-		
 	}
 	
 
@@ -132,21 +147,31 @@ public class MyinfoAction {
 	public ModelAndView goalw_edit(HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) throws Exception {
 		
+		System.out.println("몸무게 수정");
+		
 		int mem_no = (Integer)session.getAttribute("mem_no");            
 		int goal_w = Integer.parseInt(request.getParameter("goal_w"));
+		
 		
 		System.out.println("mem_no = "+mem_no);
 		System.out.println("goal_w = "+goal_w);
 		
-		MyinfoBean myinfobean = new MyinfoBean();
+		/*수정*/
+		/*MemberBean myinfobean = new MemberBean();*/
 		
-		myinfobean.setMem_no(mem_no);
+		/*myinfobean.setMem_no(mem_no);
 		myinfobean.setGoal_w(goal_w);
-				
-		this.myinfoService.goal_w_update(myinfobean);// 수정메서드 호출
+		ge*/
+		
+		Map m = new HashMap();
+
+		m.put("mem_no", mem_no);
+		m.put("goal_w", goal_w);
+		
+		this.myinfoService.w_update(m);// 수정메서드 호출
 
 		System.out.println("*****************************");
-		System.out.println("update success");
+		System.out.println("w_update update success");
 		System.out.println("*****************************");
 
 		response.sendRedirect("my_view.brn");
@@ -155,7 +180,6 @@ public class MyinfoAction {
 		return null;
 		
 	}
-	
 	
 	
 }

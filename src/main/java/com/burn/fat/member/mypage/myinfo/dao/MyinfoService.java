@@ -1,20 +1,20 @@
 package com.burn.fat.member.mypage.myinfo.dao;
-import java.util.List;
 import java.util.Map;
 
-import com.burn.fat.member.mypage.myinfo.model.MyinfoBean;
+import com.burn.fat.member.model.MemberBean;
 public interface MyinfoService {
 
-	/*=============================================================================*/
-	/*mem_no¸¦ ±âÁØÀ¸·Î ÀÚ·á½Ç ³»¿ë °¡Á®¿À±â*/
-	public MyinfoBean getMyCont(int mem_no) throws Exception;
+	/*ì²˜ìŒ ê°€ì ¸ì˜´*/
+	public MemberBean getMyinfo(int mem_no) throws Exception ;
 	
-	/*mem_no¸¦ ±âÁØÀ¸·Î my_memo°¡Á®¿À±â*/
-	public MyinfoBean mymemo(int mem_no) throws Exception;
-
-	/*mem_no¸¦ ±âÁØÀ¸·Î my_memo update ½ÃÅ°±â*/
-	public MyinfoBean my_update(MyinfoBean myinfobean) throws Exception;
-
-	/*mem_no¸¦ ±âÁØÀ¸·Î goal_w update ½ÃÅ°±â*/
-	public MyinfoBean goal_w_update(MyinfoBean myinfobean) throws Exception;
+	
+	/*my_memoì¢Œìš°ëª… update*/
+	public MemberBean memo_update(Map m) throws Exception;
+	
+	/*goal_wëª©í‘œëª¸ë¬´ê²Œ update*/
+	public MemberBean w_update(Map m) throws Exception;
+	
+	/*memberí…Œì´ë¸”ì—ì„œ ë³¸ì¸ì˜ í‚¤ ëª¸ë¬´ê²Œ ê°€ì ¸ì˜¤ê¸°*/
+	public MemberBean getmemberinfo(int mem_no) throws Exception;
+   
 }

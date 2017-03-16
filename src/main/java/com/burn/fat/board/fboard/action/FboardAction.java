@@ -501,24 +501,24 @@ import com.oreilly.servlet.MultipartRequest;
        
        HttpSession session = request.getSession();
        
-       String mem_no = (String) session.getAttribute("mem_no");
-       mem_no="2";
+       int mem_no = ((Integer) session.getAttribute("mem_no")).intValue();
        Map<String, Object> map = new HashMap<String, Object>();
        map.put("f_no", f_no);
        map.put("mem_no", mem_no);
        int check=0;
        String f_lkno = bbsService.checkscrap(f_no);
-       if(f_lkno!=null){
-          StringTokenizer token = new StringTokenizer(f_lkno, ",");
-          while(token.hasMoreTokens()){
-             if(token.nextToken().equals(mem_no)){
-                check=1;
-             }
-          }
-          System.out.println("1."+f_lkno);
-       }else{
-          System.out.println("f_lkno is null");
-       }
+       if (f_lkno != null) {
+			StringTokenizer token = new StringTokenizer(f_lkno, ",");
+			while (token.hasMoreTokens()) {
+				int lkno = Integer.parseInt(token.nextToken());
+				if (lkno==mem_no) {
+					check = 1;
+				}
+			}
+			System.out.println("1." + f_lkno);
+		} else {
+			System.out.println("f_lkno is null");
+		}
        int result = 0;
        if(check !=1 ){
           result = bbsService.likeCountUp(map);

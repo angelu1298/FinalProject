@@ -30,7 +30,7 @@
 	}
   
   
-  function scrap_ok(){
+  function f_scrap_ok(){
 		var f_no = $('#f_no').val();
 		$.ajax({
 			type : "post",
