@@ -61,7 +61,7 @@ public class LoginAction {
 	@RequestMapping("/Logout.brn")
 	public String logout(HttpServletRequest request, HttpServletResponse response,HttpSession session) throws Exception{
 		session= request.getSession();
-		session.removeAttribute("mem_id");
+		session. invalidate();
 		
 		return "html_membership/logout";
 	}
