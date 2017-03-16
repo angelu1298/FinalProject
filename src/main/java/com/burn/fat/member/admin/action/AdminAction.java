@@ -111,7 +111,7 @@ public class AdminAction {
 
 		MemberBean member = this.service.getMemCont(num);
 
-		ModelAndView model = new ModelAndView("html_membership/modifyView");
+		ModelAndView model = new ModelAndView("html_membership/memView");
 
 		model.addObject("member", member);
 
@@ -179,7 +179,7 @@ public class AdminAction {
 		// return null;
 	}
 
-	// 회원관리 수정 폼
+/*	// 회원관리 수정 폼
 	@RequestMapping(value = "/manage_edit.brn")
 	public ModelAndView manage_edit(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -188,8 +188,8 @@ public class AdminAction {
 
 		String id = request.getParameter("mem_id"); // 회원 아이디
 
-		MemberBean member = service.isMem(id);
 		System.out.println("id는???" + id);
+		MemberBean member = service.isMem(id);
 
 		if (member != null) {
 
@@ -321,7 +321,7 @@ public class AdminAction {
 			Random r = new Random();
 			int random = r.nextInt(100000000);
 
-			/**** 확장자 구하기 시작 ****/
+			*//**** 확장자 구하기 시작 ****//*
 			int index = 0;
 			String fileExtension = "";
 			String refileName = "";
@@ -332,7 +332,7 @@ public class AdminAction {
 			// lastIndexOf는 마지막으로 발견되는 문자열의 index를 반환합니다.
 			// (파일명에 점에 여러개 있을 경우 맨 마지막에 발견되는 문자열의 위치를 리턴합니다.)
 			fileExtension = filename.substring(index + 1);
-			/**** 확장자 구하기 끝 ***/
+			*//**** 확장자 구하기 끝 ***//*
 			// 새로운 파일명을 저장
 			refileName = "wannabe" + year1 + month1 + date1 + random + "." + fileExtension;
 			// 오라클 디비에 저장될 레코드 값
@@ -360,7 +360,7 @@ public class AdminAction {
 		this.service.manage_edit(member);
 
 		response.sendRedirect("./memlist.brn");
-	}
+	}*/
 
 	// 회원관리 삭제
 	@RequestMapping(value = "/manage_delete_ok.brn")

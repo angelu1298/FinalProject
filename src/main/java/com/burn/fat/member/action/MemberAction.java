@@ -323,7 +323,7 @@ public class MemberAction {
            } catch (Exception e) {
               e.printStackTrace();
               out.println("<script>");
-            out.println("alert('임시 비밀번호 메일 보내기에 실패하였습니다.')");
+            out.println("alert('임시 비밀번호 메일 보내기에 성공2하였습니다.')");
             out.println("history.go(-1)");  //오류 발생 시 뒤로 돌아감
             out.println("</script>");
          }

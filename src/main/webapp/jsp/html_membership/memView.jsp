@@ -149,8 +149,7 @@
 						<!--//회원정보입력란-->
 						<!--버튼-->
 						<div class="btnL_area mt25">
-							<input type="reset" value="취소" onclick="location.href='./Main.brn' ">
-							<input type="submit" value="수정하기">
+							<input type="reset" value="목록" onclick="location.href='./memlist.brn' ">
 						</div>
 						<!--//버튼-->	
 					</div>

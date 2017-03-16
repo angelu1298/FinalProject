@@ -101,7 +101,7 @@
 									<%-- ${b.mem_st} --%></div>
 								</td>
 								<td class="ten">
-									<input type="button" name="modify2" id="modify2" value="수정" onclick="location.href='manage_edit.brn?mem_id=${b.mem_id}'">
+								<%-- 	<input type="button" name="modify2" id="modify2" value="수정" onclick="location.href='manage_edit.brn?mem_id=${b.mem_id}'"> --%>
 									<input type="button" name="delete2" id="delete2" value="삭제" onclick="location.href='manage_delete_ok.brn?mem_id=${b.mem_id}'">
 								</td>
 							</tr>
