@@ -13,6 +13,7 @@ select * from gboard;
 select * from gboardlist;
 select * from gcomment;
 
+
 create table GROCERY(
 	GRC_NO   NUMBER(5) constraint GRC_NO_PK primary key,--��ȣ	NUMBER	5	NN	PK
 	GRC_TT   VARCHAR2(500) not null,--	�ķ�ǰ��	VARCHAR2	200	NN	
@@ -59,35 +60,36 @@ create table JUICE(
 	JUC_TRS NUMBER(6,3)	--Ʈ��������	NUMBER	6,3				
 );
 
-
 create table RECIPE (
-	RCP_NO NUMBER(5) constraint RCP_NO_PK primary key,	--��ȣ	NUMBER	5	NN	PK
-	RCP_TT VARCHAR2(200) not null,	--������ �̸�	VARCHAR2	200	NN	
-	RCP_NT VARCHAR2(200) not null,	--���	VARCHAR2	200	NN	
-	MEM_NO NUMBER(5), 				--������ �ۼ���	NUMBER	5	NN	FK		
-	RCP_CAL NUMBER(6,3) not null,	--����	NUMBER	6,3	NN			
-	RCP_TAN NUMBER(6,3),	--ź��ȭ��	NUMBER	6,3				
-	RCP_DAN NUMBER(6,3),	--�ܹ���	NUMBER	6,3				
-	RCP_GEE NUMBER(6,3),	--����	NUMBER	6,3				
-	RCP_NA NUMBER(6,3),	--��Ʈ��	NUMBER	6,3				
-	RCP_COL NUMBER(6,3),	--�ݷ����׷�	NUMBER	6,3				
-	RCP_POJ NUMBER(6,3),	--��ȭ�����	NUMBER	6,3				
-	RCP_TRS NUMBER(6,3)	--Ʈ��������	NUMBER	6,3			
+   RCP_NO NUMBER(5) constraint RCP_NO_PK primary key,   --번호   NUMBER   5   NN   PK
+   RCP_TT VARCHAR2(200) not null,   --레시피 이름   VARCHAR2   200   NN   
+   RCP_NT VARCHAR2(200) not null,   --재료   VARCHAR2   200   NN   
+   MEM_NO NUMBER(5),             --레시피 작성자   NUMBER   5   NN   FK      
+   RCP_CAL NUMBER(6,3) not null,   --열량   NUMBER   6,3   NN         
+   RCP_TAN NUMBER(6,3),   --탄수화물   NUMBER   6,3            
+   RCP_DAN NUMBER(6,3),   --단백질   NUMBER   6,3            
+   RCP_GEE NUMBER(6,3),   --지방   NUMBER   6,3            
+   RCP_NA NUMBER(6,3),   --나트륨   NUMBER   6,3            
+   RCP_COL NUMBER(6,3),   --콜레스테롤   NUMBER   6,3            
+   RCP_POJ NUMBER(6,3),   --포화지방산   NUMBER   6,3            
+   RCP_TRS NUMBER(6,3)   --트랜스지방   NUMBER   6,3               
+   RCP_STATE NUMBER(1)   -- 삭제여부
 );
 alter table RECIPE 
 add constraint rec_mem_no_FK foreign key (mem_no) 
 references member(mem_no);
 
-insert into juice values(1,1,'���',100,49,13.1,0.2,0.1,16,0,0.04,0);
-insert into juice values(2,1,'��纣��',100,57,14.5,	0.7,	0.3,	1,	0,	0,	0);
-insert into juice values(3,1,'����',100	46,12.2,0.5,	0.1,	0,	0,	0.02,	0);
-insert into juice values(4,1,'����',30,9.6,2.01,0.39,	0.12,	0.6,	0,	0,	0);
-insert into juice values(5,1,'Ű��',100,64,	14.8,	0.8,	1,	1.257,	0,	0.14,	0);
-insert into juice values(6,1,'�ڸ�',100,31,	7.6,	0.7,	0.1,	1,	0,	0,	0);
-insert into juice values(7,1,'�ٳ���',100,	80,	21.2,	1,	0,	1,	0,	0,0);
+insert into juice values(1,1,'사과',100,49,13.1,0.2,0.1,16,0,0.04,0);
+insert into juice values(2,1,'블루베리',100,57,14.5,   0.7,   0.3,   1,   0,   0,   0);
+insert into juice values(3,1,'포도',100,  46,12.2,0.5,   0.1,   0,   0,   0.02,   0);
+insert into juice values(4,1,'딸기',30,9.6,2.01,0.39,   0.12,   0.6,   0,   0,   0);
+insert into juice values(5,1,'키위',100,64,   14.8,   0.8,   1,   1.257,   0,   0.14,   0);
+insert into juice values(6,1,'자몽',100,31,   7.6,   0.7,   0.1,   1,   0,   0,   0);
+insert into juice values(7,1,'바나나',100,   80,   21.2,   1,   0,   1,   0,   0,0);
 
-insert into juice values(21,	2,	'����',	70,	30.1,	5.11,	3.5,	0.42,	30.1,	0,	0,	0);
-insert into juice values(22,	2,	'������',	70,	18.2,	3.85,	1.26,	0.14,	105,	0,	0,	0);
+insert into juice values(21,   2,   '케일',   70,   30.1,   5.11,   3.5,   0.42,   30.1,   0,   0,   0);
+insert into juice values(22,   2,   '셀러리',   70,   18.2,   3.85,   1.26,   0.14,   105,   0,   0,   0);
+
 
 create table park (
 	prk_no  	number constraint prk_no_PK primary key,

@@ -2,149 +2,53 @@
 <html>
 
 <head>
-
-    <style>
-		body{margin:0;padding:0;font-family:'Nanum Pen Script', serif;font-size:20px;}
-		#head{border:1px solid red;padding-top:10px;padding-bottom:10px;padding-left:10px;background:#f86977;color:white;
-				}
-		#head > img {padding-right:20px}
-		#lobby > ul {padding:0;margin:0 }
-		#lobby > ul > li{margin:10px;padding:10px;background:pink;color:#787878;list-style:none}
-		#lobby > ul > li > p{margin:10px;padding:10px;background:pink;color:#787878;list-style:none}
-		#send{float:right;padding-right:20px}
-		#lobby{background:white;width:229px; height:330px;}
-		#show{position:fixed;bottom:0px; left:0; background:black;color:white;font-family:'Nanum Pen Script', serif;font-size:20px; }
-		#messagearea{position:fixed;bottom:30px;}
+     <style>
+		body{margin:0;padding:0; width:230px; height:380px;font-family:'Nanum Pen Script', serif;font-size:20px;overflow-x:hidden; overflow-y:hidden;background:white}
+		#head{padding-top:10px;padding-bottom:10px;background:rgba(190,35,25,1);color:white;position:fixed;top:0px;width:100%;display:block;z-index:9999}
+		#head > img {padding-right:20px;padding-left:20px}
+		.messageBody{display:block;position:absolute;top:43px;width:100%}
+		#lobby{background:black; width:230px; height:350px;display:block;overflow-x:hidden; overflow-y:auto;bottom:30px}
+		#lobby > ul {padding:0;margin:0;width:100%;background:rgba(20,20,20,1); }
+		li{list-style:none;color:white;clear:both;display:block;}
+		p{display:inline-block}
+		.me > p:nth-child(1){margin-left:3px;font-size:13px;padding:5px;font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕';background:#e6e6e6;color:rgba(20,20,20,1);word-break:break-all;width:70%;border-radius: 5px;}
+		.me > p:nth-child(2){line-height:10px;width:20%;margin-left:7px}
+		.other > p:nth-child(1){line-height:10px;width:20%;margin-right:3px}
+		.other > p:nth-child(2){margin:3px;padding:5px;font-size:13px;background:#e6e6e6;font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕';color:rgba(20,20,20,1);word-break:break-all;width:70%;border-radius: 5px;}
+		#messagearea{position:fixed;bottom:0px;width:100%}
+		#message{width:79%;height:30px}
+		#send{float:right;width:19%;height:30px}
     </style>
 </head>
 
 <body>
+<div id="head"><img src="#" />마카오 톡 </div>
 <div class="messageBody">
-	<div id="head"><img src="#" />마카오 톡 </div>
 	<div id="lobby">
 		<ul id="messageShow">
+			<li class="me" ><p>messagemessagemessagemessagemessagemessagemessagemessagemessage</p><p>me</p></li>
+			<li class="me" ><p>messagemessagemessagemessagemessagemessagemessagemessagemessage</p><p>me</p></li>
+			<li class="me" ><p>messagemessagemessagemessagemessagemessagemessagemessagemessage</p><p>me</p></li>
+			<li class="me" ><p>messag</p><p>me</p></li>
+			<li class="other" ><p>other</p><p>messagessage</p></li>
+			<li class="other" ><p>other</p><p>messagemessagemessagemessagemessagemessagemessagemessagemessage</p></li>
+			<li class="other" ><p>other</p><p>messagemessagemessagemessagemessagemessagemessagemessagemessage</p></li>
+			<li class="other" ><p>other</p><p>messagemessagemessagemessagemessagemessagemessagemessagemessage</p></li>
+			<li class="other" ><p>other</p><p>messagemessagemessagemessagemessagemessagemessagemessagemessage</p></li>
+			<li class="other" ><p>other</p><p>messagemessagemessagemessagemessagemessagemessagemessagemessage</p></li>
+			<li class="other" ><p>other</p><p>messagemessagemessagemessagemessagemessagemessagemessagemessage</p></li>
 		</ul>
 	</div>
 	<div id="messagearea">
 		<input type="text" id="message" />
-		<input type="button" id="send" value="전송" />
+		<input type="button" id="send" src="url(image/sendbutton.png)" />
 	</div>
 </div>
 
 
 <script type="text/javascript" src="http://cdn.socket.io/socket.io-1.4.0.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="/javascripts/jquery.cookie.js"></script>
 
-<script>
-
-	 function getCookie(cName) {
-        cName = cName + '=';
-        var cookieData = document.cookie;
-        var start = cookieData.indexOf(cName);
-        var cValue = '';
-        if(start != -1){
-            start += cName.length;
-            var end = cookieData.indexOf(';', start);
-            if(end == -1)end = cookieData.length;
-            cValue = cookieData.substring(start, end);
-        }
-        return unescape(cValue);
-    }
-	 
-    var serverURL = 'localhost:50000';
-	var mem_id ='';
-	var idCookie = setInterval(function(){
-		 mem_id=getCookie("mem_id");
-	},1000);
-	
-    var name = mem_id;
-    var room = '100';
-
-    var socket = null;
-	
-	
-    
-    function writeMessage(type, name, message) {
-        var html = '<div>{MESSAGE}</div>';
-
-        var printName = '';
-        printName = name + ' : ';
-        
-        html = html.replace('{MESSAGE}', printName + message);
-
-        $(html).appendTo('#messageShow');
-        $('body').stop();
-        $('body').animate({scrollTop:$('body').height()}, 500);
-
-    }
-
-    function sender(text) {
-
-        socket.emit('user', {
-            name : name,
-            message : text
-        });
-
-        writeMessage('me', name, text);
-    }
-
-    $(document).ready(function() {
-    
-        socket = io.connect(serverURL);
-
-        socket.on('connection', function(data) {
-            console.log('connect');
-            if(data.type === 'connected' && name!='') {
-            	clearInterval(idCookie);
-                socket.emit('connection', {
-                    type : 'join',
-                    name : name,
-                    room : room
-                });
-            }else{
-	 	  	 	$('#message').val('로그인하세요');
-	 	  	 }
-        });
-
-        socket.on('system', function(data) {
-            writeMessage('system', 'system', data.message);
-        });
-
-        socket.on('message', function(data) {
-            writeMessage('other', data.name, data.message);
-        });
-		
-		
-	    $('#send').click(function() {
-	
-	       var $input = $('#message');
-	
-	       var msg = $input.val();
-	       sender(msg);
-	       $input.val('');
-	       $input.focus();
-	
-		 	  	
-	
-	    });
-	
-	    $('#message').on('keypress', function(e) {
-	
-	        if(e.keyCode === 13) {
-
-	        var $input = $('#message');
-	
-	        var msg = $input.val();
-	        sender(msg);
-	        $input.val('');
-	        $input.focus();
-	        }
-	    });
-	   
-    });
-
-</script>
 
 </body>
 </html>
