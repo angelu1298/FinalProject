@@ -3,11 +3,14 @@
 	
 	<script>
 	$(function(){
+		
 		 $(".btn_submit").click(function(){
 			 $("#delok").submit();
 		 })
 		 $(".btn_close").click(function(){
+			 $(".modal_bg").html();
 			 $(".modal_bg").addClass("off");
+			 $(".modal_bg").animate({"opacity":"0"});
 		 })
 	})
 	</script> 

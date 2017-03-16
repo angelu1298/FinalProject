@@ -52,7 +52,6 @@
                     }
                 });
 
-                
     			// 삭제버튼 모달창으로 페이지 load
     			$(".btn_make").click(function(){
     				
@@ -63,9 +62,8 @@
     					success : function(data) { 
 	    					$('.modal_bg').removeClass("off");
 	    					$('.modal_bg').load("juiceMake02.brn");
-    					},
-    					error : function(data, status) {
-    						alert('다시 선택해 주세요.');
+    					}, error : function(data, status) {
+    						
     					}, complete : function(){
     						
     					}

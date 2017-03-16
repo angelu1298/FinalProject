@@ -8,22 +8,29 @@
 	<script>
 	
 		$(function(){
-			/* 해당 리스트 삭제모달창 불러오기  */
+			/* 해당 리스트 칼로리추가 불러오기  */
 			$(".btn_add_today").click(function(){
 				$(".modal_bg").removeClass("off");
-				/*hidden으로 숨겨놓은 레시피 번호를 삭제 모달에 get방식으로 일러준다.*/
-				var num = $(this).next().val();
-				var tit = $(this).parents("dt").children("strong").text();
-				$(".modal_bg").load("recipeAddToday.brn?rcp_no=" + num + "&rcp_tt=" + tit); 
+				$(".modal_bg").animate({"opacity":"1"});
+				/*hidden으로 숨겨놓은 레시피 번호를 삭제 모달에 get방식으로 일러준다.*/ 
+				var rcp_no  = $(this).siblings(".rcp_no").val();
+				var rcp_cal = $(this).siblings(".rcp_cal").val();
+				var rcp_tt = $(this).siblings(".rcp_tt").val();
+				var aa = encodeURI(encodeURIComponent(rcp_no));
+				var bb = encodeURI(encodeURIComponent(rcp_cal));
+				var cc = encodeURI(encodeURIComponent(rcp_tt));
+				$(".modal_bg").load("recipeAddToday.brn?rcp_no=" + aa + "&rcp_tt=" + cc +  "&rcp_cal=" + bb); 
 			})
 			
 			/* 해당 리스트 삭제모달창 불러오기  */
 			$(".btn_del_rec").click(function(){
 				$(".modal_bg").removeClass("off");
+				$(".modal_bg").animate({"opacity":"1"});
 				/*hidden으로 숨겨놓은 레시피 번호를 삭제 모달에 get방식으로 일러준다.*/
-				var num = $(this).next().val();
-				var tit = $(this).parents("dt").children("strong").text();
-				$(".modal_bg").load("recipeDelete.brn?rcp_no=" + num + "&rcp_tt=" + tit); 
+				var rcp_no  = $(this).parent().siblings(".rcp_no").val();
+				var rcp_cal = $(this).parent().siblings(".rcp_cal").val();
+				var rcp_tt = $(this).parent().siblings(".rcp_tt").val().replace(" ","\s");
+				$(".modal_bg").load("recipeDelete.brn?rcp_no=" + rcp_no + "&rcp_tt=" + rcp_tt); 
 			})
 			/* 자세히보기 열기  */
 			$(".btn_view").click(function(){
@@ -88,9 +95,12 @@
 								<p>
 									<input type="button" class="btn_view" value="자세히보기"> 
 									<input type="button" class="btn_del_rec" value="삭제">
-									<input type="hidden" value="${r.rcp_no}">
 								</p>
 								<input type="button" class="btn_add_today" value="오늘 식단에 추가하기 "> 
+								<input type="hidden" class="rcp_no"   value="${r.rcp_no}">
+								<input type="hidden" class="rcp_tt"   value="${r.rcp_tt}">
+								<input type="hidden" class="rcp_cal"  value="${r.rcp_cal}">
+								
 							</dt>
 							<!-- 자세히보기 버튼을 클릭했을 떄만 보여지는 부분. -->
 							<dd>
