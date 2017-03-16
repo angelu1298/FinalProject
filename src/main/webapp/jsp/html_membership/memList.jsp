@@ -3,6 +3,9 @@
 <%@ include file="/jsp/inc/boardHeader.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="./resources/js/managelist.js"></script>
+ <script>
+        $("#viewcount").val("${limit}").prop("selected", true);
+ </script>
 
 <!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
 <section class="sub_container">
@@ -17,7 +20,7 @@
 		<h4>회원 목록</h4>
 
 		<!-- form -->
-		<form action="memView.jsp" method="get">
+		<form action="manageModify.jsp" method="get">
 			<p class="srch_result">
 				<span class="rs_txt"><strong>${listcount}</strong>건이 검색되었습니다.</span>
 				<span class="rs_txt">가입상태 "0"은 가입, "1"은 탈퇴</span>
@@ -58,7 +61,7 @@
 						<!--등록된 게시물이 있는 경우-->
 						
 						<!-- 화면 출력 번호  변수 정의 -->
-						<c:set var="num" value="${listcount-(page-1)*limit}" />
+						<c:set var="num" value="${listcount-(page-1)*limit}" /> 
 
 						<!-- 반복문 시작 -->
 						<c:forEach var="b" items="${member}">
@@ -67,9 +70,10 @@
 								onmouseover="this.style.backgroundColor='F8F8F8'"
 								onmouseout="this.style.backgroundColor=''">
 								<td height="23" class="ten">
-									<!-- 번호 출력 부분 --> 
+									<!-- 번호 출력 부분 -->
+									<%-- <input type="hidden" name="mem_no" id="mem_no" value="${b.mem_no}"> 
+									${b.mem_no}  --%>
 									<c:out value="${b.mem_no}" />
-									<%-- ${b.mem_no} --%>
 								</td>
 
 								<td class="ten">
@@ -98,7 +102,7 @@
 								</td>
 								<td class="ten">
 									<input type="button" name="modify2" id="modify2" value="수정" onclick="location.href='manage_edit.brn?mem_id=${b.mem_id}'">
-									<input type="button" name="delete2" id="delete2" value="삭제" onclick="location.href='manage_delete_ok.brn?mem_id=${b.mem_id}&mem_st=${b.mem_st}'">
+									<input type="button" name="delete2" id="delete2" value="삭제" onclick="location.href='manage_delete_ok.brn?mem_id=${b.mem_id}'">
 								</td>
 							</tr>
 
@@ -146,7 +150,7 @@
 					<label for="srch_sel01" class="sc_txt">검색영역</label> 
 					<select class="w180 mr10" name="find_field" id="find_field" >
 						<option value="mem_id">아이디</option>
-		       			<option value="mem_name">이름</option>
+		       			<option value="mem_nm">이름</option>
 		       			<option value="mem_st">가입상태</option>
 					</select> 
 					<label for="srch_txt" class="dnone"></label>

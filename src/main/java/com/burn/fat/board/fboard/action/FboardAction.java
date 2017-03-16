@@ -76,7 +76,7 @@ import com.oreilly.servlet.MultipartRequest;
         
         if(mem_id==null){
          out.print("<script>alert('로그인 후 이용할 수 있습니다.');");
-         out.print(" history.back()</script>");
+         out.print("history.back()</script>");
          
          return null;
       }
@@ -250,10 +250,10 @@ import com.oreilly.servlet.MultipartRequest;
         
        
        if(bbsbean==null){
-          out.println("<script>");
-            out.println("alert('게시판 글이 없습니다.')");
-            out.println("history.back()");
-            out.println("</script>");
+    	   out.print("<script>");
+           out.print("alert('게시판 글이 없습니다.');");
+           out.print("history.go(-1);");
+	       out.print("</script>");
 
           return null;
        }else{
@@ -332,10 +332,10 @@ import com.oreilly.servlet.MultipartRequest;
         
         
         if(!bcont.getMem_id().equals(mem_id)){//해당 회원이 아니라면
-           out.println("<script>");
-           out.println("alert('수정 권한이 없습니다.')");
-           out.println("history.back()");
-           out.println("</script>");
+           out.print("<script>");
+           out.print("alert('수정 권한이 없습니다.');");
+           out.print("history.go(-1);");
+	       out.print("</script>");
         }else{
            File UpFile=multi.getFile("bbs_file");
            if(UpFile != null){//첨부한 이진파일이 있다면
@@ -411,10 +411,10 @@ import com.oreilly.servlet.MultipartRequest;
         
   
         if(!bbsbean.getMem_id().equals(mem_id)){//해당 회원이 아니라면
-           out.println("<script>");
-           out.println("alert('삭제 권한이 없습니다.')");
-           out.println("history.back()");
-           out.println("</script>");
+        	 out.print("<script>");
+             out.print("alert('삭제 권한이 없습니다.');");
+             out.print("history.go(-1);");
+  	       	 out.print("</script>");
         }else{//비번이 같다면
            if(fname != null){//기존 이진파일이 존재한다면
               File file=new File(saveFolder+fname);

@@ -344,9 +344,13 @@ public class JoinAction {
 			File thumbnail = multi.getFile("wannabe");  //첨부한 파일을 가져옴
 			
 			
-			if(thumbnail !=null){
+			if(thumbnail !=null){  //첨부한 파일이 있을 경우 저장
 				String filename = thumbnail.getName();  //이진파일명 저장
 				File DelFile= new File(saveFolder+member.getMem_wb());
+				
+				
+				System.out.println("filename 파일명은?"+filename);
+				System.out.println("DelFile 파일명은?"+DelFile);
 				if(DelFile.exists()){  //기존 파일이 존재하면
 					DelFile.delete();  //기존 파일명 삭제
 				}
@@ -386,8 +390,11 @@ public class JoinAction {
 			// 파일명 변경합니다.
 			thumbnail.renameTo(new File(homedir + "/" + refileName));
 			
+			System.out.println("fileDBName는???"+fileDBName);
 			
 			member.setMem_wb(fileDBName); //파일명 저장
+			//워너비 사진 새로고침해야 출력됨
+			
 			}
 			
 			member.setMem_id(mem_id);

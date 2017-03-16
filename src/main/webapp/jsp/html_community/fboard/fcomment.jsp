@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="/fat/resources/js/jquery.min.js"></script>
 <style>
 #re_form{
 	padding:5px 10px 40px 10px;
@@ -15,7 +14,6 @@ span#re-title{
 	font-size:12pt;
 	line-height:200%;
 }
-
 </style>
  
 <script>
@@ -173,8 +171,10 @@ $('.fcomm_rep_button').each(function(index, item) {
 		            <c:if test="${sessionScope.mem_id == item.mem_id }">
 			            <input type="button" id="del" value="삭제" onclick="doDeleteCmt()" />
 		            </c:if>
-					
+		            
+					<c:if test="${sessionScope.mem_id != item.mem_id }">
 					<input type="button" id="reply" value="답글" onclick="replycmt()" />
+					</c:if>
 				</p>
 				<p>
 					<%--해당 코멘트의 댓글 --%>

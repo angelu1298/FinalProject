@@ -101,7 +101,8 @@
 								</th>
 								<td>
 									<li>${member.mem_zc }</li>
-									<li>${member.mem_add1 }${member.mem_add2 }</li>
+									<li>${member.mem_add1 }</li>
+									<li>${member.mem_add2 }</li>
 								</td>
 							</tr>
 							<tr>

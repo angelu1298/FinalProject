@@ -22,6 +22,7 @@ import com.burn.fat.board.fboard.model.FcommBean;
 
 @Controller("fcom")
 public class FCommentAction {
+	
       @Autowired 
       private FcommService fcService;
       
@@ -36,14 +37,13 @@ public class FCommentAction {
     		  @RequestParam(value="f_no") int f_no
     		  ) throws Exception {
     	  
-    	  	ModelAndView mv=new ModelAndView();
     	  	
            	List<FcommBean> bean = fcService.getListCmt(f_no);
            	//참조글 번호를 getListCmt로 넘김
            	
+           	ModelAndView mv=new ModelAndView("html_community/fboard/fcomment");
            	
             mv.addObject("bean", bean);
-            mv.setViewName("html_community/fboard/fcomment");
             return mv;
       }
      
@@ -57,8 +57,8 @@ public class FCommentAction {
     	  
     	  HttpSession session = request.getSession();
     	  
-    	  String fcomm_ct = request.getParameter("fcomm_ct").trim();
     	  String mem_id = (String)session.getAttribute("mem_id");
+    	  String fcomm_ct = request.getParameter("fcomm_ct").trim();
     	  
 
     	  FcommBean bean = new FcommBean();
@@ -66,8 +66,9 @@ public class FCommentAction {
     	  bean.setFcomm_ct(fcomm_ct);
     	  bean.setMem_id(mem_id);
     	  
-          fcService.createCmt(bean);
+          int result =fcService.createCmt(bean);
           
+          boardservice.changeFcomment(f_no);
           
       }
       

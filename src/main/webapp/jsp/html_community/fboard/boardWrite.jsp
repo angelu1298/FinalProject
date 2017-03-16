@@ -93,6 +93,7 @@ $(function(){
 				<div class="file_Area">
 					<h6><strong>첨부파일</strong><input type="file" value="파일추가" name="f_fl"></h6>
 					<ul class="addfile">
+					<a href="#" class="file_name">${member.f_fl }</a>
 						
 					</ul>
 				</div>

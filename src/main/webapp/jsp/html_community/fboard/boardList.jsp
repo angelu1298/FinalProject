@@ -82,7 +82,7 @@
 
 										<!-- 제목 출력 부분 -->
 										<a href="bbs_cont.brn?num=${b.f_no}&page=${page}&state=cont">
-											${b.f_sj} </a>
+											${b.f_sj} </a>[${b.fcomm_cnt}]
 											
 										<%-- <c:set var="logtime" 
 										value="${boardNoticeDTO.getNo_logtime().substring(0,10).replaceAll('-', '').trim() }"></c:set>

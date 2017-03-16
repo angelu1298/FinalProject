@@ -27,7 +27,7 @@
 		select * 
 		from 
 		  (select rownum rnum, f_no,mem_id,f_sj, 
-           f_ct,f_fl,f_rc,f_dt,f_lk,f_lkno
+           f_ct,f_fl,f_rc,f_dt,f_lk,f_lkno,fcomm_cnt
 		   from  
 	  	      (select * from fboardlist 
 	  	       order by f_no desc, f_rc asc)
@@ -154,7 +154,7 @@
 <!-- 코멘트 입력시 게시물의 코멘트 수 증가  -->
 	<update id="updatefcommcnt" parameterType="int" >
     	update fboard
-    		set fcomm_cnt = fcomm_cnt+1
+    		set fcomm_cnt = (select count(*) from fcomment where f_no=#{f_no}) 
     	where f_no=#{f_no}
     </update>
 

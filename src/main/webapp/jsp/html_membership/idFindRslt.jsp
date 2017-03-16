@@ -13,7 +13,7 @@
 		<div class="subContent nobg">
 			
 		<!--로그인 영역-->
-		<div class="login_area">
+		<div class="login_bg"> 
 					<!--회원가입 영역-->
 					<div class="login_box">
 					<div class="result">
@@ -23,9 +23,10 @@
 						</p>
 						<div><strong>${mem_id}</strong>	</div>
 						
+						
 						<ul>
 							<li>▶ 기타 문의 사항은
-							 <a href="./inquiry.brn">Burning fat</a> 으로 문의해주세요.</li>
+							<a href="./inquiry.brn">Burning fat</a> 으로 문의해주세요.</li>
 							
 						</ul>
 						
