@@ -25,7 +25,7 @@
 					<p class="tip_blue">
 						 (<img src="./resources/img/bull/bull_mando.png" alt="*" />)표기는 필수입력사항으로 모두 입력해주세요.
 					</p> 
-					<form action="./mem_edit_ok.brn" method="post" id="modifyform" enctype="multipart/form-data">
+					<form action="./manage_edit_ok.brn" method="post" id="modifyform" enctype="multipart/form-data">
 					<!--회원정보입력란-->
 									
 						<div class="common_write_box">
@@ -41,6 +41,7 @@
 									<span class="mando">아이디</span>
 								</th>
 								<td>
+									<input type="hidden" class="w200" id="inputid" name="inputid" value="${member.mem_id }">
 									${member.mem_id }
 								</td>
 							</tr>

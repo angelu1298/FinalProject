@@ -42,11 +42,9 @@ public class JoinDAO {
 	//아이디 중복 체크
 	public int checkId(String mem_id){
 		int result =-1;
+		
 		try{
 			MemberBean member=(MemberBean) sqlSession.selectOne("checkId", mem_id);
-			System.out.println("mem_id"+mem_id);
-			System.out.println("member"+member);
-			System.out.println("result"+result);
 			
 			if(member != null){
 				result = 1;
@@ -54,7 +52,6 @@ public class JoinDAO {
 		}catch(Exception e){
 			
 		}
-		System.out.println("result"+result);
 		return result;
 	}
 	

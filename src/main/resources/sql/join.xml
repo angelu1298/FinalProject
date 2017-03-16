@@ -23,7 +23,7 @@
     </select><!-- join state가 0이면 회원 가입 -->
     
     <!--  checkId -->
-	<select id=" checkId" parameterType="String" resultType="memberbean">
+	<select id="checkId" parameterType="String" resultType="memberbean">
      select * from member 
       where   mem_id=#{mem_id}
     </select>
@@ -38,7 +38,8 @@
             mem_hp=#{mem_hp}, 	  mem_tel=#{mem_tel},
             mem_zc=#{mem_zc},     mem_add1=#{mem_add1},
             mem_add2=#{mem_add2}, mem_ma=#{mem_ma},
-            mem_h=#{mem_h}, 	  mem_w=#{mem_w} 
+            mem_h=#{mem_h}, 	  mem_w=#{mem_w},
+            mem_wb = #{mem_wb, jdbcType=VARCHAR}
      where mem_id=#{mem_id}
     </update> 
     

@@ -8,10 +8,10 @@
 		<%@ include file="/jsp/inc/leftMenu_log.jsp" %>
 		
 		<!-- 서브컨텐츠 영역 START -->
-		<div class="subContent nobg">
+		<div class="subContent">
 			
 		<!--로그인 영역-->
-		<div class="login_area">
+		<!-- <div class="login_area"> -->
 					<!--회원가입 영역-->
 					<div class="login_box">
 					<div class="result">	

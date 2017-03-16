@@ -34,12 +34,13 @@ public class AdminDAO {
 	//관리자 회원 검색 수
 	public int getListCount_find(Map m) throws Exception {
 		int count=0;
-		count=((Integer)sqlSession.selectOne("getListCount_find", m)).intValue();
+		count=((Integer)sqlSession.selectOne("getListCountfind",m)).intValue();
+		System.out.println("count는?"+count);
 		return count;
 	}
 	//관리자 회원 검색
 	public List<MemberBean> getMemList_find(Map m) throws Exception{
-		List<MemberBean> list =sqlSession.selectList("getMemList_find",m);
+		List<MemberBean> list =sqlSession.selectList("getMemListfind",m);
 		
 		return list;
 	}
@@ -51,12 +52,12 @@ public class AdminDAO {
 
 	//관리자 회원 수정 폼
 	public MemberBean isMem(String mem_id) {
-		return sqlSession.selectOne("isMem", mem_id);
+		return sqlSession.selectOne("isMem",mem_id);
 	}
 
 	//관리자 회원 수정 
 	public void manage_edit(MemberBean member) {
-		sqlSession.update("manage_edit", member);
+		sqlSession.update("manage_edit",member);
 		
 	}
 	
