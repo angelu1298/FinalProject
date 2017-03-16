@@ -1,5 +1,7 @@
 ﻿$(function(){
+
 	$('#modifyform').on('submit', function(e){
+		
 		if($.trim($('#inputpw').val())==''){
 			$('#inputpw').css({'color':'red'});
 			$('#inputpw').val('비밀번호를 입력하세요');
@@ -61,8 +63,8 @@
 			return false;
 		}
 		
-		
 	})
+
 	$('#sel').change(function(){
 		if($('#sel').val()==""){
 			$('#domain').attr('disabled',true);
@@ -105,21 +107,13 @@
 		}
 	})
 	
-	$('.w200').focus(function(){
+	$('input[type=text]').focus(function(){
 		$(this).css({'color':'black'});
 		$(this).val('');
-	})
-	$('.w100').focus(function(){
-		$(this).css({'color':'black'});
-		$(this).val('');
-	})
-	$('.w400').focus(function(){
-		$(this).css({'color':'black'});
-		$(this).val('');
-	})
+	}) 
 	$('.gender').focus(function(){
 		$('#gendercheck').remove();
 	})
-	
-	
+
 })
+

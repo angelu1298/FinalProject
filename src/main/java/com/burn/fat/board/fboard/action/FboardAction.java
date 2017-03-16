@@ -38,7 +38,7 @@ import com.oreilly.servlet.MultipartRequest;
      
      ////private String saveFolder ="C:/Program Files/Apache Software Foundation/Tomcat 8.0/webapps/myhome7/resources/upload";
       //private String saveFolder="c:/sts2/spring6_mvc_bbs/src/main/webapp/resources/upload";
-     private String saveFolder="C:/Users/angel/git/FinalProject/src/main/webapp/resources/upload";
+     private String saveFolder="C:/gitwork/FinalProject/src/main/webapp/resources/upload";
      
 
     /*자료실 입력폼*/

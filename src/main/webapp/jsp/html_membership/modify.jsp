@@ -1,15 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/jsp/inc/logHeader.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script src="./resources/js/member2.js"></script>
-
-
+<script src="${pageContext.request.contextPath}/resources/js/member2.js"></script>
+		
 <!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
 <section class="log_container">
-
 		<!-- 서브메뉴에 따라 Side Navigation을 다르게 부여해준다. -->	
 		<%@ include file="/jsp/inc/leftMenu_log.jsp" %>
-		
+				
 		<!-- 서브컨텐츠 영역 START -->
 		<div class="subContent">
 				<div class="con_con">
@@ -249,16 +247,29 @@
 									워너비 사진
 								</th>
 								<td>
-									<c:if test="${empty member.mem_wb }">
+									
+									
+									 <c:if test="${empty member.mem_wb }">
 										<input type="file" id="wannabe" name="wannabe" accept=".jpeg,.gif,.jpg,.png">
-										<img src="./resources/upload/default.PNG" width="50px" height="30px">
-									</c:if>
-									<c:if test="${!empty member.mem_wb}">
-										<input type="file" id="wannabe" name="wannabe" accept=".jpeg,.gif,.jpg,.png">
-										<img src="./resources/upload${member.mem_wb }" alt="img" width="50px" height="30px"/>
-										<span class="bttxt" id="thumbnail">이렇게 되길 기원합니다</span>
-								</c:if>
+										<img src="./resources/upload/default.PNG" width="50px" height="30px" id="imgLogo">
+									</c:if> 
+									<c:if test="${!empty member.mem_wb}"> 
+										<input type="file" id="wannabe" class="wannabe_change" name="wannabe" accept=".jpeg,.gif,.jpg,.png" />
+										<img src="./resources/upload${member.mem_wb }" alt="img" width="50px" height="30px" id="imgLogo" />
+										<span class="bttxt">이렇게 되길 기원합니다</span>
+									 </c:if> 
 								</td>
+										<script> 
+										  $("#wannabe").change(function () {
+									            if (this.files && this.files[0]) {
+									                var reader = new FileReader();
+									                reader.onload = function (e) {
+									                    $('#imgLogo').attr('src', e.target.result);
+									                }
+									                reader.readAsDataURL(this.files[0]);
+									            }
+									        });
+									</script>
 							</tr>
 							</tbody>
 						</table>
