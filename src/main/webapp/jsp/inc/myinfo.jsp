@@ -39,7 +39,7 @@
 				<input type="text" name="goal_w" id="goal_w"  value="${myinfobean.goal_w}" class="txtgoal">
 				<input type="button"  class="btn_goal_edit" id="btn_goalww_edit"/>
 			</dd>
-			<dd>어제는 총 <em><fmt:formatNumber value="${avrgPerM/3*100 }" pattern=".00"/></em>%의 회원이 목표를 달성!</dd>
+			<dd>어제는 총 <em><fmt:formatNumber value="${avrgPerM/3*100 }" pattern="00.00"/></em>%의 회원이 목표를 달성!</dd>
 			<dd class="info_list">
 				<a href="./sc_view.brn">스크랩목록</a>
 				<a href="./Statistics.brn">통계</a>
