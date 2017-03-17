@@ -31,7 +31,7 @@ public class EboardAction {
 	@Autowired
 	public EboardService eboService;
 	
-	private String saveFolder="C:/Users/angel/git/FinalProject/src/main/webapp/resources/upload";
+	private String saveFolder="C:/gitwork/FinalProject/src/main/webapp/resources/upload";
 	
 	/* 자료실 입력폼 */
 	@RequestMapping(value="/eboardWrite.brn")

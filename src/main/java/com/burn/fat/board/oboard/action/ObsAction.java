@@ -29,7 +29,7 @@ public class ObsAction {
 
 	@Autowired
 	private OBoardService obsService;
-	private String saveFolder="C:/Users/angel/git/FinalProject/src/main/webapp/resources/upload";
+	private String saveFolder="C:/gitwork/FinalProject/src/main/webapp/resources/upload";
 	@RequestMapping(value = "/obs_write.brn")
 	public String obs_write() {
 

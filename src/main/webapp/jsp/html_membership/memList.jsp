@@ -119,7 +119,7 @@
 					<a href="#none" class="pre" title="이전페이지">&lt;&lt;</a> 
 				</c:if>
 				<c:if test="${page > 1 }">
-					<a href="mem_cont.brn?page=${page-1}&limit=${limit}" class="pre" title="이전페이지">&lt;&lt;</a>
+					<a href="memlist.brn?page=${page-1}&limit=${limit}" class="pre" title="이전페이지">&lt;&lt;</a>
 				</c:if>	
 				
 				<c:forEach var="a" begin="${startpage}" end="${endpage}">
@@ -127,7 +127,7 @@
 					<strong><span>${a}</span></strong>
 				</c:if>
 				<c:if test="${a != page }">
-					<a href="mem_cont.brn?page=${a}&limit=${limit}" ><strong><span>${a}</span></strong></a>&nbsp;
+					<a href="memlist.brn?page=${a}&limit=${limit}" ><strong><span>${a}</span></strong></a>&nbsp;
 				</c:if>
 				</c:forEach>
 					
@@ -135,7 +135,7 @@
 					<a href="#none" class="next" title="다음페이지">&gt;</a>
 				</c:if>
 				<c:if test="${page < maxpage }">
-					<a href="mem_cont.brn?page=${page+1}&limit=${limit}" class="next" title="다음페이지">&gt;</a>
+					<a href="memlist.brn?page=${page+1}&limit=${limit}" class="next" title="다음페이지">&gt;</a>
 				</c:if>		
 				</p>
 			</div>

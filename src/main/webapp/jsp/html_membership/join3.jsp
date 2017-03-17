@@ -46,7 +46,7 @@
 									<img src="./resources/upload${wannabe }" alt="img"/>
 									<span class="bttxt" id="thumbnail">이렇게 되길 기원합니다</span>
 								</c:if>
-								</td>
+								</td>			
 							</tr>
 						</table>
 						<!--//회원정보입력란-->

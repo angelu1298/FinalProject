@@ -2,7 +2,6 @@ drop table fboard cascade constraint;
 drop table fcomment;
 
 create table fboard(
-<<<<<<< HEAD
 	f_no		number constraint fb_fno_PK primary key,--글번호
 	mem_no		number references member(mem_no),--작성자 회원 번호
 	f_sj		varchar2(100) not null,--글 제목
@@ -13,19 +12,6 @@ create table fboard(
 	f_lk		number	default 0, --추천수
 	f_lkno		varchar2(2048) default ',',--회원번호(추천인)
 	fcomm_cnt		number default 0
-=======
-   f_no      number constraint fb_fno_PK primary key,--글번호
-   mem_no      number references member(mem_no),--작성자 회원 번호
-   f_sj      varchar2(100) not null,--글 제목
-   f_ct      clob,--글 내용
-   f_fl      varchar2(1024),--업로드 파일 경로
-   f_rc      number default 0,--조회수
-   f_dt      date default sysdate,--작성시간
-   f_lk      number   default 0, --추천수
-   f_lkno      varchar2(2048) default ',',--회원번호(추천인)
-   fcomm_cnt      number default 0
-
->>>>>>> refs/remotes/origin/suhyun
 );
 
 drop view fboardlist;
