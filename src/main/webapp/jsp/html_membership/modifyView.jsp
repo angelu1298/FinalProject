@@ -139,7 +139,7 @@
 										<img src="./resources/upload/default.PNG" width="50px" height="30px">
 									</c:if>
 									<c:if test="${!empty member.mem_wb}">
-										<img src="./resources/upload${member.mem_wb }" alt="img" width="50px" height="30px"
+										<img src="./resources/upload/${member.mem_wb }" alt="img"
 										 onchange="prewb()"/>
 										<span class="bttxt" id="thumbnail">이렇게 되길 기원합니다</span>
 								</c:if>

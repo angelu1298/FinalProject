@@ -18,38 +18,32 @@
 			<c:if test="${w_value>0}">
 				<dd class="goalweight"> ${(myinfobean.goal_w - myinfobean.mem_w)} kg</dd>
 			</c:if>
-		<%-- 	<dd class="goalweight">${myinfobean.mem_w - myinfobean.goal_w} kg</dd> --%>
-			<dd class="photozone">
-				<input id="uploadProfileImg" type="file" />
-				<img id="profileImg" src="/img/main/mainface01.png"/>
-			</dd>
+			<dd class="photozone" >
+             <c:if test="${empty myinfobean.mem_wb }">
+                        <img id="profileImg" src="./resources/upload/default.png" >
+                 </c:if> 
+                 <c:if test="${!empty myinfobean.mem_wb }">
+                  <img id="profileImg" src="./resources/upload/${myinfobean.mem_wb }" height="100px;"/>
+             </c:if>
+         </dd>
 			<dd class="goalzone">
 				<input type="text" name="my_memo" id="my_memo" value="${myinfobean.my_memo}" class="txtgoal">
-				<input type="button"  class="btn_goal_edit" />
+				<input type="button"  class="btn_goal_edit" id=btn_goal_edit""/>
 			</dd>
 			<dd><strong>ID</strong><span>${myinfobean.mem_id }</span></dd>
 			
 			<dd><strong>현재 몸무게</strong><span>${myinfobean.mem_w }</span></dd>
 			<dd><strong>현재 키</strong><span>${myinfobean.mem_h }</span></dd>
 			<dd class="btn_bmi"><strong>bmi</strong><span><fmt:formatNumber value="${member_bmi}" pattern=".0"/></span></dd>		
-			<dd>
+			<dd class="goalzone">
 				<strong>목표 몸무게</strong>
 				<input type="text" name="goal_w" id="goal_w"  value="${myinfobean.goal_w}" class="txtgoal">
-				<!-- <span>100kg</span> -->
-				<input type="button" class="btn_goalww_edit" value="목표 w 저장"/>
+				<input type="button"  class="btn_goal_edit" id="btn_goalww_edit"/>
 			</dd>
-			<dd>어제는 총 <em>55%</em>의 회원이 목표를 달성!</dd>
-			<dd>
-				<strong>목표달성</strong>
-				<p class="goalcheck">
-					<span><input type="radio" name="goal_ox" id="goal_high"><label for="goal_high">높음</label></span>
-					<span><input type="radio" name="goal_ox" id="goal_middle"><label for="goal_middle">중간</label></span>
-					<span><input type="radio" name="goal_ox" id="goal_low"><label for="goal_low">낮음</label></span>
-				</p>
-			</dd>
+			<dd>어제는 총 <em><fmt:formatNumber value="${avrgPerM/3*100 }" pattern=".00"/></em>%의 회원이 목표를 달성!</dd>
 			<dd class="info_list">
 				<a href="./sc_view.brn">스크랩목록</a>
-				<a href="myStatic.jsp">통계</a>
+				<a href="./Statistics.brn">통계</a>
 			</dd>
 			
 		</dl>
@@ -65,7 +59,7 @@
 			})
 			 
 		
-			$(".btn_goal_edit").click(function() {
+			$("#btn_goal_edit").click(function() {
 				if (confirm("수정 하시겠습니까??") == true){
 					var mem_no = $("#mem_no").val();
 					var my_memo = $("#my_memo").val();
@@ -88,7 +82,7 @@
 			});
 			
 			
-			$(".btn_goalww_edit").click(function() {
+			$("#btn_goalww_edit").click(function() {
 				if (confirm("수정 하시겠습니까??") == true){
 					var mem_no = $("#mem_no").val();
 					var goal_w = $("#goal_w").val();

@@ -2,6 +2,7 @@ package com.burn.fat.member.mypage.myinfo.action;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +19,7 @@ import com.burn.fat.member.model.MemberBean;
 import com.burn.fat.member.mypage.calendar.dao.CalendarService;
 import com.burn.fat.member.mypage.calendar.model.CalendarBean;
 import com.burn.fat.member.mypage.myinfo.dao.MyinfoService;
+import com.burn.fat.member.mypage.myinfo.dao.StatisticsService;
 
 @Controller
 public class MyinfoAction {
@@ -27,6 +29,9 @@ public class MyinfoAction {
 	
 	 @Autowired
 	private CalendarService calendarService;
+	 
+	 @Autowired
+	StatisticsService service;
 
 	/* 마이페이지 레프트단 초기화면 */
 	@RequestMapping(value = "/my_view.brn")
@@ -40,12 +45,6 @@ public class MyinfoAction {
 		
 		ModelAndView contM = new ModelAndView("html_mypage/mypage_main");
 
-		contM.addObject("myinfobean", myinfobean);
-		
-	
- 	
-		//MyinfoBean myinfobean = this.myinfoService.getMyCont(mem_no);
-		//MyinfoBean myinfobean_memo = this.myinfoService.mymemo(mem_no);
 	
 		Calendar cal = Calendar.getInstance();
 		   int year = request.getParameter("y") == null ? cal.get(Calendar.YEAR) : Integer.parseInt(request.getParameter("y"));
@@ -79,8 +78,8 @@ public class MyinfoAction {
 		   }
 	         //평가가져올때 이용할 calendarList
 	         List<CalendarBean> calendarList = this.calendarService.getTotal(mem_no);
-     
 			int lastDate =cal.get(Calendar.DAY_OF_WEEK);
+		
 			contM.addObject("year",year);
 			contM.addObject("month",month);
 			contM.addObject("bgnWeek",bgnWeek);
@@ -97,10 +96,6 @@ public class MyinfoAction {
 	         contM.addObject("calendarList",calendarList);
 			
 			return contM;
-			
-
-		
-		
 		
 	}
 /***************************************************************************	*/
@@ -121,7 +116,24 @@ public class MyinfoAction {
 		ModelAndView contM = new ModelAndView("inc/myinfo");
 
 		System.out.println("여기는?2");
+	     
+        Map<String,Integer> map = new HashMap<String,Integer>();
+ 		Calendar cal2 = Calendar.getInstance();
+ 		map.put("monthEarly",cal2.get(Calendar.YEAR)*10000+(cal2.get(Calendar.MONTH)+1)*100+cal2.getActualMinimum(Calendar.DATE));
+ 		map.put("monthEnd",cal2.get(Calendar.YEAR)*10000+(cal2.get(Calendar.MONTH)+1)*100+cal2.getActualMaximum(Calendar.DATE));
+ 		List<Double> average = service.getAverage(map);
+ 		Iterator<Double> itr = average.iterator();
+ 		double avgsum = 0;
+ 		while(itr.hasNext()){
+ 			avgsum += itr.next();
+ 		}
+ 		int all = service.getMemNum(map);
+ 		double avrgPerM = 0;
+		avrgPerM=((double)avgsum) / all;
+		System.out.println(avrgPerM);
+		
 		contM.addObject("myinfobean", myinfobean);
+		contM.addObject("avrgPerM",avrgPerM);
 		
 		return contM;
 	}

@@ -40,7 +40,8 @@ public class StatisticsAction {
 			avgsum += itr.next();
 		}
 		int all = service.getMemNum(map);
-		double avrgPerM = avgsum / all;
+		double avrgPerM = 0;
+		avrgPerM=avgsum / all;
 		ModelAndView model = new ModelAndView("html_mypage/statistics");
 		model.addObject("avrgPerM",avrgPerM);
 		return model;
