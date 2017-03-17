@@ -5,15 +5,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 
 <%@ include file="../inc/subHeader.jsp"%>
-<script src="${pageContext.request.contextPath}/resources/js/juice.js"></script> 
 
 	<script>
 	
 	$(function(){
 		$(".btn_save").click(function(){
 			$(".modal_bg").removeClass("off");
+			$(".modal_bg").animate({"opacity":"1"});
 			$(".modal_bg").load("juiceMakeName.brn");
-			$(".modal_bg").animate({ opacity: '1' }, 500);
 		})
 	})
 		

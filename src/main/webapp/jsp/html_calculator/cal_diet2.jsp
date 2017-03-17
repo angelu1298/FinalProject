@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 	<%@ include file="../inc/subHeader.jsp" %>
 	
@@ -10,45 +11,11 @@
 		
 		<!-- 서브컨텐츠 영역 START -->
 		<div class="subContent">
-		
-					
-			<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-			
-			<style>
-			.cal_diet{ width:100%; height:auto; display:inline-block; border:1px solid #00f;}
-				.group{ border:1px solid #f00; width:100%; background-attachment:fixed; }
-				.cal_diet .result{border:1;}
-				.cal_diet  .w{
-				float:right;
-					 background-image:url('resources/img/cal/diet_background.png');
-					  background-repeat:no-repeat;
-					   background-position:center center ;
-						text-align: center;
-						border:1px solid #000;  width:500px; height:500px; display:block;
-					 }
-						.cal_diet  p {position: absolute; top: 20%; margin:0 auto; }
-				.cal_diet  .goal_weight{
-					
-					font-size:40pt;
-					text-align: center;
-					background-color:black;
-					opacity: 0.28;
-					color:white;
-					width:100px; height:50px; line-height:50px; 
-					}
-			.cal_diet 	#w1{
-					 
-					font-size:30pt;
-					}
-			 .cal_diet 	.result{position:relative; top:-500px; left:-130%} 
-			</style>
-			
+			 
 			<div class="cal_diet">
-			<script src="./resources/js/jquery-ui.min.js"></script>
 			<script>
 			$(function() {
 				//유효성검사 
-			
 			
 				$(".goal_weight").keyup(function() {
 					if($('.goal_weight').val() > 150){

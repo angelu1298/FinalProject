@@ -42,3 +42,7 @@
 			<!-- lnb 영역 -->
 			<%@ include file="/jsp/inc/lnb.jsp"%>
 		</header>
+		
+		<div class="modal_bg off">
+		
+		</div>

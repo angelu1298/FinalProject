@@ -52,7 +52,6 @@
                     }
                 });
 
-                
     			// 삭제버튼 모달창으로 페이지 load
     			$(".btn_make").click(function(){
     				
@@ -63,9 +62,8 @@
     					success : function(data) { 
 	    					$('.modal_bg').removeClass("off");
 	    					$('.modal_bg').load("juiceMake02.brn");
-    					},
-    					error : function(data, status) {
-    						alert('다시 선택해 주세요.');
+    					}, error : function(data, status) {
+    						
     					}, complete : function(){
     						
     					}
@@ -90,7 +88,7 @@
 			<h4>나의 주스 만들기</h4>
     		
 				<div class="juicemake">
-					<p class="stxt">원하는 과일이나 채소를 오른쪽 믹서기에 끌어서 놓아주세요</p>
+					<h5 class="tittip">원하는 과일이나 채소를 오른쪽 믹서기에 끌어서 놓아주세요</h5>
 					<div class="juiceitemlist">
 				    	<ul class="fruitlist">
 							<c:forEach var="jf" items="${JuiceFList}">

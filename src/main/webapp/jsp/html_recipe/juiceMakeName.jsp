@@ -8,8 +8,10 @@
 			
 			// 모달창 닫기
 			$(document).on('keyup', function(evt){ 
-				$(".modal_bg").addClass("off");
-				$(".modal_bg").animate({ opacity: '0' }, 500);
+				if(evt.keyCode == 27){
+					$(".modal_bg").addClass("off");
+					$(".modal_bg").animate({ opacity: '0' }, 500);
+				}
 			})
 			$(".btn_close").click(function(){
 				$(".modal_bg").addClass("off");
