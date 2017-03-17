@@ -16,6 +16,17 @@ public class EboardDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	/* 스크랩 여부 확인 */
+	public String checkscrap(int e_no) {
+		return sqlSession.selectOne("checkscrap", e_no);
+	}
+
+	/* 좋아요 증가 */
+	public int likeCountUp(Map<String, Object> map) {
+		return sqlSession.update("likecountup", map);
+	}
+
+
 	/* 최대값 번호 구하기 */
 	public int getNo() throws Exception{
 		return sqlSession.selectOne("ebo_getNo");
@@ -110,8 +121,8 @@ public class EboardDAO {
 	}
 	
 //	코멘트 내용을 코멘트 테이블에 담는다
-	public void setComm(Map m) throws Exception{
-		sqlSession.insert("setComm",m);
+	public int insertEComm(EcommBean ecommb) throws Exception{
+		return sqlSession.insert("insertEComm",ecommb);
 	}
 	
 	// 코멘트 총갯수 
@@ -119,9 +130,22 @@ public class EboardDAO {
 		return sqlSession.selectOne("commCount",e_no);
 	}
 	
+	
+	public void changeEcommcnt(int e_no) {
+		sqlSession.update("changeEcommcnt",e_no);
+	}
+		
+	
+	
 	// 코멘트목록 불러오기
-	public List<EcommBean> getComm(int e_no) throws Exception{
-		List<EcommBean> elist = sqlSession.selectList("getComm", e_no);
+	public EcommBean getEComment(EcommBean ecommb) throws Exception{
+		EcommBean elist = sqlSession.selectOne("getEComment", ecommb);
+		return elist;
+	}
+	
+	// 코멘트목록 불러오기
+	public List<EcommBean> getECommList(int e_no) throws Exception{
+		List<EcommBean> elist = sqlSession.selectList("getECommList", e_no);
 		return elist;
 	}
 	
@@ -136,8 +160,8 @@ public class EboardDAO {
 	}
 
 	/*답글 저장*/
-	public void ecommReply(EcommBean ecommb) throws Exception{
-		sqlSession.insert("ecomm_reply",ecommb);
+	public void insertECommRep(EcommBean ecommb) throws Exception{
+		sqlSession.insert("insertECommRep",ecommb);
 	}
 	
 	
@@ -152,8 +176,8 @@ public class EboardDAO {
 	}*/
 	
 	// 코멘트의 답글 불러오기 
-	public List<EcommBean> getComm_re(Map<String, Integer> map) throws Exception{
-		return sqlSession.selectOne("getComm_re", map);
+	public List<EcommBean> getComm_re(EcommBean ecommbean) throws Exception{
+		return sqlSession.selectOne("getComm_re", ecommbean);
 	}
 	
 	// 코멘트에 달린 댓글 확인

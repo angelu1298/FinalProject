@@ -15,6 +15,16 @@ public class EboardServiceImpl implements EboardService {
 	@Autowired
 	public EboardDAO eboDAO;
 	
+	/* 스크랩 여부 확인 */
+	public String checkscrap(int e_no){
+		return eboDAO.checkscrap(e_no);
+	}
+	
+	/* 좋아요 증가 */
+	public int likeCountUp(Map<String, Object> map){
+		return eboDAO.likeCountUp(map);
+	}
+
 	/* 최대값 번호 구하기 */
 	public int getNo() throws Exception{
 		return eboDAO.getNo();
@@ -102,9 +112,14 @@ public class EboardServiceImpl implements EboardService {
 	}
 	
 //	코멘트 내용을 코멘트 테이블에 담는다
-	public void setComm(Map m) throws Exception{
-		eboDAO.setComm(m);
+	public int insertEComm(EcommBean ecommb) throws Exception{
+		return eboDAO.insertEComm(ecommb);
 	}
+	
+	public void changeEcommcnt(int e_no) {
+		eboDAO.changeEcommcnt(e_no);
+	}
+	
 	
 	// 코멘트 총갯수 
 	public int commCount(int e_no) throws Exception{
@@ -112,9 +127,15 @@ public class EboardServiceImpl implements EboardService {
 	}
 	
 	// 코멘트목록 불러오기
-	public List<EcommBean> getComm(int e_no) throws Exception{
-		return eboDAO.getComm(e_no);
+	public EcommBean getEComment(EcommBean ecommb) throws Exception{
+		return eboDAO.getEComment(ecommb);
 	}
+	
+	// 코멘트목록 불러오기
+		public List<EcommBean> getECommList(int e_no) throws Exception{
+			return eboDAO.getECommList(e_no);
+		}
+		
 	
 	//코멘트아디
 	public String getcId(int mem_no) throws Exception{
@@ -127,8 +148,8 @@ public class EboardServiceImpl implements EboardService {
 	}
 
 	/*답글 저장*/
-	public void ecommReply(EcommBean ecommb) throws Exception{
-		eboDAO.ecommReply(ecommb);
+	public void insertECommRep(EcommBean ecommb) throws Exception{
+		eboDAO.insertECommRep(ecommb);
 	}
 	
 	
@@ -143,9 +164,9 @@ public class EboardServiceImpl implements EboardService {
 	}*/
 	
 	// 코멘트 불러오기 
-	public List<EcommBean> getComm_re(Map<String, Integer> map) throws Exception{
+	/*public List<EcommBean> getComm_re(Map<String, Integer> map) throws Exception{
 		return eboDAO.getComm_re(map);
-	}
+	}*/
 			
 	// 코멘트에 달린 댓글 확인
 	public List<EcommBean> getcommentref(EcommBean ecommbean) throws Exception{
@@ -160,6 +181,12 @@ public class EboardServiceImpl implements EboardService {
 	//현재 코멘트에 댓글이 있는 경우 삭제된 코멘트 입니다
 	public int deleteCommExistRep(Map<String, Integer> m) throws Exception{
 		return eboDAO.deleteCommExistRep(m);
+	}
+
+	@Override
+	public List<EcommBean> getComm_re(EcommBean ecommb) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

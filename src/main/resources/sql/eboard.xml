@@ -3,6 +3,22 @@
 
 <mapper namespace="Eboard">
 
+	<!-- 스크랩 여부 확인 -->
+  	<select id="checkscrap" parameterType="int" resultType="String">
+  		select e_lkno
+  		  from eboard
+  		 where e_no=#{e_no} 
+  	</select>
+  	
+  	<update id="likecountup" parameterType="java.util.Map" >
+  		update eboard 
+  		   set 
+	  	     e_lkno = e_lkno||','||to_char(#{mem_no})||',' 
+  		  ,
+  		   	   e_lk = e_lk+1
+  		 where e_no=#{e_no}
+  	</update>
+  	
 	<!-- 글 번호 구하기 -->
 	<select id="ebo_getNo" resultType="int">
 		select max(e_no) from eboard
@@ -11,9 +27,9 @@
 	<!-- 글 저장 -->
     <insert id="ebo_insert" parameterType="ebobean">
       insert into eboard 
-          (e_no, e_sj, e_ct, e_rc, e_dt, mem_no, e_fl)
+          (e_no, e_sj, e_ct, e_rc, e_dt, mem_id, e_fl)
       values(#{e_no}, #{e_sj}, #{e_ct},
-              0, sysdate, #{mem_no}, #{e_fl, jdbcType=VARCHAR})
+              0, sysdate, #{mem_id}, #{e_fl, jdbcType=VARCHAR})
     </insert>
     
     
@@ -28,7 +44,7 @@
 	    <![CDATA[
 		select * 
 		from 
-		  (select rownum rnum, e_no, mem_no,   e_sj, 
+		  (select rownum rnum, e_no, mem_id,   e_sj, 
 		   e_ct, e_rc,  e_dt, e_lk, e_lkno, e_fl
 		   from  
 	  	      (select * from eboard
@@ -197,13 +213,25 @@
 	</select>
 	
 	<!-- 코멘트저장 -->
-	<insert id="setComm" parameterType="java.util.Map">
+	<insert id="insertEComm" parameterType="ecommBean">
 		insert into ecomment
-		(ecomm_no, mem_no, ecomm_ct, ecomm_dt, e_no, 
-		ecomm_re_ref, ecomm_re_lev, ecomm_re_seq  )
+		(ecomm_no, 
+		mem_no,
+		ecomm_ct, 
+		ecomm_dt, 
+		e_no, 
+		ecomm_re_ref, 
+		ecomm_re_lev, 
+		ecomm_re_seq  )
 		values
-		(e_comm_seq2.nextval, #{mem_no}, #{ecomm}, sysdate, #{e_no},
-		e_comm_seq2.nextval,0,0 )
+		(e_comm_seq2.nextval, 
+		(select mem_no from member where mem_id=#{mem_id}),
+		#{ecomm_ct}, 
+		sysdate, 
+		#{e_no},
+		e_comm_seq2.nextval,
+		0,
+		0 )
 	</insert>
 	
 	<!-- 코멘트 총갯수 -->
@@ -212,12 +240,26 @@
 			where e_no = #{e_no}
 	</select>
 	
+	
+	
+	
 	<!-- !코멘트목록 불러오기 -->
-	<select id="getComm" parameterType="int" resultType="ecommBean">
-	  	select * from ecomment
+	<select id="getEComment" parameterType="ecommBean" resultType="ecommBean">
+	  	select * from ecommlist
     		where e_no=#{e_no}
-	  	   order by ecomm_re_ref desc, ecomm_re_seq asc
+    		and ecomm_no=#{ecomm_no}
 	</select>
+	
+	<!-- 각 게시글 마다 코멘트 불러오기 -->
+	<select id="getECommList" parameterType="int" resultType="ecommBean">
+		select * from ecommlist
+		where e_no=#{e_no}
+		order by  ecomm_re_ref desc, ecomm_re_seq asc
+	</select>
+	
+	
+	
+	
 	
 	<!--// 답글 불러오기 -->
 	<select id="getComm_re" parameterType="java.util.Map" resultType="ecommBean">
@@ -232,7 +274,7 @@
 	
 	<!--// 코멘트에 달린 댓글 확인 -->
 	<select id="getcommentref" parameterType="ecommBean" resultType="ecommBean">
-		select * from ecomment
+		select * from ecommlist
 		where e_no=#{e_no} and ecomm_re_ref=#{ecomm_no}
 	</select>
 	
@@ -244,30 +286,19 @@
     </update>
     
     <!-- 답글 저장 -->
-    <insert id="ecomm_reply" parameterType="ecommBean">   
+    <insert id="insertECommRep" parameterType="ecommBean">   
        insert into ecomment( 
-              ecomm_no, mem_no, ecomm_rct,
+              ecomm_no, mem_no, ecomm_ct,
               e_no,
-              ecomm_re_ref,ecomm_re_lev, ecomm_re_seq, ecomm_re_del_no) 
+              ecomm_re_ref,ecomm_re_lev, ecomm_re_seq, ecomm_dt) 
        values(
-              e_comm_seq2.nextval, #{mem_no},#{ecomm_rct},
+              e_comm_seq2.nextval, 
+              (select mem_no from member where mem_id=#{mem_id}),
+              #{ecomm_ct},
                #{e_no}, #{ecomm_re_ref},#{ecomm_re_lev},
-              #{ecomm_re_seq}, e_comm_re_del.nextval)
+              #{ecomm_re_seq}, sysdate)
     </insert>
     
-    
-    <!-- 답글 불러오기 -->
-    <!-- <select id="ecomm_load" parameterType="int" resultType="ecommBean">
-    	select * from ecomment
-    		where e_no=#{e_no} and ecomm_no=ecomm_re_ref
-    </select> -->
-    
-    <!-- 코멘트 .,-->
-   <!--  <delete id="deleteEcomm_Re" parameterType="java.util.Map">
-    	delete ecomment
-    		where ecomm_no = #{ecomm_no} and ecomm_re_ref = #{ecomm_no}
-    		where ecomm_re_del_no = #{ecomm_re_del_no} and ecomm_no = #{ecomm_no}
-    </delete> -->
     
     <!-- 코멘트 삭제 -->
     <delete id="deleteEcomm" parameterType="java.util.Map">
@@ -289,6 +320,14 @@
 		 where e_no=#{e_no} and ecomm_no=#{ecomm_no}
 	</update>
 	
+	
+	<!-- 코멘트 입력시 게시물의 코멘트 수 증가  -->
+	<update id="changeEcommcnt" parameterType="int" >
+    	update eboard
+    		set ecomm_cnt = (select count(*) from ecomment where e_no=#{e_no})
+    	where e_no=#{e_no}
+    </update>
+    
 </mapper>
 
 

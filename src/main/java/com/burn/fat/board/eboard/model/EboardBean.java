@@ -13,10 +13,18 @@ public class EboardBean {
 	private String e_fl;		//업로드파일경로
 	private String e_gl;		//업로드이미지경로
 	private int e_rc;			//조회수
-	private Date e_dt;		//작성시간
+	private Date e_dt;			//작성시간
 	private int e_lk;			//추천수
 	private String e_lkno;		//추천인 회원번호
+	private String mem_id;
 	
+	
+	public String getMem_id() {
+		return mem_id;
+	}
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
+	}
 	public int getE_no() {
 		return e_no;
 	}

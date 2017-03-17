@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +24,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.burn.fat.board.eboard.dao.EboardService;
 import com.burn.fat.board.eboard.model.EboardBean;
 import com.burn.fat.board.eboard.model.EcommBean;
+import com.burn.fat.board.sboard.model.SboardBean;
+import com.burn.fat.board.sboard.model.ScommBean;
 import com.oreilly.servlet.MultipartRequest;
 
 @Controller
@@ -31,7 +34,43 @@ public class EboardAction {
 	@Autowired
 	public EboardService eboService;
 	
-	private String saveFolder="C:/Users/angel/git/FinalProject/src/main/webapp/resources/upload";
+	private String saveFolder="D:/neonjava/EBoard/src/main/webapp/resources/upload";
+	
+	/* 스크랩 */
+	@RequestMapping(value = "/eboardscrap.brn")
+	public void sboardscrap(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "e_no", required = true) int e_no) throws Exception {
+
+		HttpSession session = request.getSession();
+		String mem_no = String.valueOf(session.getAttribute("mem_no"));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("e_no", e_no);
+		map.put("mem_no", mem_no);
+		int check = 0;
+		String e_lkno = this.eboService.checkscrap(e_no);
+		System.err.println("추천인번호" +e_lkno);
+		if (e_lkno != null) {
+			StringTokenizer token = new StringTokenizer(e_lkno, ",");
+			while (token.hasMoreTokens()) {
+				if (token.nextToken().equals(mem_no)) {
+					check = 1;
+				}
+			}
+			System.out.println("1." + e_lkno);
+		} else {
+			System.out.println("e_lkno is null");
+		}
+		int result = 0;
+		if (check != 1) {
+			result = this.eboService.likeCountUp(map);
+			System.out.println(result);
+		}
+		PrintWriter out = response.getWriter();
+		out.print(result);
+	}
+	
 	
 	/* 자료실 입력폼 */
 	@RequestMapping(value="/eboardWrite.brn")
@@ -39,13 +78,12 @@ public class EboardAction {
 		return "html_community/eboard/eboardWrite";
 	}
 	
-	/* 글 수정폼 */
-	/*@RequestMapping(value="eboardEdit.brn")
-	public String eboUpdate(){
-		return "html_community/eboardEdit";
-	}*/
 	
 	/* 자료실 저장 */
+	//첨부파일 클릭할 경우 이미지 보고자 할  경우 : 자동 새로 고침 설정
+	//(window-> Preferencs -> workspce -> 
+	// Refresh using native hooks or polling 체크)
+	//  하고 5초 정도 지난 뒤 확인하세요
 	@RequestMapping(value="/ebo_write_ok.brn", method=RequestMethod.POST)
 	public ModelAndView ebo_write_ok(
 						HttpServletRequest request, 
@@ -59,9 +97,13 @@ public class EboardAction {
 		
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
-		String id = (String)session.getAttribute("mem_id");
-		
-		int mem_no = this.eboService.eboNoCk(id);//회원번호 받아오기
+		String mem_id = (String)session.getAttribute("mem_id");
+		if(mem_id==null){
+			out.print("<script>alert('로그인 후 이용할 수 있습니다.');");
+			out.print(" history.back()</script>");
+			
+			return null;
+		}
 		int result = 0;
 		
 		String e_sj=multi.getParameter("e_sj").trim();
@@ -70,7 +112,7 @@ public class EboardAction {
 		File UpFile=multi.getFile("e_fl");
 		if(UpFile != null){//첨부한 이진파일이 있다면
 			String fileName=UpFile.getName();//이진파일명 저장
-			System.out.println("fileName = " + fileName);
+
 			Calendar c=Calendar.getInstance();
 			int year=c.get(Calendar.YEAR);      //오늘 년도 구합니다.
 			int month=c.get(Calendar.MONTH)+1;  //오늘 월 구합니다.
@@ -125,8 +167,7 @@ public class EboardAction {
 			e_no = result + 1;
 		}
 		
-		
-		ebobean.setMem_no(mem_no);
+		ebobean.setMem_id(mem_id);
 		ebobean.setE_sj(e_sj);
 		ebobean.setE_ct(e_ct);
 		ebobean.setE_no(e_no);
@@ -147,32 +188,20 @@ public class EboardAction {
 		
 		HttpSession session = request.getSession();
 		
-		String id = (String)session.getAttribute("mem_id");
-		
 		int page=1;
 		int limit=10; //초기값
 		
 		if(request.getParameter("page") != null){
 			page=Integer.parseInt(request.getParameter("page"));
 		}
-		
-		System.out.println("page="+page);
-		
-		//////////20줄보기 10줄보기 
-		//이전에 설정된 limit가 있는지 체크
  		if(session.getAttribute("limit")!= null){
  			limit = (Integer)session.getAttribute("limit");
  		}
- 		
- 		//변경된 limit가 있는지 체크
  		if(request.getParameter("limit") != null){
  			limit=Integer.parseInt(request.getParameter("limit"));
  			session.setAttribute("limit", limit);
  		}
- 		////////////
- 		System.out.println("limit = " + limit);
  		
-		
 		//총 리스트 수 받기
 		int listcount = eboService.getListCount();
 		
@@ -189,7 +218,7 @@ public class EboardAction {
  		
  		if (endpage < page) page = endpage;
  		
- 		Map m = new HashMap();
+ 		Map<String,Integer> m = new HashMap<String,Integer>();
  		m.put("page", page);
  		m.put("limit", limit);
  		//리스트 받기
@@ -217,10 +246,6 @@ public class EboardAction {
 		
 		HttpSession session = request.getSession();
 		
-		String id = (String)session.getAttribute("mem_id");
-		int mem_no = this.eboService.eboNoCk(id);//회원번호 받아오기
-		String mem_id = this.eboService.eboIdCk(id);//회원아이디 받아오기
-		
 		int page=1;
 		int limit=10; //초기값
 		
@@ -275,16 +300,9 @@ public class EboardAction {
 		model.addObject("listcount", listcount);
 		model.addObject("ebolist", ebolist);
 		model.addObject("limit", limit);
-		model.addObject("mem_no",mem_no);
-		model.addObject("mem_id",mem_id);
 		
 		return model;	
 	}
-	
-	
-	
-	
-	
 	
 	
 	
@@ -296,11 +314,7 @@ public class EboardAction {
 			HttpServletResponse response,HttpSession session) throws Exception{
 	
 		
-//		int num=Integer.parseInt(request.getParameter("num"));
-		
 		session=request.getSession();
-		String id = (String)session.getAttribute("mem_id");
-		int mem_no = this.eboService.eboNoCk(id);//회원번호 받아오기
 		
 		int page=1;
 		if(request.getParameter("page") != null){
@@ -313,18 +327,10 @@ public class EboardAction {
 		Map m = new HashMap();
 		m.put("e_no", num);
 		
-		//코멘트 불러오기
+		/*//코멘트 불러오기
 		List<EcommBean> ecommlist = this.eboService.getComm(num);
-		mv.addObject("ecommlist",ecommlist);
+		mv.addObject("ecommlist",ecommlist);*/
 		
-//		//코멘트의 답글불러오기
-//		int ecomm_no=Integer.parseInt(request.getParameter("ecomm_no"));
-//		Map<String, Integer> map = new HashMap<String, Integer>();
-//		map.put("e_no", num);
-//		map.put("ecomm_no",ecomm_no);
-//		List<EcommBean> getEcomm_re = this.eboService.getComm_re(map);
-//		mv.addObject(getEcomm_re);
-//		///////////////////////////////////
 		
 		if(request.getParameter("elistcount") != null){
 			int elistcount=Integer.parseInt(request.getParameter("elistcount"));
@@ -337,16 +343,15 @@ public class EboardAction {
 			mv.addObject("getcId",getcId);
 		}
 		
-		if(request.getParameter("getcommId") != null){
-			String getcommId=request.getParameter("getcommId");
-			mv.addObject("getcommId",getcommId);
-		}
+//		if(request.getParameter("getcommId") != null){
+//			String getcommId=request.getParameter("getcommId");
+//			mv.addObject("getcommId",getcommId);
+//		}
 	
 		String state=request.getParameter("state");//구분 필드		
 	
 		
-		//번호를 기준으로 DB 내용을 가져옵니다.
-		EboardBean ebobean=this.eboService.getEboCont(num);
+		
 		
 		/*	if(s_no!=1){*/
 		EboardBean beanpre = this.eboService.getEboCont(num-1);
@@ -356,38 +361,47 @@ public class EboardAction {
 		EboardBean beannext = this.eboService.getEboCont(num+1);
 		mv.addObject("beannext",beannext);
 		
-		if(ebobean==null){
+		EboardBean ebobean2=this.eboService.getEboCont(num);
+		
+		if(ebobean2==null){
 			PrintWriter out =response.getWriter();
 			out.print("<script>alert('존재하지 않는 게시물입니다.'); history.back();</script>");
 			return null;
 		}else{
-		
-		if(state.equals("cont")){ //글내용보기
-			this.eboService.eboHit(num);//조회수 증가
-			mv.setViewName("html_community/eboard/eboardView");
+			
+			if(state.equals("cont")){ //글내용보기
+				this.eboService.eboHit(num);//조회수 증가
+				
+				/*//글내용 중 엔터키 친부분을 다음줄로 개행 처리
+				String e_ct=ebobean.getE_ct().replace("\n","<br/>");
+				
+				mv.addObject("e_ct",e_ct);*/
+				
+				mv.setViewName("html_community/eboard/eboardView");
+			}else if(state.equals("edit")){//수정일떄
+				mv.setViewName("html_community/eboard/eboardEdit");
+			}else if(state.equals("comm")){//코멘트
+				mv.setViewName("html_community/eboard/eboardView");
+			}
+			
+			//좋아요
+			if(request.getParameter("joayo") != null){
+				int joayo=Integer.parseInt(request.getParameter("joayo"));
+				mv.addObject("joayo",joayo);
+			}
+					
+			//번호를 기준으로 DB 내용을 가져옵니다.
+			EboardBean ebobean=this.eboService.getEboCont(num);
 			
 			//글내용 중 엔터키 친부분을 다음줄로 개행 처리
 			String e_ct=ebobean.getE_ct().replace("\n","<br/>");
 			
+			mv.addObject("ebobean", ebobean);
 			mv.addObject("e_ct",e_ct);
-		}else if(state.equals("edit")){//수정일떄
-			mv.setViewName("html_community/eboard/eboardEdit");
-		}else if(state.equals("comm")){//코멘트
-			mv.setViewName("html_community/eboard/eboardView");
-		}
-		
-		//좋아요
-		if(request.getParameter("joayo") != null){
-			int joayo=Integer.parseInt(request.getParameter("joayo"));
-			mv.addObject("joayo",joayo);
-		}
-				
-		mv.addObject("ebobean", ebobean);
-		mv.addObject("page", page);
-		mv.addObject("mem_no",mem_no);
-		mv.addObject("id",id);
-		
-		return mv;
+			
+			mv.addObject("page", page);
+			
+			return mv;
 		}
 	}
 	
@@ -405,8 +419,9 @@ public class EboardAction {
 		MultipartRequest multi=null;
 		multi=new MultipartRequest(request,saveFolder,fileSize,"UTF-8");
 		
-//		HttpSession session = request.getSession();
-//		String mem_id=(String) session.getAttribute("mem_id");
+		HttpSession session = request.getSession();
+
+		String mem_id = (String) session.getAttribute("mem_id");
 		
 		int e_no=Integer.parseInt(multi.getParameter("num"));
 		int page=Integer.parseInt(multi.getParameter("page"));
@@ -451,6 +466,7 @@ public class EboardAction {
 		   }
 		   
 		ebobean.setE_no(e_no);
+		ebobean.setMem_id(mem_id);
 		ebobean.setE_sj(e_sj);
 		ebobean.setE_ct(e_ct);
 //		ebobean.setMem_id(mem_id);
@@ -491,63 +507,6 @@ public class EboardAction {
 		return null;
 	}
 	
-	/* 좋아요 */
-	@RequestMapping(value="/ebo_like.brn")
-	public ModelAndView ebo_like(
-			@RequestParam("e_no") int e_no,
-			HttpServletRequest request,
-			HttpServletResponse response,HttpSession session) throws Exception{
-		
-		session=request.getSession();
-		String id = (String)session.getAttribute("mem_id");
-		System.out.println("e_no = " +e_no);
-		int mem_no = this.eboService.eboNoCk(id);
-		
-		System.err.println("mem_no="+mem_no);
-		/*로그인한 회원번호를 불러와서 
-		추천인 회원번호에 저장하고
-		추천인 회원번호 중에 글쓴이 회원번호가 있다면 좋아요 업데이트 취소 */
-		
-		/*추천인 회원번호 불러오기*/
-//		if(this.eboService.getLkno(e_no) != null){
-			String e_lkno = this.eboService.getLkno(e_no);
-			System.err.println("e_lkno="+e_lkno);
-		
-//			String mem_no2 =  mem_no + "";
-			String mem_no2 =  String.valueOf(mem_no);
-	
-//		if(mem_no2 != e_lkno){//로그인한 사람의 회원번호와 해당글의 추천인번호가 일치하지 않으면 추천수 증가
-			
-			System.err.println("오는가요");
-			Map m = new HashMap();
-			m.put("e_no", e_no);
-			m.put("mem_no", mem_no);
-			
-			/*추천인 회원번호에 저장과 좋아요증가*/
-			this.eboService.setJoayo(m);
-			
-			//해당 글 좋아요 업데이트
-//			this.eboService.setJoayo(m);
-			
-//			}else{
-//				return null;
-//			}
-//		}else //조회수 비증가 
-			
-		
-		
-		/*if(mem_no == e_lkno){//일치하면 추천수 변동없음
-			return null;
-		}*/
-		
-		
-		//좋아요 뽑아오기
-		int joayo = this.eboService.getJoayo(e_no);
-		
-		response.sendRedirect("eboardView.brn?state=cont&num="+e_no+"&joayo="+joayo);
-	
-		return null;
-	}
 	
 	/* 자료실 검색 목록 */
 	@RequestMapping(value="/ebo_find_ok.brn", method=RequestMethod.GET)
@@ -558,12 +517,6 @@ public class EboardAction {
 		
 		HttpSession session = request.getSession();
 		
-		String id = (String)session.getAttribute("mem_id");
-		int mem_no = this.eboService.eboNoCk(id);//회원번호 받아오기
-		String mem_id = this.eboService.eboIdCk(id);//회원아이디 받아오기
-//		String findId = this.eboService.findId();
-		
-		
 		int page=1;
 		int limit=10; //초기값
 		
@@ -571,7 +524,15 @@ public class EboardAction {
 			page=Integer.parseInt(request.getParameter("page"));
 		}
 		
-		System.out.println("page="+page);
+		String find_name=null;			
+		if(request.getParameter("find_name").trim() != null){
+			find_name=request.getParameter("find_name").trim();			    
+		}
+		
+		String find_field=null;
+		if(request.getParameter("find_field")!=null){
+			find_field=request.getParameter("find_field").trim();
+		}	
 		
 		//////////20줄보기 10줄보기 
 		//이전에 설정된 limit가 있는지 체크
@@ -587,30 +548,19 @@ public class EboardAction {
  		////////////
  		System.out.println("limit = " + limit);
  		
- 		String find_name=null;			
-		if(request.getParameter("find_name").trim() != null){
-			find_name=request.getParameter("find_name").trim();			    
-		}
+ 		
 		
-		String find_field=null;
-		if(request.getParameter("find_field")!=null){
-			find_field=request.getParameter("find_field").trim();
-		}	
-		
- 		Map m = new HashMap();
+ 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("page", page);
+		m.put("limit", limit);
 		m.put("find_field", find_field);
 		m.put("find_name", "%"+find_name+"%");
-		m.put("limit", limit);
-//		m.put("findId", findId);
 		
 		//총 리스트 수 받기
 		int listcount = this.eboService.getFindName(m);
-		System.err.println("listcount테스트 = " + listcount);
 		
 		//총 페이지 수
 		int maxpage = (listcount + limit - 1)/limit;
-		
 		
 		//현재 페이지에 보여줄 시작 페이지 수(1, 11, 21 등...)
  		int startpage = ((page-1) / 10) * 10 + 1;
@@ -620,13 +570,6 @@ public class EboardAction {
  		
  		if (endpage > maxpage) endpage= maxpage;
  		
-// 		if (endpage < page) page = endpage;
- 		
-/* 		Map m2 = new HashMap();
- 		m2.put("page", page);
- 		m2.put("limit", limit);
- 		//리스트 받기
-*/ 		
  		List<EboardBean> ebolist = eboService.getEboList3(m);
  		
  		
@@ -641,8 +584,6 @@ public class EboardAction {
 		model.addObject("listcount", listcount);
 		model.addObject("ebolist", ebolist);
 		model.addObject("limit", limit);
-		model.addObject("mem_no",mem_no);
-		model.addObject("mem_id",mem_id);
 		
 		return model;	
 		
@@ -650,100 +591,79 @@ public class EboardAction {
 	
 	/* 코멘트 저장 */
 	@RequestMapping(value="/ebo_comm.brn", method=RequestMethod.POST)
-	public ModelAndView ebo_comm(
+	public void ebo_comm(
 			@RequestParam("e_no") int e_no,
-			@RequestParam("ecomm") String ecomm,//글내용 
+			@RequestParam("ecomm_ct") String ecomm_ct,//글내용 
 			HttpServletRequest request,
 			HttpServletResponse response
 			) throws Exception{
 		
+		System.err.println("코멘트저장으로 오는가유");
 		HttpSession session = request.getSession();
+		String mem_id = (String)session.getAttribute("mem_id");
 		
-		String id = (String)session.getAttribute("mem_id");
-		int mem_no = this.eboService.eboNoCk(id);//회원번호 받아오기
-		System.err.println("--------------------1-------------------------");
-		Map m = new HashMap();
-		m.put("ecomm", ecomm);//글내용
-		m.put("e_no", e_no);
-		m.put("mem_no", mem_no);
+		EcommBean ecommbean = new EcommBean();
+		ecommbean.setMem_id(mem_id);
+		ecommbean.setEcomm_ct(ecomm_ct);
+		ecommbean.setE_no(e_no);
+		int result = this.eboService.insertEComm(ecommbean);
+		System.err.println("result = "+result);
+		this.eboService.changeEcommcnt(e_no);
+		PrintWriter out = response.getWriter();
+		out.print(result);
 		
-		String getcommId = this.eboService.getcId(mem_no);//회원아이디 받아오기
-		System.err.println("--------------------2-------------------------");
-//		코멘트 내용을 코멘트 테이블에 담는다
-		this.eboService.setComm(m);
-		System.err.println("--------------------3-------------------------");
-		
-		
-//		commCount총리스트수
-		int elistcount = this.eboService.commCount(e_no);
-//		EcommBean ecomm_re = this.eboService.getComm_re(e_no, ecomm_no);
-		
-		System.err.println("elistcount = " + elistcount);
-		System.err.println("--------------------4-------------------------");
-		/*ModelAndView mv = new ModelAndView();
-		mv.addObject("elistcount",elistcount);
-		mv.addObject("ecommlist",ecommlist);
-		mv.addObject("getcId",getcId);*/
-		
-		response.sendRedirect("eboardView.brn?elistcount="+elistcount+"&num="+e_no+"&getcommId="+getcommId+"&state=comm");
-		
-		return null;
 	}
-	
-	/*@RequestMapping(value="/ecommList.brn")
-	public ModelAndView ecommList(HttpServletRequest request,
+	@RequestMapping(value="/ecommList.brn")
+	public ModelAndView scommList(HttpServletRequest request,
 			HttpServletResponse response,@RequestParam(value="e_no") int e_no) throws Exception{
-		List<ScommBean> beanlist = new ArrayList<ScommBean>();
-		ModelAndView model=new ModelAndView("sboard/scommList");
-		beanlist = this.eboService.getComm(e_no);
+		
+		System.err.println("리스트로오는감");
+		List<EcommBean> beanlist = new ArrayList<EcommBean>();
+		ModelAndView model=new ModelAndView("html_community/eboard/eboardComm");
+		beanlist = this.eboService.getECommList(e_no);
 		model.addObject("beanlist",beanlist);
 		
 		return model;
-	}*/
+	}
+	
 	
 	/* 답글저장*/
 	@RequestMapping(value="/ebo_reply.brn", method=RequestMethod.POST)
-	public ModelAndView ebo_reply(
+	public void ebo_reply(
 			HttpServletRequest request,
-			HttpServletResponse response) throws Exception{
+			HttpServletResponse response,
+			@RequestParam("e_no") int e_no,
+			@RequestParam("ecomm_no") int ecomm_no,
+			@RequestParam("ecomm_ct") String ecomm_ct
+			) throws Exception{
 		
-		   int e_no=Integer.parseInt(request.getParameter("e_no"));
-		   int ecomm_no=Integer.parseInt(request.getParameter("ecomm_no"));
-		   int ecomm_re_ref=Integer.parseInt(request.getParameter("ecomm_re_ref"));
-		   int ecomm_re_lev=Integer.parseInt(request.getParameter("ecomm_re_lev"));
-		   int ecomm_re_seq=Integer.parseInt(request.getParameter("ecomm_re_seq"));
+			System.err.println("답글저장오는가..");
+			EcommBean ecommb=new EcommBean();
+			HttpSession session = request.getSession();
+			String mem_id = (String) session.getAttribute("mem_id");
+			
+		  
+		   ecommb.setMem_id(mem_id);
+		   ecommb.setE_no(e_no);
+		   ecommb.setEcomm_no(ecomm_no);
+		   ecommb = this.eboService.getEComment(ecommb);
+			int ecomm_re_ref = ecommb.getEcomm_re_ref();
+			int ecomm_re_lev = ecommb.getEcomm_re_lev();
+			int ecomm_re_seq = ecommb.getEcomm_re_seq();
+			ecomm_re_lev = ecomm_re_lev+1;
+			ecomm_re_seq =ecomm_re_seq+1;
+			ecommb.setEcomm_ct(ecomm_ct);
+			ecommb.setEcomm_re_ref(ecomm_re_ref);
+			ecommb.setEcomm_re_lev(ecomm_re_lev);
+			ecommb.setEcomm_re_seq(ecomm_re_seq);
+			this.eboService.insertECommRep(ecommb);
+			
 		   
-		   String ecomm_rct=request.getParameter("ecommRe_ct").trim();
-
-		   EcommBean ecommb=new EcommBean();
-		   
-		   HttpSession session = request.getSession();
-		   String mem_id = (String) session.getAttribute("mem_id");
-		   int mem_no = this.eboService.eboNoCk(mem_id);//회원번호 받아오기
-		   
-		   String getcId = this.eboService.getcId(mem_no);//회원아이디 받아오기
-//		   
-		   ecommb.setEcomm_re_ref(ecomm_re_ref); 
-		   ecommb.setEcomm_re_seq(ecomm_re_seq);
-		   
-		   this.eboService.refEdit(ecommb);
-		   
-		   ecomm_re_lev=ecomm_re_lev+1;
-		   ecomm_re_seq=ecomm_re_seq+1; //1씩증가
-		   
-		   ecommb.setEcomm_rct(ecomm_rct); ecommb.setE_no(e_no); ecommb.setEcomm_rct(ecomm_rct);
-		   ecommb.setEcomm_re_lev(ecomm_re_lev); ecommb.setEcomm_re_seq(ecomm_re_seq);
-        		   
-		   this.eboService.ecommReply(ecommb); //저장 메서드 호출
-		   											//
-		   response.sendRedirect("eboardView.brn?&num="+e_no+"&getcId="+getcId+"&ecomm_no="+ecomm_no+"&state=comm"); //해당 쪽번호 목록으로 이동
-		   
-		   return null;
 	}
 
 	/* 코멘트 삭제*/
 	@RequestMapping(value="/ebo_reply_del.brn")
-	public ModelAndView ebo_reply_del(
+	public void ebo_reply_del(
 //			@RequestParam("ecomm_re_del_no") int ecomm_re_del_no,
 			@RequestParam("ecomm_no") int ecomm_no,
 			HttpServletRequest request,
@@ -756,27 +676,19 @@ public class EboardAction {
 	      m.put("e_no", e_no);
 	      
 		 EcommBean bean = new EcommBean();
-		 List<EcommBean> ecommlist = new ArrayList<EcommBean>();
+		 List<EcommBean> ecommreflist = new ArrayList<EcommBean>();
 		 bean.setE_no(e_no);
 		 bean.setEcomm_no(ecomm_no);
-		 ecommlist=this.eboService.getcommentref(bean);
+		 ecommreflist=this.eboService.getcommentref(bean);
 		 
 	      int result =0;
-	      
-	      if(ecommlist.size()>=2){ //코멘트번호를 참조하는 답글번호가 코멘트번호랑 같으면   2개이상
+	      if(ecommreflist.size()>=2){ //코멘트번호를 참조하는 답글번호가 코멘트번호랑 같으면   2개이상
 	         result =this.eboService.deleteCommExistRep(m);
 	      }else{
 	         result =this.eboService.deleteComm(m);
 	      }
-		 
-//		 m.put("ecomm_re_del_no",ecomm_re_del_no);
-		 
-//		//코멘트 삭제
-//		this.eboService.deleteEcomm(m);//디비로 부터 레코드 삭제합니다.
-		
-		response.sendRedirect("eboardView.brn?state=comm&num="+e_no);
-		
-		return null;
+	    PrintWriter out = response.getWriter();
+	    out.print(result);
 			
 	}
 	

@@ -2,7 +2,34 @@
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../../inc/subHeader.jsp"%>
-
+<script>
+$(document).ready(function(){
+	$('.ebo_scrap').click(function(){
+		var e_no = $('#e_no').val();
+		$.ajax({
+			type : "post",
+			data : {"e_no" : e_no},
+			url : "eboardscrap.brn",
+			success : function(data){
+				var check = Number(data);
+				if(check==1){
+					alert('스크랩 완료!!');
+				}else{
+					alert('이미스크랩한 게시물 입니다.');
+				}
+				//가형님한테 여쭤보기
+				location.href="eboardView.brn?num=" + e_no + "&state=cont";
+				
+			},
+			error : function(data, status){
+				alert('게시물 스크랩에 실패하셨습니다'+status+data);
+			},
+			headers : {"cache-control": "no-cache","pragma": "no-cache"}
+		});
+	});
+	
+});
+</script>
 <!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
 <section class="sub_container">
 
@@ -18,26 +45,18 @@
 		
 			<!--게시글-->
 			<div class="Board_view">
+			<input type="hidden" name="e_no" id="e_no" value="${ebobean.e_no }" />
 				<!--LIKE-->
 				<div class="likeArea">
 			<ul> 
-				<li><input type="button" value="스크랩" class="btn_scrap"
-			  	onclick="location='ebo_like.brn?e_no=${ebobean.e_no}'" />
-			  	<c:if test="${joayo != null}">
-			  		${joayo}
-			  	</c:if>
+				<li><input type="button" value="스크랩" class="ebo_scrap"/>
 			  	<c:if test="${joayo == null}">
 			  		${ebobean.e_lk}
 			  	</c:if>
 			  	</li>
-<!-- 			<li><a href="/" class="btn_scrap" title="스크랩" id="joayo"><span>스크랩하기</span></a></li> -->
 			</ul>
 				</div>
 				<!--//LIKE-->
-				<!-- 번호 -->
-				<%-- <div>
-					${ebobean.e_no}
-				</div> --%>
 				<!--제목-->
 				<div class="board_tit">
 					${ebobean.e_sj}
@@ -59,16 +78,14 @@
 					</dl>
 					<dl class="writerinfo">
 						<dt>작성자</dt>
-						<dd>${mem_id}</dd>
+						<dd>${ebobean.mem_id}</dd>
 					</dl>
 					<dl class="numinfo">
 						<dt>번호</dt>
 						<dd>${ebobean.e_no}</dd>
 					</dl>
-					<!--  -->
 				</div>
 				<div class="Post_Area nobor">
-					<!---->
 					<div>
 						${e_ct}
 					</div>
@@ -82,14 +99,11 @@
 					</ul>
 				</div>
 				<!--//첨부파일-->
-<%-- 				<%@ include file="../inc/eboardComm.jsp" %> --%>
 			</div>
 			<!--//게시글-->
-			
 			<!--버튼영역-->
 		<div class="btnB_area">
-<%-- 		<% String id = (String)session.getAttribute("id");%> --%>
-		<c:if test="${sessionScope.id == mem_id}">
+		<c:if test="${sessionScope.mem_id == mem_id}">
 			<div class="fl">
 			 <input type="button" value="삭제" class="white"
 			   onclick="location='ebo_delete_ok.brn?num=${ebobean.e_no}&page=${page}'" />
@@ -102,21 +116,11 @@
 			   onclick="location='ebo_list.brn?page=${page}'" />
 			</div>
 		</div>
-			<!-- 
-			버튼영역
-			<div class="btnB_area">
-				<div class="fl">
-					<a href="boardList.jsp" class="white">삭제</a>
-					<a href="boardWrite.jsp" class="white">수정</a>
-				</div>
-				<div class="fr">
-					<a href="boardList.jsp" class="black">목록</a>
-				</div>
-			</div> -->
-			<!--//버튼영역-->
 			
 			<!-- 코멘트영역 -->
-	<%@ include file="eboardComm.jsp" %>
+			<div class="commentList">
+			<%@ include file="eboardComm.jsp" %>
+			</div>
 			<!-- //코멘트영역 -->
 			
 			<!-- 이전글, 다음글 -->

@@ -49,7 +49,7 @@
 									<span class="date"><fmt:formatDate value="${b.gbbs_date}" pattern="yyyy.MM.dd" /></span>
 									<span class="click">${b.gbbs_readcount}</span>
 									<span class="like">${b.gbbs_like}</span>
-									<span class="author">${b.gbbs_author}</span>
+									<span class="author">${b.gbbs_userid}</span>
 								</p>
 							</a>
 						</li>

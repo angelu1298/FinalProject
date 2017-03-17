@@ -9,6 +9,12 @@ import com.burn.fat.board.eboard.model.EcommBean;
 
 public interface EboardService {
 
+	/* 스크랩 여부 확인 */
+	public String checkscrap(int e_no);
+	
+	/* 좋아요 증가 */
+	public int likeCountUp(Map<String, Object> map);
+
 	/* 최대값 번호 구하기 */
 	public int getNo() throws Exception;
 		
@@ -61,14 +67,20 @@ public interface EboardService {
 	public String findId() throws Exception;
 	
 //	코멘트 내용을 코멘트 테이블에 담는다
-	public void setComm(Map m) throws Exception;
+	public int insertEComm(EcommBean ecommb) throws Exception;
+	
+	public void changeEcommcnt(int e_no) throws Exception;
+	
 	
 	// 코멘트 총갯수 
 	public int commCount(int e_no) throws Exception;
 	
 	// 코멘트목록 불러오기
-	public List<EcommBean> getComm(int e_no) throws Exception;
+	public EcommBean getEComment(EcommBean ecommb) throws Exception;
 	
+	// 코멘트목록 불러오기
+	public List<EcommBean> getECommList(int e_no) throws Exception;
+		
 	//코멘트아디
 	public String getcId(int mem_no) throws Exception;
 	
@@ -77,7 +89,7 @@ public interface EboardService {
 	public void refEdit(EcommBean ecommb) throws Exception;
 
 	/*답글 저장*/
-	public void ecommReply(EcommBean ecommb) throws Exception;
+	public void insertECommRep(EcommBean ecommb) throws Exception;
 	
 	/*코멘트 삭제*/
 	public void deleteEcomm(Map m) throws Exception;
@@ -86,7 +98,7 @@ public interface EboardService {
 	public void deleteEcomm_Re(Map m) throws Exception;*/
 	
 	// 코멘트 불러오기 
-	public List<EcommBean> getComm_re(Map<String, Integer> map) throws Exception;
+	public List<EcommBean> getComm_re(EcommBean ecommb) throws Exception;
 		
 	// 코멘트에 달린 댓글 확인
 	public List<EcommBean> getcommentref(EcommBean ecommbean) throws Exception;

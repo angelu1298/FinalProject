@@ -77,6 +77,7 @@ $(function(){
 					<input type="text" name="e_sj" value="${ebobean.e_sj}" />
 					
 				</div>
+				
 				<!--정보-->
 				<div class="Editor_Area"> 
 					<textarea name="e_ct" id="e_ct" rows="10" cols="766px"  class="input_box">${ebobean.e_ct}</textarea>
