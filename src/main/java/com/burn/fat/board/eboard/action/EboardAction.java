@@ -24,8 +24,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.burn.fat.board.eboard.dao.EboardService;
 import com.burn.fat.board.eboard.model.EboardBean;
 import com.burn.fat.board.eboard.model.EcommBean;
-import com.burn.fat.board.sboard.model.SboardBean;
-import com.burn.fat.board.sboard.model.ScommBean;
 import com.oreilly.servlet.MultipartRequest;
 
 @Controller
@@ -34,8 +32,8 @@ public class EboardAction {
 	@Autowired
 	public EboardService eboService;
 	
-	private String saveFolder="C:/Users/angel/git/FinalProject/src/main/webapp/resources/upload"; //파일 저장시킬 경로
-	/* 스크랩 */
+	private String saveFolder="C:/Users/angel/git/FinalProject/src/main/webapp/resources/upload"; //�뙆�씪 ���옣�떆�궗 寃쎈줈
+	/* �뒪�겕�옪 */
 	@RequestMapping(value = "/eboardscrap.brn")
 	public void sboardscrap(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "e_no", required = true) int e_no) throws Exception {
@@ -49,7 +47,6 @@ public class EboardAction {
 		map.put("mem_no", mem_no);
 		int check = 0;
 		String e_lkno = this.eboService.checkscrap(e_no);
-		System.err.println("추천인번호" +e_lkno);
 		if (e_lkno != null) {
 			StringTokenizer token = new StringTokenizer(e_lkno, ",");
 			while (token.hasMoreTokens()) {
@@ -71,25 +68,25 @@ public class EboardAction {
 	}
 	
 	
-	/* 자료실 입력폼 */
+	/* �옄猷뚯떎 �엯�젰�뤌 */
 	@RequestMapping(value="/eboardWrite.brn")
 	public String eboInsert(){
 		return "html_community/eboard/eboardWrite";
 	}
 	
 	
-	/* 자료실 저장 */
-	//첨부파일 클릭할 경우 이미지 보고자 할  경우 : 자동 새로 고침 설정
+	/* �옄猷뚯떎 ���옣 */
+	//泥⑤��뙆�씪 �겢由��븷 寃쎌슦 �씠誘몄� 蹂닿퀬�옄 �븷  寃쎌슦 : �옄�룞 �깉濡� 怨좎묠 �꽕�젙
 	//(window-> Preferencs -> workspce -> 
-	// Refresh using native hooks or polling 체크)
-	//  하고 5초 정도 지난 뒤 확인하세요
+	// Refresh using native hooks or polling 泥댄겕)
+	//  �븯怨� 5珥� �젙�룄 吏��궃 �뮘 �솗�씤�븯�꽭�슂
 	@RequestMapping(value="/ebo_write_ok.brn", method=RequestMethod.POST)
 	public ModelAndView ebo_write_ok(
 						HttpServletRequest request, 
 						HttpServletResponse response) throws Exception{
 		
 		EboardBean ebobean=new EboardBean();
-		int fileSize=5*1024*1024; //이진파일 최대 업로드 크기	
+		int fileSize=5*1024*1024; //�씠吏꾪뙆�씪 理쒕� �뾽濡쒕뱶 �겕湲�	
 		
 		MultipartRequest multi=null;
 		multi=new MultipartRequest(request,saveFolder,fileSize,"UTF-8");
@@ -98,7 +95,7 @@ public class EboardAction {
 		PrintWriter out = response.getWriter();
 		String mem_id = (String)session.getAttribute("mem_id");
 		if(mem_id==null){
-			out.print("<script>alert('로그인 후 이용할 수 있습니다.');");
+			out.print("<script>alert('濡쒓렇�씤 �썑 �씠�슜�븷 �닔 �엳�뒿�땲�떎.');");
 			out.print(" history.back()</script>");
 			
 			return null;
@@ -109,46 +106,46 @@ public class EboardAction {
 		String e_ct=multi.getParameter("e_ct").trim();
 		
 		File UpFile=multi.getFile("e_fl");
-		if(UpFile != null){//첨부한 이진파일이 있다면
-			String fileName=UpFile.getName();//이진파일명 저장
+		if(UpFile != null){//泥⑤��븳 �씠吏꾪뙆�씪�씠 �엳�떎硫�
+			String fileName=UpFile.getName();//�씠吏꾪뙆�씪紐� ���옣
 
 			Calendar c=Calendar.getInstance();
-			int year=c.get(Calendar.YEAR);      //오늘 년도 구합니다.
-			int month=c.get(Calendar.MONTH)+1;  //오늘 월 구합니다.
-			int date=c.get(Calendar.DATE);      //오늘 일 구합니다.
+			int year=c.get(Calendar.YEAR);      //�삤�뒛 �뀈�룄 援ы빀�땲�떎.
+			int month=c.get(Calendar.MONTH)+1;  //�삤�뒛 �썡 援ы빀�땲�떎.
+			int date=c.get(Calendar.DATE);      //�삤�뒛 �씪 援ы빀�땲�떎.
 			
             String homedir=saveFolder+"/"+year+"-"+month+"-"+date;
             System.out.println("homedir = " + homedir);
-            //upload폴더 아래에 파일 올린 날짜로 폴더 생성합니다.
+            //upload�뤃�뜑 �븘�옒�뿉 �뙆�씪 �삱由� �궇吏쒕줈 �뤃�뜑 �깮�꽦�빀�땲�떎.
             File path1=new File(homedir);
             if(!(path1.exists())){
-            	path1.mkdir();//새로운 폴더를 생성
+            	path1.mkdir();//�깉濡쒖슫 �뤃�뜑瑜� �깮�꽦
             }
-            //난수를 구합니다.
+            //�궃�닔瑜� 援ы빀�땲�떎.
             Random r=new Random();
             int random=r.nextInt(100000000);
             
-            /****확장자 구하기 시작 ****/
+            /****�솗�옣�옄 援ы븯湲� �떆�옉 ****/
 			int index = fileName.lastIndexOf(".");
-			//문자열에서 특정 문자열의 위치 값(index)를 반환한다.
-			//indexOf가 처음 발견되는 문자열에 대한 index를 반환하는 반면,
-			//lastIndexOf는 마지막으로 발견되는 문자열의 index를 반환합니다.
-			//(파일명에 점에 여러개 있을 경우 맨 마지막에 발견되는 문자열의 위치를 리턴합니다.)
+			//臾몄옄�뿴�뿉�꽌 �듅�젙 臾몄옄�뿴�쓽 �쐞移� 媛�(index)瑜� 諛섑솚�븳�떎.
+			//indexOf媛� 泥섏쓬 諛쒓껄�릺�뒗 臾몄옄�뿴�뿉 ���븳 index瑜� 諛섑솚�븯�뒗 諛섎㈃,
+			//lastIndexOf�뒗 留덉�留됱쑝濡� 諛쒓껄�릺�뒗 臾몄옄�뿴�쓽 index瑜� 諛섑솚�빀�땲�떎.
+			//(�뙆�씪紐낆뿉 �젏�뿉 �뿬�윭媛� �엳�쓣 寃쎌슦 留� 留덉�留됱뿉 諛쒓껄�릺�뒗 臾몄옄�뿴�쓽 �쐞移섎�� 由ы꽩�빀�땲�떎.)
 			System.out.println("index = " +  index);
 			
 			String fileExtension = fileName.substring(index + 1);
 			System.out.println("fileExtension = " +  fileExtension);
-			/****확장자 구하기 끝 ***/
-			//새로운 파일명을 저장
+			/****�솗�옣�옄 援ы븯湲� �걹 ***/
+			//�깉濡쒖슫 �뙆�씪紐낆쓣 ���옣
 			String refileName="eboard"+year+month+date+random+"."+
 					fileExtension;
 			System.out.println("refileName = " + refileName);
 			
-			 //오라클 디비에 저장될 레코드 값
+			 //�삤�씪�겢 �뵒鍮꾩뿉 ���옣�맆 �젅肄붾뱶 媛�
             String fileDBName="/"+year+"-"+month+"-"+date+"/"+refileName;
             System.out.println("fileDBName = " + fileDBName);
            
-            //파일명 변경합니다.
+            //�뙆�씪紐� 蹂�寃쏀빀�땲�떎.
             UpFile.renameTo(new File(homedir+"/"+refileName));
             System.out.println("homedir / refileName  = " + homedir+"/"+
             refileName);
@@ -159,10 +156,10 @@ public class EboardAction {
 		
 		int e_no = 1;
 		
-		result = this.eboService.getListCount();//총 게시물 수 
+		result = this.eboService.getListCount();//珥� 寃뚯떆臾� �닔 
 		
 		if(result!=0){
-			result = eboService.getNo(); //최대값 번호 
+			result = eboService.getNo(); //理쒕�媛� 踰덊샇 
 			e_no = result + 1;
 		}
 		
@@ -179,7 +176,7 @@ public class EboardAction {
 	}
 		
 	
-	/* 자료실 목록 */
+	/* �옄猷뚯떎 紐⑸줉 */
 	@RequestMapping(value="/ebo_list.brn")
 	public ModelAndView ebo_list(
 					HttpServletRequest request,
@@ -188,7 +185,7 @@ public class EboardAction {
 		HttpSession session = request.getSession();
 		
 		int page=1;
-		int limit=10; //초기값
+		int limit=10; //珥덇린媛�
 		
 		if(request.getParameter("page") != null){
 			page=Integer.parseInt(request.getParameter("page"));
@@ -201,16 +198,16 @@ public class EboardAction {
  			session.setAttribute("limit", limit);
  		}
  		
-		//총 리스트 수 받기
+		//珥� 由ъ뒪�듃 �닔 諛쏄린
 		int listcount = eboService.getListCount();
 		
-		//총 페이지 수
+		//珥� �럹�씠吏� �닔
 		int maxpage = (listcount + limit - 1)/limit;
 		
-		//현재 페이지에 보여줄 시작 페이지 수(1, 11, 21 등...)
+		//�쁽�옱 �럹�씠吏��뿉 蹂댁뿬以� �떆�옉 �럹�씠吏� �닔(1, 11, 21 �벑...)
  		int startpage = ((page-1) / 10) * 10 + 1;
  		
- 		//현재 페이지에 보여줄 마지막 페이지 수(10, 20, 30 등 ...)
+ 		//�쁽�옱 �럹�씠吏��뿉 蹂댁뿬以� 留덉�留� �럹�씠吏� �닔(10, 20, 30 �벑 ...)
  		int endpage = startpage + 10 -1;
  		
  		if (endpage > maxpage) endpage= maxpage;
@@ -220,7 +217,7 @@ public class EboardAction {
  		Map<String,Integer> m = new HashMap<String,Integer>();
  		m.put("page", page);
  		m.put("limit", limit);
- 		//리스트 받기
+ 		//由ъ뒪�듃 諛쏄린
  		List<EboardBean> ebolist = eboService.getEboList(m);
  		
  		
@@ -237,7 +234,7 @@ public class EboardAction {
 	}
 	
 	
-	/* 몇줄보기 */
+	/* 紐뉗쨪蹂닿린 */
 	@RequestMapping(value="/eboardList.brn", method=RequestMethod.POST)
 	public ModelAndView eboardList(
 					HttpServletRequest request,
@@ -246,7 +243,7 @@ public class EboardAction {
 		HttpSession session = request.getSession();
 		
 		int page=1;
-		int limit=10; //초기값
+		int limit=10; //珥덇린媛�
 		
 		if(request.getParameter("page") != null){
 			page=Integer.parseInt(request.getParameter("page"));
@@ -254,13 +251,13 @@ public class EboardAction {
 		
 		System.out.println("page="+page);
 		
-		//////////20줄보기 10줄보기 
-		//이전에 설정된 limit가 있는지 체크
+		//////////20以꾨낫湲� 10以꾨낫湲� 
+		//�씠�쟾�뿉 �꽕�젙�맂 limit媛� �엳�뒗吏� 泥댄겕
  		if(session.getAttribute("limit")!= null){
  			limit = (Integer)session.getAttribute("limit");
  		}
  		
- 		//변경된 limit가 있는지 체크
+ 		//蹂�寃쎈맂 limit媛� �엳�뒗吏� 泥댄겕
  		if(request.getParameter("limit") != null){
  			limit=Integer.parseInt(request.getParameter("limit"));
  			session.setAttribute("limit", limit);
@@ -269,16 +266,16 @@ public class EboardAction {
  		System.out.println("limit = " + limit);
  		
 		
-		//총 리스트 수 받기
+		//珥� 由ъ뒪�듃 �닔 諛쏄린
 		int listcount = eboService.getListCount();
 		
-		//총 페이지 수
+		//珥� �럹�씠吏� �닔
 		int maxpage = (listcount + limit - 1)/limit;
 		
-		//현재 페이지에 보여줄 시작 페이지 수(1, 11, 21 등...)
+		//�쁽�옱 �럹�씠吏��뿉 蹂댁뿬以� �떆�옉 �럹�씠吏� �닔(1, 11, 21 �벑...)
  		int startpage = ((page-1) / 10) * 10 + 1;
  		
- 		//현재 페이지에 보여줄 마지막 페이지 수(10, 20, 30 등 ...)
+ 		//�쁽�옱 �럹�씠吏��뿉 蹂댁뿬以� 留덉�留� �럹�씠吏� �닔(10, 20, 30 �벑 ...)
  		int endpage = startpage + 10 -1;
  		
  		if (endpage > maxpage) endpage= maxpage;
@@ -288,7 +285,7 @@ public class EboardAction {
  		Map m = new HashMap();
  		m.put("page", page);
  		m.put("limit", limit);
- 		//리스트 받기
+ 		//由ъ뒪�듃 諛쏄린
  		List<EboardBean> ebolist = eboService.getEboList(m);
  		
  		ModelAndView model = new ModelAndView("html_community/eboard/eboardList");
@@ -305,7 +302,7 @@ public class EboardAction {
 	
 	
 	
-	/* 자료실 내용보기, 수정폼, 답변글폼, 삭제폼*/
+	/* �옄猷뚯떎 �궡�슜蹂닿린, �닔�젙�뤌, �떟蹂�湲��뤌, �궘�젣�뤌*/
 	@RequestMapping(value="/eboardView.brn")
 	public ModelAndView eboardView(
 			@RequestParam(value="num", required=true) int num,
@@ -318,7 +315,7 @@ public class EboardAction {
 		int page=1;
 		if(request.getParameter("page") != null){
 			page=Integer.parseInt(request.getParameter("page"));
-			//parseInt()메서드로 정수형 숫자로 바꿔서 저장
+			//parseInt()硫붿꽌�뱶濡� �젙�닔�삎 �닽�옄濡� 諛붽퓭�꽌 ���옣
 		}
 		
 		ModelAndView mv = new ModelAndView();
@@ -326,7 +323,7 @@ public class EboardAction {
 		Map m = new HashMap();
 		m.put("e_no", num);
 		
-		/*//코멘트 불러오기
+		/*//肄붾찘�듃 遺덈윭�삤湲�
 		List<EcommBean> ecommlist = this.eboService.getComm(num);
 		mv.addObject("ecommlist",ecommlist);*/
 		
@@ -347,7 +344,7 @@ public class EboardAction {
 //			mv.addObject("getcommId",getcommId);
 //		}
 	
-		String state=request.getParameter("state");//구분 필드		
+		String state=request.getParameter("state");//援щ텇 �븘�뱶		
 	
 		
 		
@@ -364,35 +361,35 @@ public class EboardAction {
 		
 		if(ebobean2==null){
 			PrintWriter out =response.getWriter();
-			out.print("<script>alert('존재하지 않는 게시물입니다.'); history.back();</script>");
+			out.print("<script>alert('議댁옱�븯吏� �븡�뒗 寃뚯떆臾쇱엯�땲�떎.'); history.back();</script>");
 			return null;
 		}else{
 			
-			if(state.equals("cont")){ //글내용보기
-				this.eboService.eboHit(num);//조회수 증가
+			if(state.equals("cont")){ //湲��궡�슜蹂닿린
+				this.eboService.eboHit(num);//議고쉶�닔 利앷�
 				
-				/*//글내용 중 엔터키 친부분을 다음줄로 개행 처리
+				/*//湲��궡�슜 以� �뿏�꽣�궎 移쒕�遺꾩쓣 �떎�쓬以꾨줈 媛쒗뻾 泥섎━
 				String e_ct=ebobean.getE_ct().replace("\n","<br/>");
 				
 				mv.addObject("e_ct",e_ct);*/
 				
 				mv.setViewName("html_community/eboard/eboardView");
-			}else if(state.equals("edit")){//수정일떄
+			}else if(state.equals("edit")){//�닔�젙�씪�뻹
 				mv.setViewName("html_community/eboard/eboardEdit");
-			}else if(state.equals("comm")){//코멘트
+			}else if(state.equals("comm")){//肄붾찘�듃
 				mv.setViewName("html_community/eboard/eboardView");
 			}
 			
-			//좋아요
+			//醫뗭븘�슂
 			if(request.getParameter("joayo") != null){
 				int joayo=Integer.parseInt(request.getParameter("joayo"));
 				mv.addObject("joayo",joayo);
 			}
 					
-			//번호를 기준으로 DB 내용을 가져옵니다.
+			//踰덊샇瑜� 湲곗��쑝濡� DB �궡�슜�쓣 媛��졇�샃�땲�떎.
 			EboardBean ebobean=this.eboService.getEboCont(num);
 			
-			//글내용 중 엔터키 친부분을 다음줄로 개행 처리
+			//湲��궡�슜 以� �뿏�꽣�궎 移쒕�遺꾩쓣 �떎�쓬以꾨줈 媛쒗뻾 泥섎━
 			String e_ct=ebobean.getE_ct().replace("\n","<br/>");
 			
 			mv.addObject("ebobean", ebobean);
@@ -404,7 +401,7 @@ public class EboardAction {
 		}
 	}
 	
-	/* 자료실 수정 */
+	/* �옄猷뚯떎 �닔�젙 */
 	@RequestMapping(value="/ebo_edit_ok.brn",
 			method=RequestMethod.POST)
 	public ModelAndView ebo_edit_ok(
@@ -413,7 +410,7 @@ public class EboardAction {
 		
 		EboardBean ebobean=new EboardBean();
 		response.setContentType("text/html;charset=UTF-8");
-		int fileSize=5*1024*1024; //이진파일 최대 업로드 크기	
+		int fileSize=5*1024*1024; //�씠吏꾪뙆�씪 理쒕� �뾽濡쒕뱶 �겕湲�	
 		
 		MultipartRequest multi=null;
 		multi=new MultipartRequest(request,saveFolder,fileSize,"UTF-8");
@@ -428,15 +425,15 @@ public class EboardAction {
 		String e_ct=multi.getParameter("e_ct").trim();
 		PrintWriter out=response.getWriter();
 		
-		//디비로 부터 내용을 가져옴
+		//�뵒鍮꾨줈 遺��꽣 �궡�슜�쓣 媛��졇�샂
 		EboardBean ebocont=this.eboService.getEboCont(e_no);
 				
 		File UpFile=multi.getFile("e_fl");
-		   if(UpFile != null){//첨부한 이진파일이 있다면
-			   String fileName=UpFile.getName();//첨부한 이진파일명 저장
+		   if(UpFile != null){//泥⑤��븳 �씠吏꾪뙆�씪�씠 �엳�떎硫�
+			   String fileName=UpFile.getName();//泥⑤��븳 �씠吏꾪뙆�씪紐� ���옣
 			   File DelFile=new File(saveFolder+ebocont.getE_fl());
 			   if(DelFile.exists()) {
-				   DelFile.delete();//기존 이진파일을 삭제
+				   DelFile.delete();//湲곗〈 �씠吏꾪뙆�씪�쓣 �궘�젣
 			   }
 			   Calendar c=Calendar.getInstance();
 			   int year=c.get(Calendar.YEAR);
@@ -446,17 +443,17 @@ public class EboardAction {
             String homedir=saveFolder+"/"+year+"-"+month+"-"+date;
             File path1=new File(homedir);
             if(!(path1.exists())){
-         	   path1.mkdir();//새로운 폴더를 생성
+         	   path1.mkdir();//�깉濡쒖슫 �뤃�뜑瑜� �깮�꽦
             }
             Random r=new Random();
             int random=r.nextInt(100000000);
             
-            /****확장자 구하기 시작 ****/
+            /****�솗�옣�옄 援ы븯湲� �떆�옉 ****/
 			int index = fileName.lastIndexOf(".");
 			String fileExtension = fileName.substring(index + 1);
-			/****확장자 구하기 끝 ***/
+			/****�솗�옣�옄 援ы븯湲� �걹 ***/
 			String refileName="eboard"+year+month+date+random+"."+
-					fileExtension;//새로운 파일명을 저장
+					fileExtension;//�깉濡쒖슫 �뙆�씪紐낆쓣 ���옣
          String fileDBName="/"+year+"-"+month+"-"+date+"/"+refileName;
          
          UpFile.renameTo(new File(homedir+"/"+refileName));
@@ -470,9 +467,9 @@ public class EboardAction {
 		ebobean.setE_ct(e_ct);
 //		ebobean.setMem_id(mem_id);
 		
-		this.eboService.editEbo(ebobean);//수정메서드 호출
+		this.eboService.editEbo(ebobean);//�닔�젙硫붿꽌�뱶 �샇異�
 		
-		//get방식으로 3개 파라미터 넘어감
+		//get諛⑹떇�쑝濡� 3媛� �뙆�씪誘명꽣 �꽆�뼱媛�
 		response.sendRedirect(
 				"eboardView.brn?state=cont&page="+page+"&num="+e_no);
 		
@@ -480,7 +477,7 @@ public class EboardAction {
 		
 	}
 	
-	/* 자료실 삭제 */
+	/* �옄猷뚯떎 �궘�젣 */
 	@RequestMapping(value="/ebo_delete_ok.brn")
 	public ModelAndView ebo_delete_ok(
 			@RequestParam("num") int e_no,
@@ -489,25 +486,25 @@ public class EboardAction {
 			HttpServletResponse response) throws Exception{
 		response.setContentType("text/html;charset=UTF-8");
 		
-		//글번호에 해당하는 디비 내용을 가져옵니다.
+		//湲�踰덊샇�뿉 �빐�떦�븯�뒗 �뵒鍮� �궡�슜�쓣 媛��졇�샃�땲�떎.
 		EboardBean ebobean=this.eboService.getEboCont(e_no);
 		
-		//기존 파일명 가져옵니다.
+		//湲곗〈 �뙆�씪紐� 媛��졇�샃�땲�떎.
 		String fname=ebobean.getE_fl();
 		
-		if(fname != null){//기존 이진파일이 존재한다면
+		if(fname != null){//湲곗〈 �씠吏꾪뙆�씪�씠 議댁옱�븳�떎硫�
 			File file=new File(saveFolder+fname);
-			file.delete();//서버 폴더로 부터 기존 이진파일 삭제합니다.
+			file.delete();//�꽌踰� �뤃�뜑濡� 遺��꽣 湲곗〈 �씠吏꾪뙆�씪 �궘�젣�빀�땲�떎.
 		}
 		
-		this.eboService.deleteEbo(e_no);//디비로 부터 레코드 삭제합니다.
+		this.eboService.deleteEbo(e_no);//�뵒鍮꾨줈 遺��꽣 �젅肄붾뱶 �궘�젣�빀�땲�떎.
 		response.sendRedirect("ebo_list.brn?page="+page);
 		
 		return null;
 	}
 	
 	
-	/* 자료실 검색 목록 */
+	/* �옄猷뚯떎 寃��깋 紐⑸줉 */
 	@RequestMapping(value="/ebo_find_ok.brn", method=RequestMethod.GET)
 	public ModelAndView ebo_find_ok(
 			HttpServletRequest request,
@@ -517,7 +514,7 @@ public class EboardAction {
 		HttpSession session = request.getSession();
 		
 		int page=1;
-		int limit=10; //초기값
+		int limit=10; //珥덇린媛�
 		
 		if(request.getParameter("page") != null){
 			page=Integer.parseInt(request.getParameter("page"));
@@ -533,13 +530,13 @@ public class EboardAction {
 			find_field=request.getParameter("find_field").trim();
 		}	
 		
-		//////////20줄보기 10줄보기 
-		//이전에 설정된 limit가 있는지 체크
+		//////////20以꾨낫湲� 10以꾨낫湲� 
+		//�씠�쟾�뿉 �꽕�젙�맂 limit媛� �엳�뒗吏� 泥댄겕
  		if(session.getAttribute("limit")!= null){
  			limit = (Integer)session.getAttribute("limit");
  		}
  		
- 		//변경된 limit가 있는지 체크
+ 		//蹂�寃쎈맂 limit媛� �엳�뒗吏� 泥댄겕
  		if(request.getParameter("limit") != null){
  			limit=Integer.parseInt(request.getParameter("limit"));
  			session.setAttribute("limit", limit);
@@ -555,16 +552,16 @@ public class EboardAction {
 		m.put("find_field", find_field);
 		m.put("find_name", "%"+find_name+"%");
 		
-		//총 리스트 수 받기
+		//珥� 由ъ뒪�듃 �닔 諛쏄린
 		int listcount = this.eboService.getFindName(m);
 		
-		//총 페이지 수
+		//珥� �럹�씠吏� �닔
 		int maxpage = (listcount + limit - 1)/limit;
 		
-		//현재 페이지에 보여줄 시작 페이지 수(1, 11, 21 등...)
+		//�쁽�옱 �럹�씠吏��뿉 蹂댁뿬以� �떆�옉 �럹�씠吏� �닔(1, 11, 21 �벑...)
  		int startpage = ((page-1) / 10) * 10 + 1;
  		
- 		//현재 페이지에 보여줄 마지막 페이지 수(10, 20, 30 등 ...)
+ 		//�쁽�옱 �럹�씠吏��뿉 蹂댁뿬以� 留덉�留� �럹�씠吏� �닔(10, 20, 30 �벑 ...)
  		int endpage = startpage + 10 -1;
  		
  		if (endpage > maxpage) endpage= maxpage;
@@ -588,16 +585,16 @@ public class EboardAction {
 		
 	}
 	
-	/* 코멘트 저장 */
+	/* 肄붾찘�듃 ���옣 */
 	@RequestMapping(value="/ebo_comm.brn", method=RequestMethod.POST)
 	public void ebo_comm(
 			@RequestParam("e_no") int e_no,
-			@RequestParam("ecomm_ct") String ecomm_ct,//글내용 
+			@RequestParam("ecomm_ct") String ecomm_ct,//湲��궡�슜 
 			HttpServletRequest request,
 			HttpServletResponse response
 			) throws Exception{
 		
-		System.err.println("코멘트저장으로 오는가유");
+		System.err.println("肄붾찘�듃���옣�쑝濡� �삤�뒗媛��쑀");
 		HttpSession session = request.getSession();
 		String mem_id = (String)session.getAttribute("mem_id");
 		
@@ -616,7 +613,7 @@ public class EboardAction {
 	public ModelAndView scommList(HttpServletRequest request,
 			HttpServletResponse response,@RequestParam(value="e_no") int e_no) throws Exception{
 		
-		System.err.println("리스트로오는감");
+		System.err.println("由ъ뒪�듃濡쒖삤�뒗媛�");
 		List<EcommBean> beanlist = new ArrayList<EcommBean>();
 		ModelAndView model=new ModelAndView("html_community/eboard/eboardComm");
 		beanlist = this.eboService.getECommList(e_no);
@@ -626,7 +623,7 @@ public class EboardAction {
 	}
 	
 	
-	/* 답글저장*/
+	/* �떟湲����옣*/
 	@RequestMapping(value="/ebo_reply.brn", method=RequestMethod.POST)
 	public void ebo_reply(
 			HttpServletRequest request,
@@ -636,7 +633,7 @@ public class EboardAction {
 			@RequestParam("ecomm_ct") String ecomm_ct
 			) throws Exception{
 		
-			System.err.println("답글저장오는가..");
+			System.err.println("�떟湲����옣�삤�뒗媛�..");
 			EcommBean ecommb=new EcommBean();
 			HttpSession session = request.getSession();
 			String mem_id = (String) session.getAttribute("mem_id");
@@ -660,7 +657,7 @@ public class EboardAction {
 		   
 	}
 
-	/* 코멘트 삭제*/
+	/* 肄붾찘�듃 �궘�젣*/
 	@RequestMapping(value="/ebo_reply_del.brn")
 	public void ebo_reply_del(
 //			@RequestParam("ecomm_re_del_no") int ecomm_re_del_no,
@@ -681,7 +678,7 @@ public class EboardAction {
 		 ecommreflist=this.eboService.getcommentref(bean);
 		 
 	      int result =0;
-	      if(ecommreflist.size()>=2){ //코멘트번호를 참조하는 답글번호가 코멘트번호랑 같으면   2개이상
+	      if(ecommreflist.size()>=2){ //肄붾찘�듃踰덊샇瑜� 李몄“�븯�뒗 �떟湲�踰덊샇媛� 肄붾찘�듃踰덊샇�옉 媛숈쑝硫�   2媛쒖씠�긽
 	         result =this.eboService.deleteCommExistRep(m);
 	      }else{
 	         result =this.eboService.deleteComm(m);

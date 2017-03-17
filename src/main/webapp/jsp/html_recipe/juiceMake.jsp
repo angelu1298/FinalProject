@@ -92,7 +92,7 @@
 					<div class="juiceitemlist">
 				    	<ul class="fruitlist">
 							<c:forEach var="jf" items="${JuiceFList}">
-								<li class="ui-widget-content ui-corner-all item itemf">
+								<li class="ui-widget-content ui-corner-all item itemf fru${jf.juc_no}">
 									<span>${jf.juc_tt}</span>
 									<input name="frulist" type="hidden" id="fru${jf.juc_no}" value="${jf.juc_tt}">
 								</li>
@@ -100,7 +100,7 @@
 						</ul>
 				    	<ul class="vegitablelist">
 							<c:forEach var="jv" items="${JuiceVList}">
-								<li class="ui-widget-content ui-corner-all item itemv">
+								<li class="ui-widget-content ui-corner-all item itemv veg${jv.juc_no}">
 									<span>${jv.juc_tt}</span>
 									<input name="veglist" type="hidden" id="veg${jv.juc_no}" value="${jv.juc_tt}">
 								</li>
