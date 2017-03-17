@@ -22,13 +22,13 @@ public class Cal_exercise_Action {
 	@Autowired
 	private ExerciseService exerService;
 
-	/* erc_ty ¿îµ¿ Å¸ÀÔ °¡Á®¿À±â */
+	/* erc_ty ï¿½îµ¿ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	@RequestMapping(value = "/bringtype.brn")
 	public ModelAndView bringtype(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		List<ExerciseBean> exerciselist = exerService.bringtype();
 
-		ModelAndView mv = new ModelAndView("html_calculator/exercise");
+		ModelAndView mv = new ModelAndView("html_calculator/cal_exer");
 
 		mv.addObject("exerciselist", exerciselist);
 
@@ -36,7 +36,7 @@ public class Cal_exercise_Action {
 
 	}
 
-	// erc_nm °¡Á®¿À±â
+	// erc_nm ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/bringname.brn")
 	public ModelAndView bringname(@RequestParam("a") String name, @RequestParam("erc_sx") String erc_sx,
 										HttpServletRequest request,
@@ -47,7 +47,7 @@ public class Cal_exercise_Action {
 
 		List<ExerciseBean> exerciselist = exerService.bringname(name);
 
-		ModelAndView mv = new ModelAndView("html_calculator/result_nm");
+		ModelAndView mv = new ModelAndView("html_calculator/cal_exer_result_nm");
 
 		mv.addObject("exerciselist", exerciselist);
 		mv.addObject("erc_sx",erc_sx);
@@ -55,7 +55,7 @@ public class Cal_exercise_Action {
 
 	}
 
-	//kcal ¹öÆ° Å¬¸¯½Ã ÀÚ·á 
+	//kcal ï¿½ï¿½Æ° Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½ 
 	@RequestMapping(value = "/bringtime.brn")
 		public ModelAndView bringtime(@RequestParam("exe_name") String exe_name, 
 					@RequestParam("exe_kcal") int exe_kcal,@RequestParam("erc_sx") String erc_sx,
@@ -74,7 +74,7 @@ public class Cal_exercise_Action {
 			
 			List<ExerciseBean> exerciselist = exerService.bringtime(m);
 
-			ModelAndView mv = new ModelAndView("html_calculator/result_nm2");
+			ModelAndView mv = new ModelAndView("html_calculator/cal_exer_result_nm2");
 			
 			mv.addObject("exerciselist", exerciselist);
 			mv.addObject("exe_name", exe_name);

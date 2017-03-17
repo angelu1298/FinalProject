@@ -14,9 +14,4 @@ public interface ExerciseService {
 
 	public List<ExerciseBean> bringtime(Map map) throws Exception;
 
-	//public List<ExerciseBean> bringtime_m(String name) throws Exception;
-	
-	//public List<ExerciseBean> bringtime_p(String name) throws Exception;
-	
-	
 }
