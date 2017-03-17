@@ -55,7 +55,7 @@
 								<dd>
 									<c:if test="${!empty elist}">
 									<c:forEach items="${elist}"  var="e">
-										<a href="./ebo_cont.brn?num=${e.e_no}">
+										<a href="./eboardView.brn?num=${e.e_no}&page=1&state=cont">
 											<strong>${e.e_sj}</strong>
 											<span class="date">${e.e_dt}</span>
 										</a>
@@ -76,7 +76,7 @@
 								<dd>
 									<c:if test="${!empty olist}">
 									<c:forEach items="${olist}" var="o">
-										<a href="./bbs_cont.brn?num=${o.o_no}">
+										<a href="./obs_view.brn?num=${o.o_no}&page=1&state=cont">
 											<strong>${o.o_sj}</strong>
 											<span class="date">${o.o_dt}</span>
 										</a>
@@ -96,7 +96,7 @@
 								<dd>
 									<c:if test="${!empty flist}">
 										<c:forEach items="${flist}" var="f">
-											<a href="./fbs_list.brn?num=${f.f_no}">
+											<a href="./fbs_list.brn?num=${f.f_no}&page=1&state=cont">
 												<strong>${f.f_sj}</strong>
 												<span class="date">${f.f_dt}</span>
 											</a>
@@ -116,7 +116,7 @@
 								<dd>
 									<c:if test="${!empty slist}">
 									<c:forEach items="${slist}"  var="s">
-										<a href="./sboardcont.brn?s_no=${s.s_no}">
+										<a href="./sboardcont.brn?s_no=${s.s_no}&page=1&state=cont">
 											<strong>${s.s_sj}</strong>
 											<span class="date">${s.s_dt}</span>
 										</a>

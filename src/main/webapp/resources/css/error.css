@@ -2,8 +2,6 @@
 
 @import url('default.css'); 
 
-
-
 body{background:#e0e0e0;}
 .errorBox{ text-align:center; width:500px; height:auto; padding:150px 50px 100px 50px; margin:10% auto; background:#fff url(../img/bull/err.png) no-repeat center 70px; border-radius:10px; border:1px solid #c0c0c0;}
 .errorBox h1{font-size:50px; color:#232323; margin-bottom:10px;}

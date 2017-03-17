@@ -26,5 +26,8 @@ public class ParkServiceImpl {
 	public int getParkfindlistCount(Map mf) throws Exception {
 		return ParkDAO.getParkfindlistCount(mf);
 	}
-	 
+	public String getParkAddr(int mem_no) throws Exception {
+		return ParkDAO.getParkAddr(mem_no);
+	}
+	
 }

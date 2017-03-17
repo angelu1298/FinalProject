@@ -20,14 +20,7 @@
 <body>
 
 	<%@ page session='true' %>
-	<%--
-		request.setCharacterEncoding("UTF-8");
-		// 가입시간
-		String logintime = "";
-		logintime = request.getParameter("loginTime");
-		session.setAttribute("s_loginTime", logintime);
-	--%>
-
+	
 	<!-- S: wrap -->
 	<div class="wrap">
 

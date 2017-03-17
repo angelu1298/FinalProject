@@ -8,8 +8,8 @@
 	<html>
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>web study</title>
-	<link href="css/style.css" rel="stylesheet" type="text/css"> 
+	<title>Burn Fat</title>
+	<link href="${pageContext.request.contextPath}/resources/css/error.css" rel="stylesheet" type="text/css"> 
 	</head>
 	
 	<body>

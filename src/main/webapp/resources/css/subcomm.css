@@ -4,8 +4,8 @@
 .wrap{display:inline-block; }
 
 /*서브페이지 전체 레이아웃*/
-.sub_container{ position:relative; width:100%; min-height:100%; padding:130px 50px 100px 220px; display:inline-block; z-index:1;  background:url(../img/main/mainbg.png) no-repeat center center;  background-size: auto 100% ; background-attachment:fixed;  }
-.log_container{ position:relative; width:100%; min-height:100%; padding:130px 50px 100px 220px; display:inline-block; z-index:1; }
+.sub_container{ position:relative; width:100%; min-height:100%; margin:30px 0; padding:130px 50px 100px 220px; display:inline-block; z-index:1;  background:url(../img/main/mainbg.png) no-repeat center center;  background-size: auto 100% ; background-attachment:fixed;  }
+.log_container{ position:relative; width:100%; min-height:100%; margin:30px 0; padding:130px 50px 100px 220px; display:inline-block; z-index:1; background:url(../img/main//mainbg03.jpg) no-repeat center center;  background-size: auto 100% ; background-attachment:fixed; }
 .subContent{ width:100%;  display:inline-block; padding:30px; background:#fff; text-align:left; }
 .subContent.nobg{background:rgba(255,255,255,0)}
 
@@ -19,6 +19,7 @@
 .modal_bg .layer_content {  width:100%; height:100% ; padding-top:50px; z-index:10; background:#fff; color:#454545; }
 .modal_bg .layer_content h2{ line-height:30px; } 
 .modal_bg .layer_content .txtred { color:#d00; }
+
 /*레이어스타일*/
 .modal_bg .layer_content.style_corfrim form{ padding:20px;}
 .modal_btn_area{ margin:20px auto 0px auto; display:inline-block;}
@@ -64,24 +65,28 @@ nav.snb > ul > li > ul > li a{ display:block; height:100%; width:100%; padding-l
 nav.snb > ul > li > ul > li a:before{ content:''; }
 nav.snb > ul > li > ul > li:hover {  nd:rgba(0,0,0,0.9); }
 
-.side_myinfo {position:fixed; top:130px; left:20px; float:left; width:180px; height:75%; display:block; text-align:left; padding:20px; background:#000; color:#fff; }
-.side_myinfo dl dt{ clear:both; display:block; width:100%; height:25px; margin:10px 0 20px 0; line-height:25px; font-weight:500; }
-.side_myinfo dl dd{ display:block; width:100%; min-height:45px; height:auto;  margin-bottom:5px; font-size:13px; line-height:20px; font-weight:500; }
-.side_myinfo dl dd strong{ width:100%; clear:both; display:block; width:100%; height:25px; font-size:15px; } 
+.side_myinfo {position:fixed; top:130px; left:20px; float:left; width:180px; height:75%; display:block; text-align:center; padding:20px; background:#000; color:#fff; }
+.side_myinfo dl dt{ clear:both; display:block; width:100%; height:25px; margin:10px 0 20px 0; line-height:25px; font-weight:500;text-align:center; font-size:20px; }
+.side_myinfo dl dd{ text-align:center; display:block; width:100%; min-height:45px; height:auto;  margin-bottom:8px; font-size:12px; font-weight:400; color:#c0c0c0; line-height:18px; font-weight:500; }
+.side_myinfo dl dd strong{ width:100%; clear:both; display:block; height:25px; font-size:15px;/*  padding-left:15px; background:url(../img/bull/bull_mandor.gif) no-repeat 0 0; background-size:10px;   */ } 
+.side_myinfo dl dd span{ margin-top:3px;  }
+.side_myinfo dl dd.goalweight{ padding-left:50px; line-height:25px; min-height:30px;  font-size:17px; background-image:url(../img/sub/scales.png); background-size:18px; background-repeat:no-repeat; background-position:35px 0;  }
 
-.side_myinfo dl dd.goalweight{ padding-left:60px; line-height:30px; min-height:30px;  font-size:20px; background-image:url(../img/sub/scales.png); background-size:15px; background-repeat:no-repeat; background-position:20px 0;  }
-
-.side_myinfo dl dd.photozone{ position:relative; width:100px; height:100px; margin:0 20px 20px 20px; display:block; overflow:hidden; border-radius:60px; border:1px solid #fff; background:#fff; }
+.side_myinfo dl dd.photozone{ position:relative; width:80px; height:80px; margin:10px 30px 20px 30px; display:block; overflow:hidden; border-radius:60px; border:1px solid #fff; background:#fff; }
 .side_myinfo dl dd.photozone input[type=file]{ position:absolute; top:0; left:0; width:100%; height:100%; display:block; cursor:pointer; }
 .side_myinfo dl dd.photozone img{ width:100px; height:auto; } 
-
 .side_myinfo dl dd.goalzone{ position:relative; }
 .side_myinfo dl dd .txtgoal{ padding-right:20px; width:100%; height:30px; line-height:30px; font-family:'Nanum Pen Script'; background:none; font-size:19px; border:none; }
 .side_myinfo dl dd .btn_goal_edit{ position:absolute; top:5px; right:0; width:20px; height:20px; display:block; background:url(../img/bull/bull_pen.png) no-repeat center; cursor:pointer; }
 
 .side_myinfo form{ height:100%; }
-.side_myinfo input[type=submit] {position:fixed; bottom:0; left:0; width:100%; height:50px; background:#fff;}
-.info_list a{ width:50%; float:left; height:50px; line-height:50px; display:block;   }
+.side_myinfo input[type=submit] {position:fixed; bottom:0; left:0; width:100%; height:50px; background:#fff; }
+.info_list{ margin:10px 0 0 25px; display:inline-block; }
+.info_list a{ width:100%; padding-left:30px; float:left; height:25px; line-height:25px; display:block; color:#ccc; text-align:left; font-weight:400; background-repeat:no-repeat; background-size:15px; background-position:left center;  }
+.info_list a:nth-child(1) { background-image:url(../img/ic/ic_like_w.png); }
+.info_list a:nth-child(2) { background-image:url(../img/ic/ic_chart3_w.png);  }
+.info_list a:nth-child(3) { background-image:url(../img/ic/ic_chart2_w.png);  }
+.info_list a:nth-child(4) { background-image:url(../img/ic/ic_chart_w.png);  }
 
 .subContent h3{ width:100%; clear:both; padding:0px 20px 20px 10px; border-bottom:1px solid #000; color:#232323; font-size:30px; font-weight:500; text-align:left; break-word:keep-all; }
 .subContent h4{ width:100%; clear:both; margin:10px 0; padding:5px; color:#787878; font-size:17px; font-weight:500; text-align:left; break-word:keep-all; color:#454545; }
@@ -94,4 +99,18 @@ nav.snb > ul > li > ul > li:hover {  nd:rgba(0,0,0,0.9); }
 .fotgoal input[type="text"]{ padding-right:20px; width:100%; height:30px; line-height:30px; font-family:'Nanum Pen Script'; background:none; font-size:19px; border:none; }
 .fotgoal input[type="button"]{ position:absolute; top:5px; right:0; width:20px; height:20px; display:block; background:url(../img/bull/bull_pen.png) no-repeat center; cursor:pointer; }
  
-
+ 
+ /***** 체중계 *****/
+.cal_diet{ position:relative; width:100%; height:auto; display:inline-block; border:1px solid #00f; height:800px;}
+.group{ width:100%; background-attachment:fixed; position:relative; }
+.group > ul{  display:inline-block;margin-top:200px; }
+.group > ul > li{ clear:both; float:left; text-align:left; border:1px solid #00f; }
+.group > ul > li > ol > li{ clear:both; float:left; text-align:left; height:25px; line-height:25px; font-size:11px;}
+.group > ul > li > ol > li > *{float:left; display:block; height:25px; line-height:25px; vertical-align:middle; }
+.group > ul > li > ol > li .group > ul > li > ol > li input[type=radio]{ margin-right:8px;}
+.cal_diet .w{ position:absolute; top:0; right:0; 	width:500px; height:500px; display:block;  background-image:url(../img/cal/scale.png); background-repeat:no-repeat;  background-position:center center ; text-align: center; }
+.cal_diet p {position: absolute; top: 80px; left:0; width:100%; margin:0 auto; }
+.cal_diet .goal_weight{ font-size:40px; text-align: center; background-color:#000; opacity: 0.28; color:white; width:100px; height:50px; line-height:50px; }
+.cal_diet #w1{ font-size:30px; }
+.cal_diet .result{ float:left; width:400px; } 
+.cal_diet_button{ background:#232323; color:#fff; font-weight:600; height:70px; border-radius:40px; width:100%; display:block; line-height:50px; font-size:25px; }

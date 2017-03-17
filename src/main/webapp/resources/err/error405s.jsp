@@ -8,9 +8,8 @@
 	<head>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>web study</title>
-	<link href="css/style.css" rel="stylesheet" type="text/css"> 
-	<link href="css/style.css" rel="stylesheet" type="text/css"> 
+	<title>Burn Fat</title>
+	<link href="${pageContext.request.contextPath}/resources/css/error.css" rel="stylesheet" type="text/css"> 
 		<script>
 		$(function(){
 			setTimeout(function(){
@@ -21,8 +20,8 @@
 	</head>
 	
 	<body>
+	
 		<div class="errorBox">
-		
 			<h1>405</h1>
 			<h3>
 				잘못된 URL로 접근하셨습니다.<br/>
@@ -32,8 +31,8 @@
 			<h3>error Message</h3>
 			<p><%=exception.getMessage()%></p> 
 			<div class="mt30">
-			<input type="button" value="이전페이지로" onclick="history.back()" />
-			<input type="button" value="메인페이지로" onclick="location.href('/index.jsp');" />
+				<input type="button" value="이전페이지로" onclick="history.back()" />
+				<input type="button" value="메인페이지로" onclick="location.href('/index.jsp');" />
 			</div>
 		</div>
 		
