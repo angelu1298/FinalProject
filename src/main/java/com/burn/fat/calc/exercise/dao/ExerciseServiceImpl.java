@@ -28,8 +28,5 @@ public class ExerciseServiceImpl implements ExerciseService {
     	return exercise.bringtime(map);
     }
     
- /*   @Override
-    public List<ExerciseBean> bringtime_p(String name) throws Exception{
-    	return exerbean.bringtime_p(name);
-    }*/
+
 }
