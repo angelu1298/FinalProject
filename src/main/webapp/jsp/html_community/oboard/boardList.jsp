@@ -150,22 +150,16 @@
 
 			</div>
 			<!--//페이징 -->
-		</form>
 		<!-- //form -->
 
 
-		<!--//검색영역-->
-		<select id="viewcount" name="limit">
-			<option value="20">20줄보기</option>
-			<option value="10">10줄보기</option>
-			<option value="5">5줄보기</option>
-		</select>
 		<!--버튼영역-->
 		<div class="btnB_area">
 			<div class="fr">
 				<a href="obs_write.brn" class="black">글쓰기</a>
 			</div>
 		</div>
+		</form>
 		<!--//버튼영역-->
 
 
@@ -173,6 +167,14 @@
 		<form method="get" action="obs_find_ok.brn"
 			onsubmit="return find_check()" name="search">
 			<div class="borad_srch">
+			<!--//검색영역-->
+			<span class="fl ml20">
+				<select id="viewcount fl" name="limit">
+					<option value="20">20개보기</option>
+					<option value="50">50개보기</option>
+					<option value="100">100개보기</option>
+				</select> 
+			</span>
 				<!--한줄-->
 				<p class="col">
 					<label for="srch_sel01" class="sc_txt">검색영역</label> <select

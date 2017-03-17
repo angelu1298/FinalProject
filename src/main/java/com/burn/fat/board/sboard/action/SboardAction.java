@@ -166,6 +166,7 @@ public class SboardAction {
 			m.put("limit", limit);
 			
 			List<SboardBean> slist = service.getSboardList(m); 
+			List<SboardBean> bestlist = service.getSboardListBest(); 
 				ModelAndView model=new ModelAndView("html_community/sboard/sboardList");
 				model.addObject("page", page);
 				model.addObject("limit", limit);
@@ -174,6 +175,7 @@ public class SboardAction {
 				model.addObject("endpage", endpage);
 				model.addObject("listcount", listcount);
 				model.addObject("slist", slist);
+				model.addObject("bestlist", bestlist);
 				return model;	
 	}
 

@@ -1,6 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/jsp/inc/boardHeader.jsp"%>
+<script>
+		$(function(){
+						
+			$("#viewcount").val(${limit}).prop("selected", true);
+			$('#viewcount').change(function(){
+				$.ajax({
+					data : {"limit" : $('#viewcount').val()},
+					type : "get",
+					success : function(data){
+						$('form[name="search"]').submit();
+					 },
+					error : function(data, status){
+						   				 
+					 }
+				})
+			})
+		})
+</script>
 	<!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
 	<section class="sub_container">
 
@@ -12,8 +30,10 @@
 		
 			<h3>후기게시판</h3>
 			
+		<%-- 	<!-- 베스트게시글 -->
+			<%@ include file="bestSboard.jsp" %>
+			 --%>
 			<h4>목록</h4>
-		
 			<!-- form -->
 			<form action="sboardView.brn"  method="post" onsubmit="find_check()">
 			<p class="srch_result">
@@ -44,7 +64,7 @@
 						<tbody>
 						<!-- 리스트에 뿌려질 글번호 세팅 -->
 						<c:set var="num" value="${listcount-(page-1)*limit}"/> 	
-						<c:if test="${slist !=null }">
+						<c:if test="${!empty slist  }">
 							<c:forEach items="${slist }" var="list">
 								<tr>
 									<td><c:out value="${num }" /><c:set var="num" value="${num-1}"/></td>
@@ -56,7 +76,7 @@
 								</tr>
 							</c:forEach>
 						</c:if>
-						<c:if test="${slist ==null }">
+						<c:if test="${empty slist}">
 							<!--등록된 게시물이 없는경우-->
 							<tr>
 								<td class="nolist" colspan="6">등록된 게시물이 없습니다.</td>
@@ -111,24 +131,6 @@
 			<div class="borad_srch">
 				<!--한줄-->
 					<!--//검색영역-->
-					<script>
-					$(function(){
-						
-					         $("#viewcount").val(${limit}).prop("selected", true);
-						   	 $('#viewcount').change(function(){
-						   		 $.ajax({
-						   			 data : {"limit" : $('#viewcount').val()},
-						   			 type : "get",
-						   			 success : function(data){
-										 $('form[name="search"]').submit();
-						   			 },
-						   			 error : function(data, status){
-						   				 
-						   			 }
-						   		 })
-						   })
-					})
-					</script>
 					<span class="fl ml20">
 							<select id="viewcount fl" name="limit">
 								<option value="20">20개보기</option>

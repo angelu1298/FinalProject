@@ -141,12 +141,25 @@
 				</c:if>		
 				</p>
 			</div>
+			<!--버튼영역-->
+			<div class="btnB_area"> 
+				<div class="fr">
+					<a href="bbs_write.brn" class="black">글쓰기</a>
+				</div>
+			</div>
 		</form>
 			<!--//페이징 -->
 			<!--검색영역-->
-			<div class="borad_srch">
 			<form method="get" action="bbs_find_ok.brn"
 		  	onsubmit="return find_check()">
+			<div class="borad_srch">
+					<span class="fl ml20">
+							<select id="viewcount fl" name="limit">
+								<option value="20">20개보기</option>
+								<option value="50">50개보기</option>
+								<option value="100">100개보기</option>
+							</select> 
+					</span> 		
 				<!--한줄-->
 				<p class="col">
 					<label for="srch_sel01" class="sc_txt">검색영역</label> 
@@ -159,23 +172,12 @@
 					<input type="text" name="find_name" id="find_name" class="w280 mr10"/> 
 					<input type="submit" class="btn_srch" value="검색" />
 				</p>
-			</form>
 				<!--한줄-->
 			</div>
 			
+			</form>
 			<!--//검색영역-->
 			
-			<!--버튼영역-->
-			<div class="btnB_area"> 
-				<div class="fr">
-					<a href="bbs_write.brn" class="black">글쓰기</a>
-					<select id="viewcount">
-	   		 	 	 <option value="10">10줄 보기</option>
-	   		 	 	 <option value="20">20줄 보기</option>
-	   		 	 	 <option value="30">30줄 보기</option>
-	   				</select>	   		
-				</div>
-			</div>
 			<!--//버튼영역-->
 			
 

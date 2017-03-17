@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -75,21 +76,20 @@ public class ExerCalc {
 	
 	/*--------------------------------------------------------------------------------------------------------*/
 	//평가 저장
-	@RequestMapping(value="/cal_eval.brn")
-	public int cal_eval(
-			@RequestParam("emo_eval") String emo_eval,
+	@RequestMapping(value="/cal_eval.brn", method=RequestMethod.POST)
+	public void cal_eval(
+			@RequestParam("emo_eval") int emo_eval,
 			@RequestParam("y") String y,
 			@RequestParam("m") String m,
 			@RequestParam("d") String d,
 			HttpServletRequest request, 
 			HttpServletResponse response,
 			HttpSession session) throws Exception{
+		
 		PrintWriter out = response.getWriter();
-		int mem_no = (Integer) session.getAttribute("mem_no");
+		int mem_no = ((Integer)session.getAttribute("mem_no")).intValue();
 		String cal_date = y+m+d;
-		System.err.println("y-------------평가" + y);
-		System.err.println("m-------------평가" + m);
-		System.err.println("d-------------평가" + d);
+		System.err.println("d-------------평가emo" + emo_eval);
 		
 		Map<String, Object> m1 = new HashMap<String, Object>();
 		m1.put("emo_eval", emo_eval);
@@ -98,14 +98,15 @@ public class ExerCalc {
 		int result = 0;
 		int check = this.calService.getEmo_eval(m1);
 		//평가값 저장
-		if(check!=1 ||check!=2||check!=3){
+		if(check==0){
 			this.calService.setEmo_eval(m1);
 			result=1;
 		}
 		else{
 			result=0;
 		}
-		return result;
+		
+		out.print(result);
 		
 	}
 	
@@ -165,7 +166,7 @@ public class ExerCalc {
 			 List<CalendarBean> grocery = this.calService.getGrocery(m3);
 			System.err.println("아침식품calendar = " + grocery);
 			
-			ModelAndView mv = new ModelAndView("html_mypage/food_load");
+			ModelAndView mv = new ModelAndView("html_mypage/exercise_load");
 			mv.addObject("grocery",grocery);
 			return mv;
 		}
@@ -195,7 +196,7 @@ public class ExerCalc {
 			//점심 식단불러오기
 			 List<CalendarBean> grocery = this.calService.getGrocery(m3);
 			
-			ModelAndView mv = new ModelAndView("html_mypage/food_load");
+			ModelAndView mv = new ModelAndView("html_mypage/exercise_load");
 			mv.addObject("grocery",grocery);
 				
 			return mv;
@@ -225,7 +226,7 @@ public class ExerCalc {
 			//저녁 식단불러오기
 			 List<CalendarBean> grocery = this.calService.getGrocery(m3);
 			
-			ModelAndView mv = new ModelAndView("html_mypage/food_load");
+			ModelAndView mv = new ModelAndView("html_mypage/exercise_load");
 			mv.addObject("grocery",grocery);
 				
 			return mv;
@@ -257,7 +258,7 @@ public class ExerCalc {
 			 List<CalendarBean> cuisine = this.calService.getCuisine(m3);
 			System.err.println("아침음식cuisine = " + cuisine);
 			
-			ModelAndView mv = new ModelAndView("html_mypage/food_load");
+			ModelAndView mv = new ModelAndView("html_mypage/exercise_load");
 			mv.addObject("cuisine",cuisine);
 			return mv;
 		}
@@ -287,7 +288,7 @@ public class ExerCalc {
 			//점심 식단불러오기
 			 List<CalendarBean> cuisine = this.calService.getCuisine(m3);
 			
-			ModelAndView mv = new ModelAndView("html_mypage/food_load");
+			ModelAndView mv = new ModelAndView("html_mypage/exercise_load");
 			mv.addObject(cuisine);
 				
 			return mv;
@@ -317,7 +318,7 @@ public class ExerCalc {
 			//저녁 식단불러오기
 			 List<CalendarBean> cuisine = this.calService.getCuisine(m3);
 			
-			ModelAndView mv = new ModelAndView("html_mypage/food_load");
+			ModelAndView mv = new ModelAndView("html_mypage/exercise_load");
 			mv.addObject(cuisine);
 				
 			return mv;

@@ -71,6 +71,9 @@ public class CuisineAction {
       System.err.println("cus_tt = " + cus_tt);
       System.err.println("mem_no = " + mem_no);
       
+      String[] cus_ttSp =cus_tt.split(",");
+      cus_tt = cus_ttSp[0];
+      
       m2.put("day", wholeDay);
       m2.put("cus_kcal", cus_kcal);
       m2.put("cus_tt", cus_tt);
@@ -84,11 +87,15 @@ public class CuisineAction {
       m2.put("cal_date", cal_date);
       System.err.println("cal_date = " + cal_date);
       
-      List<CalendarBean> ecalExist =this.calService.getE_kcal(m2);
+      List<CalendarBean> ecalExist =this.calService.getE_kcal2(m2);
+      
       //마이페이지에 식단 저장
-      if(ecalExist.get(0).getE_kcal()!=null)
-    	  this.calService.setCuisine(m2);
-      else
+      if(!ecalExist.isEmpty()){
+    	  if(ecalExist.get(0).getCus_kcal()!=0)
+    		  this.calService.setCuisineAdd(m2);
+    	  else
+    		  this.calService.setCuisine(m2);
+      }else
     	  this.calService.setCuisineIn(m2);
       
       

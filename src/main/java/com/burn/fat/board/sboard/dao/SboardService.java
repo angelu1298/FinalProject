@@ -78,6 +78,11 @@ public class SboardService {
 		return dao.getRowNum(s_no);
 	}
 
+	public List<SboardBean> getSboardListBest() {
+		// TODO Auto-generated method stub
+		return dao.getSboardListBest();
+	}
+
 
 	
 

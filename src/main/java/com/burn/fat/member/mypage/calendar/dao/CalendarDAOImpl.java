@@ -92,6 +92,14 @@ public class CalendarDAOImpl {
 	public void setCuisineIn(Map m2) {
 		sqlSession.insert("setCuisineIn", m2);
 	}
+
+	public void setGroceryAdd(Map m2) {
+		sqlSession.update("setGroceryAdd", m2);
+	}
+
+	public void setCuisineAdd(Map m2) {
+		sqlSession.update("setCuisineAdd", m2);
+	}
 }
 
 

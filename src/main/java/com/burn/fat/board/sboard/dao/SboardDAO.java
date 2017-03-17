@@ -84,6 +84,11 @@ public class SboardDAO {
 		return sqlSession.selectOne("Sboard.getrnum",s_no);
 	}
 
+	public List<SboardBean> getSboardListBest() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("Sboard.getBest");
+	}
+
 	
 	
 	

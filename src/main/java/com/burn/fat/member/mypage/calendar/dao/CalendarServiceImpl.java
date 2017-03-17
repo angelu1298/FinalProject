@@ -90,4 +90,15 @@ public class CalendarServiceImpl implements CalendarService {
 		calendarDAO.setCuisineIn(m2);
 		
 	}
+
+	@Override
+	public void setGroceryAdd(Map m2) {
+		calendarDAO.setGroceryAdd(m2);
+	}
+
+	@Override
+	public void setCuisineAdd(Map m2) {
+		calendarDAO.setCuisineAdd(m2);
+		
+	}
 }

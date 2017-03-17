@@ -135,12 +135,13 @@
 					</p> -->
 				</div>
 				<!--//페이징 -->	
+				<c:if test="${!empty sessionScope.mem_id }">
 		 		<div class="btnB_area">
 					<div class="fr">
 						<a href="./eboardWrite.brn" class="black">글쓰기</a>
 					</div>
 			   </div>
-				
+				</c:if>
 			</form>		
 			<!-- //form -->
 				

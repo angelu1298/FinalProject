@@ -17,7 +17,7 @@
 		<error-code>404</error-code>
 		<location>/resources/err/error404s.jsp</location>
 	</error-page> -->
-	<error-page>
+	<!-- <error-page>
 		<error-code>200</error-code>
 		<location>/resources/err/error405s.jsp</location>
 	</error-page>
@@ -30,7 +30,7 @@
 	<error-page>
 		<error-code>500</error-code>
 		<location>/resources/err/error500s.jsp</location>
-	</error-page>
+	</error-page> -->
 <!-- 
 	<error-page>
 		<exception-type>Exception</exception-type>

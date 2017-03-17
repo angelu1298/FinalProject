@@ -4,8 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 $(function(){
-	$('.fcomm_re_ct').hide();
-	$('.fcomm_rep_button').hide();
+	$('.fcomm_re_ct_area').hide();
 	$('.fcreply').each(function(index,item){  //답변 버튼을 누를때
 		$(this).on('click',function(){
 			$('.fcomm_re_ct').hide();
@@ -97,22 +96,26 @@ function fcomm_write(){
 			<li>
 			<input type="hidden" class="fcomm_no" name="fcomm_no"
 					value="${comm.fcomm_no }" />
-				<p>
 				<!-- 답글인 경우 -->
 				<c:if test="${comm.fcomm_re_lev != 0}"> 
-					<c:forEach var="k" begin="1" end="${comm.fcomm_re_lev}">
-						&nbsp;&nbsp;	
-					</c:forEach>	
-				</c:if>			
-					<img src="./resources/images/AnswerLine.gif">
-					<span>${comm.mem_id } </span>
-					<!-- 작성자  -->
-					<span> ${comm.fcomm_dt }</span>
-					<!-- 작성 날짜 -->
-					<span>${comm.fcomm_ct }</span>
-					<!-- 코멘트 내용 -->
-				</p>
-				<p>
+					<p class="ic_reply">
+						<c:forEach var="k" begin="1" end="${comm.fcomm_re_lev}">
+							<strong>reply</strong>		
+						</c:forEach>	
+					</p>      
+				</c:if>	
+				<c:set var="num" value="${comm.scomm_re_lev}" />
+					<div class="content st0${num}">		
+						<p class="fl">
+							<!-- 작성자  -->
+							<span>${comm.mem_id } </span>
+							<!-- 작성 날짜 -->
+							<span> ${comm.fcomm_dt }</span>
+						</p>
+						<!-- 코멘트 내용 -->
+						<span>${comm.fcomm_ct }</span>
+					</div>
+				<p class="sbtnarea">
 					<c:if test="${sessionScope.mem_id == comm.mem_id }">
 						<span class="fcdelete">[삭제]</span>
 					</c:if>
@@ -121,10 +124,11 @@ function fcomm_write(){
 					</c:if>
 					<span class="fcreply">[답글]</span>
 				</p>
-				<p>
+				<div class="fcomm_re_ct_area comm_re_ct_area">
+					<h5>댓글을 작성해주세요</h5>
 					<textarea cols="100%" rows="10%" class="fcomm_re_ct"></textarea>
 					<button class="fcomm_rep_button" >댓글남기기</button>
-				</p>
+				</div>
 			</li>
 		</c:forEach>
 	</ul>
@@ -132,5 +136,7 @@ function fcomm_write(){
 <c:if test="${empty bean}">
 	<span>등록된 코멘트가 없습니다.</span>
 </c:if>
+<div class="scomm_ct_area comm_re_ct_area">
 	<textarea cols="70" rows="20" id="fcomm_ct"></textarea>
-	<button onclick="fcomm_write()" >코멘트남기기</button>
+	<button onclick="fcomm_write()" class="scomm_rep_buttonL comm_re_ct_area">코멘트남기기</button>
+</div>

@@ -53,6 +53,7 @@
 .side_myinfo .goalcheck span:nth-child(2) { background-image:url(../img/emo/emow_smile.png); }
 .side_myinfo .goalcheck span:nth-child(3) { background-image:url(../img/emo/emow_tt.png);    }
 
+
 ul.listview li{ position:relative; clear:both; width:100%; min-height:30px; margin-bottom:10px; display:inline-block; text-align:left; }
 ul.listview li > strong{ position:absolute; top:0; left:0;  display:block; height:100%;   line-height:30px; font-size:14px; letter-spacing:-1px; }
 ul.listview li > span{ width:100%; display:block; min-height:20px; line-height:20px; font-size:13px; }
@@ -156,6 +157,11 @@ form p.btnarea input[type="submit"]{ width:58%; background:#232323; color:#fffff
 select,
 input[type="password"],
 input[type="text"]{ border-top:1px solid #cbcbcb; border-left:1px solid #cbcbcb; border-right:1px solid #e4e4e4; border-bottom:1px solid #e4e4e4; background:#f8f8f8; }
+
+.saveDB { text-indent:-9999px  !important; display:block; width:25px !important; height:25px !important; border:none  !important; float:left; margin:0 2px; background:transparent !important; appearance:none !important; -ms-ppearance:none !important; -webkit-appearance:none; -o-appearance:none; background-repeat:no-repeat; background-position:center center !important; background-size:25px  !important;}
+.emo_tt { background-image: url(../img/emo/emo_tt.png) !important; } 
+.emo_smile { background-image: url(../img/emo/emo_smile.png) !important;}
+.emo_wink { background-image: url(../img/emo/emo_wink.png) !important;}
 
 /**************************************글쓰기**************************************/
 .common_write_box { position:relative; height:auto; font-size:14px; }

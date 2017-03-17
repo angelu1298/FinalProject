@@ -148,9 +148,6 @@ public class EboardAction {
 		HttpSession session = request.getSession();
 		
 		String id = (String)session.getAttribute("mem_id");
-		System.out.println(id);
-		int mem_no = this.eboService.eboNoCk(id);//회원번호 받아오기
-		String mem_id = this.eboService.eboIdCk(id);//회원아이디 받아오기
 		
 		int page=1;
 		int limit=10; //초기값
@@ -207,8 +204,6 @@ public class EboardAction {
 		model.addObject("listcount", listcount);
 		model.addObject("ebolist", ebolist);
 		model.addObject("limit", limit);
-		model.addObject("mem_no",mem_no);
-		model.addObject("mem_id",mem_id);
 		
 		return model;	
 	}

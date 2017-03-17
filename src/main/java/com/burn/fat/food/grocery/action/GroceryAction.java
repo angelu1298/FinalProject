@@ -59,6 +59,9 @@ public class GroceryAction {
       System.err.println("grc_tt = " + grc_tt);
       System.err.println("mem_no = " + mem_no);
       
+      String[] grc_ttSp =grc_tt.split(",");
+      grc_tt = grc_ttSp[0];
+
       m2.put("day", wholeDay);
       m2.put("grc_kcal", grc_kcal);
       m2.put("grc_tt", grc_tt);
@@ -72,12 +75,15 @@ public class GroceryAction {
       m2.put("cal_date", cal_date);
       System.err.println("cal_date = " + cal_date);
       
-      List<CalendarBean> ecalExist =this.calService.getE_kcal(m2);
+      List<CalendarBean> ecalExist =this.calService.getE_kcal2(m2);
       
       //마이페이지에 식단 저장
-      if(ecalExist.get(0).getE_kcal()!=null)
-    	  this.calService.setGrocery(m2);
-      else
+      if(!ecalExist.isEmpty()){
+    	  if(ecalExist.get(0).getGrc_kcal()!=0)
+    		  this.calService.setGroceryAdd(m2);
+    	  else
+    		  this.calService.setGrocery(m2);
+      }else
     	  this.calService.setGroceryIn(m2);
       
       

@@ -4,7 +4,7 @@ day varchar2(500),			/* 아침,점심,저녁 */
 mem_no number,
 
 e_kcal varchar2(500),		/* 운동_칼로리 */
-cal_eval varchar2(10),		/* 하:1 중:2 상:3*/
+cal_eval number,		/* 하:1 중:2 상:3*/
 
 y varchar2(50), 					/* 년도 */
 m varchar2(50), 					/* 달    */

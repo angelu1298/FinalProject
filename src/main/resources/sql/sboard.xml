@@ -20,12 +20,25 @@
              
     </insert>
     
- 	
-    <!-- 후기게시판 멤버 아이디로 멤버 번호 가져오기 -->
-    
     <!-- 자료실 총 게시물 수 -->
     <select id="sboardcount" resultType="int" >
       select count(*) from sboard 
+    </select>
+    
+    <!-- 베스트 게시물 가져오기 -->
+    <select id="getBest" resultType="sboardbean" >
+        <![CDATA[
+		select * 
+		from 
+		  (select rownum rnum, s_no, mem_id,   s_sj, 
+		   s_ct, s_fl,   s_rc,
+		   s_dt,  s_lk,   S_lkno ,scomm_cnt
+		   from  
+	  	      (select * from sboardlist 
+	  	       order by s_lk desc , s_rc desc)
+	  	   ) 
+	   	where rnum <= 5  and rnum >= 1
+		]]>
     </select>
     
     <!-- 후기 게시판 글 목록 (page번호와 limit을 전달받아서 startRow와 endRow를 구함)-->

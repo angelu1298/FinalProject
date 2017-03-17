@@ -51,5 +51,9 @@ public interface CalendarService {
 	public void setGroceryIn(Map m2);
 
 	public void setCuisineIn(Map m2);
+
+	public void setGroceryAdd(Map m2);
+
+	public void setCuisineAdd(Map m2);
 	
 }

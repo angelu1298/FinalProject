@@ -2,17 +2,9 @@
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
- <script src="./resources/js/jquery-ui.min.js"></script>
-<style>
-#emo_tt {background-image: url("./resources/img/emo/emo_tt.png");} 
-#emo_smile {background-image: url("./resources/img/emo/emo_smile.png");}
-#emo_wink {background-image: url("./resources/img/emo/emo_wink.png");}
-</style>
 <script>
     $(function(){
     	
-       
-        
    //---- 아코디언 ------------------------------------------------------------------------
         
       $('.tablelist ul li div').css({"display":"none"});
@@ -90,33 +82,33 @@
 	     
 	     //아침 식품버튼클릭
 	       $('.maelist li .m_groclick').click(function(){
-	    	   if($('.morning_result').text().trim()==""){
+	    	  /*  if($('.morning_result').text().trim()==""){
 	      			alert("운동부터 하세요");
 	      			return false;
 	      		}
-	    	   
+	    	    */
 	    	   var grade = $(this).parents("li").attr("id").replace("wd_","");
 	         	click_gro(grade,'morning');
 	         });  
 	       
 	    //점심 식품버튼클릭
 	       $('.maelist li .l_groclick').click(function(){
-	    	   if($('.lunch_result').text().trim()==""){
+	    	  /*  if($('.lunch_result').text().trim()==""){
 	      			alert("운동부터 하세요");
 	      			return false;
 	      		}
-	    	   
+	    	    */
 	    	   var grade = $(this).parents("li").attr("id").replace("wd_","");
 	    	   click_gro(grade,'lunch');
 	        });
 	       
 	    //저녁 식품버튼클릭
 	       $('.maelist li .d_groclick').click(function(){
-	    	   if($('.dinner_result').text().trim()==""){
+	    	   /* if($('.dinner_result').text().trim()==""){
 	      			alert("운동부터 하세요");
 	      			return false;
 	      		}
-	    	   
+	    	    */
 	    	    var grade = $(this).parents("li").attr("id").replace("wd_","");
 	    	    click_gro(grade,'dinner');
 	        }); 
@@ -135,10 +127,10 @@
 		     
 		     //아침 음식버튼클릭
 		       $('.maelist li .m_cuiclick').click(function(){
-		    	 if($('.morning_result').text().trim()==""){
+		    	/*  if($('.morning_result').text().trim()==""){
 		      			alert("운동부터 하세요");
 		      			return false;
-		      		} 
+		      		}  */
 		    	   
 		    	   var grade = $(this).parents("li").attr("id").replace("wd_","");
 		         	click_cui(grade,'morning');
@@ -146,10 +138,10 @@
 		       
 		    //점심 음식버튼클릭
 		       $('.maelist li .l_cuiclick').click(function(){
-		    	   if($('.lunch_result').text().trim()==""){
+		    	  /*  if($('.lunch_result').text().trim()==""){
 		      			alert("운동부터 하세요");
 		      			return false;
-		      		}
+		      		} */
 		    	   
 		    	   var grade = $(this).parents("li").attr("id").replace("wd_","");
 		    	   click_cui(grade,'lunch');
@@ -157,10 +149,10 @@
 		       
 		    //저녁 음식버튼클릭
 		       $('.maelist li .d_cuiclick').click(function(){
-		    	   if($('.dinner_result').text().trim()==""){
+		    	  /*  if($('.dinner_result').text().trim()==""){
 		      			alert("운동부터 하세요");
 		      			return false;
-		      		}
+		      		} */
 		    	   
 		    	    var grade = $(this).parents("li").attr("id").replace("wd_","");
 		       		click_cui(grade,'dinner');
@@ -308,13 +300,13 @@
    	  		type : "post",
    	  		url : "cal_eval.brn",
    	  		success : function(data) {
-   	  			if(data==1)
+   	  			if(data=='1')
 					alert("평가 등록 성공!");  
 				else
 					alert('이미 평가 하셨습니다.');
    	  		},
    	  		error : function(data, status) {
-   	  			alert('평가 등록 실패');
+   	  			alert('평가 등록 실패'+data+status);
    	  		}
    	  });
    	  			
