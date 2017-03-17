@@ -34,7 +34,7 @@ $(document).ready(function(){
 <section class="sub_container">
 
 		<!-- 서브메뉴에 따라 Side Navigation을 다르게 부여해준다. -->	
-		<%@ include file="../../inc/leftMenu_log.jsp" %>
+		<%@ include file="../../inc/leftMenu05.jsp" %>
 		
 		<!-- 서브컨텐츠 영역 START -->
 		<div class="subContent">
@@ -49,7 +49,7 @@ $(document).ready(function(){
 				<!--LIKE-->
 				<div class="likeArea">
 			<ul> 
-				<li><input type="button" value="스크랩" class="ebo_scrap"/>
+				<li><input type="button" value="스크랩" class="ebo_scrap btn_scrap"/>
 			  	<c:if test="${joayo == null}">
 			  		${ebobean.e_lk}
 			  	</c:if>
@@ -79,10 +79,6 @@ $(document).ready(function(){
 					<dl class="writerinfo">
 						<dt>작성자</dt>
 						<dd>${ebobean.mem_id}</dd>
-					</dl>
-					<dl class="numinfo">
-						<dt>번호</dt>
-						<dd>${ebobean.e_no}</dd>
 					</dl>
 				</div>
 				<div class="Post_Area nobor">

@@ -1,4 +1,4 @@
-package com.burn.fat.member.mypage.sub.Action;
+﻿package com.burn.fat.member.mypage.sub.Action;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,12 +11,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.burn.fat.board.eboard.model.EboardBean;
+import com.burn.fat.board.fboard.model.FboardBean;
 import com.burn.fat.board.gboard.model.GbbsBean;
 import com.burn.fat.board.oboard.model.ObsBean;
+import com.burn.fat.board.sboard.model.SboardBean;
 import com.burn.fat.member.mypage.sub.dao.ScrapService;
 
 @Controller
@@ -168,7 +169,7 @@ public class ScrapAction {
 				return mv;
 			}
 			
-			/*eboard 스크랩*/
+/*gboard 스크랩*/
 			@RequestMapping(value = "/g_sc_view.brn")
 			public ModelAndView g_scrap(HttpServletRequest request, 
 											HttpServletResponse response, 
@@ -200,7 +201,9 @@ public class ScrapAction {
 				System.out.println("page = " + page);
 				
 				int listcount = scrapservice.getGscrapCount(mem_no); //eboard게시판에서 스크랩한 게시글 수
-		
+					
+				System.out.println(listcount);
+				
 				int maxpage = (listcount + limit - 1) / limit;
 		
 				int startpage = ((page - 1) / 10) * 10 + 1;
@@ -218,7 +221,7 @@ public class ScrapAction {
 				m.put("limit", limit);
 
 				List<GbbsBean> gbslist = scrapservice.getGbsScrap(mem_no);
-				System.out.println(gbslist);
+				System.out.println("gggggggggggbslist = " + gbslist);
 				ModelAndView mv = new ModelAndView("html_mypage/scrap/g_myScrap");
 				
 				mv.addObject("page", page);
@@ -232,6 +235,141 @@ public class ScrapAction {
 				
 				return mv;
 			}
+
+
+/*fboard 스크랩*/
+			@RequestMapping(value = "/f_sc_view.brn")
+			public ModelAndView f_scrap(HttpServletRequest request, 
+											HttpServletResponse response, 
+											HttpSession session) throws Exception {
+		
+				//String mem_id = (String)session.getAttribute("mem_id");
+				int mem_no = (Integer)session.getAttribute("mem_no");
+				
+				//System.out.println(mem_id);
+				System.out.println(mem_no);
+				
+				int page = 1;
+				int limit = 10;
+		
+				if (request.getParameter("page") != null) {
+					page = Integer.parseInt(request.getParameter("page"));
+				}
+		
+				if (session.getAttribute("limit") != null) {
+					limit = (Integer) session.getAttribute("limit");
+				}
+		
+				if (request.getParameter("limit") != null) {
+					limit = Integer.parseInt(request.getParameter("limit"));
+					session.setAttribute("limit", limit); 
+				}
+		
+				System.out.println("limit = " + limit);
+				System.out.println("page = " + page);
+				
+				int listcount = scrapservice.getFscrapCount(mem_no); //eboard게시판에서 스크랩한 게시글 수
+		
+				int maxpage = (listcount + limit - 1) / limit;
+		
+				int startpage = ((page - 1) / 10) * 10 + 1;
+		
+				int endpage = startpage + 10 - 1;
+		
+				if (endpage > maxpage)
+					endpage = maxpage;
+		
+				if (endpage < page)
+					page = endpage;
+				
+				Map m = new HashMap();
+				m.put("page", page);
+				m.put("limit", limit);
+
+				List<FboardBean> fbslist = scrapservice.getFbsScrap(mem_no);
+				System.out.println(fbslist);
+				ModelAndView mv = new ModelAndView("html_mypage/scrap/f_myScrap");
+				
+				mv.addObject("page", page);
+				mv.addObject("maxpage", maxpage);
+				mv.addObject("startpage", startpage);
+				mv.addObject("endpage", endpage);
+				mv.addObject("listcount", listcount);
+				mv.addObject("bbslist", fbslist);
+				mv.addObject("limit", limit);
+				mv.addObject("mem_no",mem_no);
+				
+				return mv;
+			}
+			
+			
+/*sboard 스크랩*/
+			@RequestMapping(value = "/s_sc_view.brn")
+			public ModelAndView s_scrap(HttpServletRequest request, 
+											HttpServletResponse response, 
+											HttpSession session) throws Exception {
+		
+				//String mem_id = (String)session.getAttribute("mem_id");
+				int mem_no = (Integer)session.getAttribute("mem_no");
+				
+				//System.out.println(mem_id);
+				System.out.println(mem_no);
+				
+				int page = 1;
+				int limit = 10;
+		
+				if (request.getParameter("page") != null) {
+					page = Integer.parseInt(request.getParameter("page"));
+				}
+		
+				if (session.getAttribute("limit") != null) {
+					limit = (Integer) session.getAttribute("limit");
+				}
+		
+				if (request.getParameter("limit") != null) {
+					limit = Integer.parseInt(request.getParameter("limit"));
+					session.setAttribute("limit", limit); 
+				}
+		
+				System.out.println("limit = " + limit);
+				System.out.println("page = " + page);
+				
+				int listcount = scrapservice.getSscrapCount(mem_no); //eboard게시판에서 스크랩한 게시글 수
+		
+				int maxpage = (listcount + limit - 1) / limit;
+		
+				int startpage = ((page - 1) / 10) * 10 + 1;
+		
+				int endpage = startpage + 10 - 1;
+		
+				if (endpage > maxpage)
+					endpage = maxpage;
+		
+				if (endpage < page)
+					page = endpage;
+				
+				Map m = new HashMap();
+				
+				m.put("page", page);
+				m.put("limit", limit);
+
+				List<SboardBean> sbslist = scrapservice.getSbsScrap(mem_no);
+				System.out.println(sbslist);
+				
+				ModelAndView mv = new ModelAndView("html_mypage/scrap/s_myScrap");
+				
+				mv.addObject("page", page);
+				mv.addObject("maxpage", maxpage);
+				mv.addObject("startpage", startpage);
+				mv.addObject("endpage", endpage);
+				mv.addObject("listcount", listcount);
+				mv.addObject("slist", sbslist);
+				mv.addObject("limit", limit);
+				mv.addObject("mem_no",mem_no);
+				
+				return mv;
+			}
+			
 			
 		
 }

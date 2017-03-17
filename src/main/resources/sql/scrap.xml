@@ -43,14 +43,7 @@
 		
 		
 	<!-- gboard 스크랩 -->
-		<!-- session id가 oboard에서 스크랩한 게시물 select -->
-		<select id="gbs_scrap" resultType="gbbsbean" parameterType="int">
-			select * 
-			from gboard
-			where g_lkno like '%,'||#{mem_no}||',%'
-			order by g_no desc 
-		</select>
-		
+	
 		<select id="g_scrap_count" resultType="int" parameterType="int">
 			select count(*) from 
 				(
@@ -58,6 +51,17 @@
 					from gboard
 					where g_lkno like '%,'||#{mem_no}||',%'
 				)
+		</select>
+
+		<select id="gbs_scrap" resultType="gbbsbean" parameterType="int">	
+			select rownum, grnum, gbbs_userid, gbbs_author, gbbs_num,gbbs_mem_no,gbbs_subject,gbbs_content,gbbs_readcount,gbbs_date,gbbs_like,gbbs_likeno,gbbs_file,gbbs_comm
+	       from 
+	        (select rownum grnum, m.mem_id gbbs_userid, m.mem_nm gbbs_author, g.g_no gbbs_num, g.mem_no gbbs_mem_no, g.g_sj  gbbs_subject, 
+	                      	    g.g_ct gbbs_content, g.g_rc gbbs_readcount, g.g_dt  gbbs_date, g.g_lk gbbs_like, g.g_lkno gbbs_likeno, 
+	                      	    g.g_fl gbbs_file, g.GCOMM_CNT gbbs_comm
+				                from member m, glist g 
+				                where g.mem_no=m.mem_no order by g.g_no desc
+			) where grnum &gt;= ((#{page}-1) * #{limit} +1)  and grnum &lt;= (#{page} * #{limit}) order by grnum asc
 		</select>
 		
 	<!-- fboard 스크랩 -->
@@ -79,14 +83,15 @@
 		</select>
 		
 		
-		<!-- sboard 스크랩 -->
+	<!-- sboard 스크랩 -->
 		<!-- session id가 oboard에서 스크랩한 게시물 select -->
 		<select id="sbs_scrap" resultType="sboardbean" parameterType="int">
 			select * 
-			from soard
+			from sboard
 			where s_lkno like '%,'||#{mem_no}||',%'
 			order by s_no desc 
 		</select>
+		
 		
 		<select id="s_scrap_count" resultType="int" parameterType="int">
 			select count(*) from 

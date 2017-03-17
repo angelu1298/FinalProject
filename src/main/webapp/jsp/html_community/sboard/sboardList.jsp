@@ -68,7 +68,13 @@
 							<c:forEach items="${slist }" var="list">
 								<tr>
 									<td><c:out value="${num }" /><c:set var="num" value="${num-1}"/></td>
-									<td><a href="sboardcont.brn?s_no=${list.s_no}&page=${page}&state=cont">${list.s_sj }</a>[${list.scomm_cnt }]</td>
+									<td class="tit">
+										<a href="sboardcont.brn?s_no=${list.s_no}&page=${page}&state=cont">${list.s_sj }<span class="cnt">[${list.scomm_cnt }]</span>
+											<c:if test="${!empty list.s_fl }">
+												<span class="fileExist">파일 있음</span>
+											</c:if>
+										</a>
+									</td>
 									<td>${list.mem_id }</td>
 									<td>${list.s_dt }</td>
 									<td>${list.s_rc }</td>
@@ -96,7 +102,7 @@
 						</c:if>
 						
 						<c:if test="${page > 1 }">
-							<a href="sboardList.brn?page=${1}&limit=${limit}" class="pre" title="맨앞">&lt;&lt;</a>
+							<a href="sboardList.brn?page=1&limit=${limit}" class="pre" title="맨앞">&lt;&lt;</a>
 							<a href="sboardList.brn?page=${page-1}&limit=${limit}" class="pre" title="이전페이지">&lt;</a>
 						</c:if>		
 						
@@ -109,7 +115,7 @@
 							</c:if>
 						</c:forEach>			
 						<c:if test="${page < maxpage }">
-							<a href="sboardList.brn?page=${page+1}&limit=${limit}">&gt;</a>
+							<a href="sboardList.brn?page=${page+1}&limit=${limit}" class="next" title="다음페이지">&gt;</a>
 							<a href="sboardList.brn?page=${maxpage }&limit=${limit}" class="next" title="맨뒤">&gt;&gt;</a>
 						</c:if>			
 						<c:if test="${page >= maxpage }">
@@ -118,18 +124,21 @@
 						</c:if>
 					</p>
 				</div>
+				<!--//페이징 -->
+			</form>
+			<!-- //form -->
+			<!--버튼영역-->
 			<div class="btnB_area">
 				<div class="fr">
 					<a href="./sboardWrite.brn" class="black">글쓰기</a>
 				</div>
 			</div>
-			</form>
-			<!-- //form -->
-				<!--//페이징 -->	<!--검색영역-->
+			<!--//버튼영역-->
+			
+					<!--검색영역-->
 			<form method="get" action="sboardfind_ok.brn"
 		  	onsubmit="return find_check()" name="search">
 			<div class="borad_srch">
-				<!--한줄-->
 					<!--//검색영역-->
 					<span class="fl ml20">
 							<select id="viewcount fl" name="limit">
@@ -138,6 +147,7 @@
 								<option value="100">100개보기</option>
 							</select> 
 					</span>
+				<!--한줄-->
 				<p class="col">
 					<label for="srch_sel01" class="sc_txt">검색영역</label>
 					<select class="w180 mr10" id="srch_sel01" name="find_field">

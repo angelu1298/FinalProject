@@ -76,19 +76,12 @@
 										<!-- 번호 출력 부분 --> <c:out value="${num}" /> <c:set var="num"
 											value="${num-1}" />
 									</td>
-
-									<td class="ten">
-										<div style="text-align: left">
-
-
-											<!-- 제목 출력 부분 -->
-											<a href="obs_view.brn?num=${o.o_no}&page=${page}&state=cont">
-												${o.o_sj} </a>
-
-											<c:if test="${o.o_fl !=null}">
-												<a style="color: red">첨부파일 있음</a>
+									<td class="tit">
+										<a href="sboardcont.brn?s_no=${o.o_no}&page=${page}&state=cont">${o.o_sj }<span class="cnt">[${o.ocomm_cnt }]</span>
+											<c:if test="${!empty o.o_fl }">
+												<span class="fileExist">파일 있음</span>
 											</c:if>
-										</div>
+										</a>
 									</td>
 									<td class="ten">
 										<div>${o.mem_id}</div>
@@ -115,41 +108,39 @@
 				</table>
 			</div>
 			<!--테이블-->
-			<!--페이징 -->
-			<div class="paginate">
-				<!-- 수정 -->
-				<p>
-					<c:if test="${page <=1 }">
-						<span>&lt;&lt;</span>
-					</c:if>
-
-					<c:if test="${page > 1 }">
-						<a href="obs_list.brn?page=${1}&limit=${limit}" class="pre"
-							title="맨앞">&lt;&lt;</a>
-						<a href="obs_list.brn?page=${page-1}&limit=${limit}" class="pre"
-							title="이전페이지">&lt;</a>
-					</c:if>
-
-					<c:forEach var="a" begin="${startpage}" end="${endpage}">
-						<c:if test="${a == page }">
-							<strong>${page}</strong>
+	<!--페이징 -->
+				<div class="paginate">
+					<p>
+						<c:if test="${page <=1 }">
+							<span>&lt;&lt;</span>
+							<span>&lt;</span>
 						</c:if>
-						<c:if test="${a != page }">
-							<a href="obs_list.brn?page=${a}&limit=${limit}">${a}</a>
+						
+						<c:if test="${page > 1 }">
+							<a href="obs_list.brn?page=1&limit=${limit}" class="pre" title="맨앞">&lt;&lt;</a>
+							<a href="obs_list.brn?page=${page-1}&limit=${limit}" class="pre" title="이전페이지">&lt;</a>
+						</c:if>		
+						
+						<c:forEach var="a" begin="${startpage}" end="${endpage}">
+							<c:if test="${a == page }">
+								<strong>${a}</strong>
+							</c:if>
+							<c:if test="${a != page }">
+								<a href="obs_list.brn?page=${a}&limit=${limit}"><strong>${a}</strong></a>
+							</c:if>
+						</c:forEach>			
+						<c:if test="${page < maxpage }">
+							<a href="obs_list.brn?page=${page+1}&limit=${limit}" class="next" title="다음페이지">&gt;</a>
+							<a href="obs_list.brn?page=${maxpage }&limit=${limit}" class="next" title="맨뒤">&gt;&gt;</a>
+						</c:if>			
+						<c:if test="${page >= maxpage }">
+								<span>&gt;</span>
+								<span>&gt;&gt;</span>
 						</c:if>
-					</c:forEach>
-
-					<c:if test="${page >= maxpage }">
-							&gt; 
-						</c:if>
-					<c:if test="${page < maxpage }">
-						<a href="obs_list.brn?page=${page+1}&limit=${limit}">&gt;</a>
-						<a href="obs_list.brn?page=${maxpage}&limit=${limit}">&gt;&gt;</a>
-					</c:if>
-				</p>
-
-			</div>
-			<!--//페이징 -->
+					</p>
+				</div>
+				<!--//페이징 -->
+		</form>
 		<!-- //form -->
 
 
@@ -159,7 +150,6 @@
 				<a href="obs_write.brn" class="black">글쓰기</a>
 			</div>
 		</div>
-		</form>
 		<!--//버튼영역-->
 
 
@@ -167,14 +157,14 @@
 		<form method="get" action="obs_find_ok.brn"
 			onsubmit="return find_check()" name="search">
 			<div class="borad_srch">
-			<!--//검색영역-->
-			<span class="fl ml20">
-				<select id="viewcount fl" name="limit">
-					<option value="20">20개보기</option>
-					<option value="50">50개보기</option>
-					<option value="100">100개보기</option>
-				</select> 
-			</span>
+				<!--//검색영역-->
+				<span class="fl ml20">
+					<select id="viewcount fl" name="limit">
+						<option value="20">20개보기</option>
+						<option value="50">50개보기</option>
+						<option value="100">100개보기</option>
+					</select> 
+				</span>
 				<!--한줄-->
 				<p class="col">
 					<label for="srch_sel01" class="sc_txt">검색영역</label> <select

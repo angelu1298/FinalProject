@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.burn.fat.board.eboard.model.EboardBean;
+import com.burn.fat.board.fboard.model.FboardBean;
 import com.burn.fat.board.gboard.model.GbbsBean;
 import com.burn.fat.board.oboard.model.ObsBean;
+import com.burn.fat.board.sboard.model.SboardBean;
 
 @Service("Scrapervice")
 public class ScrapServiceImpl implements ScrapService {
@@ -54,7 +56,35 @@ public class ScrapServiceImpl implements ScrapService {
 	    	System.out.println("serviceimpl"+mem_no);
 	    	return scrapDAO.getGscrapCount(mem_no);
 	    }
+	
+	
+	 /*fboard 스크랩 목록 보여주기*/
+    @Override
+    public List<FboardBean> getFbsScrap(int mem_no) throws Exception {
+    	
+    	return scrapDAO.getFbsScrap(mem_no);
+    }
+	/*fboard 스크랩 갯수*/
+	@Override
+	    public int getFscrapCount(int mem_no) throws Exception {
+	    	System.out.println("serviceimpl"+mem_no);
+	    	return scrapDAO.getFscrapCount(mem_no);
+	    }
 	   
+	
+	
+	 /*sboard 스크랩 목록 보여주기*/
+    @Override
+    public List<SboardBean> getSbsScrap(int mem_no) throws Exception {
+    	
+    	return scrapDAO.getSbsScrap(mem_no);
+    }
+	/*fboard 스크랩 갯수*/
+	@Override
+	    public int getSscrapCount(int mem_no) throws Exception {
+	    	System.out.println("serviceimpl"+mem_no);
+	    	return scrapDAO.getSscrapCount(mem_no);
+	    }
    
 	
 }

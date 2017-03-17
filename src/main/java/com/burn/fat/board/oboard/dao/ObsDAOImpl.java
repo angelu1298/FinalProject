@@ -15,12 +15,12 @@ public class ObsDAOImpl {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	/* ÀÚ·á½Ç ÀúÀå */
+	/* ï¿½Ú·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	public void insertObs(ObsBean obsbean) throws Exception {
 		sqlSession.insert("obs_insert", obsbean);
 	}
 
-	/* ÄÚ¸àÆ® ÀúÀå */
+	/* ï¿½Ú¸ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ */
 	public void insertObs_comm(ObsBean obsbean) throws Exception {
 		int re_rev = obsbean.getOcomm_re_lev();
 
@@ -31,49 +31,49 @@ public class ObsDAOImpl {
 		}
 	}
 
-	/* ÄÚ¸àÆ® »èÁ¦ */
+	/* ï¿½Ú¸ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ */
 	public void deleteObs_comm(ObsBean obsbean) throws Exception {
 		sqlSession.update("obs_comm_delete", obsbean);
 	}
 
-	/* ÀÚ·á½Ç ÃÑ °Ô½Ã¹° ¼ö */
+	/* ï¿½Ú·ï¿½ï¿½ ï¿½ï¿½ ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ */
 	public int getOlistCount() throws Exception {
 		int count = ((Integer) sqlSession.selectOne("obs_count")).intValue();
 		return count;
 	}
 
-	/* ÀÚ·á½Ç ¸ñ·Ï°ú ÆäÀÌÂ¡ */
+	/* ï¿½Ú·ï¿½ï¿½ ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½Â¡ */
 	public List<ObsBean> getObsList(Map<String, Integer> m) throws Exception {
 		List<ObsBean> list = sqlSession.selectList("obs_list", m);
 		return list;
 	}
 
-	/* ¹øÈ£¸¦ ±âÁØÀ¸·Î ÀÚ·á½Ç ³»¿ë °¡Á®¿À±â */
+	/* ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	public ObsBean getObsCont(int num) throws Exception {
 		return (ObsBean) sqlSession.selectOne("obs_cont", num);
 	}
 
-	/* ³»¿ëº¸±â ÇÒ¶§¸¸ Á¶È¸¼ö Áõ°¡ */
+	/* ï¿½ï¿½ï¿½ëº¸ï¿½ï¿½ ï¿½Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	public void obsHit(int num) throws Exception {
 		sqlSession.update("obs_hit", num);
 	}
 
-	/* ÁÁ¾Æ¿ä ¹öÆ° ´­·¶À» ½Ã Á¶È¸¼ö Áõ°¡ */
+	/* ï¿½ï¿½ï¿½Æ¿ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	public void obsLike(int num) throws Exception {
 		sqlSession.update("obs_like", num);
 	}
 
-	/* ÀÚ·á½Ç ¼öÁ¤ */
+	/* ï¿½Ú·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	public void editObs(ObsBean obsbean) throws Exception {
 		sqlSession.update("obs_edit", obsbean);
 	}
 
-	/* ÀÚ·á½Ç »èÁ¦ */
+	/* ï¿½Ú·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	public void deleteObs(int obs_num) throws Exception {
 		sqlSession.delete("obs_delete", obs_num);
 	}
 
-	/* °Ë»ö °á°ú °Ô½Ã¹° ¼ö */ // ¿¹Àü°°¾ÒÀ¸¸é ¹Ø¿¡Ã³·³ÀÌÁö¸¸ MapÀ» ½á¼­ 57¹ø¶óÀÎÃ³·³ º¸³½´Ù
+	/* ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ */ // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¿ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Mapï¿½ï¿½ ï¿½á¼­ 57ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	// public int getListCount3(String find_name,String find_field) throws
 	// SQLException{
 	public int getOListCount3(Map m) throws Exception {
@@ -82,27 +82,27 @@ public class ObsDAOImpl {
 		return count;
 	}
 
-	/* °Ë»ö °á°ú ÆäÀÌÂ¡ ¸ñ·Ï */
+	/* ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Â¡ ï¿½ï¿½ï¿½ */
 	public List<ObsBean> getObsList3(Map m) throws Exception {
 		List<ObsBean> list = sqlSession.selectList("obs_find", m);
 		return list;
 	}
 
-	/* ÄÚ¸àÆ® ¸®½ºÆ® */
+	/* ï¿½Ú¸ï¿½Æ® ï¿½ï¿½ï¿½ï¿½Æ® */
 	public List<ObsBean> getOclistCount(int num) {
 		List<ObsBean> list = sqlSession.selectList("obscom_list", num);
 		return list;
 	}
 
-	/* ½ºÅ©·¦ Ã¼Å© */
+	/* ï¿½ï¿½Å©ï¿½ï¿½ Ã¼Å© */
 	public String checkscrap(int o_no) {
 
-		return sqlSession.selectOne("checkscrap", o_no);
+		return sqlSession.selectOne("o_checkscrap", o_no);
 	}
 
-	/* Á¶È¸¼ö Áõ°¡, ÄÃ·³ Ãß°¡ */
+	/* ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Ã·ï¿½ ï¿½ß°ï¿½ */
 	public int likeCountUp(Map<String, Object> map) {
-		return sqlSession.update("likecountup", map);
+		return sqlSession.update("o_likecountup", map);
 	}
 
 }

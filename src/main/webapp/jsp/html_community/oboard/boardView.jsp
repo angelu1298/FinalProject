@@ -1,20 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../../inc/subHeader.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script src="./resources/js/jquery.js"></script>
-<script src="./resources/js/list.js"></script>
+<!-- <script src="./resources/js/jquery.js"></script>
+<script src="./resources/js/list.js"></script> -->
 <!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
 <section class="sub_container">
 
 		<!-- 서브메뉴에 따라 Side Navigation을 다르게 부여해준다. -->	
-		<%@ include file="../../inc/leftMenu_log.jsp" %>
+			<!-- 서브메뉴에 따라 Side Navigation을 다르게 부여해준다. -->
+	<%@ include file="../../inc/leftMenu05.jsp"%>
+
 		<input type="hidden" name="o_no" id="o_no" value="${obsbean.o_no}" />
 		<input type="hidden" name="page" id="page" value="${page }" />		
 		<!-- 서브컨텐츠 영역 START -->
 		<div class="subContent">
 		
 			<h3>자유게시판</h3>
-			
+			${sessionScope.mem_id}ggggggggggggggg
 			<h4>보기</h4>
 		
 			<!--게시글-->
@@ -91,12 +93,12 @@
 						<a href="/obs/obs_delete" class="white">삭제</a>
 						<a href="boardWrite.jsp" class="white">수정</a>
 					 -->
-  			<c:if test="${'admin' eq obsbean.mem_id}">	
+	  			<c:if test="${sessionScope.mem_id eq obsbean.mem_id}">	
   					 <input type="button" value="수정" class="input_button"
    						onclick="location='obs_view.brn?num=${obsbean.o_no}&page=${page}&state=mod'" />
 					 <input type="button" value="삭제" class="input_button"
    						onclick="location='obs_delete.brn?num=${obsbean.o_no}&page=${page}&state=del'" />
-   			</c:if>				
+   				</c:if>				
 				</div>
 				<div class="fr">
 					<a href="obs_list.brn" class="black">목록</a>
@@ -105,7 +107,7 @@
 			</div>
 <!-- 좋아요폼 -->
 	 <!-- 코멘트 -->	
-	<form action="obs_comment.brn" method="post" enctype="multipart/form-data"> 
+<%-- 	<form action="obs_comment.brn" method="post" enctype="multipart/form-data"> 
 	 <input type="hidden" name="o_no" value="${obsbean.o_no}" />
 	  <input type="hidden" name="mem_id" value="${obsbean.mem_id}" />
 		<div class="comment">
@@ -146,7 +148,7 @@
 					</div>
 		</div>		
 	</form>
-			
+			 --%>
 			<!--//버튼영역-->
 			<!-- 이전글, 다음글 -->
 			<ul class="nextprev_box">
@@ -180,6 +182,9 @@
 				</li>
 			</ul>
 			<!-- //이전글, 다음글 -->
+			<div class="commentList">
+			<%@include file="ocommList.jsp" %>
+		</div>
 		</div>
 		<!--//게시글영역-->
 	<!-- 서브컨텐츠 영역 END -->
@@ -188,7 +193,7 @@
 <!-- // container End -->
 <script type="text/javaScript">
 	$(document).ready(function(){
-		$(".addchildCommentBtn").on("click", function(){		//댓글 추가 버튼을 눌렀을 때
+		/* $(".addchildCommentBtn").on("click", function(){		//댓글 추가 버튼을 눌렀을 때
 			if($('.subCommentDiv')) {				//이미 만들어진 댓글추가 폼이 있는가 체크
 				$('.subCommentDiv').remove();		//있으면 해당 노드 제거
 			}			
@@ -203,7 +208,7 @@
 			var ocomm_no = deleteBtnId.split('_')[1];
 			var ocomm_no_form = '<input type="hidden" value ="' + ocomm_no + '" name="ocomm_no"/>';
 			$(this).parent().append(ocomm_no_form);
-		});
+		}); */
 		
 		$(".btn_scrap").click(function(){
 			var o_no = $('#o_no').val();
@@ -227,7 +232,7 @@
 				},
 				 headers : {"cache-control": "no-cache","pragma": "no-cache"}
 			});
-		});
+	});
 	});
 </script>
 

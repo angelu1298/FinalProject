@@ -2,6 +2,7 @@ package com.burn.fat.board.oboard.action;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +22,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.burn.fat.board.oboard.dao.OBoardService;
+import com.burn.fat.board.oboard.dao.OcommService;
 import com.burn.fat.board.oboard.model.ObsBean;
+import com.burn.fat.board.oboard.model.OcommBean;
 import com.oreilly.servlet.MultipartRequest;
 
 @Controller
@@ -29,63 +32,17 @@ public class ObsAction {
 
 	@Autowired
 	private OBoardService obsService;
-	private String saveFolder="C:/Users/angel/git/FinalProject/src/main/webapp/resources/upload";
+	@Autowired
+	private OcommService ocommService;
+	private String saveFolder="C:/git/FinalProject/src/main/webapp/resources/upload";
+	
 	@RequestMapping(value = "/obs_write.brn")
 	public String obs_write() {
 
 		return "html_community/oboard/boardWrite";
 	}
 	
-	/*코멘트 부분*/
-	@RequestMapping(value = "/obs_comment.brn", method = RequestMethod.POST)
-	public ModelAndView obs_comment(HttpServletRequest request, HttpServletResponse response, HttpSession session)
-			throws Exception {
-
-		ObsBean obsbean = new ObsBean();
-		int fileSize = 5 * 1024 * 1024;
-
-		MultipartRequest multi = null;
-		multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8");
-
-		String mem_id = multi.getParameter("mem_id");
-		// String mem_no_str = (String)session.getAttribute("mem_no");
-		// int mem_no = Integer.parseInt(mem_no_str);
-		int mem_no = (Integer) session.getAttribute("mem_no");
-		int o_no = Integer.parseInt(multi.getParameter("o_no"));
-		String commentBtn = multi.getParameter("combtn");
-
-		System.out.println("코멘트 아이디 : " + mem_id);
-		
-		obsbean.setMem_id(mem_id);
-		obsbean.setMem_no(mem_no);
-		obsbean.setO_no(o_no);
-
-		if (commentBtn.equals("댓글등록")) { //부모 코멘트 insert
-			System.out.println("부모 댓글등록 ");
-			String ocomm_ct = multi.getParameter("comment_ct").trim();
-			obsbean.setOcomm_ct(ocomm_ct);
-			obsbean.setOcomm_re_lev(0);
-			this.obsService.insertObs_comm(obsbean); 
-
-		} else if (commentBtn.equals("등록")) { // 자식코멘트 insert
-			System.out.println("자식 댓글등록 ");
-			String sub_ocomm_ct = multi.getParameter("sub_comment_ct").trim();
-			int parentRef = Integer.parseInt(multi.getParameter("parentRef"));
-			obsbean.setOcomm_ct(sub_ocomm_ct);
-			obsbean.setOcomm_re_ref(parentRef);
-			obsbean.setOcomm_re_lev(1);
-			this.obsService.insertObs_comm(obsbean); 
-		} else if (commentBtn.equals("삭제")) { 
-			System.out.println("자식 댓글등록 ");
-			int ocomm_no = Integer.parseInt(multi.getParameter("ocomm_no"));
-			obsbean.setOcomm_no(ocomm_no);
-			obsbean.setOcomm_ct("삭제된 댓글입니다.");
-			this.obsService.deleteObs_comm(obsbean); 
-		}
-
-		response.sendRedirect("obs_view.brn?num=" + o_no + "&state=cont");
-		return null;
-	}
+	
 
 	/* 자료실 저장 */
   	//  첨부파일 클릭할 경우 이미지 보고자 할  경우 : 자동 새로 고침 설정
@@ -98,7 +55,7 @@ public class ObsAction {
 
 		HttpSession session = request.getSession();
 		String mem_no = String.valueOf(session.getAttribute("mem_no"));
-		mem_no = "1";
+//	mem_no = "1";
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("o_no", o_no);
 		map.put("mem_no", mem_no);
@@ -127,6 +84,7 @@ public class ObsAction {
 		
 	}
 
+	/*글쓰기 저장*/
 	@RequestMapping(value = "/obs_write_ok.brn", method = RequestMethod.POST)
 	public ModelAndView obs_write_ok(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 			throws Exception {
@@ -263,6 +221,7 @@ public class ObsAction {
 		}
 		String state = request.getParameter("state");
 
+		
 		if (state.equals("cont")) {
 			this.obsService.obsHit(num);
 		}
@@ -276,7 +235,9 @@ public class ObsAction {
 		System.out.println("333" + obsbean_m);
 
 		List<ObsBean> obsCommentList = obsService.getOclistCount(num);
-
+		List<OcommBean> ocommbeanlist = new ArrayList<OcommBean>();
+		ocommbeanlist = ocommService.getOCommList(num);
+		
 		ModelAndView contM = new ModelAndView();
 
 		contM.addObject("obsbean_m", obsbean_m);// ����
@@ -295,6 +256,7 @@ public class ObsAction {
 		contM.addObject("obsbean", obsbean);
 		contM.addObject("obsCommentList", obsCommentList);
 		contM.addObject("page", page);
+		contM.addObject("beanlist",ocommbeanlist);
 		return contM;
 	}
 

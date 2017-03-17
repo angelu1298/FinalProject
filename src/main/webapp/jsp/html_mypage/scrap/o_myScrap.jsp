@@ -19,8 +19,6 @@
 			<col width="100%">
 			<col width="100px">
 			<col width="100px">
-			<col width="50px">
-			<col width="50px">
 		</colgroup>
 		<thead>
 			<tr>
@@ -28,8 +26,6 @@
 				<th>제목</th>
 				<th>글쓴이</th>
 				<th>작성일</th>
-				<th>조회</th>
-				<th>추천</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -80,12 +76,7 @@
 						<td class="ten">
 							<div>${o.o_dt}</div>
 						</td>
-						<td class="ten">
-							<div>${o.o_rc}</div>
-						</td>
-						<td class="ten">
-							<div>${o.o_lk}</div>
-						</td>
+						
 					</tr>
 
 				</c:forEach>

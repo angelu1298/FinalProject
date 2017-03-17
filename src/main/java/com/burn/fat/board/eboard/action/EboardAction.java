@@ -34,8 +34,7 @@ public class EboardAction {
 	@Autowired
 	public EboardService eboService;
 	
-	private String saveFolder="D:/neonjava/EBoard/src/main/webapp/resources/upload";
-	
+	private String saveFolder="C:/Users/angel/git/FinalProject/src/main/webapp/resources/upload"; //파일 저장시킬 경로
 	/* 스크랩 */
 	@RequestMapping(value = "/eboardscrap.brn")
 	public void sboardscrap(HttpServletRequest request, HttpServletResponse response,

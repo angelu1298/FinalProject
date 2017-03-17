@@ -13,9 +13,15 @@ E_FL VARCHAR2(1024),		/* 업로드파일경로 */
 E_RC NUMBER DEFAULT 0,		/* 조회수 */
 E_DT DATE DEFAULT SYSDATE,	/* 작성시간 */
 E_LK NUMBER DEFAULT 0,		/* 추천수 */
-E_LKNO VARCHAR2(2048)		/* 회원번호(추천인) */
+E_LKNO VARCHAR2(2048),		/* 회원번호(추천인) */
+MEM_ID VARCHAR2(500),
+ECOMM_CNT NUMBER
 );
 
+delete from EBOARD;
+
+drop table eboard CASCADE CONSTRAINT; 
+drop sequence e_no_seq
 --시퀀스
 create sequence e_no_seq
  increment by 1 start with 1 nocache;
@@ -37,7 +43,6 @@ FOREIGN KEY(MEM_NO) REFERENCES MEMBER(MEM_NO);
 
 SELECT * FROM EBOARD;
 
-
 --코멘트
 
 CREATE TABLE ECOMMENT(
@@ -52,11 +57,18 @@ ECOMM_RE_LEV NUMBER,			/* 코멘트답변 수준 */
 ECOMM_RE_SEQ NUMBER DEFAULT 0,	/* 코멘트답변 순서 */
 E_NO NUMBER	,					/* 참조글번호 (FK)*/
 
-ECOMM_RCT VARCHAR2(600),		/* 코멘트답변 내용 */
-ECOMM_RE_DEL_NO NUMBER			/* 코멘트삭제 번호 */
+ECOMM_RE_DEL_NO NUMBER,			/* 코멘트삭제 번호 */
+ECOMM_CNT NUMBER
 );
 
+drop table ecomment
 select * from ecomment;
+
+create or replace view ecommlist
+as
+select ecomm_no, m.mem_id, ecomm_ct, ecomm_dt, ecomm_re_ref, ecomm_re_lev, ecomm_re_seq, e_no
+from ecomment e, member m 
+where e.mem_no = m.mem_no;
 
 --시퀀스
 create sequence e_comm_seq2
@@ -65,7 +77,8 @@ create sequence e_comm_seq2
 create sequence e_comm_re_del
  increment by 1 start with 1 nocache;
  
---drop sequence e_comm_seq2;
+drop sequence e_comm_seq2;
+drop sequence e_comm_re_del;
 
 
 drop table ecomment cascade constraint;
@@ -80,6 +93,7 @@ ADD CONSTRAINT ECOMMENT_E_NO_FK
 FOREIGN KEY(E_NO) REFERENCES EBOARD(E_NO);
 
 SELECT * FROM ECOMMENT;
+delete from ecomment;
 
 
 --회원정보(MEMBER)
@@ -121,16 +135,10 @@ MEM_RS2 VARCHAR2(300)				/* 탈퇴사유2 */
 
 commit 
 
-SELECT * FROM MEMBER;
-
-insert into member
-(MEM_ID, MEM_NO, MEM_PW, MEM_NM, MEM_SX)
-values('testId', 2, 'testpw','테스트이름',2 );
-
-insert into member
-(MEM_ID, MEM_NO, MEM_PW, MEM_NM, MEM_SX)
-values('testId2', 3, 'testpw','테스트이름2',2 );
 
 
-DROP TABLE MEMBER CASCADE CONSTRAINT;
+
+
+
+
 

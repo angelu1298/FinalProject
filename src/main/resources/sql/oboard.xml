@@ -48,14 +48,14 @@
 	</select>
 	
 	<!-- 스크랩 여부 확인 -->
-  	<select id="checkscrap" parameterType="int" resultType="String">
+  	<select id="o_checkscrap" parameterType="int" resultType="String">
   		select o_lkno
   		  from oboard
   		 where o_no=#{o_no} 
   	</select>
   	
 <!-- 좋아요 눌렀을 시 update -->
-	<update id="likecountup" parameterType="java.util.Map" >
+	<update id="o_likecountup" parameterType="java.util.Map" >
   		update oboard 
   		   set 
 	  	     o_lkno = o_lkno||','||to_char(#{mem_no})||',' 

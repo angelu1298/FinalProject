@@ -22,6 +22,7 @@
         <typeAlias alias="ecommBean" type="com.burn.fat.board.eboard.model.EcommBean" />   
         <typeAlias alias="exerBean" type="com.burn.fat.member.mypage.exercise.model.ExerBean" />
         <typeAlias alias="calendarBean" type="com.burn.fat.member.mypage.calendar.model.CalendarBean" />
+        <typeAlias alias="ocommbean" type="com.burn.fat.board.oboard.model.OcommBean" />
 	</typeAliases>
 
 	
@@ -49,6 +50,7 @@
         <mapper resource="sql/scrap.xml" />
         <mapper resource="sql/exerCalc.xml" />
 		<mapper resource="sql/my_calendar.xml" />
+		<mapper resource="sql/ocomm.xml" />
 	</mappers>
 
 </configuration>

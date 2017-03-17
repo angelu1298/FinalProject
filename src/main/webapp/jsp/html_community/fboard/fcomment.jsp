@@ -136,7 +136,7 @@ function fcomm_write(){
 <c:if test="${empty bean}">
 	<span>등록된 코멘트가 없습니다.</span>
 </c:if>
-<div class="scomm_ct_area comm_re_ct_area">
+<div class="scomm_ct_area comm_ct_area">
 	<textarea cols="70" rows="20" id="fcomm_ct"></textarea>
-	<button onclick="fcomm_write()" class="scomm_rep_buttonL comm_re_ct_area">코멘트남기기</button>
+	<button onclick="fcomm_write()" class="scomm_rep_buttonL comm_rep_buttonL">코멘트남기기</button>
 </div>

@@ -1,17 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!-- form -->
-<p class="srch_result">
-	<span class="rs_txt"><strong>자유게시판 스크랩</strong>은 <strong>${listcount}</strong>건이
-		검색되었습니다.</span>
-</p>
-<!--테이블-->
-	<div class="subContent"> 
-		
-			<h3>갤러리</h3>
-			<h4>목록</h4>
+ 
 		
 			<!-- 전체리스트-->
 			<div class="photolist">
@@ -111,53 +101,4 @@
 					</p>
 				</div>
 				<!-- // 페이징 -->				 
-					
-				<!--버튼영역-->
-				<div class="btnB_area"> 
-					<div class="fr">
-						<a class="black" href="gbbs_write.brn">글쓰기</a>
-					</div>
-				</div>
-				<!--//버튼영역-->
-				
-				<!--검색영역 스크립트--> 
-				<!--검색영역 form -->
-				<div class="borad_srch">
-					<!-- form -->
-					
-					<form method="get" action="gbbs_find_ok.brn" onsubmit="return find_check()">
-						
-						<span class="fl ml20">
-							<select id="viewcount fl" name="limit">
-								<option value="20">20개보기</option>
-								<option value="50">50개보기</option>
-								<option value="100">100개보기</option>
-							</select> 
-						</span>
-						
-						<!--한줄-->
-						<p class="col"> 
-							<p class="fr mr20">
-								<label for="srch_sel01" class="sc_txt">검색영역</label>
-								<select class="w180 mr10" id="gfind_field" name="gfind_field">
-									<option value="">전체검색</option>
-									<option value="gbbs_author">작성자</option>
-									<option value="gbbs_subject">글제목</option>
-									<option value="gbbs_content">글내용</option>
-								</select>
-								<label for="srch_txt" class="dnone"></label>
-								<input type="text" name="gfind_name" id="gfind_name" class="w280 mr10" placeholder="검색어를 입력하세요"/>
-								<input type="submit" class="btn_srch" value="검색" />
-							</p>
-						</p>
-						<!--한줄-->
-			
-					</form>
-					<!-- //form -->
-				</div>
-				<!--//검색영역-->
-					
-			
-		</div>
-
-</form>
+					 

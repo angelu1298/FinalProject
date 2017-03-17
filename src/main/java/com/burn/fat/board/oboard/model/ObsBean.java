@@ -7,16 +7,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class ObsBean {
 
-	private int o_no;		/*ÀÚÀ¯°Ô½ÃÆÇ ±Û ¹øÈ£*/
-	private int mem_no;		/*ÀÚÀ¯°Ô½ÃÆÇ ÀÛ¼ºÀÚ È¸¿ø¹øÈ£*/
-	private String o_sj;	/*ÀÚÀ¯°Ô½ÃÆÇ ±Û Á¦¸ñ*/
-	private String o_ct;		/*ÀÚÀ¯°Ô½ÃÆÇ ±Û ³»¿ë*/
-	private String o_fl;		/*ÀÚÀ¯°Ô½ÃÆÇ ¾÷·Îµå ÆÄÀÏ °æ¿ì*/
-	private String o_gl;		/*ÀÚÀ¯°Ô½ÃÆÇ ¾÷·Îµå ÀÌ¹ÌÁö °æ·Î*/
-	private int o_rc;		/*ÀÚÀ¯°Ô½ÃÆÇ Á¶È¸¼ö*/
-	private Date o_dt;	/*ÀÚÀ¯°Ô½ÃÆÇ ÀÛ¼º½Ã°£*/
-	private int o_lk;		/*ÀÚÀ¯°Ô½ÃÆÇ ÃßÃµ¼ö*/
-	private String o_lkno; /*ÀÚÀ¯°Ô½ÃÆÇ ÃßÃµÀÎ È¸¿ø¹øÈ£*/
+	private int o_no;		/*ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È£*/
+	private int mem_no;		/*ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½È£*/
+	private String o_sj;	/*ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
+	private String o_ct;		/*ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
+	private String o_fl;		/*ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½*/
+	private String o_gl;		/*ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½*/
+	private int o_rc;		/*ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½*/
+	private Date o_dt;	/*ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ã°ï¿½*/
+	private int o_lk;		/*ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½Ãµï¿½ï¿½*/
+	private String o_lkno; /*ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½Ãµï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½È£*/
 	private String mem_id;
 	
 	private int ocomm_no;
@@ -26,35 +26,8 @@ public class ObsBean {
 	private int ocomm_re_seq;
 	private String ocomm_ct;
 	
-	private int mem_h;
-	private int mem_w;
-	private String my_memo;
-	private int goal_w;
 	
-	public int getGoal_w() {
-		return goal_w;
-	}
-	public void setGoal_w(int goal_w) {
-		this.goal_w = goal_w;
-	}
-	public String getMy_memo() {
-		return my_memo;
-	}
-	public void setMy_memo(String my_memo) {
-		this.my_memo = my_memo;
-	}
-	public int getMem_h() {
-		return mem_h;
-	}
-	public void setMem_h(int mem_h) {
-		this.mem_h = mem_h;
-	}
-	public int getMem_w() {
-		return mem_w;
-	}
-	public void setMem_w(int mem_w) {
-		this.mem_w = mem_w;
-	}
+
 	public int getOcomm_no() {
 		return ocomm_no;
 	}
@@ -127,12 +100,13 @@ public class ObsBean {
 	public void setO_fl(String o_fl) {
 		this.o_fl = o_fl;
 	}
-//	public String getO_gl() {
-///		return o_gl;
-//	}
-//	public void setO_gl(String o_gl) {
-//		this.o_gl = o_gl;
-//	}
+	public String getO_gl() {
+		return o_gl;
+	}
+
+	public void setO_gl(String o_gl) {
+		this.o_gl = o_gl;
+	}
 	public int getO_rc() {
 		return o_rc;
 	}
@@ -158,86 +132,6 @@ public class ObsBean {
 		this.o_lkno = o_lkno;
 	}
 	
-	
-/*
-	private int obs_num;
-	private String obs_name;
-	private String obs_pass;
-	private String obs_subject; //±ÛÁ¦¸ñ
-	private String obs_content; //±Û³»¿ë
-	private String obs_file; //ÀÌÁøÆÄÀÏ¸í
-	private int obs_re_ref; //±Û±×·ì¹øÈ£
-	private int obs_re_lev; //È­¸é¿¡ º¸ÀÌ´Â ´äº¯±Û À§Ä¡¹øÈ£
-	private int obs_re_seq; //´äº¯±Û ·¹º§ ¼ø¼­
-	private int obs_readcount; //Á¶È¸¼ö
-	private String obs_date; //±Û µî·Ï³¯Â¥
-	
-	public int getObs_num() {
-		return bbs_num;
-	}
-	public void setBbs_num(int bbs_num) {
-		this.bbs_num = bbs_num;
-	}
-	public String getBbs_name() {
-		return bbs_name;
-	}
-	public void setBbs_name(String bbs_name) {
-		this.bbs_name = bbs_name;
-	}
-	public String getBbs_pass() {
-		return bbs_pass;
-	}
-	public void setBbs_pass(String bbs_pass) {
-		this.bbs_pass = bbs_pass;
-	}
-	public String getBbs_subject() {
-		return bbs_subject;
-	}
-	public void setBbs_subject(String bbs_subject) {
-		this.bbs_subject = bbs_subject;
-	}
-	public String getBbs_content() {
-		return bbs_content;
-	}
-	public void setBbs_content(String bbs_content) {
-		this.bbs_content = bbs_content;
-	}
-	public String getBbs_file() {
-		return bbs_file;
-	}
-	public void setObs_file(String bbs_file) {
-		this.bbs_file = bbs_file;
-	}
-	public int getBbs_re_ref() {
-		return bbs_re_ref;
-	}
-	public void setBbs_re_ref(int bbs_re_ref) {
-		this.bbs_re_ref = bbs_re_ref;
-	}
-	public int getBbs_re_lev() {
-		return bbs_re_lev;
-	}
-	public void setBbs_re_lev(int bbs_re_lev) {
-		this.bbs_re_lev = bbs_re_lev;
-	}
-	public int getBbs_re_seq() {
-		return bbs_re_seq;
-	}
-	public void setBbs_re_seq(int bbs_re_seq) {
-		this.bbs_re_seq = bbs_re_seq;
-	}
-	public int getBbs_readcount() {
-		return bbs_readcount;
-	}
-	public void setBbs_readcount(int bbs_readcount) {
-		this.bbs_readcount = bbs_readcount;
-	}
-	public String getBbs_date() {
-		return bbs_date;
-	}
-	public void setBbs_date(String bbs_date) {
-		this.bbs_date = bbs_date.substring(0,10);;
-	}	
-*/
+
 	
 }

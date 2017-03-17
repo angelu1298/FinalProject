@@ -8,13 +8,17 @@
 	<!-- 서브컨텐츠 영역 START -->
 	
 		<h3>마이페이지</h3>
-	
 		<h4>Scrap</h4>
-		<input type="button" value="자유게시판" id="obo_scrap"/>
-		<input type="button" value="운동게시판" id="ebo_scrap"/>
-		<input type="button" value="음식게시판" id="fbo_scrap"/>
-		<input type="button" value="후기게시판" id="sbo_scrap"/>
-		<input type="button" value="이미지게시판" id="gbo_scrap"/>
+
+		<div class="tabarea">
+			<ul>
+				<li><input type="button" value="운동게시판" id="ebo_scrap"/></li>
+				<li><input type="button" value="식품게시판" id="fbo_scrap"/></li>
+				<li><input type="button" value="자유게시판" id="obo_scrap"/></li>
+				<li><input type="button" value="후기게시판" id="sbo_scrap"/></li>
+				<li><input type="button" value="이미지게시판" id="gbo_scrap"/></li>
+			</ul>
+		</div>
 		
 		<script>
 			$(function(){
@@ -30,15 +34,15 @@
 				});
 				
 
-				$("#fbo_scrap").click(function() {
-					alert("fbo_scrap");
-					//$("#scrapview").load("./e_sc_view.brn");
+				$("#sbo_scrap").click(function() {
+					alert("sbo_scrap");
+					$("#scrapview").load("./s_sc_view.brn");
 					<%-- <%@ include file="../../html_mypage/scrap/e_myScrap.jsp"%> --%>
 				});
 				
-				$("#sbo_scrap").click(function() {
-					alert("sbo_scrap");
-					//$("#scrapview").load("./e_sc_view.brn");
+				$("#fbo_scrap").click(function() {
+					alert("fbo_scrap");
+					$("#scrapview").load("./f_sc_view.brn");
 					<%-- <%@ include file="../../html_mypage/scrap/e_myScrap.jsp"%> --%>
 				});
 				

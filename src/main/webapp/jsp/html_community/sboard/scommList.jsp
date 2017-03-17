@@ -47,21 +47,25 @@
 				var scomm_no = $(this).parents('li').find('.scomm_no').val();
 				var s_no = $("#s_no").val();
 				var scomm_re_ct = $(this).parents('li').find('.scomm_re_ct').val();
-				$.ajax({
-					data : {
-						"s_no" : s_no,
-						"scomm_no" : scomm_no,
-						"scomm_ct" : scomm_re_ct
-					},
-					type : "post",
-					url : "scommReply_ok.brn",
-					success : function(data) {
-						$('.commentList').load("scommList.brn",'s_no='+s_no);
-					},
-					error : function(data, status) {
-						alert('코멘트 답글 실패.');
-					}
-				})
+				if($.trim(scomm_re_ct)==''){
+					alert('코멘트를 작성해주세요');
+				}else{
+					$.ajax({
+						data : {
+							"s_no" : s_no,
+							"scomm_no" : scomm_no,
+							"scomm_ct" : scomm_re_ct
+						},
+						type : "post",
+						url : "scommReply_ok.brn",
+						success : function(data) {
+							$('.commentList').load("scommList.brn",'s_no='+s_no);
+						},
+						error : function(data, status) {
+							alert('코멘트 답글 실패.');
+						}
+					})
+				}
 			})
 		})
 	})
@@ -117,7 +121,7 @@
 	<p class="nolist">등록된 코멘트가 없습니다.</p>
 </c:if>
 
-<div class="scomm_ct_area comm_re_ct_area">
+<div class="scomm_ct_area comm_ct_area">
 	<textarea cols="70" rows="20" id="scomm_ct"></textarea>
-	<button onclick="scomm_write()" class="scomm_rep_buttonL comm_re_ct_area">코멘트남기기</button>
+	<button onclick="scomm_write()" class="scomm_rep_buttonL comm_rep_buttonL">코멘트남기기</button>
 </div>

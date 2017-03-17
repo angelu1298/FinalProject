@@ -67,6 +67,9 @@
                         <td class="tit"><!-- 제목 출력 부분 -->   
                            <a href="eboardView.brn?num=${e.e_no}&page=${page}&state=cont">
                               ${e.e_sj}
+                              <c:if test="${!empty e.e_fl }">
+                              	<span class="fileExist">파일 있음</span>
+                              </c:if>
                            </a>
                         </td>
                         <td><!-- 글쓴이 -->

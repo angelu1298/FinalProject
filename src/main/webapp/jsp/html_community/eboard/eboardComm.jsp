@@ -5,7 +5,7 @@
 <script>
 function ecomm_write(){
 
-	if( $('#ecomm_ct').val().trim()==''){
+	if( $.trim($('#ecomm_ct').val())==''){
 		alert('코멘트를 입력하세요');
 		return false;
 	}
@@ -143,8 +143,8 @@ function ecomm_write(){
 	<p class="nolist">등록된 코멘트가 없습니다.</p>
 </c:if>
 
-<div class="ecomm_ct_area comm_re_ct_area">
+<div class="ecomm_ct_area comm_ct_area">
 	<textarea cols="70" rows="20" id="ecomm_ct"></textarea>
-	<button onclick="ecomm_write()" class="ecomm_rep_buttonL comm_re_ct_area">코멘트남기기</button>
+	<button onclick="ecomm_write()" class="ecomm_rep_buttonL comm_rep_buttonL">코멘트남기기</button>
 </div>	
 

@@ -55,7 +55,7 @@
 					<tbody>
 						<!--등록된 게시물이 없는경우-->
 						<tr>
-						<c:if test="${bbslist}=null">
+						<c:if test="${empty bbslist}">
 						
 							<td class="nolist" colspan="6">등록된 게시물이 없습니다.</td>
 						</c:if>
@@ -76,35 +76,30 @@
 									<c:set var="num" value="${num-1}" />
 								</td>
 
-								<td class="ten">
-									<div style="text-align: left">
-
-
+								<td class="tit">
 										<!-- 제목 출력 부분 -->
 										<a href="bbs_cont.brn?num=${b.f_no}&page=${page}&state=cont">
-											${b.f_sj} </a>[${b.fcomm_cnt}]
-											
-										<%-- <c:set var="logtime" 
-										value="${boardNoticeDTO.getNo_logtime().substring(0,10).replaceAll('-', '').trim() }"></c:set>
-										<c:if test="${date-logtime < 1 }">
-										&nbsp;<img src="../images/board/new.gif" align="absmiddle">
-										</c:if> --%>
+											${b.f_sj} 
+											<span class="cnt">[${b.fcomm_cnt}]</span>
+											<c:if test="${!empty b.f_fl }">
+												<span class="fileExist">파일 있음</span>
+											</c:if>
+										</a>
 										<!-- 새글 표시 -->
-									</div>
 								</td>
 
 
-								<td class="ten">
-									<div>${b.mem_id}</div>
+								<td>
+									${b.mem_id}
 								</td>
-								<td class="ten">
-									<div>${b.f_dt}</div>
+								<td>
+									${b.f_dt}
 								</td>
-								<td class="ten">
-									<div>${b.f_rc}</div>
+								<td>
+									${b.f_rc}
 								</td>
-								<td class="ten">
-									<div>${b.f_lk}</div>
+								<td>
+									${b.f_lk}
 								</td>
 							</tr>
 
@@ -117,28 +112,32 @@
 			<!--페이징 -->
 			<div class="paginate">
 				<p>
-				<c:if test="${page <=1 }">
-					<a href="#none" class="pre" title="이전페이지">&lt;&lt;</a> 
-				</c:if>
+						<c:if test="${page <=1 }">
+							<span>&lt;&lt;</span>
+							<span>&lt;</span>
+						</c:if>
 				<c:if test="${page > 1 }">
-					<a href="bbs_list.brn?page=${page-1}&limit=${limit}" class="pre" title="이전페이지">&lt;&lt;</a>
+					<a href="bbs_list.brn?page=1&limit=${limit}" class="pre" title="이전페이지">&lt;&lt;</a>
+					<a href="bbs_list.brn?page=${page-1}&limit=${limit}" class="pre" title="이전페이지">&lt;</a>
 				</c:if>	
 				
 				<c:forEach var="a" begin="${startpage}" end="${endpage}">
-				<c:if test="${a == page }">
-					<strong><span>${a}</span></strong>
-				</c:if>
-				<c:if test="${a != page }">
-					<a href="bbs_list.brn?page=${a}&limit=${limit}" ><strong><span>${a}</span></strong></a>&nbsp;
-				</c:if>
+					<c:if test="${a == page }">
+						<strong>${a}</strong>
+					</c:if>
+					<c:if test="${a != page }">
+						<a href="bbs_list.brn?page=${a}&limit=${limit}" ><strong><span>${a}</span></strong></a>&nbsp;
+					</c:if>
 				</c:forEach>
 					
-				<c:if test="${page >= maxpage }">
-					<a href="#none" class="next" title="다음페이지">&gt;</a>
-				</c:if>
 				<c:if test="${page < maxpage }">
 					<a href="bbs_list.brn?page=${page+1}&limit=${limit}" class="next" title="다음페이지">&gt;</a>
+					<a href="bbs_list.brn?page=${maxpage}&limit=${limit}" class="next" title="맨뒤">&gt;&gt;</a>
 				</c:if>		
+				<c:if test="${page >= maxpage }">
+					<span>&gt;</span>
+					<span>&gt;&gt;</span>
+				</c:if>
 				</p>
 			</div>
 			<!--버튼영역-->

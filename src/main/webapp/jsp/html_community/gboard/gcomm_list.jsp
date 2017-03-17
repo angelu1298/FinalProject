@@ -166,7 +166,7 @@ $(function(){
 	<p class="nolist">등록된 코멘트가 없습니다.</p>
 </c:if>
 
-<div class="gcomm_ct_area">
+<div class="gcomm_ct_area comm_ct_area">
 	<textarea cols="70" rows="20" id="gcomm_ct"></textarea>
-	<button class="gcomm_rep_buttonL" >코멘트남기기</button>
+	<button class="gcomm_rep_buttonL comm_rep_buttonL" >코멘트남기기</button>
 </div>

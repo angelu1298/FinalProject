@@ -87,36 +87,38 @@
 			</div>
 			<!--// 전체리스트-->
 	
-				
-			<!-- 페이징 -->				
-			<div class="paginate">
-				<p>
-					<c:if test="${page <=1 }">
-						<span>&lt;&lt;</span>
-					</c:if>
-					
-					<c:if test="${page > 1 }">
-						<a href="gbbs_gall.brn?page=${page-1}">&lt;</a>
-					</c:if>			
-		
-					<c:forEach var="a" begin="${startpage}" end="${endpage}">
-						<c:if test="${a == page }">
-							<strong>${a}</strong>
+				<!--페이징 -->
+				<div class="paginate">
+					<p>
+						<c:if test="${page <=1 }">
+							<span>&lt;&lt;</span>
+							<span>&lt;</span>
 						</c:if>
-						<c:if test="${a != page }">
-							<a href="gbbs_gall.brn?page=${a}">${a}</a>
-						</c:if>
-					</c:forEach>			
 						
-						<c:if test="${page >= maxpage }">
-							<span>&gt;</span>
-						</c:if>
+						<c:if test="${page > 1 }">
+							<a href="gbbs_gall.brn?page=1&limit=${limit}" class="pre" title="맨앞">&lt;&lt;</a>
+							<a href="gbbs_gall.brn?page=${page-1}&limit=${limit}" class="pre" title="이전페이지">&lt;</a>
+						</c:if>		
+						
+						<c:forEach var="a" begin="${startpage}" end="${endpage}">
+							<c:if test="${a == page }">
+								<strong>${a}</strong>
+							</c:if>
+							<c:if test="${a != page }">
+								<a href="gbbs_gall.brn?page=${a}&limit=${limit}"><strong>${a}</strong></a>
+							</c:if>
+						</c:forEach>			
 						<c:if test="${page < maxpage }">
-							<a href="gbbs_gall.brn?page=${page+1}">&gt;&gt;</a>
+							<a href="gbbs_gall.brn?page=${page+1}&limit=${limit}" class="next" title="다음페이지">&gt;</a>
+							<a href="gbbs_gall.brn?page=${maxpage }&limit=${limit}" class="next" title="맨뒤">&gt;&gt;</a>
+						</c:if>			
+						<c:if test="${page >= maxpage }">
+								<span>&gt;</span>
+								<span>&gt;&gt;</span>
 						</c:if>
 					</p>
 				</div>
-				<!-- // 페이징 -->				 
+				<!--//페이징 -->
 					
 				<!--버튼영역-->
 				<div class="btnB_area"> 
