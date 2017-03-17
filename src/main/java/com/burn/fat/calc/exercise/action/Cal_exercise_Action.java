@@ -22,7 +22,6 @@ public class Cal_exercise_Action {
 	@Autowired
 	private ExerciseService exerService;
 
-	/* erc_ty ¿îµ¿ Å¸ÀÔ °¡Á®¿À±â */
 	@RequestMapping(value = "/bringtype.brn")
 	public ModelAndView bringtype(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -36,7 +35,6 @@ public class Cal_exercise_Action {
 
 	}
 
-	// erc_nm °¡Á®¿À±â
 	@RequestMapping(value = "/bringname.brn")
 	public ModelAndView bringname(@RequestParam("a") String name, @RequestParam("erc_sx") String erc_sx,
 										HttpServletRequest request,
@@ -55,7 +53,7 @@ public class Cal_exercise_Action {
 
 	}
 
-	//kcal ¹öÆ° Å¬¸¯½Ã ÀÚ·á 
+	//kcal ï¿½ï¿½Æ° Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½ 
 	@RequestMapping(value = "/bringtime.brn")
 		public ModelAndView bringtime(@RequestParam("exe_name") String exe_name, 
 					@RequestParam("exe_kcal") int exe_kcal,@RequestParam("erc_sx") String erc_sx,
