@@ -1,22 +1,18 @@
-create table calendar(
-cal_date varchar2(50),
-day varchar2(500),			/* 아침,점심,저녁 */
-mem_no number,
-
-e_kcal varchar2(500),		/* 운동_칼로리 */
-cal_eval number,		/* 하:1 중:2 상:3*/
-
-y varchar2(50), 					/* 년도 */
-m varchar2(50), 					/* 달    */
-d varchar2(50), 					/* 일   */
-
-exer_tt varchar2(1000),		/* 운동제목 */
-cus_tt varchar2(500),		/* 음식제목 */
-grc_tt varchar2(500),		/* 식품제목 */
-cus_kcal number(10,5),		/* 음식검색에서 계산된 칼로리 */
-grc_kcal number(10,5)		/* 식품검색에서 계산된 칼로리 */
-);
-
+ CREATE TABLE CALENDAR 
+   (	CAL_DATE VARCHAR2(50 BYTE), 
+	DAY VARCHAR2(500 BYTE), 
+	MEM_NO NUMBER, 
+	E_KCAL VARCHAR2(500 BYTE) DEFAULT NULL, 
+	CAL_EVAL NUMBER DEFAULT 0, 
+	Y VARCHAR2(50 BYTE), 
+	M VARCHAR2(50 BYTE), 
+	D VARCHAR2(50 BYTE), 
+	EXER_TT VARCHAR2(1000 BYTE), 
+	CUS_TT VARCHAR2(500 BYTE), 
+	GRC_TT VARCHAR2(500 BYTE), 
+	CUS_KCAL NUMBER(10,5) DEFAULT 0, 
+	GRC_KCAL NUMBER(10,5) DEFAULT 0
+   ) 
 
 select * from calendar;
 
