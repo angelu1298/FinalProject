@@ -98,19 +98,28 @@ nav.snb > ul > li > ul > li:hover {  nd:rgba(0,0,0,0.9); }
 .fotgoal{ border:1px solid #0f0; margin-top:20px; display:inline-block; }
 .fotgoal input[type="text"]{ padding-right:20px; width:100%; height:30px; line-height:30px; font-family:'Nanum Pen Script'; background:none; font-size:19px; border:none; }
 .fotgoal input[type="button"]{ position:absolute; top:5px; right:0; width:20px; height:20px; display:block; background:url(../img/bull/bull_pen.png) no-repeat center; cursor:pointer; }
- 
+.cal_content{ position:relative; width:100%; height:auto; margin:20px auto; display:block; height:650px; background:rgba(0,0,0,1) url(../img/main/mainbg01	.jpg) no-repeat left center;  background-size:120% auto; }
+.cal_content .cal_contentarea { border:1px solid #fff; margin:0 auto; width:500px; height:650px; padding-top:30px; display:block;  background-image:url(../img/cal/scale.png); background-repeat:no-repeat;  background-position:center center ; text-align: center; }
  
  /***** 체중계 *****/
-.cal_diet{ position:relative; width:100%; height:auto; display:inline-block; border:1px solid #00f; height:800px;}
-.group{ width:100%; background-attachment:fixed; position:relative; }
-.group > ul{  display:inline-block;margin-top:200px; }
-.group > ul > li{ clear:both; float:left; text-align:left; border:1px solid #00f; }
-.group > ul > li > ol > li{ clear:both; float:left; text-align:left; height:25px; line-height:25px; font-size:11px;}
-.group > ul > li > ol > li > *{float:left; display:block; height:25px; line-height:25px; vertical-align:middle; }
-.group > ul > li > ol > li .group > ul > li > ol > li input[type=radio]{ margin-right:8px;}
-.cal_diet .w{ position:absolute; top:0; right:0; 	width:500px; height:500px; display:block;  background-image:url(../img/cal/scale.png); background-repeat:no-repeat;  background-position:center center ; text-align: center; }
-.cal_diet p {position: absolute; top: 80px; left:0; width:100%; margin:0 auto; }
-.cal_diet .goal_weight{ font-size:40px; text-align: center; background-color:#000; opacity: 0.28; color:white; width:100px; height:50px; line-height:50px; }
+.cal_diet{ position:relative; width:100%; height:auto; margin:20px auto; display:block; height:650px; background:rgba(0,0,0,1) url(../img/sub/bg_calc.png) no-repeat left center;  background-size:120% auto; }
+.cal_diet .w { margin:0 auto; width:500px; height:650px; padding-top:30px; display:block;  background-image:url(../img/cal/scale.png); background-repeat:no-repeat;  background-position:center center ; text-align: center; }
+.cal_diet .w >  p {position: absolute; top:135px; left:0; width:100%; margin:0 auto; }
+.cal_diet .w >  p  .goal_weight{ font-family:'Nanum Pen Script'; font-size:60px; background-color:rgba(0,0,0,0.5);	border-radius:50px;  text-align:center; color:white; margin-left:40px; width:135px; height:75px; line-height:75px; }
+.cal_diet .w >  p  .goal_weight:focus{ background-color:rgba(0,0,0,0.8); }
 .cal_diet #w1{ font-size:30px; }
-.cal_diet .result{ float:left; width:400px; } 
-.cal_diet_button{ background:#232323; color:#fff; font-weight:600; height:70px; border-radius:40px; width:100%; display:block; line-height:50px; font-size:25px; }
+
+.group > ul{  display:inline-block; margin-top:200px; }
+.group > ul > li{  clear:both; float:left;  margin-bottom:15px; display:inline-block; text-align:center; width:100%; }
+.group > ul > li:nth-child(1) > *:not(span){ cursor:pointer; }
+.group > ul > li:nth-child(1) img { float:left; height:25px; line-height:25px; }
+.group > ul > li:nth-child(1) > input[type=radio] { margin: 0 10px 0 10px;  float:left; height:25px; line-height:25px}
+.group > ul > li:nth-child(2) > p > * { margin-right:5px; font-size:13px; height:25px; line-height:25px; margin-bottom:5px;  } 
+.group > ul > li > ol{ margin:0 auto;  display:inline-block; }  
+.group > ul > li > ol > li{ clear:both; float:left; text-align:left; height:25px; line-height:25px; font-size:11px;}
+.group > ul > li > ol > li > *{float:left; display:block; height:25px; line-height:25px; vertical-align:middle; cursor:pointer; }
+.group > ul > li > ol > li, .group > ul > li > ol > li input[type=radio]{ margin-right:8px; }
+.group > ul > li:nth-child(2) input[type=text].now_weight{ width:60px !important; }
+.group > ul > li:nth-child(2) input[type=text].goalDay{ width:80px !important; }
+.cal_diet .result{ float:left; width:400px; display:none; } 
+.cal_diet_button{   width:60px; padding:10px; clear:both; margin-left:350px; display:block; height:60px; line-height:20px; font-size:17px; background:#232323; color:#fff; font-weight:600; border-radius:40px;  }

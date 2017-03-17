@@ -28,7 +28,7 @@
 					<a href="#none">WORKOUT</a>
 					<ul>
 						<li><a href="./cal_diet.brn">DIET CALCULATOR</a></li>
-						<li><a href="./cal_diet.brn">EXERCISE CALCULATOR</a></li>
+						<li><a href="./bringtype.brn">EXERCISE CALCULATOR</a></li>
 						<li><a href="./parkList.brn">우리집 공원찾기</a></li>
 					</ul>
 				</li>

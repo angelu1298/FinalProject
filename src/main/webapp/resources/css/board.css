@@ -149,10 +149,10 @@ li p span.author{ background-image:url(../img/ic/ic_write.png);}
 .btnB_area{ clear:both; width:100%; margin:30px auto; height:30px; }
 .btnB_area a, .btnB_area input[type=button], .btnB_area input[type=submit], .btnB_area input[type=reset]{ appearance:none; -ms-appearance:none; -o-appearance:none; -webkit-appearance:none;  }
 .btnB_area a, .btnB_area input[type=button], .btnB_area input[type=submit], .btnB_area input[type=reset]{ cursor:pointer; float:left; height:30px; line-height:30px; padding:0 15px; display:block; font-size:13px;  border:1px solid #232323; }
-.btnB_area a.black{ background:#454545; color:#fff; border:1px solid #232323; }
-.btnB_area a.white{ border:1px solid #808080; color:#565656; }
-.btnB_area .fl a{ margin-right:5px; }
-.btnB_area .fr a{ margin-left:5px; }	
+.btnB_area a.black , .btnB_area input.black { background:#454545; color:#fff; border:1px solid #232323; }
+.btnB_area a.white , .btnB_area input.white { border:1px solid #808080; color:#565656; }
+.btnB_area .fl a, .btnB_area .fl input{ margin-right:5px; }
+.btnB_area .fr a, .btnB_area .fr input{ margin-left:5px; }	
 
 /*상세보기:like*/
 .likeArea{ position:absolute; top:15px; right:0px; clear:both; margin-bottom:7px;}
