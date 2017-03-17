@@ -18,18 +18,23 @@
 				$(function(){
 					
 					$(".tabmenu li").click(function(){
+
+						$(this).siblings().removeClass("on");
+						$(this).siblings().addClass("off");
 						
-						if($(".findForm01").hasClass("off")){
-							$(".findForm01").removeClass("off");
+						$(this).addClass("on");
+						$(this).removeClass("off");
+				
+						if($(this).index()==1){
 							$(".findForm02").addClass("off");
+							$(".findForm01").removeClass("off");
 						} else {
 							$(".findForm02").removeClass("off");
-							$(".findForm01").addClass("off");		
-							
+							$(".findForm01").addClass("off");
 						}
+						
 					})
-
-					 
+					
 				}) 
 				
 				 function check(){
@@ -38,8 +43,7 @@
 							 $("#mem_nm").val("").focus();
 							 return false;
 						 }
-
-					 }
+				 }
 				
 				 function domain_list() {
 							
@@ -68,8 +72,8 @@
 				<!--탭-->
 				<div class="tabarea">
 					<ul class="tabmenu">
-						<li class="choice">휴대전화번호로  찾기</li>
-						<li class="right">이메일주소로 찾기</li> 
+						<li class="on">휴대전화번호로  찾기</li>
+						<li class="off">이메일주소로 찾기</li> 
 					</ul>
 				</div>
 				<!--//탭-->
@@ -77,7 +81,7 @@
 				<!-- 1. 아이디 검색 (이름, 핸드폰, 생년월일로 검색) -->
 				<form action="./id_find_ok1.brn" method="post" class="findForm01" onsubmit="return check()">
 					
-					<div class="login_box">
+					<div class="login_box2">
 						<ul class="find_inp">
 							<li>
 								<strong>이름</strong>
@@ -121,29 +125,33 @@
 						            	<option value="019">019</option>
 							     </select>
 							     <span class="bttxt">-</span>
-							     <input name="mem_hp2" id="mem_hp2" size="4"
-							             maxlength="4" class="input_box" />
+							     <input type="text" name="mem_hp2" id="mem_hp2" size="4" maxlength="4" class="input_box" />
 							     <span class="bttxt">-</span>
-							     <input name="mem_hp3" id="mem_hp3" size="4" 
-							             maxlength="4" class="input_box" />
+							     <input type="text" name="mem_hp3" id="mem_hp3" size="4" maxlength="4" class="input_box" />
 							</li> 
 						</ul>
-						<input type="submit" class="findBtn" value="아이디 찾기">
-						<input type="reset" value="취소" class="findBtn" 
-   						 onclick="$('#mem_nm').focus();"/>
+						<div class="btnS_area mt20">
+							<input type="submit" class="findBtn" value="아이디 찾기">
+							<!-- <input type="reset" value="취소" class="findBtn"  onclick="$('#mem_nm').focus();"/> -->
+							<input type="button"  value="취소" class="findBtn" onclick="history.back()" />
+						</div>
+						
 					</div>
 		
 				</form>
-				
 	
 				<!-- 2. 아이디 검색 (이름, 이메일, 생년월일로 검색) -->
 				<form action="id_find_ok2.brn" method="post" class="findForm02 off" >
-					<div class="login_box">
+				
+					<div class="login_box2">
+					
 						<ul class="find_inp">
+						
 							<li>
 								<strong>이름</strong>
 								<input type="text" class="w300" placeholder="이름" id="mem_nm" name="mem_nm">
 							</li> 
+							
 							<li>
 								<strong>생년월일</strong>
 								<select name="mem_bd1" id="mem_bd1">
@@ -172,27 +180,32 @@
 								
 								<span class="bttxt">일</span> 
 							</li>
+							
 							<li>	
 								<strong>이메일주소</strong>
-								<input type="text" class="w120" id="mem_maid" name="mem_maid">
+								<input type="text" class="w100" id="mem_maid" name="mem_maid">
 								<span class="bttxt">@</span>
-									
-								<input name="mem_madomain" id="mem_madomain" 
-             					 class="input_box" readonly />
-									<!--readonly는  쓰기, 수정이 불가능하고 읽기만 가능합니다. -->
-							       <select name="mail_list" id="mail_list" onchange="domain_list()">
+								<input type="text" name="mem_madomain" id="mem_madomain" class="w100" readonly />
+								<!--readonly는  쓰기, 수정이 불가능하고 읽기만 가능합니다. -->
+								<span class="bttxt"></span>
+							    <select name="mail_list" id="mail_list" onchange="domain_list()">
 							        <option value="">=이메일선택=</option>
 							        <option value="daum.net">daum.net</option>
 							        <option value="nate.com">nate.com</option>
 							        <option value="naver.com">naver.com</option>
 							        <option value="gmail.com">gmail.com</option>
 							        <option value="0">직접입력</option>
-							      </select> 
+								</select> 
 							</li>
+							
 						</ul>
-						<input type="submit" class="findBtn" value="아이디 찾기">
-						<input type="reset" value="취소" class="findBtn" 
-   						 onclick="$('#mem_nm').focus();"/>
+						
+						<div class="btnS_area mt20">
+							<input type="submit" class="findBtn" value="아이디 찾기">
+							<!-- <input type="reset" value="취소" class="findBtn" onclick="$('#mem_nm').focus();"/> -->
+							<input type="button"  value="취소" class="findBtn" onclick="history.back()" />
+   						</div>
+   						 
 					</div>
 		
 				</form>

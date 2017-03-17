@@ -14,26 +14,23 @@
 			
 		<!--로그인 영역-->
 		<div class="login_area">
-					<!--회원가입 영역-->
-					<div class="login_box">
+			<!--회원가입 영역-->
+			<div class="login_box">
 					<div class="result">
+					
 					<h4 class="h4">아이디 찾기</h4>			
 						<p class="tit">
-							회원님의 아이디는 아래와 같습니다.
+							<span>회원님의 아이디는 아래와 같습니다.</span>
+							<strong>${mem_id}</strong>	
 						</p>
-						<div><strong>${mem_id}</strong>	</div>
+						<p class="tip">
+							기타 문의 사항은<a href="./inquiry.brn">Burning fat</a> 으로 문의해주세요.
+						</p>
 						
-						<ul>
-							<li>▶ 기타 문의 사항은
-							 <a href="./inquiry.brn">Burning fat</a> 으로 문의해주세요.</li>
-							
-						</ul>
-						
-					
 					<!-- 아이디 찾기 확인 -->
 					
 					<!--버튼-->
-					<div class="btnL_area mt25 w500">
+					<div class="btnL_area mt50">
 						<ul class="login_fot">
 							<li><a href="./pwFind.brn">비밀번호 찾기</a></li>
 							<li><a href="./Join.brn">회원가입</a></li>
