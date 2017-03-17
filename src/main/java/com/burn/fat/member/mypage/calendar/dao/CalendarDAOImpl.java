@@ -100,6 +100,15 @@ public class CalendarDAOImpl {
 	public void setCuisineAdd(Map m2) {
 		sqlSession.update("setCuisineAdd", m2);
 	}
+
+	public void setE_kcalAdd(Map<String, Object> m2) {
+		sqlSession.update("setE_kcalAdd", m2);
+	}
+
+
+	public void setE_kcalUp(Map<String, Object> m2) {
+		sqlSession.update("setE_kcalUp", m2);
+	}
 }
 
 

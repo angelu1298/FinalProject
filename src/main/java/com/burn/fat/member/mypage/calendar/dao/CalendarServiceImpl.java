@@ -101,4 +101,16 @@ public class CalendarServiceImpl implements CalendarService {
 		calendarDAO.setCuisineAdd(m2);
 		
 	}
+
+	@Override
+	public void setE_kcalAdd(Map<String, Object> m2) {
+		calendarDAO.setE_kcalAdd(m2);
+		
+	}
+
+	@Override
+	public void setE_kcalUp(Map<String, Object> m2) {
+		calendarDAO.setE_kcalUp(m2);
+	}
+
 }

@@ -117,7 +117,7 @@ public class MyinfoAction {
 
 		System.out.println("여기는?2");
 	     
-        Map<String,Integer> map = new HashMap<String,Integer>();
+        Map<String,Object> map = new HashMap<String,Object>();
  		Calendar cal2 = Calendar.getInstance();
  		map.put("monthEarly",cal2.get(Calendar.YEAR)*10000+(cal2.get(Calendar.MONTH)+1)*100+cal2.getActualMinimum(Calendar.DATE));
  		map.put("monthEnd",cal2.get(Calendar.YEAR)*10000+(cal2.get(Calendar.MONTH)+1)*100+cal2.getActualMaximum(Calendar.DATE));
@@ -129,7 +129,10 @@ public class MyinfoAction {
  		}
  		int all = service.getMemNum(map);
  		double avrgPerM = 0;
-		avrgPerM=((double)avgsum) / all;
+ 		if(all!=0){
+ 			avrgPerM=((double)avgsum) / all;
+ 		}
+		System.out.println("회원 평균 합 avgsum : "+avgsum + " 전체 회원 수 "+all );
 		System.out.println(avrgPerM);
 		
 		contM.addObject("myinfobean", myinfobean);

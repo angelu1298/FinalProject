@@ -40,20 +40,29 @@
 		
 		<!-- 서브컨텐츠 영역 START -->
 		<div class="subContent">
-				<div class="stat">
-					<p><strong>회원 통계</strong></p>
-					<div>자기 평가 한달 평균</div>
-					<div class="graph">
-						<c:if test="${!empty avrgPerM }">
-					    <strong class="bar" style="width: ${avrgPerM/3*100 }%;">${avrgPerM }</strong>
-					    </c:if>
-						<c:if test="${empty avrgPerM }">
-							데이타가 없어여.... ㅠㅠ
-						</c:if>
-					</div>
-					
+			<div class="stat">
+				<p><strong>회원 통계</strong></p>
+				<div>Burn Fat 회원들의 이번 한 달 간의 평가 평균입니다.</div>
+				<div class="graph">
+					<c:if test="${!empty avrgPerM }">
+					<!-- 100점 만점 환산 평가 점수 -->
+					   <strong class="bar" style="width: ${avrgPerM/3*100 }%;">${avrgPerM }</strong>
+					</c:if>
+					<c:if test="${empty avrgPerM }">
+						데이타가 없어여.... ㅠㅠ
+					</c:if>
 				</div>
-		
+				<div>${sessionScope.mem_id } 회원님의 이번 한 달 간의 평가 평균입니다.</div>
+				<div class="graph">
+					<c:if test="${!empty myRate }">
+					   <strong class="bar" style="width: ${myRate/3*100 }%;">${myRate }</strong>
+					</c:if>
+					<c:if test="${empty myRate }">
+						아직 평가를 한번도 안하셨군요!!
+					</c:if>
+				</div>
+			</div>
+			
 		
 		
 		

@@ -13,7 +13,6 @@
          $(this).next("div").css({"display":""});
       })
       
-      
            var date = new Date();
            var year  = date.getFullYear();
            var month = date.getMonth() + 1; // 0부터 시작하므로 1더함 더함
@@ -82,33 +81,18 @@
 	     
 	     //아침 식품버튼클릭
 	       $('.maelist li .m_groclick').click(function(){
-	    	  /*  if($('.morning_result').text().trim()==""){
-	      			alert("운동부터 하세요");
-	      			return false;
-	      		}
-	    	    */
 	    	   var grade = $(this).parents("li").attr("id").replace("wd_","");
 	         	click_gro(grade,'morning');
 	         });  
 	       
 	    //점심 식품버튼클릭
 	       $('.maelist li .l_groclick').click(function(){
-	    	  /*  if($('.lunch_result').text().trim()==""){
-	      			alert("운동부터 하세요");
-	      			return false;
-	      		}
-	    	    */
 	    	   var grade = $(this).parents("li").attr("id").replace("wd_","");
 	    	   click_gro(grade,'lunch');
 	        });
 	       
 	    //저녁 식품버튼클릭
 	       $('.maelist li .d_groclick').click(function(){
-	    	   /* if($('.dinner_result').text().trim()==""){
-	      			alert("운동부터 하세요");
-	      			return false;
-	      		}
-	    	    */
 	    	    var grade = $(this).parents("li").attr("id").replace("wd_","");
 	    	    click_gro(grade,'dinner');
 	        }); 
@@ -127,32 +111,18 @@
 		     
 		     //아침 음식버튼클릭
 		       $('.maelist li .m_cuiclick').click(function(){
-		    	/*  if($('.morning_result').text().trim()==""){
-		      			alert("운동부터 하세요");
-		      			return false;
-		      		}  */
-		    	   
 		    	   var grade = $(this).parents("li").attr("id").replace("wd_","");
 		         	click_cui(grade,'morning');
 		         });  
 		       
 		    //점심 음식버튼클릭
 		       $('.maelist li .l_cuiclick').click(function(){
-		    	  /*  if($('.lunch_result').text().trim()==""){
-		      			alert("운동부터 하세요");
-		      			return false;
-		      		} */
-		    	   
 		    	   var grade = $(this).parents("li").attr("id").replace("wd_","");
 		    	   click_cui(grade,'lunch');
 		        });
 		       
 		    //저녁 음식버튼클릭
 		       $('.maelist li .d_cuiclick').click(function(){
-		    	  /*  if($('.dinner_result').text().trim()==""){
-		      			alert("운동부터 하세요");
-		      			return false;
-		      		} */
 		    	   
 		    	    var grade = $(this).parents("li").attr("id").replace("wd_","");
 		       		click_cui(grade,'dinner');
@@ -265,15 +235,15 @@
     
     //우울이모티콘 = 1점
       $('.emo_tt').click(function(){
-    	  emo_eval('.emo_tt');
+    	  emo_eval($(this));
       });
     //보통이모티콘 = 2점
       $('.emo_smile').click(function(){
-    	  emo_eval('.emo_smile');
+    	  emo_eval($(this));
       });
     //윙크이모티콘 = 3점
       $('.emo_wink').click(function(){
-    	  emo_eval('.emo_wink');
+    	  emo_eval($(this));
       });
     
     //평가
@@ -282,14 +252,14 @@
    });
     function emo_eval(emo_name){
   	  
-    	 var grade = $(emo_name).parents("li").attr("id").replace("wd_","");
+   	var grade = $(emo_name).parents("li").attr("id").replace("wd_","");
     	 
    	 var y = $('.year_'+grade).val();
    	 var m = $('.month_'+grade).val(); 
    	 var d = $('.day_'+grade).val();
    	 
    	 var emo = $(emo_name).val();
-   	 
+   	 alert("grade = "  + grade);
    	 $.ajax({
    		 data : {
    	  		"y" : y,
@@ -315,10 +285,10 @@
 </script>
 
 <form>
-<input type="hidden" value="${y}" id="y"/>
-<input type="hidden" value="${m}" id="m"/>
-<input type="hidden" value="${d}" id="d"/>
-<input type="hidden" value="${sessionScope.mem_no}" id="mem_no"/> 
+	<input type="hidden" value="${y}" id="y"/>
+	<input type="hidden" value="${m}" id="m"/>
+	<input type="hidden" value="${d}" id="d"/>
+	<input type="hidden" value="${sessionScope.mem_no}" id="mem_no"/> 
 
    <p class="date_area">
       <!--가운데 정렬 해야해 -->
@@ -345,81 +315,85 @@
 <c:forEach var="k" begin="0" end="6" step="1">
 <li id="wd_${k}">
 <!-- DB에 값이 있을경우 -->
-<c:if test="${!empty calendarList2}">
+	<c:if test="${!empty calendarList2}">
                <p class="mclick morning_click${k}">아침</p>
                <div class="acco">
-               <dl>
-                  <dt><button class="m_exerclick" id="exer_${k}" style="color:red">운동</button></dt>
-                  <dd class="morning_result" >
-                  <!-- 운동칼로리 -->
-                  </dd>
-               </dl>
-               <dl class="list">
-                  <dt><button class="m_cuiclick" id="cui_${k}" style="color:red">음식목록</button></dt>
-                 <dd class="morning_food">
-                 <!-- 음식목록 -->
-                 </dd>
-                  <dt><button class="m_groclick" id="gro_${k}" style="color:red">식품목록</button></dt>
-                  <dd class="morning_grocery">
-                 <!-- 식품목록 -->
-                  </dd>
-               </dl> 
-               <input type="hidden" class="year_${k}"/>
-               <input type="hidden" class="month_${k}"/>
-               <input type="hidden" class="day_${k}" />
-            </div>
+	               <dl>
+	                  <dt><button class="m_exerclick" id="exer_${k}" style="color:red">운동</button></dt>
+	                  <dd class="morning_result" >
+	                  <!-- 운동칼로리 -->
+	                  </dd>
+	               </dl>
+	               <dl class="list">
+	                  <dt><button class="m_cuiclick" id="cui_${k}" style="color:red">음식목록</button></dt>
+	                 <dd class="morning_food">
+	                 <!-- 음식목록 -->
+	                 </dd>
+	                  <dt><button class="m_groclick" id="gro_${k}" style="color:red">식품목록</button></dt>
+	                  <dd class="morning_grocery">
+	                 <!-- 식품목록 -->
+	                  </dd>
+	               </dl> 
+	               <input type="hidden" class="year_${k}"/>
+	               <input type="hidden" class="month_${k}"/>
+	               <input type="hidden" class="day_${k}" />
+            	</div>
             
-            <p class="lclick lunch_click${k}">점심</p>
-            <div class="acco">
-               <dl>
-				<dt><button class="l_exerclick" id="exer_${k}" style="color:red">운동</button></dt>
-                  <dd class="lunch_result">
-                  </dd>
-               </dl>
-               <dl class="list">
-                  <dt><button class="l_cuiclick" id="cui_${k}" style="color:red">음식목록</button></dt>
-                  <dd class="lunch_food">
-                  </dd>
-                   
-                  <dt><button class="l_groclick" id="gro_${k}" style="color:red">식품목록</button></dt>
-                  <dd class="lunch_grocery">
-                  </dd>
-           	   
-               </dl> 
-               	<input type="hidden" class="year_${k}"/>
-            	<input type="hidden" class="month_${k}"/>
-            	<input type="hidden" class="day_${k}" />
-            </div>
-            
-            <p class="dclick dinner_click${k}">저녁</p>
-            <div class="acco">
-            <dl>
-               	<dt><button class="d_exerclick" id="exer_${k}" style="color:red">운동</button></dt>
-                  <dd class="dinner_result">
-                  </dd>
-            </dl>
-            <dl class="list">
-               <dt><button class="d_cuiclick" id="cui_${k}" style="color:red">음식목록</button></dt>
-               <dd class="dinner_food">
-               </dd>
-               
-               <dt><button class="d_groclick" id="gro_${k}" style="color:red">식품목록</button></dt>
-               <dd class="dinner_grocery">
-               </dd>
-           </dl> 
-               
-            <input type="hidden" class="year_${k}"/>
-            <input type="hidden" class="month_${k}"/>
-            <input type="hidden" class="day_${k}" />
-        </div>
-         
-         <!-- 평가 -->
-<!--          <div class="emo_eval"> -->
+	            <p class="lclick lunch_click${k}">점심</p>
+	            <div class="acco">
+	               <dl>
+					<dt><button class="l_exerclick" id="exer_${k}" style="color:red">운동</button></dt>
+	                  <dd class="lunch_result">
+	                  </dd>
+	               </dl>
+	               <dl class="list">
+	                  <dt><button class="l_cuiclick" id="cui_${k}" style="color:red">음식목록</button></dt>
+	                  <dd class="lunch_food">
+	                  </dd>
+	                   
+	                  <dt><button class="l_groclick" id="gro_${k}" style="color:red">식품목록</button></dt>
+	                  <dd class="lunch_grocery">
+	                  </dd>
+	           	   
+	               </dl> 
+	               	<input type="hidden" class="year_${k}"/>
+	            	<input type="hidden" class="month_${k}"/>
+	            	<input type="hidden" class="day_${k}" />
+	            </div>
+	            
+	            <p class="dclick dinner_click${k}">저녁</p>
+	            <div class="acco">
+	            <dl>
+	               	<dt><button class="d_exerclick" id="exer_${k}" style="color:red">운동</button></dt>
+	                  <dd class="dinner_result">
+	                  </dd>
+	            </dl>
+	            <dl class="list">
+	               <dt><button class="d_cuiclick" id="cui_${k}" style="color:red">음식목록</button></dt>
+	               <dd class="dinner_food">
+	               </dd>
+	               
+	               <dt><button class="d_groclick" id="gro_${k}" style="color:red">식품목록</button></dt>
+	               <dd class="dinner_grocery">
+	               </dd>
+	           </dl> 
+	            <input type="hidden" class="year_${k}"/>
+	            <input type="hidden" class="month_${k}"/>
+	            <input type="hidden" class="day_${k}" />
+        	</div>
+        	
+
             <input type="button" class="saveDB emo_tt" value='1' >
             <input type="button" class="saveDB emo_smile" value='2'>
             <input type="button" class="saveDB emo_wink" value='3'>
+         	
+         <%-- 	<p>오늘 얻은 총 kcal</p>
+         	<p>${calendarList2[k-1].grc_kcal+calendarList2[k-1].cus_kcal-calendarList2[k-1].e_kcal }</p>
+         	 --%>
+         <!-- 평가 -->
+<!--          <div class="emo_eval"> -->
 <!--          </div> -->
-</c:if>
+	</c:if>
 
 <!-- DB에 값이 없을 경우 -->
 <c:if test="${empty calendarList2}">
@@ -471,21 +445,9 @@
  </c:forEach>        
 <!-- 오늘기준 미래 시점은 데이터를 표시하지 않음. -->
 
-      </ul><!-- end -->
+ </ul><!-- end -->
       
-   </div>
-   <div class="btnarea">
-
-      <p class="fotgoal">
-         <!-- 버튼클릭시, disabled해제 -->
-         <strong>주간목표</strong> <input type="text" disabled="disabled"
-            class="weekgoal"> <input type="button" class="btn_week_edit">
-      </p>
-
-      <p class="fr">
-         <input type="submit" value="저장" />
-      </p>
-   </div>
+ </div>
 </form>
 
 

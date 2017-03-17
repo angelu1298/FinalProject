@@ -55,5 +55,9 @@ public interface CalendarService {
 	public void setGroceryAdd(Map m2);
 
 	public void setCuisineAdd(Map m2);
+
+	public void setE_kcalAdd(Map<String, Object> m2);
+
+	public void setE_kcalUp(Map<String, Object> m2);
 	
 }

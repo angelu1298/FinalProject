@@ -8,7 +8,7 @@ public class CalendarBean {
 	private String day;		/* 아침,점심,저녁 */
 	private int mem_no;		//회원번호
 	
-	private String e_kcal;	/* 운동_칼로리 */
+	private int e_kcal;	/* 운동_칼로리 */
 	private int cal_eval;	//평가 ( 하:1 중:2 상:3 )
 	
 	private String imsiY;	//임시저장 날짜 Y
@@ -43,10 +43,10 @@ public class CalendarBean {
 	public void setMem_no(int mem_no) {
 		this.mem_no = mem_no;
 	}
-	public String getE_kcal() {
+	public int getE_kcal() {
 		return e_kcal;
 	}
-	public void setE_kcal(String e_kcal) {
+	public void setE_kcal(int e_kcal) {
 		this.e_kcal = e_kcal;
 	}
 	public int getCal_eval() {

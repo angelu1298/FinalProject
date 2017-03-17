@@ -8,6 +8,11 @@
 		where to_number(cal_date)>= #{monthEarly} and to_number(cal_date)&lt;=#{monthEnd}
 		group by mem_no
 	</select>
+	<select id="getMyAverage" parameterType="java.util.Map" resultType="double">
+		select avg(cal_eval)
+		from calendar
+		where to_number(cal_date)>= #{monthEarly} and to_number(cal_date)&lt;=#{monthEnd} and mem_no=#{mem_no}
+	</select>
 	<select id="getMemNum" parameterType="java.util.Map" resultType="int">
 		select count(distinct mem_no)
 		from calendar

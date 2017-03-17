@@ -41,7 +41,7 @@ public class GroceryAction {
    /* GROCERY 오늘의 식단에 추가 모달창 */
    @RequestMapping(value="/groceryAddTodayOk.brn")
    public ModelAndView groceryAddTodayOk(
-            @RequestParam("grc_kcal") String grc_kcal, 
+            @RequestParam("grc_kcal") int grc_kcal, 
             @RequestParam("grc_tt") String grc_tt, 
             @RequestParam("wholeDay") String wholeDay,
             HttpServletRequest request,

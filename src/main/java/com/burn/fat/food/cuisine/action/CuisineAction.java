@@ -52,7 +52,7 @@ public class CuisineAction {
    /* CUISINE 오늘의 식단에 */
    @RequestMapping(value="/cuisineAddTodayOk.brn")
    public ModelAndView cuisineAddTodayOk( 
-         @RequestParam("cus_kcal") String cus_kcal, 
+         @RequestParam("cus_kcal") int cus_kcal, 
          @RequestParam("cus_tt") String cus_tt, 
          @RequestParam("wholeDay") String wholeDay, 
          HttpServletRequest request, 
@@ -75,7 +75,7 @@ public class CuisineAction {
       cus_tt = cus_ttSp[0];
       
       m2.put("day", wholeDay);
-      m2.put("cus_kcal", cus_kcal);
+      m2.put("cus_kcal", cus_kcal*quantity);
       m2.put("cus_tt", cus_tt);
       m2.put("mem_no", mem_no);
       

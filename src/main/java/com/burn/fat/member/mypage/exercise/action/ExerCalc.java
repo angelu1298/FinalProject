@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.burn.fat.member.admin.dao.AdminService;
+import com.burn.fat.member.model.MemberBean;
 import com.burn.fat.member.mypage.calendar.dao.CalendarService;
 import com.burn.fat.member.mypage.calendar.model.CalendarBean;
 import com.burn.fat.member.mypage.exercise.dao.ExerService;
@@ -28,10 +30,13 @@ public class ExerCalc {
 	ExerBean exerbean;
 	
 	@Autowired
-	public ExerService exerService;
+	private AdminService service;
 	
 	@Autowired
-	public CalendarService calService;
+	private ExerService exerService;
+	
+	@Autowired
+	private CalendarService calService;
 	
 	//주간달력으로 간다
 	@RequestMapping(value="/goweekly.brn")
@@ -43,18 +48,9 @@ public class ExerCalc {
 			HttpServletResponse response,
 			HttpSession session) throws Exception {
 		
-		System.err.println("주간달력으로 간다-----------------------------------------------------------");
-		System.err.println("y = " + y);
 			
 		int m2 = Integer.parseInt(m);
 		int d2 = Integer.parseInt(d);
-		System.err.println("m2 = " + m2); 
-		System.err.println("d2 = " + d2); 
-			
-			
-			
-		System.err.println("m = " + m); 
-		System.err.println("d = " + d);
 		int mem_no = (Integer) session.getAttribute("mem_no");
 		String cal_date = y+m+d;
 			
@@ -153,8 +149,6 @@ public class ExerCalc {
 			
 			int mem_no = (Integer) session.getAttribute("mem_no");
 			String cal_date = y+m+d;
-			System.err.println("아침식단cal_date@@@@@@@@@@@@@@@@@@@@@@2 = " + cal_date);
-			System.err.println("wholeDay@@@@@@@@@@@@@@@@@@@@@@2 = " + wholeDay);
 			Map<String, Object> m3 = new HashMap<String, Object>();
 			m3.put("cal_date", cal_date);//해당 날짜
 			m3.put("mem_no", mem_no);//회원번호
@@ -164,7 +158,6 @@ public class ExerCalc {
 			
 			//아침 식품불러오기
 			 List<CalendarBean> grocery = this.calService.getGrocery(m3);
-			System.err.println("아침식품calendar = " + grocery);
 			
 			ModelAndView mv = new ModelAndView("html_mypage/exercise_load");
 			mv.addObject("grocery",grocery);
@@ -458,7 +451,17 @@ public class ExerCalc {
 		System.err.println("---erc_nm="+ erc_nm);
 		m2.put("exer_tt", erc_nm);//운동제목
 		
-		this.calService.setE_kcal(m2);
+		 List<CalendarBean> ecalExist =this.calService.getE_kcal2(m2);
+	      
+	      //마이페이지에 식단 저장
+	      if(!ecalExist.isEmpty()){
+	    	  if(ecalExist.get(0).getE_kcal()!=0)
+	    		  this.calService.setE_kcalAdd(m2);
+	    	  else
+	    		  this.calService.setE_kcalUp(m2);
+	      }else
+	    	  this.calService.setE_kcal(m2);
+		
 		
 		response.sendRedirect("goweekly.brn?y="+y+"&m="+m+"&d="+d);
 		
@@ -600,10 +603,13 @@ public class ExerCalc {
 			@RequestParam("erc_ty") String erc_ty,
 			HttpServletRequest request, 
 			HttpServletResponse response) throws Exception{
-		System.err.println("1");
+		HttpSession session = request.getSession();
+		int mem_no = ((Integer)session.getAttribute("mem_no")).intValue();
 		ModelAndView mv = new ModelAndView("html_mypage/calculator/cal_exer_step2");
 		 List<ExerBean> erc_nm = this.exerService.getErc_nm(erc_ty);
+		MemberBean membean = service.getMemCont(mem_no);
 		
+		mv.addObject("membean",membean);
 		 mv.addObject("erc_nm",erc_nm);
 		 return mv;
 	}
@@ -621,7 +627,7 @@ public class ExerCalc {
 		
 		
 		int time = Integer.parseInt(request.getParameter("time"));
-		int weight = Integer.parseInt(request.getParameter("weight"));
+		double weight = Double.parseDouble(request.getParameter("weight"));
 		
 		int erc_sx = 1;
 		

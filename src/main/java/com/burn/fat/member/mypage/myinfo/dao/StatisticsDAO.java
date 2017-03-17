@@ -12,11 +12,11 @@ public class StatisticsDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 
-	public List<Double> getAverage(Map<String, Integer> map) {
+	public List<Double> getAverage(Map<String, Object> map) {
 		 return sqlSession.selectList("getEachAv",map);
 	}
 
-	public int getMemNum(Map<String, Integer> map) {
+	public int getMemNum(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getMemNum",map);
 	}
@@ -28,6 +28,10 @@ public class StatisticsDAO {
 	public int getEntireMemNum(int i) {
 
 		return sqlSession.selectOne("entireMemNum",i);
+	}
+
+	public double getMyAverage(Map<String, Object> map) {
+		return sqlSession.selectOne("getMyAverage",map);
 	}
 	
 	

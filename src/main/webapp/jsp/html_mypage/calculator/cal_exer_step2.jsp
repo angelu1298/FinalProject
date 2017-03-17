@@ -67,7 +67,7 @@
 시간 : <input type="text" name="time" id="time" /> <br/>
 성별 : <input type="radio" name="gender" id="gender" value="1"/> 남
 	  <input type="radio" name="gender" id="gender" value="2"/> 여<br/>
-몸무게 : <input type="text" name="weight" id="weight" /> 
+몸무게 : <input type="text" name="weight" id="weight" value="${membean.mem_w }" /> 
 
 <input type="button" id="time_send" value="결과보기"/>
 </div>

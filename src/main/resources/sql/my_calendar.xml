@@ -16,11 +16,16 @@
 		values(#{cal_date}, #{kcal}, #{day}, #{mem_no}, #{y}, #{m}, #{d}, #{exer_tt})
 	</insert>
 
-<!-- <update id="setE_kcal" parameterType="java.util.Map">
+	 <update id="setE_kcalAdd" parameterType="java.util.Map">
 		update calendar
-		set cal_date = #{cal_date}, day = #{day},
-			e_kcal = #{kcal}, mem_no = #{mem_no}
-	</update> -->
+		set e_kcal =e_kcal+ #{kcal}, exer_tt = exer_tt ||' '||  #{exer_tt}
+		where mem_no = #{mem_no} and  cal_date = #{cal_date} and day = #{day}
+	</update> 
+	 <update id="setE_kcalUp" parameterType="java.util.Map">
+		update calendar
+		set e_kcal =#{kcal}, exer_tt =  #{exer_tt}
+		where mem_no = #{mem_no} and  cal_date = #{cal_date} and day = #{day}
+	</update> 
 	
 	<!-- 운동 칼로리 가져오기 -->
 	<select id="getE_kcal" parameterType="java.util.Map" resultType="calendarBean">
