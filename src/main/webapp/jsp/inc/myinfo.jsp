@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8" %> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
-<%@ page import="com.burn.fat.member.mypage.myinfo.model.*" %>
 
 
  		<input type="hidden" name="mem_no" id="mem_no" value="${myinfobean.mem_no}" />
