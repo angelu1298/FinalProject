@@ -26,8 +26,13 @@ public class ParkDAOImpl {
 	}
 
 	public int getParkfindlistCount(Map mf) throws Exception {
-		int parkfcount=((Integer)sqlSession.selectOne("park_fcount", mf)).intValue();
+		int parkfcount= ((Integer)sqlSession.selectOne("park_fcount", mf)).intValue();
 	    return parkfcount;
+	} 
+
+	public String getParkAddr(int mem_no) throws Exception {
+		String park_mem_addr = sqlSession.selectOne("park_mem_addr", mem_no);
+	    return park_mem_addr;
 	} 
 	
 }

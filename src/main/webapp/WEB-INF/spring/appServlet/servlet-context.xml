@@ -21,8 +21,16 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- Configuring interceptors based on URI -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/recipeList.brn" />		<!-- 주스레시피리스트 -->
+			<mapping path="/juiceMakeResult.brn" /> <!-- 주스레시피리스트추가 -->
+			<mapping path="/Mypage.brn" /> 			<!-- 마이페이지 -->
+			<beans:bean class="com.burn.fat.main.handler.RequestProcessingTimeInterceptor"></beans:bean>
+		</interceptor>
+	</interceptors>
+	
 	<context:component-scan base-package="com.burn.fat" />
-	
-	
 	
 </beans:beans>

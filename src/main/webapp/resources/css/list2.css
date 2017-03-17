@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
- h5.tittip{ font-size:17px; height:30px; line-height:30px; margin-bottom:10px;  padding-left:45px; background:url(../img/ic/ic_eat.png) no-repeat 10px center;}	 
+ h5.tittip{ font-size:17px; height:30px; line-height:30px; margin-bottom:10px;  padding-left:45px; background:url(../img/ic/ic_eat.png) no-repeat 10px center; color:#787878; }	 
 .stxt { color:#d03e4b; font-size:13px; margin:10px 0 0 5px;  padding-left:20px; background:url(../img/bull/bull_star.png) no-repeat 0 0; }
 
 .tablelist{clear:both; display:inline-block; width:100%; }
@@ -38,12 +38,12 @@
 .calendar > p span:nth-child(7){ width:14.2% !important;  border-right:none; }
 .calendar ul li p.nodata{ margin-top:30%; color:#a0a0a0; text-align:center; font-size:11px; line-height:15px; padding-top:150px; background:url(../img/bull/bull_info_white.png) no-reat center center; } 
 
-.goalcheck {text-align:center; margin:0 auto; display:inline-block; clear:both; width:100%; padding:0; margin:0;  }
+.goalcheck {text-align:center; margin:0 auto; display:inline-block; clear:both; width:95px; padding:0; margin:0;  }
 .goalcheck span { position:relative;  display:block; float:left; background-position:center; background-repeat:no-repeat; background-size:100% auto;  }
 .goalcheck span input[type=radio],
 .goalcheck span label { position:absolute; top:0; left:0; width:100%; height:100%; display:block;  cursor:pointer; opacity:0; }
 
-.calendar .goalcheck span { width:20px; height:20px; margin:0 2px; }
+.calendar .goalcheck span { width:16px; height:16px; margin:0 3px; }
 .calendar .goalcheck span:nth-child(1) { background-image:url(../img/emo/emo_wink.png);  }
 .calendar .goalcheck span:nth-child(2) { background-image:url(../img/emo/emo_smile.png); }
 .calendar .goalcheck span:nth-child(3) { background-image:url(../img/emo/emo_tt.png);    }
@@ -72,7 +72,7 @@ ul.listform li > span > span { margin-left:10px; }
 .juiceitemlist > ul {display:inline-block; overflow-x:hidden; overflow-y:auto; width:48%; margin-right:2%; float:left; height:400px; display:block; overflow-y:auto; }
 .juiceitemlist > ul > li { float: left;  padding:40px 0px 10px 0px; height:70px; width:70px; margin:10px; text-align:center; line-height:20px; border:1px solid #a0a0a0; border-radius:50px; font-size:13px; cursor:pointer; }
 	        
-.in_blender { position:absolute; top:0; right:0;  width:350px; height:350px; z-index:1; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; }
+.in_blender { position:absolute; top:0; right:0;  width:350px; height:350px; z-index:1; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; background:#f00 url(../img/sub/blender.png) no-repeat center center; background-size:100%; }
 .in_blender > ul {  border-top:none; display:inline-block; width:100%; height:100%; display:block; background:#fff; }
 .in_blender > ul > li { float: left;  padding:40px 0px 10px 0px; height:70px; width:70px; margin:10px; text-align:center; line-height:20px; border:1px solid #a0a0a0; border-radius:50px; font-size:13px; cursor:pointer; }
 			
@@ -87,7 +87,8 @@ ul.listform li > span > span { margin-left:10px; }
 .food_list ul > li{ position:relative; width:250px; height:220px; display:block; padding:25px 35px; float:left; margin:0 10px 10px 0 ; border:1px solid #d0d0d0; background:#f0f0f0; }
 .food_list ul > li:hover{ background:#fff; border:1px solid #a0a0a0; }
 .food_list ul > li > dl{ text-align:left; }
-.food_list ul > li > dl > dt > strong { clear:both; width:100%; display:block; margin-bottom:10px; letter-spacing:-1px; font-size:17px; font-weight:500; color:#232323; }
+.food_list ul > li > dl > dt > strong { clear:both; width:100%; max-height:38px; display:block; margin-bottom:10px; letter-spacing:-1px; font-size:17px; font-weight:500; color:#232323; 
+   display: -webkit-box; -webkit-line-clamp: $lines-to-show; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;}
 .food_list ul > li > dl > dt > span {font-size:13px; color:#565656;}
 .food_list ul > li > dl > dd{ display:none;  clear:both; position:absolute; top:0; left:0; width:250px; height:220px; padding: 30px  30px ; background:rgba(0,0,0,0.85); color:#fff;  font-size:11px;}
 .food_list ul > li.on > dl > dd{ display:block;  }
@@ -95,14 +96,14 @@ ul.listform li > span > span { margin-left:10px; }
 .food_list ul > li > dl > dd > ol > li{ line-height:20px; }
 .food_list ul > li > dl > dd > ol > li span{ width:100px; display:inline-block;  }
 
-.food_list ul > li > dl > dt > p { position:absolute; bottom:65px; left:50px;  }
+.food_list ul > li > dl > dt > p { position:absolute; bottom:55px; left:50px;  }
 .food_list ul > li > dl > dt > p > input[type=button]{ float:left; margin-right:10px; padding:0 18px; height:28px; line-height:25px; background:#fff; border-radius:15px; border:1px solid #a0a0a0; color:#787878; letter-spacing:-1px; font-size:11px; }
 .food_list ul > li:hover > dl > dt > p > input[type=button]{ border:1px solid #787878; color:#454545; background:#f0f0f0; 	}
 .food_list ul > li > dl > dt > p > input[type=button]:hover{ background:#787878; color:#fff; border:1px solid #232323; 	}
 .food_list ul > li .btn_del_rec{}
 
-.food_list ul > li .btn_view_large{position:absolute; bottom:0px; left:0px;    line-height:30px; height:32px; width:150px; padding:0 10px;}
-.food_list ul > li .btn_add_today{ position:absolute; bottom:20px; left:50px;  border:1px solid #c0c0c0;  line-height:30px; height:32px; width:150px; padding:0 10px; letter-spacing:-1px; font-size:11px; border-radius:30px; background-size:50%; background:#e0e0e0 ;   }
+.food_list ul > li .btn_view_large { position:absolute; bottom:0px; left:0px;   line-height:30px; height:32px; width:150px; padding:0 10px;}
+.food_list ul > li .btn_add_today { position:absolute; bottom:15px; left:50px; border:1px solid #c0c0c0;  line-height:30px; height:32px; width:150px; padding:0 10px; letter-spacing:-1px; font-size:11px; border-radius:30px; background-size:50%; background:#e0e0e0 ;   }
 .food_list ul > li:hover .btn_add_today{ background-color:#fff; color:#d03e4b; border:1px solid #d03e4b; }
 .food_list ul > li .btn_add_today:hover{ background-color:#d03e4b; color:#fff; border:1px solid #d00; }
 .food_list ul > li .btn_cls{ position:absolute; top:10px; right:10px; background:rgba(255,255,255,0) url(../img/btn/btn_Lclose_white.gif) no-repeat center; border:0; padding:0; width:25px; height:25px;  color:#fff;  text-indent:-9999px; }
@@ -169,13 +170,14 @@ input[type="text"]{ border-top:1px solid #cbcbcb; border-left:1px solid #cbcbcb;
 .common_write_box table td select{ margin:0 5px ; height:30px; line-height:26px;  color:#565656; padding:0 10px; font-size:12px; letter-spacing:0; cursor:pointer; }
 .common_write_box table td .bttxt,
 .common_write_box table td input[type="password"],
-.common_write_box table td input[type="text"]{ height:30px; line-height:30px; padding:0 5px; }
+.common_write_box table td input[type="text"]{ height:30px; line-height:30px; padding:0 5px; vertical-align:middle; }
 .common_write_box table td input[type="button"] { margin:0 5px ; height:30px; line-height:26px; border:1px solid #a0a0a0; color:#565656; padding:0 10px; font-size:12px; cursor:pointer; }
 
 .common_write_box table td label,
 .common_write_box table td input[type="radio"],
-.common_write_box table td input[type="checkbox"]{ line-height:30px; padding:0 5px; cursor:pointer;  }
-
+.common_write_box table td input[type="checkbox"]{ line-height:30px; height:30px; margin:0 2px; padding:0 5px; cursor:pointer; vertical-align:middle; }
+.common_write_box table td .txtred{ margin-left:15px; line-height:30px; color:#d00; font-size:11px }
+.common_write_box table td .txtblue{ margin-left:15px; line-height:30px; color:#00d; font-size:11px  }
 .common_write_box table th.th{  border-top:1px solid #e0e0e0;}
 .common_write_box table td .tip_info{ margin-left:16px; height:16px; padding-left:24px; display:inline-block; background:url(../img/bull/bull_info.png) no-repeat 0 0; font-size:12px;}
 .common_write_box table td .tip_info2{ float:left; margin-left:16px; margin-top:7px; height:16px; display:inline-block; color:#858484; font-size:12px;}
@@ -298,6 +300,8 @@ input[type="text"].srchname{ border:1px solid #a0a0a0; height:auto; min-height:3
 .commtable table tfoot tr:last-child td ,.commtable table tfoot tr:last-child th { color:#d03e4b; font-size:13px; }  
 .commtable table tfoot tr td { background:#fff2f2 !important; }
 .commtable table tfoot tr td input[type=text]{ width:100%; text-align:center; background:none; border:none; }
+.commtable .nolist{ padding:150px 0 30px 0; text-align:center; background: url(../img/comm/animat-search.gif) no-repeat center 30px; background-size:100px; opacity:0.7; }
+
 .resultbox{ background:#f0f0f0; border:1px solid #e0e0e0;  padding:40px 0 ; text-align:center; margin-top:10px; font-size:13px; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕';}
 .resultbox .summary01 { margin-bottom:20px; font-size:17px; }
 .resultbox .summary01 strong{ color:#d03e4b; font-size:19px; margin:0 3px; }

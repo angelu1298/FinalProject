@@ -32,5 +32,12 @@
 		) where pnum &gt;= ((#{page}-1) * #{limit} +1)  and pnum &lt;= (#{page} * #{limit}) order by rownum asc	 
 		
 	</select> 
+	
+	<select id="park_mem_addr" resultType="String" parameterType="int" >
+	
+		select mem_add1 from member where mem_no = #{mem_no}
+		
+	</select>
+	
  
 </mapper>

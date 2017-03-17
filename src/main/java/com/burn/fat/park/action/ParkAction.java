@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -46,18 +47,30 @@ public class ParkAction {
 			, @RequestParam(value="findgungu", defaultValue="") String findgungu
 			, @RequestParam(value="findname", defaultValue="") String findname ) throws Exception{
 
+
+		HttpSession session = request.getSession();
+		response.setContentType("text/html;charset=UTF-8");
+
+		String mem_sido = "서울특별시"; 
+		String mem_gungu = "강남구"; 
 		
- 		HttpSession session = request.getSession();
-				 	
+		if( session.getAttribute("mem_no") != null){
+			
+			int mem_no = (Integer)session.getAttribute("mem_no");
+			
+			String mem_addr = parkService.getParkAddr(mem_no); //총 리스트 수를  
+	
+			System.out.println("주소  : " + mem_addr);
+			String[] memjuso = mem_addr.split(" ");
+				
+			mem_sido  = memjuso[0];
+			mem_gungu = memjuso[1]; 
+			
+		}
+
 		findname = request.getParameter("findname");
-		
 		List<ParkBean> parkList = new ArrayList<ParkBean>();
 		
-		
-		
-		String mem_sido = "서울특별시";
-		String mem_gungu = "강남구";
-
 		int page = 1;
 		
  		if(request.getParameter("page") != null){

@@ -6,28 +6,33 @@
 <%@ include file="../inc/subHeader.jsp"%>
  
 	<script>
-	
-		$(function(){
-			/* 해당 리스트 삭제모달창 불러오기  */
-			$(".btn_add_today").click(function(){
-				$(".modal_bg").removeClass("off");
-				/*hidden으로 숨겨놓은 레시피 번호를 삭제 모달에 get방식으로 일러준다.*/
-				var num = $(this).next().val();
-				var tit = $(this).parents("dt").children("strong").text();
-				$(".modal_bg").load("groceryAddToday.brn?cus_no=" + num + "&cus_tt=" + tit); 
-			})
-			 
-			/* 자세히보기 열기  */
-			$(".btn_view_large").click(function(){
-				$(".food_list ul li").removeClass("on");
-				$(this).parents("li").addClass("on");
-			})
-			/* 자세히보기 닫기  */
-			$(".btn_cls").click(function(){
-				$(this).parents("li").removeClass("on");
-			})
+
+	$(function(){
+		/* 해당 리스트 삭제모달창 불러오기  */
+		$(".btn_add_today").click(function(){
+			$(".modal_bg").removeClass("off");
+			$(".modal_bg").animate({"opacity":"1"});
+			/*hidden으로 숨겨놓은 레시피 번호를 삭제 모달에 get방식으로 일러준다.*/
+			var grc_no  = $(this).siblings(".grc_no").val();
+			var grc_cal = $(this).siblings(".grc_cal").val();
+			var grc_tt = $(this).parent("dt").children("strong").text().replace(" ","_").replace("+","_").replace("&","+");
+			$(".modal_bg").load("groceryAddToday.brn?grc_no=" + grc_no + "&grc_tt=" + grc_tt +  "&grc_cal=" + grc_cal); 
+			
+		})
+		 	
+		/* 자세히보기 열기  */
+		$(".btn_view_large").click(function(){
+			$(".food_list ul li").removeClass("on");
+			$(this).parents("li").addClass("on");
 		})
 		
+		/* 자세히보기 닫기  */
+		$(".btn_cls").click(function(){
+			$(this).parents("li").removeClass("on");
+		})
+		
+	})
+	
 	</script>
 	<!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
 	<section class="sub_container">
@@ -77,10 +82,11 @@
 								<span>1회 제공량 ${g.grc_once}g 기준 <br/>${g.grc_cal}칼로리(kcal)입니다.</span> 
 								<p>
 									<input type="button" class="btn_view_large" value="자세히보기"> 
-									<input type="hidden" value="${g.grc_no}">
-									<input type="hidden" value="${g.grc_once}">
 								</p>
 								<input type="button" class="btn_add_today" value="오늘 식단에 추가하기 "> 
+								<input type="hidden" class="grc_no"   value="${g.grc_no}">
+								<input type="hidden" class="grc_cal"  value="${g.grc_cal}">
+								<input type="hidden" class="grc_once" value="${g.grc_once}">
 							</dt>
 							<!-- 자세히보기 버튼을 클릭했을 떄만 보여지는 부분. -->
 							<dd>

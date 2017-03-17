@@ -7,12 +7,12 @@ function resizeWin(){
 function scrollFunc(){
 	
 	// 헤더 보여지기
-	if($(window).scrollTop() <= 80){
+	if($(window).scrollTop() <= 120){
 		$("header").stop().animate({top: '0px'}, 50);	
 	} 
 	// 헤더 숨기기
-	if($(window).scrollTop() > 80 || $(window).scrollTop() >= $(window).innerHeight() ){
-		$("header").stop().animate({top: '-30px'}, 50);	
+	if($(window).scrollTop() > 120 || $(window).scrollTop() >= $(window).innerHeight() ){
+		$("header").stop().animate({top: '-80px'}, 50);	
 	}
  
 }

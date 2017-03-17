@@ -157,7 +157,13 @@
 	
 				<!--등록된 게시물이 없을경우-->
 				<c:if test="${parkfcount == 0}">
-					<div class="nolist">검색결과가 없습니다.</div>
+				<tbody>
+					<tr>
+						<td colspan="5" class="nolist">
+							<p>검색결과가 없습니다.</p>
+						</td>
+					</tr>
+				</tbody>
 				</c:if>
 				<!-- // 등록된 게시물이 없을경우-->
 				</table>

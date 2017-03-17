@@ -5,8 +5,17 @@
 			// 모달창 닫기
 			$(".btn_close").click(function(){
 				 $(".modal_bg").addClass("off");
-				 $(".modal_bg").animate({"opacity":"0"});
+				 $(".modal_bg").animate({"opacity":"0"});	
 			 })
+			 
+			// 모달창 닫기
+			$(document).on('keyup', function(evt){ 
+				if(evt.keyCode == 27){
+					$(".modal_bg").addClass("off");
+					$(".modal_bg").animate({ opacity: '0' }, 500);
+				}
+			})
+			
 		})
 	</script>
 	
