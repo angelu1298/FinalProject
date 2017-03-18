@@ -13,31 +13,7 @@
          $(this).next("div").css({"display":""});
       })
       
-           var date = new Date();
-           var year  = date.getFullYear();
-           var month = date.getMonth() + 1; // 0부터 시작하므로 1더함 더함
-           var day   = date.getDate();
-           
-           
-           if (("" + month).length == 1) { 
-              month = "0" + month; 
-              }
-           if (("" + day).length   == 1) {
-              day   = "0" + day;  
-              }
-           
-           var today = year + "년" + month + "월" + day;
-           
-           
-           $('.today').append(today);
-      		
-           
-          $('.result').click(function(){
-        	  
-          });
-          
-         
-//----- 아침,점심,저녁 눌렀을 때 로드 --------------------------------------------------------------------         
+	//----- 아침,점심,저녁 눌렀을 때 로드 --------------------------------------------------------------------         
           
           //아침,점심,저녁 로드 함수
           function load_grocery(b, wholeDay, brn, divclass) {

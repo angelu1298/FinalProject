@@ -20,24 +20,6 @@ public class CalendarAction {
 	@Autowired
 	private CalendarService calendarService;
 	
-	/*@RequestMapping(value="/goweekly.brn")
-	public ModelAndView goweekly(
-			@RequestParam("y") int y,
-			@RequestParam("m") int m,
-			@RequestParam("d") int d,
-			HttpServletRequest request,
-								HttpServletResponse response,
-								HttpSession session) throws Exception {
-		
-		
-		ModelAndView mv = new ModelAndView("html_mypage/mypage_main_weekly");
-		mv.addObject("y",y);
-		mv.addObject("m",m);
-		mv.addObject("d",d);
-		
-		return mv;
-	}*/
-	
 	@RequestMapping(value="/week_plus.brn")	//다음주
 	public ModelAndView a(
 			@RequestParam("y") int y,
