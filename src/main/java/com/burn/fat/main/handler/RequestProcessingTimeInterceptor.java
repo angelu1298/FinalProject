@@ -26,18 +26,10 @@ public class RequestProcessingTimeInterceptor extends HandlerInterceptorAdapter 
 		
 		if(session.getAttribute("mem_no")==null){ // 세션에 값이 없을경우,
 
-			System.out.println("세션null에 걸렸나요");
-				
-			PrintWriter out =response.getWriter();
-			out.print("<script>alert('로그인이 필요한 페이지입니다.');</script>");
-			
 			response.sendRedirect("./Login.brn");
-			
 			return false;
 			
 		} else { // 세션에 값이 있을 경우, 정상적으로 action을 수행한다.
-			
-			System.out.println("여기들어오니? 세션값? : " + (String)session.getAttribute("mem_no") );
 			return true;
 		}
 	}

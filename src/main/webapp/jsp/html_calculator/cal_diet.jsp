@@ -11,11 +11,11 @@
       <div class="subContent">
 
 	      <!-- 서브메뉴에 따라 Side Navigation을 다르게 부여해준다. -->   
-	      <script>
+	    <!--   <script>
 	         $(function(){
 	            $(".side_myinfo").load("my_info.brn");
 	         })
-	      </script>
+	      </script> -->
 	      
 	      <div class="side_myinfo">
 	         
@@ -25,28 +25,14 @@
 		<h3>WORKOUT</h3>
 		<h4>Diet Calculator</h4>
          <script>
-         $(function() {
-            //유효성검사 
-       		/* $(":input:radio[name=gender]").click(function(){
-               $(":input:radio[name=gender]:checked").val()=='남' ? $('#man').prop('src',"resources/img/cal/man-click-running.png"):$('#man').prop('src',"resources/img/cal/man-running.png"); 
-               $(":input:radio[name=gender]:checked").val()=='여' ? $('#woman').prop('src',"resources/img/cal/girl-click-running.png"):$('#woman').prop('src',"resources/img/cal/girl-running.png"); 
-            }) */
-            $(".goal_weight").keyup(function() {
-               if($('.goal_weight').val() > 150){
-                  alert('병원가세요');
-                  $('.goal_weight').val('');
-               }/* else if($('.goal_weight').val() < 36){
-                  alert('최저몸무게는 36kg입니다');
-                  $('.goal_weight').val('');
-               }   */
-            }); 
-            
+         $(function() { 
+        	 
             $('.cal_diet_button').each(function(index, item) {
+            	
                $(this).on('click', function() {
                   var now_weight = $('.now_weight').val();
                   var goal_weight = $('.goal_weight').val();
                   var goalDay = $('.goalDay').val();
-         //          var select_per = Integer.parseInt($('.per:checked').val());
                   var select_per = $('.per:checked').val();
                   alert(select_per);
                   $.ajax({
@@ -60,8 +46,9 @@
                      type : "post",
                      url : "calculator_diet_ok.brn",
                      success : function(data) {
-                        $('.result').load('cal_diet_result.brn');
-                           
+                         $('.modal_bg').load('cal_diet_result.brn');
+                         $('.modal_bg').removeClass("off");
+                         $('.modal_bg').animate({"opacity":"1"});
                      },
                      error : function(data, status) {
                         alert('결과 출력 실패');
@@ -75,17 +62,8 @@
          <div class="cal_diet">
       
                <div class="result">
-                  <%--       <%@ include file="cal_diet_result.jsp" %> --%>
                   
-                     {dietbean.reduceKg} kg을 {dietbean.goalDay} 일 안에 감량하려면 <br/>
-			                     매일 섭취하는 칼로리에서 - {dietbean.reduceKcal}kcal 줄여나가야함 <br/>
-			                     운동{dietbean.exec_percent}% 식사 {dietbean.meal_percent}% <br/>
-			                     운동 : - {dietbean.reduceExec}kcal <br/>
-			                     식사 : 하루 {dietbean.reduceMeal}kcal 먹기 <br/>
-			                     운동으로 - {dietbean.reduceExec}kcal을 소모하려면 <br/>
-                        db데이터~
-                     
-                     </div>
+               </div>
                      
             <div class="w">
             
@@ -110,7 +88,6 @@
                       	 <p><strong>목표날짜</strong><input type="text" name="goalDay" class="goalDay" /><span>일</span></p>
                      </li>
                   
-               
                      <li>
                           <ol>
                              <li><input type="radio" class="per" name="select_per" id="select_per1" value="100" /><label for="select_per1">운동 100%</label></li>
@@ -120,15 +97,12 @@
                              <li><input type="radio" class="per" name="select_per" id="select_per5" value="40" /><label for="select_per5">운동 40%, 식사 60%</label></li>
                              <li><input type="radio" class="per" name="select_per" id="select_per6" value="20" /><label for="select_per6">운동 20%, 식사 80%</label></li>
                          </ol>
-                        <!--  <p>목표날짜&nbsp;<input type="text" size="5px" name="goalDay" class="goalDay" /></p> -->
                      </li>
                      
                   </ul>
-                    <button class="cal_diet_button">결과보기</button> 
+                   <button class="cal_diet_button">결과보기</button> 
                </div>
          </div> 
-      
-      </div>
       
       </div>      
       <!-- 서브컨텐츠 영역 END -->

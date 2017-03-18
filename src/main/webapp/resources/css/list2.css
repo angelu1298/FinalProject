@@ -69,14 +69,15 @@ ul.listform li > span > span { margin-left:10px; }
 
 .juicemake{ position:relative !important; width:100%; padding-right:350px; min-height:400px; display:inline-block; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕';}
 .juiceitemlist{ display:block; width:100%; height:100%; margin-top:20px;  display:inline-block; clear:both; }
-.juiceitemlist > ul { display:inline-block; overflow-x:hidden; overflow-y:auto; width:48%; margin-right:2%; float:left; height:400px; display:block; overflow-y:auto; }
+.juiceitemlist > ul { display:inline-block; overflow-x:hidden; overflow-y:auto; width:48%; margin-right:2%; float:left; height:450px; display:block; overflow-y:auto; }
 .juiceitemlist > ul > li { float: left;  padding:50px 0px 10px 0px; height:70px; width:70px; margin:10px; text-align:center; line-height:20px;  font-size:13px; cursor:pointer; }
 /* .juiceitemlist > ul > li{display:block; width:100%; height:100%; background-color:#d0d0d0; position:absolute;top:0; left:0;} */        
 .in_blender { position:absolute; top:0; right:0;  width:350px; height:500px; z-index:1; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; background:url(../img/sub/blender.png) no-repeat left 0; background-size:auto 100%; }
 .in_blender > ul {  border-top:none; display:inline-block; margin:100px 0 0 60px; width:200px; height:160px; overflow-y:auto; display:block; }
 .in_blender > ul > li { float: left;  padding:30px 0px 10px 0px; height:40px; width:45px; margin:5px; text-align:center; line-height:20px; 	 font-size:11px; letter-spacing:-1px; cursor:pointer; }
-			
-.juicemake .makebtn { position:absolute; bottom:0; left:0 !important; margin:0; width:100%; height:50px; line-height:50px;  display:block;  z-index:9999; }
+.juiceitemlist > ul.fruitlist { width:65%; margin-right:2%; }	
+.juiceitemlist > ul.vegitablelist { width:30%; margin-right:2%; }	
+.juicemake .makebtn { position:absolute; bottom:50px; left:0 !important; margin:0; width:100%; height:50px; line-height:50px;  display:block;  z-index:9999; }
 .juicemake .makebtn .btn_make{  position:absolute; bottom:38px;  padding:5px; width:60px; height:60px; right:180px !important; border-radius:50px; line-height:15px; word-break:keep-all; white-space:normal;  display:inline-block; color:#fff; font-size:13px; letter-spacing:-1px; background:#232323; }
 .juicemake .makebtn .btn_make{ background:rgba(190,35,25,0.5); color:#fff;   }
 .juicemake .makebtn .btn_make:hover{ background:rgba(190,35,25,0.9); color:#fff; border:1px solid #d00; }

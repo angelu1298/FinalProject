@@ -64,7 +64,9 @@ public class ParkAction {
 			String[] memjuso = mem_addr.split(" ");
 				
 			mem_sido  = memjuso[0];
-			mem_gungu = memjuso[1]; 
+			mem_gungu = memjuso[1];
+			
+			System.out.println(mem_sido + " / " + mem_gungu);
 			
 		}
 
@@ -96,7 +98,7 @@ public class ParkAction {
 
 		Map mf = new HashMap();
 		// 검색값으로 찾은 시,군구
-		mf .put("findsido", findsido);
+		mf .put("findsido", findsido.substring(0, 2));
 		mf .put("findgungu", findgungu);
 		// 검색어	
 		mf .put("findname", findname);

@@ -11,9 +11,19 @@
 		<script>
 	
 	
-      		$(function () {
+      		$(function () {/* 
+
+      			$(".juicemake form").submit(function(){
+    				if( $(".in_blender ul li").length == 0 ){
+    					$('.modal_bg').removeClass("off");
+    					$('.modal_bg').load("alert_page.brn");
+    					var msg = "과일이나 채소를 1가지 이상 추가해주세요";
+    					messageFunc(msg); 
+    					return false;
+    				}
+      			}) */
       			
-                $('ul.vegitablelist > li').draggable({
+      			$('ul.vegitablelist > li').draggable({
                     helper: 'clone', zIndex: 100, 	scroll: false
                 });
                 
@@ -53,14 +63,8 @@
                 });
 
     			// 삭제버튼 모달창으로 페이지 load
-    			$(".btn_make").click(function(){
-    				
-    				if( $(".in_blender ul li").length == 0 ){
-
-    					var msg = "과일이나 채소를 1가지 이상 추가해주세요";
-    					messageFunc(msg); 
-    					
-    				} else {
+    			/* $(".btn_make").click(function(){
+    				 else {
     					
     					$.ajax({
         					data : $("form").serialize(),
@@ -78,7 +82,7 @@
     					
     				}
     				
-    			})  
+    			})   */
             });
 
 			function messageFunc(msg){
