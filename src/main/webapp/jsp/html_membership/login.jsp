@@ -14,7 +14,7 @@
 		<div class="login_area">
 		<form action="./Login_ok.brn" method="post">
 			
-			<h4>LOGIN</h4>
+			<h4 class="ml50">LOGIN</h4>
 			<div class="login_box">
 				<ul class="login_inp">
 					<li><input type="text" id="check_id" name="check_id" placeholder="아이디"></li>

@@ -4,64 +4,56 @@
 @import url('subcomm.css'); 
 @import url('list2.css'); 
 
-/*로그인화면*/
+/******** 로 그 인 화 면 ********/
 /* tabmenu */  
 .tabarea {  position:relative; width:500px; margin:0 auto;  height:52px; margin-bottom:30px;  }
 .tabarea ul {  height:52px; overflow:visible;  display:inline-block;  }
 .tabarea ul li {  float:left; display:block; width:250px; height:52px; line-height:52px; padding-left:50px; color:#232323; border-bottom:1px solid #a0a0a0;	 cursor:pointer; }
 .tabarea ul li.on{  background-image:url(../img/bull/bull_meunup.gif);  border:1px solid #a0a0a0; border-bottom:1px solid #fff;  background-repeat:no-repeat;  background-position:85% 22px;  }
 /*로그인페이지 공통*/
-.login_area{ background:rgba(255,255,255,1); border-radius:10px; box-shadow:2px 2px 2px #000; margin:0px auto; width:800px; height:500px; padding-top:80px; display:inline-block;  }
-.login_area form{ display:block; width:500px; height:500px; margin:0 auto;  }
+.login_area{ background:rgba(255,255,255,1); border-top:5px solid rgba(190,35,25,1); box-shadow:2px 2px 5px #000; margin:0px auto; width:100%; height:500px; padding-top:80px; display:inline-block;  }
+.login_area form{ display:block; width:500px;  margin:0 auto;  }
 .login_area form.off{ display:none; }
 .login_box { display:inline-block; width:400px; margin-left:50px; }
 .login_box ul { display:inline-block; float:left;  }
-.login_box input[type=submit]{  bor:1px solid #606060; background:#232323; display:block; color:#fff; cursor:pointer; }
-.login_box input[type=submit]:hover{ background:#121212; }
+.login_box input[type=submit]{  border:1px solid #d00;  background:rgba(190,35,25,1); display:block; font-size:15px; color:#fff; cursor:pointer; }
+.login_box input[type=submit]:hover{ border:1px solid #d00;  background:background:rgba(220,20,20,1);}
 .login_area h4 { font-size:40px; margin-bottom:20px; }
 /*로그인쪽만*/
 .login_box ul.login_inp { width:280px; }
 .login_box ul.login_inp li{ clear:both; margin-bottom:10px; display:block;  height:45px; width:100%; }
 .login_box ul.login_inp input[type=password],
 .login_box ul.login_inp input[type=text]{  height:45px; width:100%;   padding:0 5px; appearance:none; background:transparent; color:#fff; border:1px solid rbga(255,255,255,0.3);  line-height:45px; font-weight:500; color:#767676; }
-.logBtn{ float:right; width:110px; height:100px;}
- 
+.logBtn{ float:right; width:110px; height:100px; }
 /*찾기영역*/
 ul.find_inp { width:100%;}
 ul.find_inp li{ clear:both; margin-bottom:10px; display:block; width:100%; height:50px; }
 ul.find_inp li > * { float:left; height:35px; line-height:35px; }
-ul.find_inp li .bttxt{ margin:0 5px; font-size:11px;  color:#232323;}
+ul.find_inp li .bttxt{ margin:0 5px; font-size:11px;  color:#232323; }
 ul.find_inp li strong { padding-left:20px; width:120px; height:35px; line-height:35px; letter-spacing:-0.5px; text-align:left; font-size:13px; color:#565656; }
 ul.find_inp select,
 ul.find_inp input[type=password],
 ul.find_inp input[type=text]{ width:auto; padding:0 10px; height:35px; line-height:35px; background:#f8f8f8; font-weight:500; color:#767676; font-size:13px; }
-
 ul.login_fot{ clear:both;  display:inline-block; width:400px; margin-left:50px; }
 ul.login_fot li{ width:135px; margin-right:10px; border:1px solid #a0a0a0; color:#565656; border-radius:3px; float:left; display:inline-block; line-height:100%; line-height:35px; height:35px; font-size:13px; text-align:center; }
 ul.login_fot li:last-child{ margin-right:0; width:110px; float:right; }
 ul.login_fot li a{color:#565656;}
-
-/******스텝************/
 /*스텝*/
-.con_con{width:100%; height:100%;   display:block;}
 .Step{ float:right; display:inline-block; height:35px; font-size:17px; line-height:35px; }
 .Step .on{ float:left; display:block; height:35px; margin-right:12px; border:1px solid #817f7f;  vertical-align:middle; color:#817f7f; border-radius:20px; padding-right:18px; }
 .Step .num{ position:relative; float:left;  width:35px; display:inline; text-align:center;  font-weight:600; border-radius:20px } 
 .Step .on .on_tit{ position:relative; float:left; padding-left:16px; padding-right:12px;  display:inline-block;  font-size:13px; color:#232323; letter-spacing:-0.5px; text-align:left; background:url(../../images/comm/Step_on.png) repeat-x 0 0;}
 .Step .off{ float:left; display:block;  width:37px; height:37px; line-height:35px; margin-right:12px; text-align:center; border:1px solid #817f7f;  vertical-align:middle; color:#a0a0a0; border-radius:20px; }
-
-.message_box{font-family: 'Advent Pro';border:1px solid rgba(255,255,255,0.5);border-radius:10px; color:#fff; width:500px; margin:0 auto 150px auto; display:block; clear:both; padding:50px;}
+/**/
+.loginmessage_box_box ul.login_inp { width:280px;}
+.message_box { width:500px; margin:0 auto 150px auto; display:block; clear:both; padding:50px; font-family: 'Advent Pro'; border:1px solid rgba(255,255,255,0.5); border-radius:10px; color:#fff;  }
 .message_box a{  height:40px; line-height:40px; display:block; float:left; border:1px solid rgba(255,255,255,0.2); border-radius:2px; width:150px; padding:0 20px; text-align:center; color:#fff; cursor:pointer; }
-.message_box a:hover{ background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.5);}
+.message_box a:hover{ background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.5); }
 .message_box h4{ color:#fff; }
 .message_box h5{ color:#fff; }
-	
-.loginmessage_box_box ul.login_inp { width:280px;}
 .message_box ul li{ clear:both; margin-bottom:10px; display:block;  height:45px; width:100%; }
 .message_box ul li input[type=password],
 .message_box ul li input[type=text]{ width:100%; padding:0 10px; height:45px; line-height:45px; background:#f8f8f8;  font-weight:500; color:#767676; }
-
-
 /*개인정보*/
 .Agree_area{  clear:both; text-align:left !important; }
 .Agree_area .agree_cont{ position:relative;   background:#fafafa;  border:1px solid #e1e1e2; }
@@ -69,34 +61,30 @@ ul.login_fot li a{color:#565656;}
 .Agree_area .agree_cont .cont h5{ color:#1f1f1f; font-weight:bold; margin-bottom:22px; margin-top:50px;	}
 .Agree_area .agree_cont .cont p{  margin-bottom:5px;}
 .Agree_area .agree_cont .cont .style1{margin-left:0px; font-weight:700; margin-top:20px; margin-bottom:10px;}
-
 .Agree_area .agree_cont .checkarea{ position:absolute;  bottom:0; padding:15px 30px; height:50px; width:100%; background:#efefef; border-top:1px solid #dfdfe0; font-size:14px; color:#454444;}	
 .Agree_area .agree_cont .checkarea label{ position:relative; margin-top:18px;  height:14px; vertical-align:top; cursor:pointer}
 .Agree_area .agree_cont .checkarea input[type=checkbox]{ margin-right:6px; width:13px; height:13px; line-height:14px;}
-
 .Agree_area .checkall{ width:100%; height:50px; display:inline-block; padding-top:25px; padding-left:20px; color:#232323; font-weight:600 }
 .Agree_area .checkall label{ position:relative;  height:15px; line-height:15px; vertical-align:top; font-weight:600; cursor:pointer }
 .Agree_area .checkall input[type=checkbox]{ clear:both;  margin-right:6px; width:15px; height:15px; line-height:15px;}
-
 /*아이디 비밀번호찾기*/
 .btnL_area{ clear:both; width:100%; margin:50px auto; height:50px; text-align:center; }
-
 .btnL_area input[type="button"],
 .btnL_area input[type="submit"],
 .btnL_area input[type="reset"]{ height:50px; line-height:50px; padding:0 50px; margin:0 10px; font-size:15px; letter-spacing:-1px; cursor:pointer; }
 .btnL_area input[type="submit"]{ background:#232323; color:#fff;  border:1px solid #232323; }
 .btnL_area input[type="reset"]{ border:1px solid #232323; color:#232323; }
-
 .btnL_area input[type="submit"]:hover{ background:#000; border:1px solid #000; }
 .btnL_area input[type="reset"]:hover{ border:1px solid #000; color:#000; }
-
 .login_area .btnL_area input { float:left; display:block; width:40%; }
-
 .btnS_area{ clear:both; width:100%; display:inline-block; border:1px solid #fff; margin:50px auto; height:50px; text-align:center; }
 .btnS_area input[type="button"],
 .btnS_area input[type="submit"],
-.btnS_area input[type="reset"]{ float:left !important; width:45%; display:block; border:1px solid #fff; height:50px; line-height:50px; padding:0 50px; margin:0 2.5%; font-size:15px; letter-spacing:-1px; cursor:pointer; }
-.btnS_area input[type="submit"]{ background:#232323; color:#fff;  border:1px solid #232323; }
+.btnS_area input[type="reset"],
+.btnS_area a{ float:left !important; width:45%; display:block; border:1px solid #fff; height:50px; line-height:50px; padding:0 50px; margin:0 2.5%; font-size:15px; letter-spacing:-1px; cursor:pointer; }
+.btnS_area input[type="submit"]{ background:rgba(190,35,25,1); color:#fff;  border:1px solid #d00; }
+.btnS_area a,
 .btnS_area input[type="reset"]{ border:1px solid #232323; color:#232323; }
-.btnS_area input[type="submit"]:hover{ background:#000; border:1px solid #000; }
-.btnS_area input[type="reset"]:hover{ border:1px solid #000; color:#000; }
+.btnS_area input[type="submit"]:hover{ background:rgba(220,20,20,1); border:1px solid #d00; }
+.btnS_area a:hover,
+.btnS_area input[type="reset"]:hover{ border:1px solid #d00; color:rgba(190,35,25,1); }

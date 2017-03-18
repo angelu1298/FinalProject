@@ -7,24 +7,22 @@
 	<div class="cal_content">
 	
 		<div class="cal_contentarea">
-		
-			<ul>
-				<li>
-					<strong>성별</strong>
-					<p>
-						<input type="radio" value="1" id="radioBtn1" name="erc_sx"><label for="radioBtn1">남자</label>
-						<input type="radio" value="2" id="radioBtn2"  name="erc_sx"><label for="radioBtn2">여자</label>
-					</p>
+            <div class="group2">
+            	<ul>
+					<li>
+						<input type="radio"  value="1" id="radioBtn1" name="erc_sx" > 
+						<label for="radioBtn1"><img src="resources/img/cal/man.png" /></label>
+						<input type="radio" value="2" id="radioBtn2"  name="erc_sx" >
+						<label for="gender_w"><img src="resources/img/cal/woman.png"/></label>
 				</li>
 				<li>
-					<strong>키 </strong><p><input type="text" id="ki"></p>
+					 <p><strong>키</strong><input type="text" id="ki" /><span>cm</span></p>
+                   	 <p><strong>몸무게</strong><input type="text" id="mugae" /><span>kg</span></p>
 				</li>
-				<li>
-					<strong>몸무게 </strong><p><input type="text" id="mugae"></p>
-				</li>
-				
 			</ul>
-			
+		</div>
+
+		<div class="bring_type"> 
 			<p class="stip">
 				본인의 신체정보를 입력한 후, 아래의 운동 종류를 선택해주세요
 			</p>
@@ -39,7 +37,6 @@
 				<p class="nolist">현재, 선택된 내용이 없습니다.</p>
 			</div>
 		</div>
-		
 	</div>
 	
 	<script type="text/javascript">

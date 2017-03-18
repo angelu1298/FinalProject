@@ -78,7 +78,7 @@ ul.listform li > span > span { margin-left:10px; }
 .in_blender > ul > li { float: left;  padding:30px 0px 10px 0px; height:40px; width:45px; margin:5px; text-align:center; line-height:20px; 	 font-size:11px; letter-spacing:-1px; cursor:pointer; }
 			
 .juicemake .makebtn { position:absolute; bottom:0; left:0 !important; margin:0; width:100%; height:50px; line-height:50px;  display:block;  z-index:9999; }
-.juicemake .makebtn .btn_make{  position:absolute; bottom:38px;  padding:5px; width:60px; height:60px; right:180px !important; border-radius:50px; line-height:15px; word-break:keep-all; white-space:normal;  display:inline-block; color:#fff;  font-size:13px; letter-spacing:-1px; background:#232323; }
+.juicemake .makebtn .btn_make{  position:absolute; bottom:38px;  padding:5px; width:60px; height:60px; right:180px !important; border-radius:50px; line-height:15px; word-break:keep-all; white-space:normal;  display:inline-block; color:#fff; font-size:13px; letter-spacing:-1px; background:#232323; }
 .juicemake .makebtn .btn_make{ background:rgba(190,35,25,0.5); color:#fff;   }
 .juicemake .makebtn .btn_make:hover{ background:rgba(190,35,25,0.9); color:#fff; border:1px solid #d00; }
 
@@ -130,8 +130,7 @@ ul.listform li > span > span { margin-left:10px; }
 .food_list ul > li{ position:relative; width:250px; height:220px; display:block; padding:25px 35px; float:left; margin:0 10px 10px 0 ; border:1px solid #d0d0d0; background:#f0f0f0; }
 .food_list ul > li:hover{ background:#fff; border:1px solid #a0a0a0; }
 .food_list ul > li > dl{ text-align:left; }
-.food_list ul > li > dl > dt > strong { clear:both; width:100%; max-height:38px; display:block; margin-bottom:10px; letter-spacing:-1px; font-size:17px; font-weight:500; color:#232323; 
-   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;}
+.food_list ul > li > dl > dt > strong { clear:both; width:100%; max-height:38px; display:block; margin-bottom:10px; letter-spacing:-1px; font-size:17px; font-weight:500; color:#232323;  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;}
 .food_list ul > li > dl > dt > span {font-size:13px; color:#565656;}
 .food_list ul > li > dl > dd{ display:none;  clear:both; position:absolute; top:0; left:0; width:250px; height:220px; padding: 30px  30px ; background:rgba(0,0,0,0.85); color:#fff;  font-size:11px;}
 .food_list ul > li.on > dl > dd{ display:block;  }
@@ -143,14 +142,11 @@ ul.listform li > span > span { margin-left:10px; }
 .food_list ul > li > dl > dt > p > input[type=button]{ float:left; margin-right:10px; padding:0 18px; height:28px; line-height:25px; background:#fff; border-radius:15px; border:1px solid #a0a0a0; color:#787878; letter-spacing:-1px; font-size:11px; }
 .food_list ul > li:hover > dl > dt > p > input[type=button]{ border:1px solid #787878; color:#454545; background:#f0f0f0; 	}
 .food_list ul > li > dl > dt > p > input[type=button]:hover{ background:#787878; color:#fff; border:1px solid #232323; 	}
-.food_list ul > li .btn_del_rec{}
-
 .food_list ul > li .btn_view_large { position:absolute; bottom:0px; left:0px;   line-height:30px; height:32px; width:150px; padding:0 10px;}
 .food_list ul > li .btn_add_today { position:absolute; bottom:15px; left:50px; border:1px solid #c0c0c0;  line-height:30px; height:32px; width:150px; padding:0 10px; letter-spacing:-1px; font-size:11px; border-radius:30px; background-size:50%; background:#e0e0e0 ;   }
 .food_list ul > li:hover .btn_add_today{ background-color:#fff; color:#d03e4b; border:1px solid #d03e4b; }
 .food_list ul > li .btn_add_today:hover{ background-color:#d03e4b; color:#fff; border:1px solid #d00; }
 .food_list ul > li .btn_cls{ position:absolute; top:10px; right:10px; background:rgba(255,255,255,0) url(../img/btn/btn_Lclose_white.gif) no-repeat center; border:0; padding:0; width:25px; height:25px;  color:#fff;  text-indent:-9999px; }
-
 
 form p.btn_Larea{clear:both; margin:50px auto; max-width:400px; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕',NanumGothic,'나눔고딕'; }
 form p.btn_Larea input[type="reset"],
@@ -231,7 +227,6 @@ input[type="text"]{ border-top:1px solid #cbcbcb; border-left:1px solid #cbcbcb;
 .common_write_box table td .tip_info2{ float:left; margin-left:16px; margin-top:7px; height:16px; display:inline-block; color:#858484; font-size:12px;}
 .common_write_box table td .tip_info.eng{ font-size:13px; letter-spacing:0; margin-left:5px; }
 .common_write_box table td .tip_info2.eng{ font-size:13px; letter-spacing:0; }
-
 .common_write_box table td.t_num{ letter-spacing:0;}
 .common_write_box table td .col{ margin-bottom:10px; clear:both; height:27px;}
 .common_write_box table th span.mando{padding-right:11px; background:url(../img/bull/bull_mando.png) no-repeat top 2px right 0; }
@@ -267,7 +262,7 @@ input[type="text"].srchname{ border:1px solid #a0a0a0; height:auto; min-height:3
 .selsearch { position:relative; margin:0 auto ; display:inline-block; }
  
 /*인증현황*/
-.mapArea{ position:relative; display:block; width:550px; height:450px; margin:0 auto 60px auto; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; }
+.mapArea{ position:relative; display:block; width:550px; height:450px; margin:0 auto 60px auto;  }
 /*약국검색 검색영역*/
 .mapArea > .fl{  position:absolute; top:0; left:0; width:230px; padding:0; float:left; display:block; }
 /*약국검색 지도영역*/
