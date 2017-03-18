@@ -25,7 +25,6 @@ public class DietCalc {
 	@RequestMapping(value="/cal_diet_result.brn")
 	public ModelAndView dietResult(){
 		
-		
 		dietbean.getReduceKg();
 		dietbean.getStandard();
 		dietbean.getDailyKcal();
@@ -134,31 +133,4 @@ public class DietCalc {
 			return percent;
 		}
 		
-	/*@RequestMapping(value="/scommList.brn")
-	public ModelAndView scommList(HttpServletRequest request,
-			HttpServletResponse response,@RequestParam(value="s_no") int s_no) throws Exception{
-		List<ScommBean> beanlist = new ArrayList<ScommBean>();
-		ModelAndView mv=new ModelAndView("sboard/scommList");
-		beanlist = service.getCommList(s_no);
-		mv.addObject("beanlist",beanlist);
-			
-		return mv;
-	}*/
-
-		/*	*/
-		
-		/*String result = 
-			 	"{ reduceKg :\"" + reduceKg+
-			 	  "\",standard :\"" + standard +
-			 	  "\",dailyKcal :\"" + dailyKcal +
-			 	  "\",reduceKcal : \"" + reduceKcal+
-			 	  "\",reduceExec : \"" + reduceExec+
-			 	  "\",reduceMeal : \"" + reduceMeal+
-			 	  "\",MealKcal : \"" + MealKcal+
-			 	  "\",exec_percent : \"" + percent[0]+
-			 	  "\",meal_percent : \"" + percent[1]+
-			 	  "\",goalDay : \"" + goalDay +"}";
-		
-			 PrintWriter out = response.getWriter();
-			 out.println(result);*/
 }

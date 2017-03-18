@@ -4,7 +4,7 @@
 .wrap{display:inline-block; }
 
 /*서브페이지 전체 레이아웃*/
-.sub_container{ position:relative; width:100%; min-height:100%; margin:30px 0; padding:130px 50px 100px 220px; display:inline-block; z-index:1;  background:url(../img/main/Elegant_Background-6.png) no-repeat center center;  background-size: auto 100% ; background-attachment:fixed; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; }
+.sub_container{ position:relative; width:100%; min-height:100%; margin:30px 0; padding:130px 50px 100px 220px; display:inline-block; z-index:1;  background:url(../img/main/mainbg03.jpg) no-repeat center center;  background-size: auto 100% ; background-attachment:fixed; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; }
 .log_container{ position:relative; width:100%; min-height:100%; margin:30px 0; padding:130px 50px 100px 220px; display:inline-block; z-index:1; background:url(../img/main/Elegant_Background-6.jpg) no-repeat center center;  background-size: auto 100% ; background-attachment:fixed; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; }
 .subContent{ width:100%;  display:inline-block; padding:30px; background:#fff; text-align:left; }
 .subContent.nobg{background:rgba(255,255,255,0)}
@@ -100,7 +100,7 @@ nav.snb > ul > li > ul > li:hover {  background:rgba(0,0,0,0.9); }
 .fotgoal input[type="button"]{ position:absolute; top:5px; right:0; width:20px; height:20px; display:block; background:url(../img/bull/bull_pen.png) no-repeat center; cursor:pointer; }
  
  /***** 체중계 *****/
-.cal_diet{ position:relative; width:100%; height:auto; margin:20px auto; display:block; height:650px; background:rgba(0,0,0,1) url(../img/sub/bg_calc.png) no-repeat left center;  background-size:120% auto; }
+.cal_diet{ position:relative; width:100%; height:auto; margin:20px auto; display:block; height:650px; background:url(../img/main/gymbg.jpg) no-repeat center 0;  background-size:120% auto;  font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕';  }
 .cal_diet .w { margin:0 auto; width:500px; height:650px; padding-top:30px; display:block;  background-image:url(../img/cal/scale.png); background-repeat:no-repeat;  background-position:center center ; text-align: center; }
 .cal_diet .w > p {position: absolute; top:135px; left:0; width:100%; margin:0 auto; }
 .cal_diet .w > p .goal_weight { font-family:'Nanum Pen Script'; font-size:60px; background-color:rgba(0,0,0,0.5);	border-radius:50px;  text-align:center; color:white; margin-left:40px; width:135px; height:75px; line-height:75px; }
@@ -121,14 +121,14 @@ nav.snb > ul > li > ul > li:hover {  background:rgba(0,0,0,0.9); }
 .group > ul > li:nth-child(2) input[type=text]{ width:50px !important; text-align:center; }
 
 .cal_diet .result{ float:left; width:400px; display:none; } 
-.cal_diet_button{ width:80px; padding:25px 10px; clear:both; margin-left:350px; display:block; height:80px; line-height:23px; font-size:15px; background:rgba(190,35,25,1); color:#fff; font-weight:400; border-radius:40px; }
+.cal_diet_button{ width:80px; padding:25px 10px; clear:both; margin-left:450px; display:block; height:80px; line-height:23px; font-size:15px; background:rgba(190,35,25,1); color:#fff; font-weight:400; border-radius:40px; }
 .cal_diet_button:hover{ background:rgba(220,20,20,1);  }
 
-.cal_content{ position:relative; width:100%; height:auto; margin:20px auto; display:block; height:650px; background:rgba(0,0,0,1) url(../img/main/mainbg01	.jpg) no-repeat left center;  background-size:120% auto; }
-.cal_content .cal_contentarea { position:relative; border:1px solid #fff; margin:0 auto; width:100%; height:650px; padding-top:30px; display:block;    }
-.cal_contentarea .group2 { position:absolute; top:0; left:0; display:block; width:300px; height:300px;   }
-.cal_contentarea .bring_type { padding-left:350px; float:left; margin-top:20px; }
-.group2{ float:left; margin-right:50px; background-image:url(../img/cal/scale.png); background-repeat:no-repeat;  background-position:center center; background-size:auto 100%; text-align: center; width:300px; height:300px; display:inline-block; padding:50px; }
+.cal_content{ position:relative; width:100%; height:auto; margin:20px auto; display:inline-block;  background:url(../img/main/gymbg.jpg) no-repeat center center;  background-size:130% auto;  font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; 	}
+.cal_content .cal_contentarea { position:relative; margin:0 auto; width:100%; padding:30px; display:block; text-align:center; }
+.cal_contentarea .group2 {  clear:both; margin:0 auto 50px auto; display:block; width:300px; height:300px;   }
+.cal_contentarea .bring_type {   width:700px;  clear:both; margin:0 auto; background:rgba(255,255,255,0.8); padding:30px;    }
+.group2{  background-image:url(../img/cal/scale.png); background-repeat:no-repeat;  background-position:center center; background-size:auto 100%; text-align: center; width:300px; height:400px; display:inline-block; padding:50px; }
 .group2 > ul {  display:inline-block; margin-top:60px; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; }
 .group2 > ul > li {  clear:both; float:left;  margin-bottom:15px; display:inline-block; text-align:center; width:100%; }
 .group2 > ul > li:nth-child(1) > *:not(span) { cursor:pointer; }
@@ -142,10 +142,24 @@ nav.snb > ul > li > ul > li:hover {  background:rgba(0,0,0,0.9); }
 .group2 > ul > li:nth-child(2) strong{ width:60px; border:1px solid #232323; display:block; float:left; }
 .group2 > ul > li:nth-child(2) input[type=text]{ width:50px !important; text-align:center; }
 
-.bring_type .stip { background:url(../img/bull/bull_mandor.gif) no-repeat 0 0; padding-left:20px; font-size:15px; letter-spacing:-1px; color:rgba(190,35,25,1); }
-.btn_list { display:inline-block; clear:both; margin-top:20px; }
+.bring_type { clear:both; margin-top:100px; font-size:13px; text-align:center; }
+.bring_type .stip {/*  background:url(../img/bull/bull_mandor.gif) no-repeat 0 0; padding-left:20px;  */margin-bottom:20px; font-size:15px; letter-spacing:-1px; color:rgba(190,35,25,1); text-align:center; }
+.btn_list { margin:0 auto; display:inline-block; clear:both; }
 .btn_list input[type=button]{ float:left; margin:0 10px 10px 0; display:block; padding:0 15px;  height:35px; line-height:35px; border-radius:5px; border:1px solid rgba(190,35,25,1); color:rgba(190,35,25,1); background:transparent; }
 
-#erc_nm_loc{   margin-top:20px; }
-#erc_nm_loc .btn_list { padding-top:100px; background:url(../img/comm/nextbg.png) no-repeat center top; background-size:50px; }
-#erc_nm_loc .nolist { font-size:13px; color:#787878; text-align:left; padding-left:150px; }
+.rsltbox{ margin-top:20px; display:inline-block; width:100%; margin-top:20px; clear:both; }
+.rsltbox p{ display:inline-block; margin:10px auto; }
+.bring_type #kcalbutton{ float:left; display:block; }
+.bring_type #kcalbox{ float:left; display:block; }
+.bring_type #timevalue{  font-size:17px; font-weight:500px; clear:both; display:block; height:30px; }	
+.bring_type #timevalue strong{ padding-left:20px; background:url(../img/bull/bull_mandor.gif) no-repeat 0 0 ;}
+.rsltbox input[type=text]{ margin-left:10px; width:60px; height:30px; line-height:30px; text-align:center; }
+.rsltbox input[type=button]{ width:40px; height:30px; line-height:30px; }
+.btn_list input[type=button].on{ background:rgba(190,35,25,0.5); color:#fff; } 
+#kcalbox_area > *{ float:left; height:30px; line-height:30px; }
+#kcalbox_area > input[type=button]{background:rgba(190,35,25,1); color:#fff; }
+#timevalue{ clear:both; margin-top:20px;  }
+#timevalue input[type=text]{ margin-left:0px; border:none; background:none; }
+#erc_nm_loc{ padding:20px;  margin-top:0px; }
+#erc_nm_loc .btn_list { padding-top:60px; background:url(../img/comm/nextbg.png) no-repeat center top; background-size:40px; }
+#erc_nm_loc .nolist { font-size:13px; color:#787878; text-align:center;   }

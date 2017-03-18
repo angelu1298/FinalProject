@@ -16,7 +16,7 @@
 			<h4>운동계산기</h4>
 			
 			<div id="a">
-			<%@ include file="../html_calculator/cal_exer_exercise.jsp" %>
+				<%@ include file="../html_calculator/cal_exer_exercise.jsp" %>
 			</div>
 		
 		</div>		
