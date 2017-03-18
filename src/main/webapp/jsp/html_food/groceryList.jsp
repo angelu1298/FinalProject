@@ -63,6 +63,9 @@
 						<input type="submit" class="btn_srch" value="검색" />
 					</p>
 					<!--한줄-->
+					<input type="hidden" name="y" value=${y }>
+					<input type="hidden" name="m" value=${m }>
+					<input type="hidden" name="d" value=${d }>
 				</form>
 				<!-- //form -->				
 			</div>

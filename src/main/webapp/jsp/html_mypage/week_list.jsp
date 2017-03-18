@@ -13,7 +13,31 @@
          $(this).next("div").css({"display":""});
       })
       
-	//----- 아침,점심,저녁 눌렀을 때 로드 --------------------------------------------------------------------         
+            var date = new Date();
+           var year  = date.getFullYear();
+           var month = date.getMonth() + 1; // 0부터 시작하므로 1더함 더함
+           var day   = date.getDate();
+           
+           
+           if (("" + month).length == 1) { 
+              month = "0" + month; 
+              }
+           if (("" + day).length   == 1) {
+              day   = "0" + day;  
+              }
+           
+           var today = year + "년" + month + "월" + day;
+           
+           
+           $('.today').append(today);
+      		
+           
+          $('.result').click(function(){
+        	  
+          });
+          
+        
+//----- 아침,점심,저녁 눌렀을 때 로드 --------------------------------------------------------------------         
           
           //아침,점심,저녁 로드 함수
           function load_data(b, wholeDay, brn, divclass) {
@@ -21,7 +45,6 @@
          	 var y = $('.year_'+b).val();
            	 var m = $('.month_'+b).val(); 
            	 var d = $('.day_'+b).val();
-           	 
            	 $.ajax({
     				data : {
     					"y" : y,
@@ -35,7 +58,6 @@
     				success : function(data) {
     					$(divclass).empty();
     					$(divclass).append(data);
-    						
     				},
     				error : function(data, status) {
 //     					alert('아침 식품 출력 실패');
@@ -145,19 +167,19 @@
          		var wholeDay = 'morning';
 		    	
          		/* 운동 로드 */
-	     	    var brn = 'goweekly_m_click.brn';
-	     	    var divclass = '.morning_result';
-                load_data(grade, wholeDay, brn, divclass);
+	     	    var brn1 = 'goweekly_m_click.brn';
+	     	    var divclass1 = '.morning_result';
+                load_data(grade, wholeDay, brn1, divclass1);
          		
 				/* 음식 로드 */
-				var brn = 'goweekly_m_food.brn';
-		    	var divclass = '.morning_food';
-		    	load_data(grade, wholeDay, brn, divclass)
+				var brn2 = 'goweekly_m_food.brn';
+		    	var divclass2 = '.morning_food';
+		    	load_data(grade, wholeDay, brn2, divclass2);
          		
          		/* 식품 로드 */
-        	    var brn = 'goweekly_m_gro.brn';
-        	    var divclass = '.morning_grocery';
-        	    load_data(grade, wholeDay, brn, divclass);
+        	    var brn3 = 'goweekly_m_gro.brn';
+        	    var divclass3 = '.morning_grocery';
+        	    load_data(grade, wholeDay, brn3, divclass3);
          		
           });
             
@@ -167,19 +189,19 @@
 	     	   var wholeDay = 'lunch';
       		
 	     	   /* 운동 로드 */
-	     	   var brn = 'goweekly_l_click.brn';
-		       var divclass = '.lunch_result';
-	           load_data(grade, wholeDay, brn, divclass)
+	     	   var brn1 = 'goweekly_l_click.brn';
+		       var divclass1 = '.lunch_result';
+	           load_data(grade, wholeDay, brn1, divclass1);
          		
 	     	  	/* 음식 로드 */
-		        var brn = 'goweekly_l_food.brn';
-		        var divclass = '.lunch_food';
-		        load_data(grade, wholeDay, brn, divclass)
+		        var brn2 = 'goweekly_l_food.brn';
+		        var divclass2 = '.lunch_food';
+		        load_data(grade, wholeDay, brn2, divclass2);
          		 
          		/* 식품 로드 */
-                var brn = 'goweekly_l_gro.brn';
-                var divclass = '.lunch_grocery';
-                load_data(grade, wholeDay, brn, divclass);
+                var brn3 = 'goweekly_l_gro.brn';
+                var divclass3 = '.lunch_grocery';
+                load_data(grade, wholeDay, brn3, divclass3);
                 
 	       });
      
@@ -190,19 +212,19 @@
       			var wholeDay = 'dinner';
       		
       			/* 운동 로드 */
-      			var brn = 'goweekly_d_click.brn';
-      		    var divclass = '.dinner_result';
-      		  	load_data(grade, wholeDay, brn, divclass)
+      			var brn1 = 'goweekly_d_click.brn';
+      		    var divclass1 = '.dinner_result';
+      		  	load_data(grade, wholeDay, brn1, divclass1);
       	          
       			/* 음식 로드 */
-		    	var brn = 'goweekly_d_food.brn';
-		    	var divclass = '.dinner_food';
-		    	load_data(grade, wholeDay, brn, divclass);
+		    	var brn2 = 'goweekly_d_food.brn';
+		    	var divclass2 = '.dinner_food';
+		    	load_data(grade, wholeDay, brn2, divclass2);
       			
       			/* 식품 로드 */
-      	        var brn = 'goweekly_d_gro.brn';
-      	        var divclass = '.dinner_grocery';
-      	      	load_data(grade, wholeDay, brn, divclass)
+      	        var brn3 = 'goweekly_d_gro.brn';
+      	        var divclass3 = '.dinner_grocery';
+      	      	load_data(grade, wholeDay, brn3, divclass3);
       	          
 	       });	
     
@@ -235,7 +257,7 @@
    	 var d = $('.day_'+grade).val();
    	 
    	 var emo = $(emo_name).val();
-   	 alert("grade = "  + grade);
+
    	 $.ajax({
    		 data : {
    	  		"y" : y,
@@ -268,7 +290,6 @@
 
    <p class="date_area">
       <!--가운데 정렬 해야해 -->
-   <div id="toto"></div>
    <a href="./week_minus.brn?y=${y}&m=${m}&d=${d}">이전주</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
    <strong id="addju">${y}년 ${m}월 ${d}일 </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
    <a href="./week_plus.brn?y=${y}&m=${m}&d=${d}">다음주</a>
@@ -363,12 +384,6 @@
             <input type="button" class="saveDB emo_smile" value='2'>
             <input type="button" class="saveDB emo_wink" value='3'>
          	
-         <%-- 	<p>오늘 얻은 총 kcal</p>
-         	<p>${calendarList2[k-1].grc_kcal+calendarList2[k-1].cus_kcal-calendarList2[k-1].e_kcal }</p>
-         	 --%>
-         <!-- 평가 -->
-<!--          <div class="emo_eval"> -->
-<!--          </div> -->
 	</c:if>
 
 <!-- DB에 값이 없을 경우 -->
@@ -480,7 +495,6 @@
       var week = new Array("일", "월", "화", "수", "목", "금", "토");
 
       var arrday = new Date(year, month - 1, day);
-
       var i = arrday.getDay(); //0:일요일, 1:월요일, 2:화요일, 3:수요일, 4:목요일, 5:금요일, 6:토요일 
 
       intDayCnt1 = 1 - i;
@@ -515,7 +529,7 @@
          
          var month = '.month_' + a;
          $(month).attr("value",Mon);
-         
+        
          var day = '.day_' + a;
          $(day).attr("value",Day);
          
@@ -563,8 +577,6 @@
       }
 
       var today = ty + tm + td;
-
-      $("#toto").append(today);
 
       return today;
 

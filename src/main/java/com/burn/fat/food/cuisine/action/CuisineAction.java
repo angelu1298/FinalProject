@@ -43,13 +43,13 @@ public class CuisineAction {
    /* CUISINE 오늘의 식단에 */
    @RequestMapping(value="/cuisineAddTodayOk.brn")
    public ModelAndView cuisineAddTodayOk( 
-         @RequestParam("cus_kcal") int cus_kcal, 
+         @RequestParam("cus_kcal") double cus_kcal, 
          @RequestParam("cus_tt") String cus_tt, 
          @RequestParam("wholeDay") String wholeDay, 
          HttpServletRequest request, 
          HttpServletResponse response,
-         HttpSession session,
-         @RequestParam(value="quantity", defaultValue="1") float quantity ) throws Exception{
+         HttpSession session
+         ) throws Exception{
       
       response.setContentType("text/html;charset=UTF-8");
       
@@ -57,16 +57,11 @@ public class CuisineAction {
          
       Map m2 = new HashMap();
       
-      System.err.println("wholeDay = " + wholeDay);
-      System.err.println("cus_kcal = " + cus_kcal);
-      System.err.println("cus_tt = " + cus_tt);
-      System.err.println("mem_no = " + mem_no);
-      
       String[] cus_ttSp =cus_tt.split(",");
       cus_tt = cus_ttSp[0];
       
       m2.put("day", wholeDay);
-      m2.put("cus_kcal", cus_kcal*quantity);
+      m2.put("cus_kcal", cus_kcal);
       m2.put("cus_tt", cus_tt);
       m2.put("mem_no", mem_no);
       
@@ -75,14 +70,17 @@ public class CuisineAction {
       String d = calendarBean.getImsiD();
       
       String cal_date = y+m+d;
-      m2.put("cal_date", cal_date);
-      System.err.println("cal_date = " + cal_date);
       
-      List<CalendarBean> ecalExist =this.calService.getE_kcal2(m2);
+      m2.put("y", y);
+      m2.put("m", m);
+      m2.put("d", d);
+      m2.put("cal_date", cal_date);
+      
+      CalendarBean ecalExist =this.calService.getE_kcal2(m2);
       
       //마이페이지에 식단 저장
-      if(!ecalExist.isEmpty()){
-    	  if(ecalExist.get(0).getCus_kcal()!=0)
+      if(ecalExist!=null){
+    	  if(ecalExist.getCus_kcal()!=0)
     		  this.calService.setCuisineAdd(m2);
     	  else
     		  this.calService.setCuisine(m2);
@@ -107,6 +105,7 @@ public class CuisineAction {
       findname = request.getParameter("findname");
       
       List<CuisineBean> cuisineList = new ArrayList<CuisineBean>();
+      ModelAndView model = new ModelAndView("html_food/cuisineList");
       
       int page = 1;
       
@@ -115,18 +114,22 @@ public class CuisineAction {
       
       if(request.getParameter("y") != null){
          String y = request.getParameter("y");
+         
          calendarBean.setImsiY(y);
+         model.addObject("y", y);
          
       }
       
       if(request.getParameter("m") != null){
          String m = request.getParameter("m");
          calendarBean.setImsiM(m);
+         model.addObject("m", m);
       }
       
       if(request.getParameter("d") != null){
          String d = request.getParameter("d");
          calendarBean.setImsiD(d);
+         model.addObject("d", d);
       }
       
       /********************************************/
@@ -171,7 +174,6 @@ public class CuisineAction {
       m.put("cuisinefcount", cuisinefcount);
       
       cuisineList = cuisineService.getCuisineList(m);
-      ModelAndView model = new ModelAndView("html_food/cuisineList");
       
       model.addObject("cuisineList", cuisineList);
       model.addObject("cuisinefcount", cuisinefcount);

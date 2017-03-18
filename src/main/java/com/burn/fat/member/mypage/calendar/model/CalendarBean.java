@@ -8,7 +8,7 @@ public class CalendarBean {
 	private String day;		/* 아침,점심,저녁 */
 	private int mem_no;		//회원번호
 	
-	private int e_kcal;	/* 운동_칼로리 */
+	private double e_kcal;	/* 운동_칼로리 */
 	private int cal_eval;	//평가 ( 하:1 중:2 상:3 )
 	
 	private String imsiY;	//임시저장 날짜 Y
@@ -22,8 +22,8 @@ public class CalendarBean {
 	private String exer_tt;		/* 운동제목 */
 	private String cus_tt;		/* 음식제목 */
 	private String grc_tt;		/* 식품제목 */
-	private int cus_kcal;		/* 음식검색에서 계산된 칼로리 */
-	private int grc_kcal;		/* 식품검색에서 계산된 칼로리 */
+	private double cus_kcal;		/* 음식검색에서 계산된 칼로리 */
+	private double grc_kcal;		/* 식품검색에서 계산된 칼로리 */
 	
 	public String getCal_date() {
 		return cal_date;
@@ -43,10 +43,10 @@ public class CalendarBean {
 	public void setMem_no(int mem_no) {
 		this.mem_no = mem_no;
 	}
-	public int getE_kcal() {
+	public double getE_kcal() {
 		return e_kcal;
 	}
-	public void setE_kcal(int e_kcal) {
+	public void setE_kcal(double e_kcal) {
 		this.e_kcal = e_kcal;
 	}
 	public int getCal_eval() {
@@ -109,16 +109,16 @@ public class CalendarBean {
 	public void setGrc_tt(String grc_tt) {
 		this.grc_tt = grc_tt;
 	}
-	public int getCus_kcal() {
+	public double getCus_kcal() {
 		return cus_kcal;
 	}
-	public void setCus_kcal(int cus_kcal) {
+	public void setCus_kcal(double cus_kcal) {
 		this.cus_kcal = cus_kcal;
 	}
-	public int getGrc_kcal() {
+	public double getGrc_kcal() {
 		return grc_kcal;
 	}
-	public void setGrc_kcal(int grc_kcal) {
+	public void setGrc_kcal(double grc_kcal) {
 		this.grc_kcal = grc_kcal;
 	}
 	

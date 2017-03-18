@@ -2,6 +2,7 @@ package com.burn.fat.member.mypage.exercise.action;
 
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -90,16 +91,29 @@ public class ExerCalc {
 		Map<String, Object> m1 = new HashMap<String, Object>();
 		m1.put("emo_eval", emo_eval);
 		m1.put("cal_date", cal_date);
+		m1.put("y", y);
+		m1.put("m", m);
+		m1.put("d", d);
 		m1.put("mem_no", mem_no);
 		int result = 0;
-		int check = this.calService.getEmo_eval(m1);
-		//평가값 저장
-		if(check==0){
+		List<CalendarBean> calbean = this.calService.getEmo_eval(m1);
+		
+		if(calbean.isEmpty()){
 			this.calService.setEmo_eval(m1);
 			result=1;
-		}
-		else{
-			result=0;
+		}else{
+		//평가값 저장
+			int check =0;
+			for(int i = 0; i< calbean.size();i++){
+				if(calbean.get(i).getCal_eval() !=0){
+					check++;
+				}
+				
+			}
+			if(check!=0){
+				this.calService.setEmo_eval(m1);
+				result=1;
+			}
 		}
 		
 		out.print(result);
@@ -124,11 +138,14 @@ public class ExerCalc {
 		m1.put("mem_no", mem_no);
 			
 		//평가값 불러오기
-		int cal_eval = this.calService.getEmo_eval(m1);
-			
+		List<CalendarBean> calbean = this.calService.getEmo_eval(m1);
+		List<CalendarBean> calendarList = this.calService.getE_kcal(m1);
+		
+		int cal_eval = calbean.get(0).getCal_eval();
 		ModelAndView mv = new ModelAndView("html_mypage/mypage_main");
 		mv.addObject("cal_eval", cal_eval);
 		mv.addObject("cal_date", cal_date);
+		mv.addObject("calendarList", calendarList);
 		
 		return mv;
 			
@@ -157,7 +174,7 @@ public class ExerCalc {
 
 			
 			//아침 식품불러오기
-			 List<CalendarBean> grocery = this.calService.getGrocery(m3);
+			 CalendarBean grocery = this.calService.getGrocery(m3);
 			
 			ModelAndView mv = new ModelAndView("html_mypage/exercise_load");
 			mv.addObject("grocery",grocery);
@@ -187,7 +204,7 @@ public class ExerCalc {
 
 
 			//점심 식단불러오기
-			 List<CalendarBean> grocery = this.calService.getGrocery(m3);
+			 CalendarBean grocery = this.calService.getGrocery(m3);
 			
 			ModelAndView mv = new ModelAndView("html_mypage/exercise_load");
 			mv.addObject("grocery",grocery);
@@ -217,7 +234,7 @@ public class ExerCalc {
 			m3.put("day", wholeDay);
 			
 			//저녁 식단불러오기
-			 List<CalendarBean> grocery = this.calService.getGrocery(m3);
+			CalendarBean grocery = this.calService.getGrocery(m3);
 			
 			ModelAndView mv = new ModelAndView("html_mypage/exercise_load");
 			mv.addObject("grocery",grocery);
@@ -248,8 +265,7 @@ public class ExerCalc {
 
 			
 			//아침 식단불러오기
-			 List<CalendarBean> cuisine = this.calService.getCuisine(m3);
-			System.err.println("아침음식cuisine = " + cuisine);
+			 CalendarBean cuisine = this.calService.getCuisine(m3);
 			
 			ModelAndView mv = new ModelAndView("html_mypage/exercise_load");
 			mv.addObject("cuisine",cuisine);
@@ -267,9 +283,11 @@ public class ExerCalc {
 			HttpServletRequest request,
 			HttpServletResponse response,
 			HttpSession session) throws Exception {
-				
+			
+			System.err.println("점심로드로 오는가");
 			int mem_no = (Integer) session.getAttribute("mem_no");
 			String cal_date = y+m+d;
+			System.err.println("점심cal_date = " +cal_date);
 				
 			Map<String, Object> m3 = new HashMap<String, Object>();
 			m3.put("cal_date", cal_date);//해당 날짜
@@ -279,10 +297,10 @@ public class ExerCalc {
 
 
 			//점심 식단불러오기
-			 List<CalendarBean> cuisine = this.calService.getCuisine(m3);
-			
+			 CalendarBean cuisine = this.calService.getCuisine(m3);
+			 
 			ModelAndView mv = new ModelAndView("html_mypage/exercise_load");
-			mv.addObject(cuisine);
+			mv.addObject("cuisine",cuisine);
 				
 			return mv;
 		}
@@ -309,10 +327,10 @@ public class ExerCalc {
 			m3.put("day", wholeDay);
 			
 			//저녁 식단불러오기
-			 List<CalendarBean> cuisine = this.calService.getCuisine(m3);
+			 CalendarBean cuisine = this.calService.getCuisine(m3);
 			
 			ModelAndView mv = new ModelAndView("html_mypage/exercise_load");
-			mv.addObject(cuisine);
+			mv.addObject("cuisine",cuisine);
 				
 			return mv;
 		}	
@@ -341,7 +359,7 @@ public class ExerCalc {
 		m3.put("day", wholeDay);
 
 		//운동칼로리 불러오기
-		List<CalendarBean> calendarBean = this.calService.getE_kcal2(m3);
+		CalendarBean calendarBean = this.calService.getE_kcal2(m3);
 		
 		ModelAndView mv = new ModelAndView("html_mypage/exercise_load");
 		
@@ -371,7 +389,7 @@ public class ExerCalc {
 			
 			m3.put("day", wholeDay);
 			
-			List<CalendarBean> calendarBean = this.calService.getE_kcal2(m3);
+			CalendarBean calendarBean = this.calService.getE_kcal2(m3);
 			
 			ModelAndView mv = new ModelAndView("html_mypage/exercise_load");
 			
@@ -404,7 +422,7 @@ public class ExerCalc {
 				m3.put("day", wholeDay);
 				
 				
-				List<CalendarBean> calendarBean = this.calService.getE_kcal2(m3);
+				CalendarBean calendarBean = this.calService.getE_kcal2(m3);
 				
 				ModelAndView mv = new ModelAndView("html_mypage/exercise_load");
 				
@@ -449,11 +467,11 @@ public class ExerCalc {
 		String erc_nm = exerbean.getImsiEN();
 		m2.put("exer_tt", erc_nm);//운동제목
 		
-		 List<CalendarBean> ecalExist =this.calService.getE_kcal2(m2);
+		 CalendarBean ecalExist =this.calService.getE_kcal2(m2);
 	      
 	      //마이페이지에 식단 저장
-	      if(!ecalExist.isEmpty()){
-	    	  if(ecalExist.get(0).getE_kcal()!=0)
+	      if(ecalExist!=null){
+	    	  if(ecalExist.getE_kcal()!=0)
 	    		  this.calService.setE_kcalAdd(m2);
 	    	  else
 	    		  this.calService.setE_kcalUp(m2);
@@ -494,11 +512,11 @@ public class ExerCalc {
 		m5.put("mem_no", mem_no);//회원번호
 		m5.put("exer_tt", erc_nm);//운동제목
 		
-		List<CalendarBean> ecalExist =this.calService.getE_kcal2(m5);
+		CalendarBean ecalExist =this.calService.getE_kcal2(m5);
 	      
-	      //마이페이지에 식단 저장
-	      if(!ecalExist.isEmpty()){
-	    	  if(ecalExist.get(0).getE_kcal()!=0)
+		//마이페이지에 식단 저장
+	      if(ecalExist!=null){
+	    	  if(ecalExist.getE_kcal()!=0)
 	    		  this.calService.setE_kcalAdd(m5);
 	    	  else
 	    		  this.calService.setE_kcalUp(m5);
@@ -538,11 +556,11 @@ public class ExerCalc {
 		m4.put("mem_no", mem_no);//회원번호
 		m4.put("exer_tt", erc_nm);//운동제목
 		
-		List<CalendarBean> ecalExist =this.calService.getE_kcal2(m4);
+		CalendarBean ecalExist =this.calService.getE_kcal2(m4);
 	      
-	      //마이페이지에 식단 저장
-	      if(!ecalExist.isEmpty()){
-	    	  if(ecalExist.get(0).getE_kcal()!=0)
+		//마이페이지에 식단 저장
+	      if(ecalExist!=null){
+	    	  if(ecalExist.getE_kcal()!=0)
 	    		  this.calService.setE_kcalAdd(m4);
 	    	  else
 	    		  this.calService.setE_kcalUp(m4);

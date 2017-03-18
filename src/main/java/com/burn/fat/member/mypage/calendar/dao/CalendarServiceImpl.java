@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.burn.fat.member.mypage.calendar.model.CalendarBean;
-import com.burn.fat.member.mypage.exercise.model.ExerBean;
 
 @Service("CalendarService")
 public class CalendarServiceImpl implements CalendarService {
@@ -36,7 +35,7 @@ public class CalendarServiceImpl implements CalendarService {
 	}
 	
 	/* 운동_칼로리 가져오기2 */
-	public List<CalendarBean> getE_kcal2(Map m) throws Exception{
+	public CalendarBean getE_kcal2(Map m) throws Exception{
 		return calendarDAO.getE_kcal2(m);
 	}
 	
@@ -46,7 +45,7 @@ public class CalendarServiceImpl implements CalendarService {
 	}
 	
 	/* 평가 값 불러오기 */
-	public int getEmo_eval(Map m) throws Exception{
+	public List<CalendarBean> getEmo_eval(Map m) throws Exception{
 		return calendarDAO.getEmo_eval(m);
 	}
 	
@@ -66,7 +65,7 @@ public class CalendarServiceImpl implements CalendarService {
 	}
 	
 	/* 식단 불러오기 */
-	public  List<CalendarBean> getCuisine(Map m) throws Exception{
+	public  CalendarBean getCuisine(Map m) throws Exception{
 		return calendarDAO.getCuisine(m);
 	}
 	
@@ -76,7 +75,7 @@ public class CalendarServiceImpl implements CalendarService {
 	}
 	
 	/* 식품 불러오기 */
-	public  List<CalendarBean> getGrocery(Map m) throws Exception{
+	public  CalendarBean getGrocery(Map m) throws Exception{
 		return calendarDAO.getGrocery(m);
 	}
 

@@ -40,8 +40,8 @@ public class CalendarDAOImpl {
 	}
 	
 	/* 운동_칼로리 가져오기2 */
-	public List<CalendarBean> getE_kcal2(Map m) throws Exception{
-		return sqlSession.selectList("getE_kcal2", m);
+	public CalendarBean getE_kcal2(Map m) throws Exception{
+		return sqlSession.selectOne("getE_kcal2", m);
 	}
 	
 	/* 평가 값 저장하기 */
@@ -50,8 +50,8 @@ public class CalendarDAOImpl {
 	}
 	
 	/* 평가 값 불러오기 */
-	public int getEmo_eval(Map m) throws Exception{
-		return sqlSession.selectOne("getEmo_eval", m);
+	public List<CalendarBean> getEmo_eval(Map m) throws Exception{
+		return sqlSession.selectList("getEmo_eval", m);
 	}
 	
 	/* 월간 : 평가 불러오기 */
@@ -70,8 +70,8 @@ public class CalendarDAOImpl {
 	}
 	
 	/* 식단 불러오기 */
-	public List<CalendarBean> getCuisine(Map m) throws Exception{
-		return sqlSession.selectList("getCuisine", m);
+	public CalendarBean getCuisine(Map m) throws Exception{
+		return sqlSession.selectOne("getCuisine", m);
 	}
 	
 	/* 식품 저장 */
@@ -80,8 +80,8 @@ public class CalendarDAOImpl {
 	}
 	
 	/* 식품 불러오기 */
-	public List<CalendarBean> getGrocery(Map m) throws Exception{
-		return sqlSession.selectList("getGrocery", m);
+	public CalendarBean getGrocery(Map m) throws Exception{
+		return sqlSession.selectOne("getGrocery", m);
 	}
 
 	public void setGroceryIn(Map m2) {

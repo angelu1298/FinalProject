@@ -76,6 +76,7 @@
 											<span><input type="radio" name="goal_ox${a }"
 												class="emo_wink" id="goal_high${a }"><label
 												for="goal_high${a }">높음</label></span>
+												111
 										</c:if>
 										<c:if test="${cal.cal_eval == 2 }">
 											<span><input type="radio" name="goal_ox${a }"

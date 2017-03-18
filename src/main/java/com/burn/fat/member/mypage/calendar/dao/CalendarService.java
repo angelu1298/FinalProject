@@ -22,13 +22,13 @@ public interface CalendarService {
 	public List<CalendarBean> getE_kcal(Map m) throws Exception;
 	
 	/* 운동_칼로리 가져오기2 */
-	public List<CalendarBean> getE_kcal2(Map m) throws Exception;
+	public CalendarBean getE_kcal2(Map m) throws Exception;
 	
 	/* 평가 값 저장하기 */
 	public void setEmo_eval(Map m) throws Exception;
 		
 	/* 평가 값 불러오기 */
-	public int getEmo_eval(Map m) throws Exception;
+	public List<CalendarBean> getEmo_eval(Map m) throws Exception;
 	
 	/* 월간 : 평가 불러오기 */
 	public List<CalendarBean> getTotal(int mem_no) throws Exception;
@@ -40,13 +40,13 @@ public interface CalendarService {
 	public void setCuisine(Map m) throws Exception;
 	
 	/* 식단 불러오기 */
-	public  List<CalendarBean> getCuisine(Map m) throws Exception;
+	public  CalendarBean getCuisine(Map m) throws Exception;
 	
 	/* 식품 저장 */
 	public void setGrocery(Map m) throws Exception;
 	
 	/* 식품 불러오기 */
-	public  List<CalendarBean> getGrocery(Map m) throws Exception;
+	public  CalendarBean getGrocery(Map m) throws Exception;
 
 	public void setGroceryIn(Map m2);
 

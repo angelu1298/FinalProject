@@ -13,6 +13,7 @@
 				$(".modal_bg").removeClass("off");
 				$(".modal_bg").animate({"opacity":"1"});
 				/*hidden으로 숨겨놓은 레시피 번호를 삭제 모달에 get방식으로 일러준다.*/
+					
 				var cus_no  = $(this).siblings(".cus_no").val();
 				var cus_cal = $(this).siblings(".cus_cal").val();
 				var cus_tt = $(this).parent("dt").children("strong").text().replace(" ","_").replace("+","_").replace("&","+");
@@ -63,6 +64,9 @@
 						<input type="submit" class="btn_srch" value="검색" />
 					</p>
 					<!--한줄-->
+						<input type="hidden" name="y" value=${y }>
+						<input type="hidden" name="m" value=${m }>
+						<input type="hidden" name="d" value=${d }>
 				</form>
 				<!-- //form -->
 				

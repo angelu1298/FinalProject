@@ -41,7 +41,7 @@ public class GroceryAction {
    /* GROCERY 오늘의 식단에 추가 모달창 */
    @RequestMapping(value="/groceryAddTodayOk.brn")
    public ModelAndView groceryAddTodayOk(
-            @RequestParam("grc_kcal") int grc_kcal, 
+            @RequestParam("grc_kcal") double grc_kcal, 
             @RequestParam("grc_tt") String grc_tt, 
             @RequestParam("wholeDay") String wholeDay,
             HttpServletRequest request,
@@ -72,14 +72,16 @@ public class GroceryAction {
       String d = calendarBean.getImsiD();
       
       String cal_date = y+m+d;
+      m2.put("y", y);
+      m2.put("m", m);
+      m2.put("d", d);
       m2.put("cal_date", cal_date);
-      System.err.println("cal_date = " + cal_date);
       
-      List<CalendarBean> ecalExist =this.calService.getE_kcal2(m2);
+      CalendarBean ecalExist =this.calService.getE_kcal2(m2);
       
       //마이페이지에 식단 저장
-      if(!ecalExist.isEmpty()){
-    	  if(ecalExist.get(0).getGrc_kcal()!=0)
+      if(ecalExist!=null){
+    	  if(ecalExist.getGrc_kcal()!=0)
     		  this.calService.setGroceryAdd(m2);
     	  else
     		  this.calService.setGrocery(m2);
@@ -102,6 +104,7 @@ public class GroceryAction {
        HttpSession session = request.getSession();
       findname = request.getParameter("findname");
       List<GroceryBean> groceryList = new ArrayList<GroceryBean>();
+      ModelAndView model = new ModelAndView("html_food/groceryList");
       
       int page = 1;
       
@@ -111,17 +114,19 @@ public class GroceryAction {
       if(request.getParameter("y") != null){
          String y = request.getParameter("y");
          calendarBean.setImsiY(y);
-         
+         model.addObject("y", y);
       }
       
       if(request.getParameter("m") != null){
          String m = request.getParameter("m");
          calendarBean.setImsiM(m);
+         model.addObject("m", m);
       }
       
       if(request.getParameter("d") != null){
          String d = request.getParameter("d");
          calendarBean.setImsiD(d);
+         model.addObject("d", d);
       }
       
       /********************************************/
@@ -166,7 +171,6 @@ public class GroceryAction {
       m.put("groceryfcount", groceryfcount);
       
       groceryList = groceryService.getGroceryList(m);
-      ModelAndView model = new ModelAndView("html_food/groceryList");
       
       model.addObject("groceryList", groceryList);
       model.addObject("groceryfcount", groceryfcount);
@@ -175,6 +179,7 @@ public class GroceryAction {
       model.addObject("maxpage", maxpage);
       model.addObject("startpage", startpage);
       model.addObject("endpage", endpage);
+    
       model.addObject("limit", limit);
       
       return model;
