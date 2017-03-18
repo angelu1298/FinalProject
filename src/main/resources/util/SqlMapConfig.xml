@@ -18,16 +18,9 @@
 	    <typeAlias alias="parkbean"    	type="com.burn.fat.park.model.ParkBean" />  
 	    <typeAlias alias="obsbean" 		type="com.burn.fat.board.oboard.model.ObsBean" />   
         <typeAlias alias="exercisebean" type="com.burn.fat.calc.exercise.model.ExerciseBean" />
-<<<<<<< HEAD
         <typeAlias alias="ebobean" type="com.burn.fat.board.eboard.model.EboardBean" />   
         <typeAlias alias="ecommBean" type="com.burn.fat.board.eboard.model.EcommBean" />   
         <typeAlias alias="exerBean" type="com.burn.fat.member.mypage.exercise.model.ExerBean" />
-=======
-        <typeAlias alias="myinfobean" 	type="com.burn.fat.member.mypage.myinfo.model.MyinfoBean" />
-        <typeAlias alias="ebobean" 		type="com.burn.fat.board.eboard.model.EboardBean" />   
-        <typeAlias alias="ecommBean" 	type="com.burn.fat.board.eboard.model.EcommBean" />   
-        <typeAlias alias="exerBean" 	type="com.burn.fat.member.mypage.exercise.model.ExerBean" />
->>>>>>> branch 'temp' of https://github.com/angelu1298/FinalProject
         <typeAlias alias="calendarBean" type="com.burn.fat.member.mypage.calendar.model.CalendarBean" />
         <typeAlias alias="ocommbean" type="com.burn.fat.board.oboard.model.OcommBean" />
 	</typeAliases>

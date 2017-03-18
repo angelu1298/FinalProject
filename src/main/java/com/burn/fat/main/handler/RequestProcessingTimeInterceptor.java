@@ -26,19 +26,10 @@ public class RequestProcessingTimeInterceptor extends HandlerInterceptorAdapter 
 		
 		if(session.getAttribute("mem_id")==null){ // 세션에 값이 없을경우,
 
-<<<<<<< HEAD
-			System.out.println("세션null에 걸렸나요");
-				
-=======
->>>>>>> branch 'temp' of https://github.com/angelu1298/FinalProject
 			response.sendRedirect("./Login.brn");
 			return false;
 			
 		} else { // 세션에 값이 있을 경우, 정상적으로 action을 수행한다.
-<<<<<<< HEAD
-			
-=======
->>>>>>> branch 'temp' of https://github.com/angelu1298/FinalProject
 			return true;
 		}
 	}
