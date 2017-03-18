@@ -65,7 +65,7 @@
 	
 	<!-- 월간 : 평가 불러오기 -->
 	<select id="getTotal" parameterType="int" resultType="calendarBean">
-		select * from calendar
+		select distinct cal_date, y, m, d, cal_eval from calendar
 			where mem_no = #{mem_no}
 	</select>
 	

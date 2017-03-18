@@ -5,6 +5,15 @@
 <script>
     $(function(){
     	
+    	//평가 유효성검사
+    	$.each($(".saveDB"),function(){
+    		$(this).on('click',function(){
+    			if($('.exer').text()==''){
+    				alert('')
+    			}
+    		})
+    	})
+    	
    //---- 아코디언 ------------------------------------------------------------------------
         
       $('.tablelist ul li div').css({"display":"none"});
@@ -258,27 +267,29 @@
    	 
    	 var emo = $(emo_name).val();
 
-   	 $.ajax({
-   		 data : {
-   	  		"y" : y,
-   	  		"m" : m,
-   	  		"d" : d,
-   	  		"emo_eval" : emo		
-   	  		},
-   	  		type : "post",
-   	  		url : "cal_eval.brn",
-   	  		success : function(data) {
-   	  			if(data=='1')
-					alert("평가 등록 성공!");  
-				else
-					alert('이미 평가 하셨습니다.');
-   	  		},
-   	  		error : function(data, status) {
-   	  			alert('평가 등록 실패'+data+status);
-   	  		}
-   	  });
+	   	 $.ajax({
+	   		 data : {
+	   	  		"y" : y,
+	   	  		"m" : m,
+	   	  		"d" : d,
+	   	  		"emo_eval" : emo		
+	   	  		},
+	   	  		type : "post",
+	   	  		url : "cal_eval.brn",
+	   	  		success : function(data) {
+	   	  			if(data=='1')
+						alert("평가 등록 성공!");  
+					else if(data=='0')
+						alert('이미 평가 하셨습니다.');
+					else
+						alert('오늘의 칼로리를 입력하세요');
+	   	  		},
+	   	  		error : function(data, status) {
+	   	  			alert('평가 등록 실패'+data+status);
+	   	  		}
+	   	  });
    	  			
-      }; 
+  }; 
 
 </script>
 
@@ -317,7 +328,7 @@
                <div class="acco">
 	               <dl>
 	                  <dt><button class="m_exerclick" id="exer_${k}" style="color:red">운동</button></dt>
-	                  <dd class="morning_result" >
+	                  <dd class="morning_result exercise${k}" >
 	                  <!-- 운동칼로리 -->
 	                  </dd>
 	               </dl>
@@ -340,7 +351,7 @@
 	            <div class="acco">
 	               <dl>
 					<dt><button class="l_exerclick" id="exer_${k}" style="color:red">운동</button></dt>
-	                  <dd class="lunch_result">
+	                  <dd class="lunch_result exercise${k}">
 	                  </dd>
 	               </dl>
 	               <dl class="list">
@@ -362,7 +373,7 @@
 	            <div class="acco">
 	            <dl>
 	               	<dt><button class="d_exerclick" id="exer_${k}" style="color:red">운동</button></dt>
-	                  <dd class="dinner_result">
+	                  <dd class="dinner_result exercise${k}">
 	                  </dd>
 	            </dl>
 	            <dl class="list">

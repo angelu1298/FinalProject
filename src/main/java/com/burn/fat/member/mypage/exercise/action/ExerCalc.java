@@ -98,22 +98,23 @@ public class ExerCalc {
 		int result = 0;
 		List<CalendarBean> calbean = this.calService.getEmo_eval(m1);
 		
-		if(calbean.isEmpty()){
-			this.calService.setEmo_eval(m1);
-			result=1;
-		}else{
 		//평가값 저장
+		if(!calbean.isEmpty()){ //해당 날짜의 값이 있으면
 			int check =0;
-			for(int i = 0; i< calbean.size();i++){
-				if(calbean.get(i).getCal_eval() !=0){
-					check++;
+			for(int i = 0; i< calbean.size();i++){ //가지고 있는 모든 행에 대해서 
+				if(calbean.get(i).getCal_eval() !=0){ //평가 값이 한개라도 0이 아니면
+					check++;						//평가했으므로 체크에 값을 올린다.
 				}
 				
 			}
-			if(check!=0){
-				this.calService.setEmo_eval(m1);
+			if(check!=0){ 				//체크 값이 0이 아니므로 평가 했음 - 평가했음 알럿
+				result=0;
+			}else{						//체크 값이 0이므로 평가 해야함  단, 업데이트 문이므로 자료가 반드시 한개 이상 존재해야함
+				this.calService.setEmo_eval(m1);		//업데이트 문 (평가 저장)
 				result=1;
 			}
+		}else{
+			result=2;				//데이터가 없는 경우 알럿으로 칼로리를 저장하라고 알려주어야 함
 		}
 		
 		out.print(result);
@@ -130,6 +131,7 @@ public class ExerCalc {
 		HttpServletResponse response,
 		HttpSession session) throws Exception{
 			
+			System.err.println("@액션오는가@@@@@@@@@@22");
 		int mem_no = (Integer) session.getAttribute("mem_no");
 		String cal_date = y+m+d;
 			
@@ -138,10 +140,19 @@ public class ExerCalc {
 		m1.put("mem_no", mem_no);
 			
 		//평가값 불러오기
-		List<CalendarBean> calbean = this.calService.getEmo_eval(m1);
 		List<CalendarBean> calendarList = this.calService.getE_kcal(m1);
+		List<CalendarBean> calbean = this.calService.getEmo_eval(m1);
 		
-		int cal_eval = calbean.get(0).getCal_eval();
+		int cal_eval = 0;
+		//평가값 저장
+		if(!calbean.isEmpty()){ //해당 날짜의 값이 있으면
+			for(int i = 0; i< calbean.size();i++){ //가지고 있는 모든 행에 대해서 
+				if(calbean.get(i).getCal_eval() !=0){ //평가 값이 한개라도 0이 아니면
+					cal_eval=calbean.get(i).getCal_eval();
+				}
+			}
+		}
+		System.out.println(cal_eval+"@@@@@@@@@@@@@@@@@@@@@@@22");
 		ModelAndView mv = new ModelAndView("html_mypage/mypage_main");
 		mv.addObject("cal_eval", cal_eval);
 		mv.addObject("cal_date", cal_date);
