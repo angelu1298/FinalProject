@@ -78,11 +78,11 @@
                   <%--       <%@ include file="cal_diet_result.jsp" %> --%>
                   
                      {dietbean.reduceKg} kg을 {dietbean.goalDay} 일 안에 감량하려면 <br/>
-                     매일 섭취하는 칼로리에서 - {dietbean.reduceKcal}kcal 줄여나가야함 <br/>
-                     운동{dietbean.exec_percent}% 식사 {dietbean.meal_percent}% <br/>
-                     운동 : - {dietbean.reduceExec}kcal <br/>
-                     식사 : 하루 {dietbean.reduceMeal}kcal 먹기 <br/>
-                     운동으로 - {dietbean.reduceExec}kcal을 소모하려면 <br/>
+			                     매일 섭취하는 칼로리에서 - {dietbean.reduceKcal}kcal 줄여나가야함 <br/>
+			                     운동{dietbean.exec_percent}% 식사 {dietbean.meal_percent}% <br/>
+			                     운동 : - {dietbean.reduceExec}kcal <br/>
+			                     식사 : 하루 {dietbean.reduceMeal}kcal 먹기 <br/>
+			                     운동으로 - {dietbean.reduceExec}kcal을 소모하려면 <br/>
                         db데이터~
                      
                      </div>
@@ -107,7 +107,7 @@
 					</li>
 					<li>
 						 <p><strong>현재체중</strong><input type="text" name="now_weight" class="now_weight" /><span>kg</span></p>
-                      	 <p><strong>목표날짜</strong><input type="text" name="goalDay" class="goalDay" /></p>
+                      	 <p><strong>목표날짜</strong><input type="text" name="goalDay" class="goalDay" /><span>일</span></p>
                      </li>
                   
                

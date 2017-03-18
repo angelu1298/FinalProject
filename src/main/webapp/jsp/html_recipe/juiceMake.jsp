@@ -9,7 +9,8 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery-ui-custom.js"></script> 
  
 		<script>
-		
+	
+	
       		$(function () {
       			
                 $('ul.vegitablelist > li').draggable({
@@ -24,8 +25,7 @@
                     accept: '.juiceitemlist > ul > li',
                     start: function (event, ui) {
                    	 $(ui.draggable).fadeOut(function () {
-                   		 alert("");
-                        	$(this).css({"width":"100px"});
+                        $(this).css({"width":"100px"});
                    	 });
                    }, drop: function (event, ui) {
                         $(ui.draggable).fadeOut(function () {
@@ -55,22 +55,41 @@
     			// 삭제버튼 모달창으로 페이지 load
     			$(".btn_make").click(function(){
     				
-    				$.ajax({
-    					data : $("form").serialize(),
-    					type : "get",
-    					url : "juiceMake02.brn",
-    					success : function(data) { 
-	    					$('.modal_bg').removeClass("off");
-	    					$('.modal_bg').load("juiceMake02.brn");
-    					}, error : function(data, status) {
-    						
-    					}, complete : function(){
-    						
-    					}
-    				}) 
+    				if( $(".in_blender ul li").length == 0 ){
+
+    					var msg = "과일이나 채소를 1가지 이상 추가해주세요";
+    					messageFunc(msg); 
+    					
+    				} else {
+    					
+    					$.ajax({
+        					data : $("form").serialize(),
+        					type : "get",
+        					url : "juiceMake02.brn",
+        					success : function(data) { 
+    	    					$('.modal_bg').removeClass("off");
+    	    					$('.modal_bg').load("juiceMake02.brn");
+        					}, error : function(data, status) {
+        						
+        					}, complete : function(){
+        						
+        					}
+        				}) 
+    					
+    				}
     				
     			})  
             });
+
+			function messageFunc(msg){
+				
+				$(".modal_bg").load("alert_page.brn");
+				$(".layer_content .message").html( "<p>" + msg + "</p>");
+				
+				$(".modal_bg").removeClass("off");
+				$(".modal_bg").animate({"opacity":"1"});
+				
+			}
       		
 	   		</script>
 

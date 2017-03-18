@@ -13,20 +13,20 @@
 			
 		<!--로그인 영역-->
 		<div class="login_area">
-
-			<div class="message_box">
 		
-				<h4>LOGOUT</h4>
+			<h4 class="ml50">LOGIN</h4>
+			<div class="login_box">
+			
 				<h5>정상적으로 로그아웃 되었습니다.</h5>
 				
-				<ul>
-					<li><a href="./Login.brn">로그인하기</a></li>
-					<li><a href="/">메인으로 가기</a></li>
-				</ul>
-		
+				<div class="btnS_area mt20">
+					<a href="./Login.brn">로그인하기</a>
+					<a href="/">메인으로 가기</a>
+				</div>
+				
 			</div>
-
-	</div>
+			
+		</div>
 	<!--//로그인 영역-->
 	</div>
 	<!-- 서브컨텐츠 영역 END -->
