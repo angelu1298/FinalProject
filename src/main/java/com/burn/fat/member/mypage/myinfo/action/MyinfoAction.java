@@ -122,7 +122,7 @@ public class MyinfoAction {
  		Calendar cal2 = Calendar.getInstance();
  		map.put("monthEarly",cal2.get(Calendar.YEAR)*10000+(cal2.get(Calendar.MONTH)+1)*100+cal2.getActualMinimum(Calendar.DATE));
  		map.put("monthEnd",cal2.get(Calendar.YEAR)*10000+(cal2.get(Calendar.MONTH)+1)*100+cal2.getActualMaximum(Calendar.DATE));
- /*		List<Double> average = service.getAverage(map);
+ 		List<Double> average = service.getAverage(map);
  		Iterator<Double> itr = average.iterator();
  		double avgsum = 0;
  		while(itr.hasNext()){
@@ -133,11 +133,9 @@ public class MyinfoAction {
  		if(all!=0){
  			avrgPerM=((double)avgsum) / all;
  		}
-		System.out.println("회원 평균 합 avgsum : "+avgsum + " 전체 회원 수 "+all );
-		System.out.println(avrgPerM);*/
 		
 		contM.addObject("myinfobean", myinfobean);
-		/*contM.addObject("avrgPerM",avrgPerM);*/
+		contM.addObject("avrgPerM",avrgPerM);
 		
 		return contM;
 	}

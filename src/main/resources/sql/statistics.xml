@@ -3,29 +3,29 @@
 
 <mapper namespace="statistic">
 	<select id="getEachAv" parameterType="java.util.Map" resultType="double">
-		select avg(cal_eval)
-		from calendar
-		where to_number(cal_date)>= #{monthEarly} and to_number(cal_date)&lt;=#{monthEnd}
+		select round(avg(cal_eval), 3)
+		from calendardistinct
+		where cal_date >= #{monthEarly} and cal_date &lt;=#{monthEnd}
 		group by mem_no
 	</select>
 	<select id="getMyAverage" parameterType="java.util.Map" resultType="double">
-		select avg(cal_eval)
-		from calendar
-		where to_number(cal_date)>= #{monthEarly} and to_number(cal_date)&lt;=#{monthEnd} and mem_no=#{mem_no}
+		select round(avg(cal_eval), 3)
+		from calendardistinct
+		where cal_date >= #{monthEarly} and cal_date&lt;=#{monthEnd} and mem_no=#{mem_no}
 	</select>
 	<select id="getMemNum" parameterType="java.util.Map" resultType="int">
 		select count(distinct mem_no)
-		from calendar
-		where to_number(cal_date)>= #{monthEarly} and to_number(cal_date)&lt;=#{monthEnd}
+		from calendardistinct
+		where cal_date >= #{monthEarly} and cal_date &lt;=#{monthEnd}
 	</select>
 	<select id="entireMemNum" parameterType="int" resultType="int">
 		select count(distinct mem_no)
-		from calendar
-		where to_number(cal_date)=#{yesterday}
+		from calendardistinct
+		where cal_date =#{yesterday}
 	</select>
 	<select id="getGoalNum" parameterType="int" resultType="int">
 		select count(distinct c.mem_no)
-		from calendar c, member m
-		where to_number(cal_date)=#{yesterday} and m.mem_w = m.GOAL_W and c.mem_no= m.mem_no
+		from calendardistinct c, member m
+		where cal_date =#{yesterday} and m.mem_w = m.GOAL_W and c.mem_no= m.mem_no
 	</select>
 </mapper>

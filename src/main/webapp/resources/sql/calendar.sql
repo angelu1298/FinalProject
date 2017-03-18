@@ -22,3 +22,7 @@ select cu.cus_tt
 from cuisine cu, calendar ca
 where ca.cus_no = cu.cus_no
 
+create or replace view calendardistinct
+as 
+select distinct CAL_DATE, cal_eval, mem_no
+from calendar
