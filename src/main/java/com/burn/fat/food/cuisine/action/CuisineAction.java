@@ -1,17 +1,10 @@
 package com.burn.fat.food.cuisine.action;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,13 +12,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.burn.fat.food.cuisine.dao.CuisineServiceImpl;
 import com.burn.fat.food.cuisine.model.CuisineBean;
-import com.burn.fat.food.juice.model.RecipeBean;
 import com.burn.fat.member.mypage.calendar.dao.CalendarService;
 import com.burn.fat.member.mypage.calendar.model.CalendarBean;
 

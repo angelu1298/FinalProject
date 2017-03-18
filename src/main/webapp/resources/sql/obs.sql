@@ -12,8 +12,6 @@ create table OBOARD(
 	MEM_ID 		VARCHAR2(50)		/*자유게시판 글 작성자 아이디*/
 );
 
-drop table oboard cascade constraint;
---OBOARD 테이블에 MEM_NO를 MEMBER 테이블의 MEM_NO로 외래키 설정 쿼리
 
 ALTER TABLE OBOARD ADD CONSTRAINT OBOARD_MEM_NO_FK FOREIGN KEY 
 		(MEM_NO) REFERENCES MEMBER(MEM_NO);
@@ -21,26 +19,22 @@ ALTER TABLE OBOARD ADD CONSTRAINT OBOARD_MEM_NO_FK FOREIGN KEY
 create sequence O_NO_SEQ
                 increment by 1 start with 1 nocache;
 
-drop sequence o_no_seq;
-
 
 create sequence ocomm_no_seq
                 increment by 1 start with 1 nocache;
-select * from oboard;
 
 CREATE TABLE OCOMMENT(
-	OCOMM_NO NUMBER PRIMARY KEY,	/*자유게시판의 코멘트번호*/
-	MEM_NO NUMBER NOT NULL,		/*자유게시판의 작성자 회원번호*/
-	MEM_ID VARCHAR2(50) NOT NULL, 
-	OCOMM_CT VARCHAR2(600) NOT NULL,/*자유게시판의 코멘트 내용*/
-	OCOMM_DT DATE DEFAULT SYSDATE,	/*자유게시판의 작성날짜*/
-	OCOMM_RE_REF NUMBER,		/*자유게시판의 코멘트 답변 참조글 번호*/
-	OCOMM_RE_LEV NUMBER,		/*자유게시판의 코멘트 답변 수준*/
-	OCOMM_RE_SEQ NUMBER,		/*자유게시판의 코멘트 답변 순서*/
-	O_NO NUMBER			/*자유게시판의 참조글 번호*/
+	OCOMM_NO 		NUMBER PRIMARY KEY,	/*자유게시판의 코멘트번호*/
+	MEM_NO 			NUMBER NOT NULL,		/*자유게시판의 작성자 회원번호*/
+	MEM_ID 			VARCHAR2(50) NOT NULL, 
+	OCOMM_CT 		VARCHAR2(600) NOT NULL,/*자유게시판의 코멘트 내용*/
+	OCOMM_DT 		DATE DEFAULT SYSDATE,	/*자유게시판의 작성날짜*/
+	OCOMM_RE_REF 	NUMBER,		/*자유게시판의 코멘트 답변 참조글 번호*/
+	OCOMM_RE_LEV 	NUMBER,		/*자유게시판의 코멘트 답변 수준*/
+	OCOMM_RE_SEQ 	NUMBER,		/*자유게시판의 코멘트 답변 순서*/
+	O_NO 			NUMBER			/*자유게시판의 참조글 번호*/
 );
 
-drop table ocomment;
 
 --OCOMMENT 테이블에 MEM_NO를 MEMBER 테이블의 MEM_NO로 외래키 설정 쿼리
 ALTER TABLE OCOMMENT ADD CONSTRAINT OCOMMENT_MEM_NO_FK FOREIGN KEY 

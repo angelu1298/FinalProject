@@ -9,10 +9,6 @@ start with 1;
 create sequence rcp_no_seq
 start with 1;
 
-select * from gboard;
-select * from gboardlist;
-select * from gcomment;
-
 
 create table GROCERY(
 	GRC_NO   NUMBER(5) constraint GRC_NO_PK primary key,--��ȣ	NUMBER	5	NN	PK
@@ -79,17 +75,6 @@ alter table RECIPE
 add constraint rec_mem_no_FK foreign key (mem_no) 
 references member(mem_no);
 
-insert into juice values(1,1,'사과',100,49,13.1,0.2,0.1,16,0,0.04,0);
-insert into juice values(2,1,'블루베리',100,57,14.5,   0.7,   0.3,   1,   0,   0,   0);
-insert into juice values(3,1,'포도',100,  46,12.2,0.5,   0.1,   0,   0,   0.02,   0);
-insert into juice values(4,1,'딸기',30,9.6,2.01,0.39,   0.12,   0.6,   0,   0,   0);
-insert into juice values(5,1,'키위',100,64,   14.8,   0.8,   1,   1.257,   0,   0.14,   0);
-insert into juice values(6,1,'자몽',100,31,   7.6,   0.7,   0.1,   1,   0,   0,   0);
-insert into juice values(7,1,'바나나',100,   80,   21.2,   1,   0,   1,   0,   0,0);
-
-insert into juice values(21,   2,   '케일',   70,   30.1,   5.11,   3.5,   0.42,   30.1,   0,   0,   0);
-insert into juice values(22,   2,   '셀러리',   70,   18.2,   3.85,   1.26,   0.14,   105,   0,   0,   0);
-
 
 create table park (
 	prk_no  	number constraint prk_no_PK primary key,
@@ -151,38 +136,6 @@ select gcomm_no, m.mem_id, gcomm_ct, gcomm_dt, gcomm_re_ref, gcomm_re_lev, gcomm
 from gcomment g, member m 
 where g.mem_no = g.mem_no;
 
-
-
-
-drop table gboard cascade constraint;
-drop table gcomment cascade constraint;
-drop sequence g_no_seq;
-drop sequence gcomm_no_seq;
- 
-DROP TABLE RECIPE;
-drop table GROCERY;
-drop table CUISINE;
-DROP TABLE JUICE;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- insert into member values (1,'jinsso','1234','���ҿ�',2,sysdate,'01077777777','01000000000',43434,'���ּҤ�������������','������������',
- 'jsy9101@gmail.com',0,0,sysdate,0,sysdate,'fsafasdfas','asdfasdfasd'
- );
 
 alter table gboard 
 drop constraint gb_mem_no_FK ;

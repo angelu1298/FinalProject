@@ -60,11 +60,11 @@ public class ExerCalc {
 		
 		ModelAndView mv = new ModelAndView("html_mypage/mypage_main_weekly");
 			
-			List<CalendarBean> calendarList2 = this.calService.getE_kcal(m3);
+			List<CalendarBean> calendarList = this.calService.getE_kcal(m3);
 			mv.addObject("y",y);
 			mv.addObject("m",m2);
 			mv.addObject("d",d2);
-			mv.addObject("calendarList2", calendarList2);
+			mv.addObject("calendarList", calendarList);
 			return mv;
 			
 			
@@ -436,7 +436,6 @@ public class ExerCalc {
 		
 		
 		String cal_date = y+m+d;
-		System.err.println("---YMDcal_date="+ cal_date);
 		//운동_칼로리_저장
 		Map<String, Object> m2 = new HashMap<String, Object>();
 		m2.put("kcal", kcal2);//칼로리
@@ -448,7 +447,6 @@ public class ExerCalc {
 		m2.put("mem_no", mem_no);//회원번호
 		
 		String erc_nm = exerbean.getImsiEN();
-		System.err.println("---erc_nm="+ erc_nm);
 		m2.put("exer_tt", erc_nm);//운동제목
 		
 		 List<CalendarBean> ecalExist =this.calService.getE_kcal2(m2);
@@ -496,7 +494,17 @@ public class ExerCalc {
 		m5.put("mem_no", mem_no);//회원번호
 		m5.put("exer_tt", erc_nm);//운동제목
 		
-		this.calService.setE_kcal(m5);
+		List<CalendarBean> ecalExist =this.calService.getE_kcal2(m5);
+	      
+	      //마이페이지에 식단 저장
+	      if(!ecalExist.isEmpty()){
+	    	  if(ecalExist.get(0).getE_kcal()!=0)
+	    		  this.calService.setE_kcalAdd(m5);
+	    	  else
+	    		  this.calService.setE_kcalUp(m5);
+	      }else
+	    	  this.calService.setE_kcal(m5);
+		
 		
 		response.sendRedirect("goweekly.brn?y="+y+"&m="+m+"&d="+d);		
 	}
@@ -530,7 +538,17 @@ public class ExerCalc {
 		m4.put("mem_no", mem_no);//회원번호
 		m4.put("exer_tt", erc_nm);//운동제목
 		
-		this.calService.setE_kcal(m4);
+		List<CalendarBean> ecalExist =this.calService.getE_kcal2(m4);
+	      
+	      //마이페이지에 식단 저장
+	      if(!ecalExist.isEmpty()){
+	    	  if(ecalExist.get(0).getE_kcal()!=0)
+	    		  this.calService.setE_kcalAdd(m4);
+	    	  else
+	    		  this.calService.setE_kcalUp(m4);
+	      }else
+	    	  this.calService.setE_kcal(m4);
+		
 		
 		response.sendRedirect("goweekly.brn?y="+y+"&m="+m+"&d="+d);		
 	}

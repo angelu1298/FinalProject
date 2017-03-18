@@ -1,6 +1,9 @@
 package com.burn.fat.member.mypage.calendar.action;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.burn.fat.member.mypage.calendar.dao.CalendarService;
+import com.burn.fat.member.mypage.calendar.model.CalendarBean;
 
 @Controller
 public class CalendarAction {
@@ -29,30 +33,33 @@ public class CalendarAction {
 								HttpServletResponse response,
 								HttpSession session) throws Exception {
 		
-		 System.out.println("넘어온 월 : " + m);
 		 Calendar cal = Calendar.getInstance();
 		 cal.set(y,m-1,d);
 		
-		 System.out.println("계산할 월 : " + (m-1));//3
-		 System.out.println("날짜 = " +  d);
 		  
 		 int endday = cal.getActualMaximum(Calendar.DATE);
 		 
-		 System.out.println("마지막 일:"+endday);//
 		 
 		 d=d+7;
 		 
-		 System.out.println("다음주 일 = " + d);
 		 
 		if( d > endday ){
 			m = m+1;
 			d = d-endday;
 		}
-
+		int mem_no = (Integer) session.getAttribute("mem_no");
+		String cal_date = String.valueOf(y+m+d);
+		
+		Map<String, Object> m3 = new HashMap<String, Object>();
+		m3.put("cal_date", cal_date);//해당 날짜
+		m3.put("mem_no", mem_no);//회원번호
+		
+		List<CalendarBean> calendarList = this.calendarService.getE_kcal(m3);
 		ModelAndView mv = new ModelAndView("html_mypage/mypage_main_weekly");
 		mv.addObject("y",y);
 		mv.addObject("m",m);
 		mv.addObject("d",d);
+		mv.addObject("calendarList",calendarList);
 		
 		return mv;
 	}
@@ -67,9 +74,6 @@ public class CalendarAction {
 	     
 	      int endday = cal.getActualMaximum(Calendar.DATE);
 	      
-	      System.out.println(endday);
-
-	      System.out.println("전달의 마지막 일:" + endday);
 
 	      d=d-7;
 	      
@@ -77,13 +81,21 @@ public class CalendarAction {
 	         m = m - 1;
 	         d = endday + d;
 
-	         System.out.println("d:" + d);
 	      }
 
-	      ModelAndView mv = new ModelAndView("html_mypage/mypage_main_weekly");
-	      mv.addObject("y", y);
-	      mv.addObject("m", m);
-	      mv.addObject("d", d);
+	      int mem_no = (Integer) session.getAttribute("mem_no");
+			String cal_date = String.valueOf(y+m+d);
+			
+			Map<String, Object> m3 = new HashMap<String, Object>();
+			m3.put("cal_date", cal_date);//해당 날짜
+			m3.put("mem_no", mem_no);//회원번호
+			
+			List<CalendarBean> calendarList = this.calendarService.getE_kcal(m3);
+			ModelAndView mv = new ModelAndView("html_mypage/mypage_main_weekly");
+			mv.addObject("y",y);
+			mv.addObject("m",m);
+			mv.addObject("d",d);
+			mv.addObject("calendarList",calendarList);
 
 	      return mv;
 	}

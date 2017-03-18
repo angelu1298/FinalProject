@@ -16,7 +16,7 @@
 	//----- 아침,점심,저녁 눌렀을 때 로드 --------------------------------------------------------------------         
           
           //아침,점심,저녁 로드 함수
-          function load_grocery(b, wholeDay, brn, divclass) {
+          function load_data(b, wholeDay, brn, divclass) {
          	   
          	 var y = $('.year_'+b).val();
            	 var m = $('.month_'+b).val(); 
@@ -147,17 +147,17 @@
          		/* 운동 로드 */
 	     	    var brn = 'goweekly_m_click.brn';
 	     	    var divclass = '.morning_result';
-                load_grocery(grade, wholeDay, brn, divclass);
+                load_data(grade, wholeDay, brn, divclass);
          		
 				/* 음식 로드 */
 				var brn = 'goweekly_m_food.brn';
 		    	var divclass = '.morning_food';
-		      	load_grocery(grade, wholeDay, brn, divclass)
+		    	load_data(grade, wholeDay, brn, divclass)
          		
          		/* 식품 로드 */
         	    var brn = 'goweekly_m_gro.brn';
         	    var divclass = '.morning_grocery';
-        	    load_grocery(grade, wholeDay, brn, divclass);
+        	    load_data(grade, wholeDay, brn, divclass);
          		
           });
             
@@ -169,17 +169,17 @@
 	     	   /* 운동 로드 */
 	     	   var brn = 'goweekly_l_click.brn';
 		       var divclass = '.lunch_result';
-	           load_grocery(grade, wholeDay, brn, divclass)
+	           load_data(grade, wholeDay, brn, divclass)
          		
 	     	  	/* 음식 로드 */
 		        var brn = 'goweekly_l_food.brn';
 		        var divclass = '.lunch_food';
-		        load_grocery(grade, wholeDay, brn, divclass)
+		        load_data(grade, wholeDay, brn, divclass)
          		 
          		/* 식품 로드 */
                 var brn = 'goweekly_l_gro.brn';
                 var divclass = '.lunch_grocery';
-                load_grocery(grade, wholeDay, brn, divclass);
+                load_data(grade, wholeDay, brn, divclass);
                 
 	       });
      
@@ -192,17 +192,17 @@
       			/* 운동 로드 */
       			var brn = 'goweekly_d_click.brn';
       		    var divclass = '.dinner_result';
-      	        load_grocery(grade, wholeDay, brn, divclass)
+      		  	load_data(grade, wholeDay, brn, divclass)
       	          
       			/* 음식 로드 */
 		    	var brn = 'goweekly_d_food.brn';
 		    	var divclass = '.dinner_food';
-      			load_grocery(grade, wholeDay, brn, divclass);
+		    	load_data(grade, wholeDay, brn, divclass);
       			
       			/* 식품 로드 */
       	        var brn = 'goweekly_d_gro.brn';
       	        var divclass = '.dinner_grocery';
-      	        load_grocery(grade, wholeDay, brn, divclass)
+      	      	load_data(grade, wholeDay, brn, divclass)
       	          
 	       });	
     
@@ -288,10 +288,10 @@
   <!-- 본문내용 -->
   <ul class="maelist">
       
-<c:forEach var="k" begin="0" end="6" step="1">
+<c:forEach var="k" begin="0" end="6" step="1" >
 <li id="wd_${k}">
 <!-- DB에 값이 있을경우 -->
-	<c:if test="${!empty calendarList2}">
+	<c:if test="${!empty calendarList}">
                <p class="mclick morning_click${k}">아침</p>
                <div class="acco">
 	               <dl>
@@ -372,7 +372,7 @@
 	</c:if>
 
 <!-- DB에 값이 없을 경우 -->
-<c:if test="${empty calendarList2}">
+<c:if test="${empty calendarList}">
    <p>아침</p>
                <div class="acco">
                <dl>
@@ -462,9 +462,6 @@
 
          }
       }
-
-      /* $(".no").attr("disabled",true);
-      $(".no").attr("value","x"); */
       $(".no").html("<p class=\"nodata\">해당 날짜의 데이터는 아직 입력할 수 없습니다.</p>");
 
    });
@@ -488,44 +485,16 @@
 
       intDayCnt1 = 1 - i;
       intDayCnt2 = 7 - i;
-      /*    if ((i > 0) && (i < 7)) { //기준일 월~토
-         }
-       */
-      /* else if (i == 0) { //기준일이 일요일일때
-         intDayCnt1 = 1;
-         intDayCnt2 = 7;
-      }
-       */
       for (var a = 0; a < 7; a++) {
 
          //기준일의 주의 월요일의 날짜와 토요일의 날짜
          var Cal_st = new Date(arrday.getFullYear(), arrday.getMonth(),
                ((arrday.getDate() - 1) + a) + intDayCnt1);
 
-        //------------------------------------
-         /* //년
-         var aa_year = (Cal_st.getFullYear());
-         //월
-         var aa_month = (Cal_st.getMonth() + 1);
-         //일
-         var aa_day = (Cal_st.getDate()); */
-         
-//          $("#").attr("value",aa_year);
-         
-        /*  var year = '.year_' + a;
-         $(year).attr("value",aa_year);
-         
-         var month = '.month_' + a;
-         $(month).attr("value",aa_month);
-         
-         var day = '.day_' + a;
-         $(day).attr("value",aa_day); */
-       //------------------------------------
          
          var st_day = (Cal_st.getFullYear()) + "년 "
                + (Cal_st.getMonth() + 1) + "월 " + (Cal_st.getDate())
                + "일 " + week[(Cal_st.getDay())] + "요일";
-         //alert((Cal_st.getDate()));
 
          if (("" + (Cal_st.getMonth() + 1)).length == 1) {
             var Mon = "0" + (Cal_st.getMonth() + 1);
@@ -554,10 +523,6 @@
          var w = '#w_' + a;
          $(w).append(st_day);
          
-         
-         //document.getElementById("w_" + a).innerHTML += st_day;
-
-         //alert('total 찍은:' + total + '/ today 오늘:' + today + " 비교 " + prepto);
 
          if (today < prepto) {
 
@@ -571,15 +536,12 @@
 
       $("#addju").append('<span>' + ju + '째 주</span>');
 
-      //alert('this week : ' + ju);
    };
 
    function getWeekNo(date) {
 
       var day = date.getDate()
 
-      //get weekend date
-      //day += (date.getDay() == 1 ? 0 : 7 - date.getDay() + 1);
       day +=  7 - date.getDay() + 1;
       
       
