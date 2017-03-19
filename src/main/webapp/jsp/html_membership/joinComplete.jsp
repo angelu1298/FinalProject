@@ -19,7 +19,8 @@
 		<div class="subContent nobg">
 			<div class="login_Complete_area">
 				<div class="login_Complete_box">
-					<p><strong>${sessionScope.mem_id }</strong> 님 <font color="red">Burnning Fat</font> 회원가입에 성공하셨습니다!<br>
+					<p><strong>${sessionScope.mem_id }</strong> 님
+					<strong>Burnning Fat</strong> 회원가입에 성공하셨습니다!<br>
 					앞으로 함께 열심히 다이어트를 해봐요!!</p>
 				</div>
 			</div>

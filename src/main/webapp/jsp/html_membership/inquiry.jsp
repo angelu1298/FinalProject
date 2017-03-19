@@ -13,41 +13,22 @@
 		<div class="subContent">
 			  <h4>문의메일 보내기</h4>
 			  <form action="inquiry_ok.brn" method="post">   
-			  				
-						<div class="common_write_box">
-							<table>
-							<colgroup>
-							<col width="148px">
-							<col width="100%"> 
-							</colgroup>
-							<tbody>
-							
-							<tr>
-								<th>메일</th>
-								<td>
-									<input type="text" id="mail" name="mail" size="120" style="width:100%" placeholder="메일을 입력해주세요" class="form-control" >
-						      </td>
-							</tr>
-							<tr>
-								<th>제목</th>
-								<td>
-									<input type="text" id="title" name="title" size="120" style="width:100%" placeholder="제목을 입력해주세요" class="form-control" >
-								</td>
-							</tr>
-							<tr>
-								<th>내용</th>
-								<td>
-									<textarea id="content" name="content" cols="120" rows="12" style="width:100%; resize:none" placeholder="내용#" class="form-control"></textarea>
-			   					</td>
-							</tr>
-						</tbody>
-					</table>
-					</div>
-					
-					<div class="btnL_area mt25">
+			  	<div align="center"><!-- 메일 주소 -->
+			      <input type="text" id="mail" name="mail" size="120" style="width:100%" placeholder="메일을 입력해주세요" class="form-control" >
+			    </div>
+			    <p> 
+			    <div align="center"><!-- 제목 -->
+			      <input type="text" id="title" name="title" size="120" style="width:100%" placeholder="제목을 입력해주세요" class="form-control" >
+			    </div>
+			    <p>
+			    <div align="center"><!-- 내용 --> 
+			      <textarea id="content" name="content" cols="120" rows="12" style="width:100%; resize:none" placeholder="내용#" class="form-control"></textarea>
+			    </div>
+			   	
+			   	<div class="btnL_area mt25">
 							<input type="reset" value="다시 작성하기">
 							<input type="submit" value="확인">
-					</div>
+				</div>
 			  </form>
 		</div>
 		

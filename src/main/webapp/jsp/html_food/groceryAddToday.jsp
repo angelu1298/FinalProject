@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ page import="java.io.*" %>
+<%@ page import="java.net.*" %>
    
       <script src="${pageContext.request.contextPath}/resources/js/angular.js"></script>
                
@@ -34,6 +37,12 @@
             
          </script>
       
+		<%
+			request.setCharacterEncoding("UTF-8");
+			String grc_tt = request.getParameter("rcp_tt");
+			String decodeResult = URLDecoder.decode(grc_tt, "UTF-8");
+		%>
+		
       <div class="modal_area size_medium">
       <h1>오늘의 섭취 목록에 추가<span class="btn_close">x</span></h1>
       

@@ -16,7 +16,7 @@
 					
 				var cus_no  = $(this).siblings(".cus_no").val();
 				var cus_cal = $(this).siblings(".cus_cal").val();
-				var cus_tt = $(this).parent("dt").children("strong").text().replace(" ","_").replace("+","_").replace("&","+");
+				var cus_tt = encodeURI(encodeURIComponent($(this).parent("dt").children("strong").text());
 				$(".modal_bg").load("cuisineAddToday.brn?cus_no=" + cus_no + "&cus_tt=" + cus_tt +  "&cus_cal=" + cus_cal); 
 				
 			})
@@ -87,10 +87,18 @@
 							<dt>
 								<strong>${c.cus_tt}</strong>
 								<span>1회 제공량 ${c.cus_once}g 기준 <br/>${c.cus_cal}칼로리(kcal)입니다.</span> 
+								
+								<% if(request.getParameter("wholeDay") != null) {%>
 								<p>
 									<input type="button" class="btn_view_large" value="자세히보기"> 
 								</p>
 								<input type="button" class="btn_add_today" value="오늘 식단에 추가하기 "> 
+								<%} else {%>
+								<p class="st2">
+									<input type="button" class="btn_view_large redbtn" value="자세히보기"> 
+								</p>
+								<% } %>								
+
 								<input type="hidden" class="cus_no"   value="${c.cus_no}">
 								<input type="hidden" class="cus_cal"  value="${c.cus_cal}">
 								<input type="hidden" class="cus_once" value="${c.cus_once}">

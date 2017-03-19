@@ -19,6 +19,7 @@ function messageFunc(msg){
 	$(".layer_content .message").html( "<p>" + msg + "</p>");
 	
 	$(".modal_bg").removeClass("off");
+	$(".modal_bg").animate({"opacity":"1"});
 	
 }
 

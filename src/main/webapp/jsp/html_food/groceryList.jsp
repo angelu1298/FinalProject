@@ -15,7 +15,7 @@
 			/*hidden으로 숨겨놓은 레시피 번호를 삭제 모달에 get방식으로 일러준다.*/
 			var grc_no  = $(this).siblings(".grc_no").val();
 			var grc_cal = $(this).siblings(".grc_cal").val();
-			var grc_tt = $(this).parent("dt").children("strong").text().replace(" ","_").replace("+","_").replace("&","+");
+			var grc_tt = encodeURI(encodeURIComponent($(this).parent("dt").children("strong").text());
 			$(".modal_bg").load("groceryAddToday.brn?grc_no=" + grc_no + "&grc_tt=" + grc_tt +  "&grc_cal=" + grc_cal); 
 			
 		})
@@ -83,10 +83,18 @@
 							<dt>
 								<strong>${g.grc_tt}</strong>
 								<span>1회 제공량 ${g.grc_once}g 기준 <br/>${g.grc_cal}칼로리(kcal)입니다.</span> 
+
+								<% if(request.getParameter("wholeDay") != null) {%>
 								<p>
 									<input type="button" class="btn_view_large" value="자세히보기"> 
 								</p>
-								<input type="button" class="btn_add_today" value="오늘 식단에 추가하기 "> 
+									<input type="button" class="btn_add_today" value="오늘 식단에 추가하기 "> 
+								<%} else {%>
+								<p class="st2">
+									<input type="button" class="btn_view_large redbtn" value="자세히보기"> 
+								</p>
+								<% } %>
+								
 								<input type="hidden" class="grc_no"   value="${g.grc_no}">
 								<input type="hidden" class="grc_cal"  value="${g.grc_cal}">
 								<input type="hidden" class="grc_once" value="${g.grc_once}">

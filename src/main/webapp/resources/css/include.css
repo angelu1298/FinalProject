@@ -10,7 +10,7 @@ p.log_info strong a{ color:#fff; font-weight:500 !important; }
 nav.gnb{ display:block; width:100%; padding:0 5%; height:30px; font-size:13px; letter-spacing:0;  }
 nav.gnb > ul{ float:right; display:inline-block; border-right:1px solid rgab(255,255,255,0.4); }
 nav.gnb > ul > li { position:relative;  margin-right:1px; float:left; display:block;   height:30px; line-height:30px; color:#fff;  background:rgba(0,0,0,1); border-left:1px solid rgab(255,255,255,0.4);  }
-nav.gnb > ul > li > a { text-decoration:none !important; display:block; text-align:center; padding:0 20px; letter-spacing:0; } 
+nav.gnb > ul > li > a { text-decoration:none !important; display:block; text-align:center; padding:0 10px; letter-spacing:0; } 
 nav.gnb > ul > li:hover > a { color:#fce0e0;  }
 nav.gnb > ul > li > ul { display:none; width:100%; }
 nav.gnb > ul > li.log_user {  }

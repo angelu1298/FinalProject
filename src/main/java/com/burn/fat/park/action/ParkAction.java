@@ -98,10 +98,10 @@ public class ParkAction {
 
 		Map mf = new HashMap();
 		// 검색값으로 찾은 시,군구
-		mf .put("findsido", findsido.substring(0, 2));
-		mf .put("findgungu", findgungu);
+		mf.put("findsido", findsido.substring(0, 1));
+		mf.put("findgungu", findgungu);
 		// 검색어	
-		mf .put("findname", findname);
+		mf.put("findname", findname);
 
 		
 		int parkcount = parkService.getParklistCount(); //총 리스트 수를  
