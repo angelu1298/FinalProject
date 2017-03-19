@@ -16,8 +16,14 @@
 						<label for="radioBtn2"><img src="resources/img/cal/woman.png"/></label>
 					</li>
 					<li>
-						 <p><strong>키</strong><input type="text" id="ki" /><span>cm</span></p>
-                   		 <p><strong>몸무게</strong><input type="text" id="mugae" /><span>kg</span></p>
+						<c:if test="${!empty sessionScope.mem_id }">
+							 <p><strong>키</strong><input type="text" id="ki" value="${member.mem_h }"/><span>cm</span></p>
+	                   		 <p><strong>몸무게</strong><input type="text" id="mugae" value="${member.mem_w }"/><span>kg</span></p>
+                   		 </c:if>
+                   		 <c:if test="${empty sessionScope.mem_id }">
+							 <p><strong>키</strong><input type="text" id="ki" /><span>cm</span></p>
+	                   		 <p><strong>몸무게</strong><input type="text" id="mugae" /><span>kg</span></p>
+                   		 </c:if>
 					</li>
 				</ul>
 			</div>

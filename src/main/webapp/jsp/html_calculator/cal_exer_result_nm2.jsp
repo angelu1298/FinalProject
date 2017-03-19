@@ -12,11 +12,6 @@
 		
 		<strong>${exer.erc_nm}</strong>
 		<input type="hidden" value="${exer.erc_nm}" id="ercnm_${exer.erc_nm}">
-<%-- 	
-		<input type="text" value="${exer.erc_sx}" id="ercnm_${exer.erc_sx}">&nbsp;&nbsp;
-		<input type="text" value="${exer.erc_minw}" id="ercnm_${exer.erc_minw}">&nbsp;&nbsp;
-		<input type="text" value="${exer.erc_maxw}" id="ercnm_${exer.erc_maxw}">&nbsp;&nbsp;
- --%>
 		<input type="hidden" id="erc_ten" value="${exer.erc_ten}" />
 		<input type="hidden" id="erc_hun" value="${exer.erc_hun}" />
 		<input type="hidden" id="exe_kcal" value="${exe_kcal}" />
