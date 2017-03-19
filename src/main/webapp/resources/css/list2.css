@@ -151,7 +151,7 @@ ul.listform li > span > span { margin-left:10px; }
 .food_list ul > li > dl > dd > ol > li span{ width:100px; display:inline-block;  }
 
 .food_list ul > li > dl > dt > p { position:absolute; bottom:55px; left:50px;  }
-.food_list ul > li > dl > dt > p.st02 { position:absolute; bottom:10px !importnat; left:50px;  }
+.food_list ul > li > dl > dt > p.st2 { position:absolute; bottom:30px !important; left:50px;  }
 .food_list ul > li > dl > dt > p > input[type=button]{ float:left; margin-right:10px; padding:0 18px; height:28px; line-height:25px; background:#fff; border-radius:15px; border:1px solid #a0a0a0; color:#787878; letter-spacing:-1px; font-size:11px; }
 .food_list ul > li:hover > dl > dt > p > input[type=button]{ border:1px solid #787878; color:#454545; background:#f0f0f0; 	}
 .food_list ul > li > dl > dt > p > input[type=button]:hover{ background:#787878; color:#fff; border:1px solid #232323; 	}

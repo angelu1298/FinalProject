@@ -37,7 +37,7 @@ public class JoinAction {
 	
 	@Autowired
 	private JoinService service;
-	private String saveFolder = "C:/gitwork/FinalProject/src/main/webapp/resources/upload";
+	private String saveFolder = "C:/final_prj/src/main/webapp/resources/upload";
 
 	
 	//회원가입 1단계로 이동(가입동의)

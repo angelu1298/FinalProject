@@ -16,7 +16,7 @@
 					
 				var cus_no  = $(this).siblings(".cus_no").val();
 				var cus_cal = $(this).siblings(".cus_cal").val();
-				var cus_tt = encodeURI(encodeURIComponent($(this).parent("dt").children("strong").text());
+				var cus_tt = encodeURI(encodeURIComponent($(this).parent("dt").children("strong").text()));
 				$(".modal_bg").load("cuisineAddToday.brn?cus_no=" + cus_no + "&cus_tt=" + cus_tt +  "&cus_cal=" + cus_cal); 
 				
 			})

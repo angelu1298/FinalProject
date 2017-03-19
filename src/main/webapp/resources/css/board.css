@@ -80,18 +80,19 @@ li p span.author{ background-image:url(../img/ic/ic_write.png);}
 /**************************************상세보기**************************************/
 /*상세보기*/
 .Board_view{ position:relative; clear:both; border-top:2px solid #666666; }
-.Board_view .board_tit{ min-height:60px; margin:15px 0 5px 15px;  padding:15px 0 0 5px; background-repeat:no-repeat; font-size:17px; color:#232323; letter-spacing:-0.5px; line-height:22px}
-.Board_view .board_info {  min-height:50px; padding-bottom:10px;  padding-left:20px;  }
+.Board_view .board_tit{ min-height:60px; margin:15px 0 5px 15px; padding:15px 0 0 5px; background-repeat:no-repeat; font-size:17px; color:#232323; letter-spacing:-0.5px; line-height:22px}
+.Board_view .board_info {  min-height:50px; padding-bottom:10px; padding-left:20px;  }
 .Board_view .board_info dl{ float:left; margin-right:20px; padding-right:20px; margin-bottom:5px; background:url(../img/bull/b_bar.png) no-repeat right; }
-.Board_view .board_info dl:last-child{background:none;}
-.Board_view .board_info dl.viewicon{ background:none;}
+.Board_view .board_info dl:last-child{ background:none; }
+.Board_view .board_info dl.viewicon{ background:none; }
 .Board_view .board_info dl dt{ float:left; font-size:14px; padding-right:12px; color:#787777; font-size:11px; padding-left:20px; color:#787878; background-size:14px; bakcground-position:0 center; background-repeat:no-repeat; }
 .Board_view .board_info dl dd{ float:left; color:#4a4949; font-size:12px;  }
-.Board_view .board_info dl dt strong{ font-weight:600}
-.board_info dl.dateinfo dt{ background-image:url(../img/ic/ic_cal.png);}
-.board_info dl.clickinfo dt{ background-image:url(../img/ic/ic_view.png);}
-.board_info dl.likeinfo dt{ background-image:url(../img/ic/ic_like.png);}
-.board_info dl.writerinfo dt{ background-image:url(../img/ic/ic_write.png);}
+.Board_view .board_info dl dt strong{ font-weight:600; }
+
+.board_info dl.dateinfo dt{ background-image:url(../img/ic/ic_cal.png); }
+.board_info dl.clickinfo dt{ background-image:url(../img/ic/ic_view.png); }
+.board_info dl.likeinfo dt{ background-image:url(../img/ic/ic_like.png); }
+.board_info dl.writerinfo dt{ background-image:url(../img/ic/ic_write.png); }
  
 /*글쓰기*/
 .Board_write{ position:relative; clear:both; border-top:1px solid #666666; }

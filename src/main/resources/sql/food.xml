@@ -24,13 +24,6 @@
 		) where cnum &gt;= ((#{page}-1) * #{limit} +1)  and cnum &lt;= (#{page} * #{limit}) order by rownum asc	 
 	</select> 
 
-	<!-- CUISINE 추가 -->
-	<update id="cuisine_add" parameterType="java.util.Map">
-		update RECIPE
-		set G_RC = G_RC + 1
-		where rcp_no = #{rcp_no}
-	</update>
- 
 	<!-- 전체 갯수 -->
 	<select id="grocery_count" resultType="int">
 		select count(*) from GROCERY

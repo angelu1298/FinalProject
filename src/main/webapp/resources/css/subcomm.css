@@ -10,15 +10,15 @@
 .subContent.nobg{background:rgba(255,255,255,0); }
 
 /*레이어*/
-.modal_bg{ position:fixed; top:0; left:0; height:100%; width:100%; display:block; opacity:0; z-index:9999; background:rgba(0,0,0,0.8); overflow:visible; }
-.modal_bg.off{display:none;} 
+.modal_bg { position:fixed; top:0; left:0; height:100%; width:100%; display:block; opacity:0; z-index:9999; background:rgba(0,0,0,0.8); overflow:visible; }
+.modal_bg.off {display:none;} 
 .modal_area { position:fixed; display:block; background:#fff; }
-.modal_area h1{ position:relative; z-index:90; position:absolute; top:0; right:0; width:100%; min-height:50px;line-height:20px; display:block; padding:15px 80px 15px 25px;  text-align:left; overflow:hidden; background:rgba(15,15,15,1); white-space:normal; text-overflow:ellipsis; ; color:#fff; font-weight:500;  }
-.modal_area h1 > span{position:absolute; top:0; right:0px; display:block; height:50px; width:50px; line-height:50px; text-align:center; color:#fff; font-size:25px; cursor:pointer; }
-.modal_area h1 > .btn_close{ position:absolute; width:50px; height:50px; top:0px; right:0px; display:block; text-indent:-9999px;  background: url(../img/btn/btn_Lclose_white.gif) no-repeat center center ;}
+.modal_area h1 { position:relative; z-index:90; position:absolute; top:0; right:0; width:100%; min-height:50px;line-height:20px; display:block; padding:15px 80px 15px 25px;  text-align:left; overflow:hidden; background:rgba(15,15,15,1); white-space:normal; text-overflow:ellipsis; ; color:#fff; font-weight:500;  }
+.modal_area h1 > span {position:absolute; top:0; right:0px; display:block; height:50px; width:50px; line-height:50px; text-align:center; color:#fff; font-size:25px; cursor:pointer; }
+.modal_area h1 > .btn_close { position:absolute; width:50px; height:50px; top:0px; right:0px; display:block; text-indent:-9999px;  background: url(../img/btn/btn_Lclose_white.gif) no-repeat center center ;}
 .modal_bg .layer_content {  width:100%; height:100% ; padding-top:50px; z-index:10; background:#fff; color:#454545; }
-.modal_bg .layer_content h2{ line-height:30px; } 
-.modal_bg .layer_content h5{ line-height:30px; margin-bottom:30px; font-size:30px; } 
+.modal_bg .layer_content h2 { line-height:30px; } 
+.modal_bg .layer_content h5 { line-height:30px; margin-bottom:30px; font-size:30px; } 
 .modal_bg .layer_content .txtred { color:#d00; }
 
 /*레이어스타일*/
@@ -73,7 +73,7 @@ nav.snb > ul > li > ul > li:hover {  background:rgba(0,0,0,0.9); }
 .side_myinfo dl dd span{ margin-top:3px;  }
 .side_myinfo dl dd.goalweight{ padding-left:50px; line-height:25px; min-height:30px;  font-size:17px; background-image:url(../img/sub/scales.png); background-size:18px; background-repeat:no-repeat; background-position:35px 0;  }
 
-.side_myinfo dl dd.photozone{ position:relative; width:80px; height:80px; margin:10px 30px 20px 30px; display:block; overflow:hidden; border-radius:60px; border:1px solid #fff; background:#fff; }
+.side_myinfo dl dd.photozone{ position:relative; width:80px; height:80px; margin:10px 30px 20px 30px; display:block; overflow:hidden; border-radius:60px; background:#fff; }
 .side_myinfo dl dd.photozone input[type=file]{ position:absolute; top:0; left:0; width:100%; height:100%; display:block; cursor:pointer; }
 .side_myinfo dl dd.photozone img{ width:100px; height:auto; } 
 .side_myinfo dl dd.goalzone{ position:relative; }
@@ -100,10 +100,6 @@ nav.snb > ul > li > ul > li:hover {  background:rgba(0,0,0,0.9); }
 .fotgoal{ border:1px solid #0f0; margin-top:20px; display:inline-block; }
 .fotgoal input[type="text"]{ padding-right:20px; width:100%; height:30px; line-height:30px; font-family:'Nanum Pen Script'; background:none; font-size:19px; border:none; }
 .fotgoal input[type="button"]{ position:absolute; top:5px; right:0; width:20px; height:20px; display:block; background:url(../img/bull/bull_pen.png) no-repeat center; cursor:pointer; }
- 
- 
-.cal_diet_button{ width:80px; padding:25px 10px; clear:both; margin-left:450px; display:block; height:80px; line-height:23px; font-size:15px; background:rgba(190,35,25,1); color:#fff; font-weight:400; border-radius:40px; }
-.cal_diet_button:hover{ background:rgba(220,20,20,1);  }
  
  /***** 체중계 *****/
 .cal_diet{ position:relative; width:100%; height:auto; margin:20px auto; display:block; height:650px; background:url(../img/main/gymbg.jpg) no-repeat center 0;  background-size:120% auto;  font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕';  }
@@ -175,9 +171,4 @@ nav.snb > ul > li > ul > li:hover {  background:rgba(0,0,0,0.9); }
 .graph {  position: relative;   width: 200px;    border: 1px solid #B1D632;     padding: 2px;  font-size:11px;   margin-bottom:3px; }
 .graph .bar {    display: block; position: relative; background: #B1D632;  text-align: center;   color: #333;  height: 2em; line-height: 2em; }
 .graph .bar span { position: absolute; left: 1em; }
-
-.step2{ }
-.rsltbox input[type=text]{ margin-left:10px; width:60px; height:30px; line-height:30px; text-align:center; }
-.rsltbox input[type=button]{ width:40px; height:30px; line-height:30px; }
-.btn_list input[type=button].on{ background:rgba(190,35,25,0.5); color:#fff; } 
     
