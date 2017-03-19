@@ -13,9 +13,10 @@
 				$(".modal_bg").removeClass("off");
 				$(".modal_bg").animate({"opacity":"1"});
 				/*hidden으로 숨겨놓은 레시피 번호를 삭제 모달에 get방식으로 일러준다.*/
+					
 				var cus_no  = $(this).siblings(".cus_no").val();
 				var cus_cal = $(this).siblings(".cus_cal").val();
-				var cus_tt = $(this).parent("dt").children("strong").text().replace(" ","_").replace("+","_").replace("&","+");
+				var cus_tt = encodeURI(encodeURIComponent($(this).parent("dt").children("strong").text());
 				$(".modal_bg").load("cuisineAddToday.brn?cus_no=" + cus_no + "&cus_tt=" + cus_tt +  "&cus_cal=" + cus_cal); 
 				
 			})
@@ -63,6 +64,9 @@
 						<input type="submit" class="btn_srch" value="검색" />
 					</p>
 					<!--한줄-->
+						<input type="hidden" name="y" value=${y }>
+						<input type="hidden" name="m" value=${m }>
+						<input type="hidden" name="d" value=${d }>
 				</form>
 				<!-- //form -->
 				
@@ -83,10 +87,18 @@
 							<dt>
 								<strong>${c.cus_tt}</strong>
 								<span>1회 제공량 ${c.cus_once}g 기준 <br/>${c.cus_cal}칼로리(kcal)입니다.</span> 
+								
+								<% if(request.getParameter("wholeDay") != null) {%>
 								<p>
 									<input type="button" class="btn_view_large" value="자세히보기"> 
 								</p>
 								<input type="button" class="btn_add_today" value="오늘 식단에 추가하기 "> 
+								<%} else {%>
+								<p class="st2">
+									<input type="button" class="btn_view_large redbtn" value="자세히보기"> 
+								</p>
+								<% } %>								
+
 								<input type="hidden" class="cus_no"   value="${c.cus_no}">
 								<input type="hidden" class="cus_cal"  value="${c.cus_cal}">
 								<input type="hidden" class="cus_once" value="${c.cus_once}">

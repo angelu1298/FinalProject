@@ -4,10 +4,10 @@
 .wrap{display:inline-block; }
 
 /*서브페이지 전체 레이아웃*/
-.sub_container{ position:relative; width:100%; min-height:100%; margin:30px 0; padding:130px 50px 100px 220px; display:inline-block; z-index:1;  background:url(../img/main/mainbg03.jpg) no-repeat center center;  background-size: auto 100% ; background-attachment:fixed; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; }
-.log_container{ position:relative; width:100%; min-height:100%; margin:30px 0; padding:130px 50px 100px 220px; display:inline-block; z-index:1; background:url(../img/main/Elegant_Background-6.jpg) no-repeat center center;  background-size: auto 100% ; background-attachment:fixed; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; }
+.sub_container{ position:relative; width:100%; min-height:100%; margin:30px 0; padding:130px 50px 50px 220px; display:inline-block; z-index:1;  background:url(../img/main/mainbg03.jpg) no-repeat center center;  background-size: auto 100% ; background-attachment:fixed; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; }
+.log_container{ position:relative; width:100%; min-height:100%; margin:30px 0; padding:130px 50px 50px 220px; display:inline-block; z-index:1;  background:url(../img/sub/bg_calc.png) no-repeat center center;  background-size:cover ; background-attachment:fixed; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; }
 .subContent{ width:100%;  display:inline-block; padding:30px; background:#fff; text-align:left; }
-.subContent.nobg{background:rgba(255,255,255,0)}
+.subContent.nobg{background:rgba(255,255,255,0); }
 
 /*레이어*/
 .modal_bg{ position:fixed; top:0; left:0; height:100%; width:100%; display:block; opacity:0; z-index:9999; background:rgba(0,0,0,0.8); overflow:visible; }
@@ -18,6 +18,7 @@
 .modal_area h1 > .btn_close{ position:absolute; width:50px; height:50px; top:0px; right:0px; display:block; text-indent:-9999px;  background: url(../img/btn/btn_Lclose_white.gif) no-repeat center center ;}
 .modal_bg .layer_content {  width:100%; height:100% ; padding-top:50px; z-index:10; background:#fff; color:#454545; }
 .modal_bg .layer_content h2{ line-height:30px; } 
+.modal_bg .layer_content h5{ line-height:30px; margin-bottom:30px; font-size:30px; } 
 .modal_bg .layer_content .txtred { color:#d00; }
 
 /*레이어스타일*/
@@ -33,7 +34,7 @@
 
 /*레이어사이즈*/
 .modal_area.google_map{ top:20%; left:20%; width:60%; height:60%; min-width:400px; min-height:200px; }
-.modal_area.size_medium{ top:20%; left:35%; width:30%; height:45%; min-width:400px; min-height:320px; }
+.modal_area.size_medium{ top:20%; left:35%; width:30%; height:50%; min-width:400px; min-height:350px; }
 .modal_area.size_small{ top:20%; left:35%; width:30%; height:30%; min-width:400px; min-height:200px; }
 .modal_area.alertpage{ top:20%; left:35%; width:30%; height:40%; min-width:400px; min-height:300px; }
 .modal_area.alertpage .message{ font-size:17px; width:100%; height:50px; margin-top:40px; text-align:center; color:#d00;  display:inline-block; }
@@ -94,10 +95,15 @@ nav.snb > ul > li > ul > li:hover {  background:rgba(0,0,0,0.9); }
 .side_myinfo dl dd.goalzone{ position:relative; }
 .side_myinfo dl dd .txtgoal{ padding-right:20px; width:100%; height:30px; line-height:30px; font-family:'Nanum Pen Script'; background:none; font-size:19px; border:none; }
 .side_myinfo dl dd .btn_goal_edit{ position:absolute; top:5px; right:0; width:20px; height:20px; display:block; background:url(../img/bull/bull_pen.png) no-repeat center; cursor:pointer; }
- 
+.side_myinfo dl dd.goalzone input[type=text]{ text-align:center; }
+.side_myinfo dl dt{ background:url(../img/bull/) no-repeat center top; }
 .fotgoal{ border:1px solid #0f0; margin-top:20px; display:inline-block; }
 .fotgoal input[type="text"]{ padding-right:20px; width:100%; height:30px; line-height:30px; font-family:'Nanum Pen Script'; background:none; font-size:19px; border:none; }
 .fotgoal input[type="button"]{ position:absolute; top:5px; right:0; width:20px; height:20px; display:block; background:url(../img/bull/bull_pen.png) no-repeat center; cursor:pointer; }
+ 
+ 
+.cal_diet_button{ width:80px; padding:25px 10px; clear:both; margin-left:450px; display:block; height:80px; line-height:23px; font-size:15px; background:rgba(190,35,25,1); color:#fff; font-weight:400; border-radius:40px; }
+.cal_diet_button:hover{ background:rgba(220,20,20,1);  }
  
  /***** 체중계 *****/
 .cal_diet{ position:relative; width:100%; height:auto; margin:20px auto; display:block; height:650px; background:url(../img/main/gymbg.jpg) no-repeat center 0;  background-size:120% auto;  font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕';  }
@@ -162,4 +168,16 @@ nav.snb > ul > li > ul > li:hover {  background:rgba(0,0,0,0.9); }
 #timevalue input[type=text]{ margin-left:0px; border:none; background:none; }
 #erc_nm_loc{ padding:20px;  margin-top:0px; }
 #erc_nm_loc .btn_list { padding-top:60px; background:url(../img/comm/nextbg.png) no-repeat center top; background-size:40px; }
-#erc_nm_loc .nolist { font-size:13px; color:#787878; text-align:center;   }
+#erc_nm_loc .nolist { font-size:13px; color:#787878; text-align:center; }
+
+.stat{ width:100%; }
+.graph_area {float:left; width:50%; height:250px; display:block; }
+.graph {  position: relative;   width: 200px;    border: 1px solid #B1D632;     padding: 2px;  font-size:11px;   margin-bottom:3px; }
+.graph .bar {    display: block; position: relative; background: #B1D632;  text-align: center;   color: #333;  height: 2em; line-height: 2em; }
+.graph .bar span { position: absolute; left: 1em; }
+
+.step2{ }
+.rsltbox input[type=text]{ margin-left:10px; width:60px; height:30px; line-height:30px; text-align:center; }
+.rsltbox input[type=button]{ width:40px; height:30px; line-height:30px; }
+.btn_list input[type=button].on{ background:rgba(190,35,25,0.5); color:#fff; } 
+    

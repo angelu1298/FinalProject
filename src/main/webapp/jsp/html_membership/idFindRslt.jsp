@@ -17,7 +17,6 @@
 			<!--회원가입 영역-->
 			<div class="login_box">
 					<div class="result">
-					
 					<h4 class="h4">아이디 찾기</h4>			
 						<p class="tit">
 							<span>회원님의 아이디는 아래와 같습니다.</span>

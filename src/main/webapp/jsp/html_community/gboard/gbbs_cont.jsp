@@ -43,6 +43,7 @@
 			// 삭제버튼 모달창으로 페이지 load
 			$("#cont_del_btn").click(function(){
 				$(".modal_bg").removeClass("off");
+				$(".modal_bg").animate({"opacity":"1"});
 				//삭제페이지를 load
 				$(".modal_bg").load("gbbs_cont.brn?num=${gbbsbean.gbbs_num}&page=${page}&state=del");
 			}) 

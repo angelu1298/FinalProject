@@ -24,11 +24,11 @@
 			    <div align="center"><!-- 내용 --> 
 			      <textarea id="content" name="content" cols="120" rows="12" style="width:100%; resize:none" placeholder="내용#" class="form-control"></textarea>
 			    </div>
-			    <p>
-			   		<div class="btnL_area mt25">
+			   	
+			   	<div class="btnL_area mt25">
 							<input type="reset" value="다시 작성하기">
 							<input type="submit" value="확인">
-					</div>
+				</div>
 			  </form>
 		</div>
 		
