@@ -391,8 +391,10 @@ public class EboardAction {
 			
 			//湲��궡�슜 以� �뿏�꽣�궎 移쒕�遺꾩쓣 �떎�쓬以꾨줈 媛쒗뻾 泥섎━
 			String e_ct=ebobean.getE_ct().replace("\n","<br/>");
+			List<EcommBean> beanlist = eboService.getECommList(num);
 			
 			mv.addObject("ebobean", ebobean);
+			mv.addObject("beanlist", beanlist);
 			mv.addObject("e_ct",e_ct);
 			
 			mv.addObject("page", page);
