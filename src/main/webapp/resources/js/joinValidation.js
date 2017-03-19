@@ -1,3 +1,110 @@
+function chkPwd(){  //비밀번호 혼합 검사
+   
+
+    var pw =$("#inputpw").val();
+
+    var num = pw.search(/[0-9]/g);
+
+    var eng = pw.search(/[a-z]/ig);
+
+    var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi); 
+
+    if(pw.length < 6 || pw.length > 10){
+     var newtext='<font color="red">6자리 ~ 10자리 이내로 입력해주세요.</font>';
+      $("#pwcheck_text").text('');
+      $("#pwcheck_text").show();
+      $("#pwcheck_text").html(newtext);
+      $("#inputpw").val('').focus();
+
+     return false;
+    }
+
+    if(pw.search(/₩s/) != -1){
+     var newtext='<font color="red">비밀번호는 공백없이 입력해주세요.</font>';
+      $("#pwcheck_text").text('');
+      $("#pwcheck_text").show();
+      $("#pwcheck_text").html(newtext);
+      $("#inputpw").val('').focus();
+     return false;
+
+    } if(num < 0 || eng < 0 || spe < 0 ){
+
+        var newtext='<font color="red">영문,숫자, 특수문자를 혼합하여 입력해주세요.</font>';
+         $("#pwcheck_text").text('');
+         $("#pwcheck_text").show();
+         $("#pwcheck_text").html(newtext);
+         $("#inputpw").val('').focus();
+     return false;
+    }
+    return true;
+
+   };  //function
+
+   
+   function chkemail(){  //email유효성
+      $("#emailcheck_text").hide();//check span 아이디 영역을 숨긴다.
+      
+      var email = $("#email").val();
+   
+      //1. 입력 글자 길이 체크
+      if($.trim($("#email").val()).length >30){
+         var newtext='<font color="red">이메일은 30자 이하이어야 합니다.</font>';
+         $("#emailcheck_text").text('');
+         $("#emailcheck_text").show();
+         $("#emailcheck_text").html(newtext);  //span 아이디 영역에 경고 문자 추가
+         $("#email").val("").focus();
+         return false;
+      };
+      
+      //입력 이메일 패턴 유효성 검사
+      if(!(validateEmail(email))){
+         var newtext='<font color="red">이메일은 영문소문자, 숫자,특수문자 조합만 가능합니다.</font>';
+         $("#emailcheck_text").text('');//문자 초기화
+         $("#emailcheck_text").show();//span 아이디 영역을 보이게 한다
+         $("#emailcheck_text").html(newtext);
+         $("#email").val("").focus();
+         return false;
+      };
+      
+   };//function
+   
+   function validateEmail(email){
+      var pattern = /^[a-z0-9_]+$/;
+      
+      //test 메서드는 문자열 안에 패턴이 있는지 확인하여 있으면 true를 없으면 false를 반환
+      var result = pattern.test(email);
+        
+      return result;
+   };
+
+   
+   function height_check(){
+   
+   //몸무게 숫자 검사
+   $('#height').on('blur',function(){
+      if(!$.isNumeric($('#height').val())){
+         $('#height').css({'color':'red'});
+         $('#height').val('숫자로만 ');
+
+      }
+      if($('#height').val().length>=5){
+         $('#height').val($('#height').val().substr(0,4));
+      }
+   })
+   };
+   function weight_check(){
+   //키 숫자 검사
+   $('#weight').on('blur',function(){
+      if(!$.isNumeric($('#weight').val())){
+         $('#weight').css({'color':'red'});
+         $('#weight').val('숫자로만 ');
+      }
+      if($('#weight').val().length>=5){
+         $('#weight').val($('#weight').val().substr(0,4));
+      }
+   })
+  };
+
 function id_check(){
 	$("#idcheck_text").hide();//idcheck span 아이디 영역을 숨긴다.
 	var mem_id = $("#inputid").val();
@@ -75,6 +182,7 @@ function validate_userid(mem_id){
 };
 
 $(function(){
+	$("#pwcheck_text").hide();//check span 아이디 영역을 숨긴다.
 	$("#passcheck_text").hide();
 	$('#checkall').on('click',function(){
 		if($('#checkall').is(':checked')==true){
@@ -115,10 +223,6 @@ $(function(){
 		}
 		return true;
 	})
-/*	$('#idcheck').on('click', function(){
-		//모달로
-		
-	})*/
 	$('#joinformThum').submit(function(){
 		if($('#wannbe').val()==''){
 			$('#thumbnail').val('워너비사진은 필수 입력값입니다.');

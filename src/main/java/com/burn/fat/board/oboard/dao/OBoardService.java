@@ -5,47 +5,47 @@ import java.util.Map;
 import com.burn.fat.board.oboard.model.ObsBean;
 
 public interface OBoardService {
-	/*ÀÚ·á½Ç ÀúÀå*/
-	public void insertObs(ObsBean obsbean) throws Exception;
+	/*ï¿½Ú·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
+	public int insertObs(ObsBean obsbean) throws Exception;
 
-	/* ÀÚ·á½Ç ÃÑ °Ô½Ã¹° ¼ö*/
+	/* ï¿½Ú·ï¿½ï¿½ ï¿½ï¿½ ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½*/
 	public int getOlistCount() throws Exception;
 	
-	/* ÀÚ·á½Ç ¸ñ·Ï°ú ÆäÀÌÂ¡ */
+	/* ï¿½Ú·ï¿½ï¿½ ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½Â¡ */
 	public List<ObsBean> getObsList(Map<String, Integer> m) throws Exception ;
 
-	/*¹øÈ£¸¦ ±âÁØÀ¸·Î ÀÚ·á½Ç ³»¿ë °¡Á®¿À±â */
+	/*ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	public ObsBean getObsCont(int num) throws Exception;
 
-	/*³»¿ëº¸±â ÇÒ¶§¸¸ Á¶È¸¼ö Áõ°¡*/
+	/*ï¿½ï¿½ï¿½ëº¸ï¿½ï¿½ ï¿½Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
 	public void obsHit(int num) throws Exception;
 
 	
-	/*ÀÚ·á½Ç ¼öÁ¤*/
+	/*ï¿½Ú·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
 	public void editObs(ObsBean obsbean) throws Exception;
 
-	/*ÀÚ·á½Ç »èÁ¦*/
+	/*ï¿½Ú·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
 	public void deleteObs(int obs_num) throws Exception;
 
-	/*°Ë»ö °á°ú °Ô½Ã¹° ¼ö*/
+	/*ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½*/
 	public int getOListCount3(Map m) throws Exception;
 
-	/*°Ë»ö °á°ú ÆäÀÌÂ¡ ¸ñ·Ï*/
+	/*ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Â¡ ï¿½ï¿½ï¿½*/
 	public List<ObsBean> getObsList3(Map m) throws Exception ;
 
-	//ÄÚ¸àÆ® µî·Ï
+	//ï¿½Ú¸ï¿½Æ® ï¿½ï¿½ï¿½
 	public void insertObs_comm(ObsBean obsbean) throws Exception;	
 	
-	/*ÄÚ¸àÆ® ¸®½ºÆ®*/
+	/*ï¿½Ú¸ï¿½Æ® ï¿½ï¿½ï¿½ï¿½Æ®*/
 	public List<ObsBean> getOclistCount(int num) throws Exception;
 
-	/*ÄÚ¸àÆ® »èÁ¦*/
+	/*ï¿½Ú¸ï¿½Æ® ï¿½ï¿½ï¿½ï¿½*/
 	public void deleteObs_comm(ObsBean obsbean) throws Exception;
 	
-	/*½ºÅ©·¦*/
+	/*ï¿½ï¿½Å©ï¿½ï¿½*/
 	public String checkscrap(int o_no) throws Exception;
 
-	/*½ºÅ©·¦ ´­·¶À» ½Ã ÃßÃµ¼ö Áõ°¡¿Í Ãß°¡*/
+	/*ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ãµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½*/
 	public int likeCountUp(Map<String, Object> map) throws Exception;
 	
 	/*=============================================================================*/

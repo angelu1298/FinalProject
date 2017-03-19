@@ -10,12 +10,13 @@
 	$(function(){
 		/* 해당 리스트 삭제모달창 불러오기  */
 		$(".btn_add_today").click(function(){
+			
 			$(".modal_bg").removeClass("off");
 			$(".modal_bg").animate({"opacity":"1"});
 			/*hidden으로 숨겨놓은 레시피 번호를 삭제 모달에 get방식으로 일러준다.*/
 			var grc_no  = $(this).siblings(".grc_no").val();
 			var grc_cal = $(this).siblings(".grc_cal").val();
-			var grc_tt = encodeURI(encodeURIComponent($(this).parent("dt").children("strong").text());
+			var grc_tt = encodeURI(encodeURIComponent($(this).parent("dt").children("strong").text()));
 			$(".modal_bg").load("groceryAddToday.brn?grc_no=" + grc_no + "&grc_tt=" + grc_tt +  "&grc_cal=" + grc_cal); 
 			
 		})

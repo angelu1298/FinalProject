@@ -34,7 +34,7 @@ public class ObsAction {
 	private OBoardService obsService;
 	@Autowired
 	private OcommService ocommService;
-	private String saveFolder="C:/git/FinalProject/src/main/webapp/resources/upload";
+	private String saveFolder="C:/Users/angel/git/FinalProject/src/main/webapp/resources/upload";
 	
 	@RequestMapping(value = "/obs_write.brn")
 	public String obs_write() {
@@ -147,68 +147,68 @@ public class ObsAction {
 		obsbean.setO_ct(o_ct);
 		obsbean.setMem_id(mem_id);
 
-		this.obsService.insertObs(obsbean); // ����޼��� ȣ��
-
-		response.sendRedirect("obs_list.brn?o_no=" + obsbean.getO_no() + "&state=cont");
+		int o_no =this.obsService.insertObs(obsbean); // ����޼��� ȣ��
+		obsbean.setO_no(o_no);
+		response.sendRedirect("obs_view.brn?o_no=" + obsbean.getO_no() + "&state=cont");
 		return null;
 
 	}
 
-	/* 게시글 목록 보기*/
-	@RequestMapping(value = "/obs_list.brn")
-	public ModelAndView obs_list(HttpServletRequest request, HttpServletResponse response, HttpSession session,
-			@RequestParam(value = "limit", defaultValue = "20") int limit) throws Exception {
+	 /* 게시글 목록 보기*/
+	   @RequestMapping(value = "/obs_list.brn")
+	   public ModelAndView obs_list(HttpServletRequest request, HttpServletResponse response, HttpSession session,
+	         @RequestParam(value = "limit", defaultValue = "20") int limit) throws Exception {
 
-		String mem_id = (String) session.getAttribute("mem_id");
 
-		int page = 1;
+	      int page = 1;
 
-		if (request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
-		}
+	      if (request.getParameter("page") != null) {
+	         page = Integer.parseInt(request.getParameter("page"));
+	      }
 
-		if (session.getAttribute("limit") != null) {
-			limit = (Integer) session.getAttribute("limit");
-		}
+	      if (session.getAttribute("limit") != null) {
+	         limit = (Integer) session.getAttribute("limit");
+	      }
 
-		if (request.getParameter("limit") != null) {
-			limit = Integer.parseInt(request.getParameter("limit"));
-			session.setAttribute("limit", limit); 
-		}
+	      if (request.getParameter("limit") != null) {
+	         limit = Integer.parseInt(request.getParameter("limit"));
+	         session.setAttribute("limit", limit); 
+	      }
+	      
 
-		System.out.println("limit = " + limit);
-		System.out.println("page = " + page);
+	      int listcount = obsService.getOlistCount(); // �� ����Ʈ ���� �޾ƿ�
 
-		int listcount = obsService.getOlistCount(); // �� ����Ʈ ���� �޾ƿ�
+	      int maxpage = (listcount + limit - 1) / limit;
 
-		int maxpage = (listcount + limit - 1) / limit;
+	      int startpage = ((page - 1) / 10) * 10 + 1;
 
-		int startpage = ((page - 1) / 10) * 10 + 1;
+	      int endpage = startpage + 10 - 1;
 
-		int endpage = startpage + 10 - 1;
+	      if (endpage > maxpage)
+	         endpage = maxpage;
 
-		if (endpage > maxpage)
-			endpage = maxpage;
+	      if (endpage < page)
+	         page = endpage;
 
-		if (endpage < page)
-			page = endpage;
+	      Map<String, Integer> m = new HashMap<String, Integer>();
+	      m.put("page", page);
+	      m.put("limit", limit);
 
-		Map<String, Integer> m = new HashMap<String, Integer>();
-		m.put("page", page);
-		m.put("limit", limit);
+	      List<ObsBean> obslist = obsService.getObsList(m);
+	      ModelAndView model = new ModelAndView("html_community/oboard/boardList");
+	      model.addObject("page", page);
+	      model.addObject("maxpage", maxpage);
+	      model.addObject("startpage", startpage);
+	      model.addObject("endpage", endpage);
+	      model.addObject("listcount", listcount);
+	      model.addObject("obslist", obslist);
+	      model.addObject("limit", limit);
+	      
+	      
+	      
+	      return model;
+	   }
 
-		List<ObsBean> obslist = obsService.getObsList(m);
-		ModelAndView model = new ModelAndView("html_community/oboard/boardList");
-		model.addObject("page", page);
-		model.addObject("maxpage", maxpage);
-		model.addObject("startpage", startpage);
-		model.addObject("endpage", endpage);
-		model.addObject("listcount", listcount);
-		model.addObject("obslist", obslist);
-		model.addObject("limit", limit);
-		model.addObject("mem_id", mem_id);
-		return model;
-	}
 
 	
 	@RequestMapping(value = "/obs_view.brn")

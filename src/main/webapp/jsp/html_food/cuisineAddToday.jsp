@@ -45,6 +45,7 @@
 			request.setCharacterEncoding("UTF-8");
 			String cus_tt = request.getParameter("cus_tt");
 			String decodeResult = URLDecoder.decode(cus_tt, "UTF-8");
+			System.out.println(decodeResult);
 		%>
 		
       <div class="modal_area size_medium">
@@ -52,7 +53,7 @@
       
       <div class="layer_content" ng-controller="dataCtrl">
         <%--  <h2 class="mt20"><strong class="txtred">&lt; ${param.cus_tt} &gt;</strong>을(를)<br/>오늘 식단에 추가하시겠습니까?</h2> --%>
-         <h2 class="mt20"><strong class="txtred">&lt; ${decodeResult} &gt;</strong>을(를)<br/>오늘 식단에 추가하시겠습니까?</h2>
+         <h2 class="mt20"><strong class="txtred">&lt; <%=decodeResult%> &gt;</strong>을(를)<br/>오늘 식단에 추가하시겠습니까?</h2>
          <form method="get" action="cuisineAddTodayOk.brn" class="style_corfrim" id="addok">
          
          <input type="hidden" name="cus_tt" value="${param.cus_tt}"/>

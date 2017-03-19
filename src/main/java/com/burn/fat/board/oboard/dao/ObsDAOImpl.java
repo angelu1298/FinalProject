@@ -16,8 +16,8 @@ public class ObsDAOImpl {
 	private SqlSessionTemplate sqlSession;
 
 	/* �ڷ�� ���� */
-	public void insertObs(ObsBean obsbean) throws Exception {
-		sqlSession.insert("obs_insert", obsbean);
+	public int insertObs(ObsBean obsbean) throws Exception {
+		return sqlSession.insert("obs_insert", obsbean);
 	}
 
 	/* �ڸ�Ʈ ���� */

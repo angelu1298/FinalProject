@@ -5,11 +5,15 @@
 
 	<!-- 자료실 저장 등록 -->
 	<insert id="obs_insert" parameterType="obsbean">
+		<selectKey keyProperty="o_no" resultType="int" order="BEFORE">
+	    		select o_no_seq.nextval from dual
+	    </selectKey>
 		insert into oboard
-		(o_no,mem_id, mem_no, o_sj, o_fl, o_ct, o_dt)
-		values
-		(o_no_seq.nextval,#{mem_id},#{mem_no}, #{o_sj}, #{o_fl, jdbcType=VARCHAR}, #{o_ct},
-		sysdate)
+		(o_no,mem_id, mem_no, o_sj, o_fl, o_ct, o_dt, o_rc)
+		values 
+		(#{o_no},#{mem_id},#{mem_no}, #{o_sj}, #{o_fl, jdbcType=VARCHAR}, #{o_ct},
+		sysdate, 0)
+		
 	</insert>
 
 	<!-- 코멘트 저장 -->

@@ -129,8 +129,9 @@ function validate_userid(mem_id){
 									<span class="mando">비밀번호</span>
 								</th>
 								<td>
-									<input type="password" class="w200 " id="inputpw" name="inputpw" pattern=".{8,}">
+									 <input type="password" class="w200 " id="inputpw" name="inputpw" pattern=".{8,}" onchange="chkPwd()">
 									<span class="tip_info2">8~16 자리수 영문과 숫자를 조합</span>
+									<span id="pwcheck_text"></span>
 								</td>
 							</tr>
 							<tr>
@@ -140,7 +141,7 @@ function validate_userid(mem_id){
 								<td>
 									<input type="password" class="w200 " id="checkpw" name="checkpw">
 									<span class="tip_info2">비밀번호를 다시 한번 입력해주세요.</span>
-									<div id="passcheck_text"></div>
+									<span id="passcheck_text"></span>
 								</td>
 							</tr>
 							<tr>
@@ -262,8 +263,9 @@ function validate_userid(mem_id){
 									<span class="mando">이메일</span>
 								</th>
 								<td>
-									<input type="text" class="w150" id="email" name="email"><span class="bttxt">@</span>
+									<input type="text" class="w150" id="email" name="email" onchange="chkemail()"><span class="bttxt">@</span>
 									<input type="text" class="w120" id="domain" name="domain"><span class="bttxt"> </span>
+									
 									<select id="sel" name="sel">
 										<option value="">-직접입력-</option>
 						            	<option value="naver.com">naver.com</option>
@@ -271,6 +273,8 @@ function validate_userid(mem_id){
 						            	<option value="nate.com">nate.com</option>
 						            	<option value="gmail.com">gmail.com</option>
 									</select>
+									  <div id="emailcheck_text"></div>
+									
 								</td>
 							</tr>
 							<tr>
@@ -278,7 +282,7 @@ function validate_userid(mem_id){
 									<span class="mando">키</span>
 								</th>
 								<td>
-									<input type="text" class="w060" maxlength="5" id="height" name="height">
+									<input type="text" class="w060" maxlength="5" id="height" name="height" onchange="height_check()">
 									<span class="bttxt">cm</span>
 								</td>
 							</tr>
@@ -287,7 +291,7 @@ function validate_userid(mem_id){
 									<span class="mando">몸무게</span>
 								</th>
 								<td>
-									<input type="text" class="w060" maxlength="5" id="weight" name="weight">
+									<input type="text" class="w060" maxlength="5" id="weight" name="weight" onchange="weight_check()">
 									<span class="bttxt">kg</span>
 								</td>
 							</tr>

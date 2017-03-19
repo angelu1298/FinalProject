@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.net.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -49,6 +50,7 @@ public class GroceryAction {
             HttpSession session) throws Exception{
       
       response.setContentType("text/html;charset=UTF-8");
+      request.setCharacterEncoding("UTF-8");
       
       int mem_no = (Integer)session.getAttribute("mem_no");
       
@@ -62,9 +64,12 @@ public class GroceryAction {
       String[] grc_ttSp =grc_tt.split(",");
       grc_tt = grc_ttSp[0];
 
+	 String decodeResult = URLDecoder.decode(grc_tt, "UTF-8");
+		
+		
       m2.put("day", wholeDay);
       m2.put("grc_kcal", grc_kcal);
-      m2.put("grc_tt", grc_tt);
+      m2.put("grc_tt", decodeResult );
       m2.put("mem_no", mem_no);
       
       String y = calendarBean.getImsiY();

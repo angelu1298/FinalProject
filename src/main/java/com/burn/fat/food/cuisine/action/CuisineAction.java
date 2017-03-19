@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.net.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -59,10 +60,11 @@ public class CuisineAction {
       
       String[] cus_ttSp =cus_tt.split(",");
       cus_tt = cus_ttSp[0];
+ 	  String decodeResult = URLDecoder.decode(cus_tt, "UTF-8");
       
       m2.put("day", wholeDay);
       m2.put("cus_kcal", cus_kcal);
-      m2.put("cus_tt", cus_tt);
+      m2.put("cus_tt", decodeResult);
       m2.put("mem_no", mem_no);
       
       String y = calendarBean.getImsiY();

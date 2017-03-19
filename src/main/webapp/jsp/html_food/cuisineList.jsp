@@ -10,13 +10,14 @@
 		$(function(){
 			/* 해당 리스트 삭제모달창 불러오기  */
 			$(".btn_add_today").click(function(){
+				
 				$(".modal_bg").removeClass("off");
 				$(".modal_bg").animate({"opacity":"1"});
 				/*hidden으로 숨겨놓은 레시피 번호를 삭제 모달에 get방식으로 일러준다.*/
 					
 				var cus_no  = $(this).siblings(".cus_no").val();
 				var cus_cal = $(this).siblings(".cus_cal").val();
-				var cus_tt = encodeURI(encodeURIComponent($(this).parent("dt").children("strong").text());
+				var cus_tt = encodeURI(encodeURIComponent($(this).parent("dt").children("strong").text()));
 				$(".modal_bg").load("cuisineAddToday.brn?cus_no=" + cus_no + "&cus_tt=" + cus_tt +  "&cus_cal=" + cus_cal); 
 				
 			})

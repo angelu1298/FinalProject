@@ -14,8 +14,8 @@ public class OBoardServiceImpl implements OBoardService {
 	private ObsDAOImpl obsDAO;
 
 	@Override
-	public void insertObs(ObsBean obsbean) throws Exception {
-		obsDAO.insertObs(obsbean);
+	public int insertObs(ObsBean obsbean) throws Exception {
+		return obsDAO.insertObs(obsbean);
 	}
 	
 	@Override

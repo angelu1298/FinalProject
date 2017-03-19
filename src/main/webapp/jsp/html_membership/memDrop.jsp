@@ -64,7 +64,7 @@ $(function(){
 									비밀번호
 								</th>
 								<td>
-									<input type="text" class="w200 " id="inputpw" name="inputpw" pattern=".{8,}">
+									<input type="password" class="w200 " id="inputpw" name="inputpw" pattern=".{8,}">
 								</td>
 							</tr>
 							<tr>
@@ -72,7 +72,7 @@ $(function(){
 									비밀번호 확인
 								</th>
 								<td>
-									<input type="text" class="w200 " id="checkpw" name="checkpw">
+									<input type="password" class="w200 " id="checkpw" name="checkpw">
 									<span class="tip_info2">비밀번호를 다시 한번 입력해주세요.</span>
 								</td>
 							</tr>

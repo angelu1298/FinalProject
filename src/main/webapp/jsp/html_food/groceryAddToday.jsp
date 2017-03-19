@@ -39,7 +39,7 @@
       
 		<%
 			request.setCharacterEncoding("UTF-8");
-			String grc_tt = request.getParameter("rcp_tt");
+			String grc_tt = request.getParameter("grc_tt");
 			String decodeResult = URLDecoder.decode(grc_tt, "UTF-8");
 		%>
 		
@@ -47,7 +47,7 @@
       <h1>오늘의 섭취 목록에 추가<span class="btn_close">x</span></h1>
       
       <div class="layer_content" ng-controller="dataCtrl">
-         <h2 class="mt20"><strong class="txtred">&lt; ${param.grc_tt} &gt;</strong>을(를)<br/>오늘 식단에 추가하시겠습니까?</h2>
+         <h2 class="mt20"><strong class="txtred">&lt; <%=decodeResult%> &gt;</strong>을(를)<br/>오늘 식단에 추가하시겠습니까?</h2>
          <form method="get" action="groceryAddTodayOk.brn" class="style_corfrim" id="addok">
             
             <input type="hidden" name="grc_tt" value="${param.grc_tt}"/>
