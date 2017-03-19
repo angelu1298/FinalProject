@@ -36,6 +36,15 @@ public class LoginAction {
 		session= request.getSession();
 		ModelAndView model = new ModelAndView("main/mainPage");
 		PrintWriter out = response.getWriter();
+		
+		MemberBean isDeleteId=service.isDeleteId(check_id);
+	      
+	    if(isDeleteId !=null){  //탈퇴한 회원입니다.
+	        out.print("<script>alert('탈퇴한 회원입니다.');history.go(-1)</script>");
+	        return null;
+	    }else{  
+	         
+
 			if(member==null){
 				out.print("<script>alert('아이디가 맞지 않습니다.');history.go(-1)</script>");
 				return null;
@@ -51,6 +60,7 @@ public class LoginAction {
 					return null;
 				}
 			}
+	    }
 		
 		return model;
 	}

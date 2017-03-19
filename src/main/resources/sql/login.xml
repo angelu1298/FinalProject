@@ -13,4 +13,10 @@
 		where mem_id=#{check_id}
 		and mem_st =0
 	</select>
+	<select id="isDeleteId" parameterType="String" resultType="memberbean">
+      select *
+      from member
+      where mem_id=#{check_id}
+      and mem_st =1
+   </select>
 </mapper>

@@ -21,4 +21,8 @@ public class LoginDAO {
 	public MemberBean getMemberById(String check_id) {
 		return sqlSession.selectOne("logincheck",check_id);
 	}
+	
+	public MemberBean isDeleteId(String check_id) {
+	      return sqlSession.selectOne("isDeleteId",check_id);
+	 }
 }

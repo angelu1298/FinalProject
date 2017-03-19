@@ -104,5 +104,10 @@ public class ObsDAOImpl {
 	public int likeCountUp(Map<String, Object> map) {
 		return sqlSession.update("o_likecountup", map);
 	}
+	/* eboard 스크랩 갯수*/
+	   public int getEscrapCount(int mem_no) throws Exception {
+	      int count = ((Integer) sqlSession.selectOne("e_scrap_count",mem_no)).intValue();
+	      return count;
+	   }
 
 }

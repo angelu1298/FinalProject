@@ -23,5 +23,9 @@ public class MemberService {
 		return dao.getMemberById(check_id);
 	}
 	
+	  public MemberBean isDeleteId(String check_id) {
+	      return dao.isDeleteId(check_id);
+	}
+	
 	
 }
