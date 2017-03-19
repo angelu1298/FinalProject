@@ -14,14 +14,14 @@
 		<!--로그인 영역-->
 		<div class="login_area">
 		
-			<h4 class="ml50">LOGIN</h4>
+			<h4 class="ml50">LOGOUT</h4>
 			<div class="login_box">
 			
 				<h5>정상적으로 로그아웃 되었습니다.</h5>
 				
 				<div class="btnS_area mt20">
 					<a href="./Login.brn">로그인하기</a>
-					<a href="/">메인으로 가기</a>
+					<a href="./Main.brn">메인으로 가기</a>
 				</div>
 				
 			</div>

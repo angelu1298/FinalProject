@@ -1,4 +1,81 @@
+function id_check(){
+	$("#idcheck_text").hide();//idcheck span 아이디 영역을 숨긴다.
+	var mem_id = $("#inputid").val();
+	
+	//1. 입력 글자 길이 체크
+	if($.trim($("#inputid").val()).length <6){
+		var newtext='<span class="txtred">아이디는 6자 이상이어야 합니다.</span>';
+		$("#idcheck_text").text('');
+		$("#idcheck_text").show();
+		$("#idcheck_text").html(newtext);  //span 아이디 영역에 경고 문자 추가
+		$("#inputid").val("").focus();
+		return false;
+	};
+	
+	if($.trim($("#inputid").val()).length >12){
+		var newtext='<span class="txtred">아이디는 12자 이하이어야 합니다.</span>';
+		$("#idcheck_text").text('');
+		$("#idcheck_text").show();
+		$("#idcheck_text").html(newtext);  //span아이디 영역에 경고 문자추가
+		$("#inputid").val("").focus();
+		return false;
+	};
+	
+	//입력 아이디 패턴 유효성 검사
+	if(!(validate_userid(mem_id))){
+		var newtext='<span class="txtred">아이디는 영문소문자, 숫자 조합만 가능합니다.</span>';
+		$("#idcheck_text").text('');//문자 초기화
+		$("#idcheck_text").show();//span 아이디 영역을 보이게 한다
+		$("#idcheck_text").html(newtext);
+		$("#inputid").val("").focus();
+		return false;
+	};
+	
+	//아이디 중복확인
+	$.ajax({
+		type:"POST",	
+		url:"member_idcheck.brn",
+		cache:false,
+		data:{"mem_id" : mem_id},
+		success : function(data){
+			if(data==1){
+				//중복 아이디가 있으면
+				var newtext='<span class="txtred">중복 아이디입니다.</span>';
+				$("#idcheck_text").text('');
+				$("#idcheck_text").show();
+				$("#idcheck_text").html(newtext);
+				$("#inputid").val('').focus();
+				return false;
+				
+			}else{//중복 아이다가 없으면
+				var newtext='<span class="txtblue">사용가능한 아이디입니다.</span>';
+				$("#idcheck_text").text('');
+				$("#idcheck_text").show();
+				$("#idcheck_text").html(newtext);
+				$("#inputpw").focus();
+				
+			}
+		},
+		error : function(){
+			alert("data error"+mem_id);
+			
+		}
+	});  //$.ajax
+	
+};
+
+function validate_userid(mem_id){
+	var pattern = /^[a-z0-9_]+$/;
+	
+	//test 메서드는 문자열 안에 패턴이 있는지 확인하여 있으면 true를 없으면 false를 반환
+	var result = pattern.test(mem_id);
+	  
+	return result;
+	
+};
+
 $(function(){
+	$("#passcheck_text").hide();
 	$('#checkall').on('click',function(){
 		if($('#checkall').is(':checked')==true){
 		$('#agree01').prop('checked',true);
@@ -61,8 +138,10 @@ $(function(){
 			return false;
 		}
 		if($.trim($('#inputpw').val())!=$.trim($('#checkpw').val())){
-			$('#checkpw').css({'color':'red'});
-			$('#checkpw').val('비밀번호가 일치하지 않습니다');
+			var newtext='<span class="txtred">비밀번호가 일치하지 않습니다.</span>';
+			$("#passcheck_text").text('');
+			$("#passcheck_text").show();
+			$("#passcheck_text").html(newtext);  //span아이디 영역에 경고 문자추가
 			return false;
 		}
 		if($.trim($('#inputname').val())==''){
@@ -113,6 +192,11 @@ $(function(){
 			$('#weight').val('몸무게를 입력하세요');
 			return false;
 		}
+		if($.trim($('#zipcode').val())==''){
+			$('#zipcode').css({'color':'red'});
+			$('#zipcode').val('주소를 입력하세요');
+			return false;
+		}
 		
 		
 	})
@@ -128,8 +212,10 @@ $(function(){
 	})
 	$('#checkpw').on('blur',function(){
 		if(($.trim($('#inputpw').val()))!=($.trim($('#checkpw').val()))){
-			$('#checkpw').css({'color':'red'});
-			$('#checkpw').val('비밀번호가 일치하지 않습니다.');
+			var newtext='<span class="txtred">비밀번호가 일치하지 않습니다.</span>';
+			$("#passcheck_text").text('');
+			$("#passcheck_text").show();
+			$("#passcheck_text").html(newtext);  //span아이디 영역에 경고 문자추가
 		}
 	})
 	$('#middleph').on('blur',function(){

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/jsp/inc/logHeader.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script>
+<!-- <script>
 //아이디 중복 체크
 function id_check(){
 	$("#idcheck_text").hide();//idcheck span 아이디 영역을 숨긴다.
@@ -79,7 +79,7 @@ function validate_userid(mem_id){
 	
 };
 
-</script>
+</script> -->
 <!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
 <section class="log_container">
 
@@ -140,6 +140,7 @@ function validate_userid(mem_id){
 								<td>
 									<input type="password" class="w200 " id="checkpw" name="checkpw">
 									<span class="tip_info2">비밀번호를 다시 한번 입력해주세요.</span>
+									<div id="passcheck_text"></div>
 								</td>
 							</tr>
 							<tr>
@@ -240,7 +241,7 @@ function validate_userid(mem_id){
 							</tr>
 							<tr>
 								<th>
-									 주소
+									<span class="mando">주소</span>
 								</th>
 								<td>
 									<p class="col">
