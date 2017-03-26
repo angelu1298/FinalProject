@@ -42,6 +42,14 @@
 			<h2 class="mt20"><strong class="txtred">&lt;<%=decodeResult %> &gt;</strong>을(를)<br/>오늘 식단에 추가하시겠습니까?</h2>
 			<!-- form -->
 			<form method="get" action="cuisineAddTodayOk.brn" class="style_corfrim" id="addok">
+			 	 <p class="col">
+			 	 <span class="select_meal_time">
+	               <!-- name수정, value속성 추가 -->
+	               <input type="radio" id="meal_morning" name="wholeDay" value="morning" /><label for="meal_morning">아침</label>
+	               <input type="radio" id="meal_lunch"   name="wholeDay" value="lunch" /><label for="meal_lunch">점심</label>
+	               <input type="radio" id="meal_dinner"  name="wholeDay" value="dinner" /><label for="meal_dinner">저녁</label>
+           		 </span>
+           		 </p>
 			 	
 	 			<p class="modal_btn_area">
 					<input type="submit" value="추가하기" class="btn_submit" />

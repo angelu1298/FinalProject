@@ -179,15 +179,17 @@
 			<div class="Board_view">
 			
 				<!--LIKE-->	
-				<div class="likeArea">
-					<ul> 
-						<li>
+				 <c:if test="${!empty sessionScope.mem_id }">
+			         <div class="likeArea">
+			            <ul> 
+			            <li>
 							<a href="gbbs_like_ok.brn?num=${gbbsbean.gbbs_num}&page=${page}&usernum=${sessionScope.usernum}" class="btn_scrap" title="스크랩">
 								<span>스크랩하기</span>
 							</a>
 						</li>
-					</ul>
-				</div>
+			            </ul>
+			         </div>
+         		</c:if>
 				<!--//LIKE--> 
 				
 				<!--제목-->
@@ -212,7 +214,7 @@
 					</dl>
 					<dl class="writerinfo">
 						<dt>작성자</dt>
-						<dd>${gbbsbean.gbbs_author}</dd>
+						<dd>${gbbsbean.gbbs_userid}</dd>
 					</dl>
 				</div>
 				
@@ -251,10 +253,10 @@
 			<!--버튼영역-->
 			<div class="btnB_area">
 				<div class="fl"> 
-					<% if( session.getAttribute("username") != null ) { %>
+				<c:if test="${sessionScope.mem_id == gbbsbean.gbbs_userid}">
 						<a class="white" id="cont_del_btn" href="javascript:;">삭제</a>
 						<a class="white" href="gbbs_cont.brn?num=${gbbsbean.gbbs_num}&page=${page}&state=edit">수정</a>
-					<% } %>
+				</c:if>
 				</div>
 				<div class="fr">
 					<a class="black" href="gbbs_gall.brn?page=${page}">목록</a>

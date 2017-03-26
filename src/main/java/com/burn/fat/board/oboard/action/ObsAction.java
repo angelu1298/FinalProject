@@ -34,7 +34,7 @@ public class ObsAction {
 	private OBoardService obsService;
 	@Autowired
 	private OcommService ocommService;
-	private String saveFolder="C:/Users/angel/git/FinalProject/src/main/webapp/resources/upload";
+	private String saveFolder="C:/apache-tomcat-8.0.42/webapps/FinalProject/resources/upload"; 
 	
 	@RequestMapping(value = "/obs_write.brn")
 	public String obs_write() {
@@ -68,14 +68,11 @@ public class ObsAction {
 					check = 1;
 				}
 			}
-			System.out.println("1." + o_lkno);
 		} else {
-			System.out.println("o_lkno is null");
 		}
 		int result = 0;
 		if (check != 1) {
 			result = obsService.likeCountUp(map);
-			System.out.println(result);
 		}
 		PrintWriter out = response.getWriter();
 		out.print(result);
@@ -89,7 +86,6 @@ public class ObsAction {
 	public ModelAndView obs_write_ok(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 			throws Exception {
 
-		System.out.println("ddogod");
 
 		ObsBean obsbean = new ObsBean();
 		int fileSize = 5 * 1024 * 1024; // �������� �ִ� ���ε� ũ��
@@ -97,23 +93,20 @@ public class ObsAction {
 		MultipartRequest multi = null;
 		multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8");
 
-		int mem_no = (Integer) session.getAttribute("mem_no");
+		int mem_no = ((Integer) session.getAttribute("mem_no")).intValue();
 		String o_sj = multi.getParameter("o_sj").trim();
 		String o_ct = multi.getParameter("o_ct").trim();
 		String mem_id = (String) session.getAttribute("mem_id");
 
-		System.out.println("mem_id = " + mem_id);
 		File UpFile = multi.getFile("o_fl");
 		if (UpFile != null) {
 			String fileName = UpFile.getName();
-			System.out.println("fileName = " + fileName);
 			Calendar c = Calendar.getInstance();
 			int year = c.get(Calendar.YEAR);
 			int month = c.get(Calendar.MONTH) + 1; 
 			int date = c.get(Calendar.DATE); 
 
 			String homedir = saveFolder + "/" + year + "-" + month + "-" + date;
-			System.out.println("homedir = " + homedir);
 		
 			File path1 = new File(homedir);
 			if (!(path1.exists())) {
@@ -125,18 +118,13 @@ public class ObsAction {
 
 			/**** Ȯ���� ���ϱ� ���� ****/
 			int index = fileName.lastIndexOf(".");
-			System.out.println("index = " + index);
 
 			String fileExtension = fileName.substring(index + 1);
-			System.out.println("fileExtension = " + fileExtension);
 			String refileName = "obs" + year + month + date + random + "." + fileExtension;
-			System.out.println("refileName = " + refileName);
 
 			String fileDBName = "/" + year + "-" + month + "-" + date + "/" + refileName;
-			System.out.println("fileDBName = " + fileDBName);
 
 			UpFile.renameTo(new File(homedir + "/" + refileName));
-			System.out.println("homedir / refileName  = " + homedir + "/" + refileName);
 
 			obsbean.setO_fl(fileDBName);
 		}
@@ -147,9 +135,8 @@ public class ObsAction {
 		obsbean.setO_ct(o_ct);
 		obsbean.setMem_id(mem_id);
 
-		int o_no =this.obsService.insertObs(obsbean); // ����޼��� ȣ��
-		obsbean.setO_no(o_no);
-		response.sendRedirect("obs_view.brn?o_no=" + obsbean.getO_no() + "&state=cont");
+		this.obsService.insertObs(obsbean); // ����޼��� ȣ��
+		response.sendRedirect("obs_view.brn?num=" + obsbean.getO_no() + "&state=cont");
 		return null;
 
 	}
@@ -230,9 +217,6 @@ public class ObsAction {
 		ObsBean obsbean_p = this.obsService.getObsCont(num + 1);
 		ObsBean obsbean_m = this.obsService.getObsCont(num - 1);
 
-		System.out.println("111" + obsbean);
-		System.out.println("222" + obsbean_p);
-		System.out.println("333" + obsbean_m);
 
 		List<ObsBean> obsCommentList = obsService.getOclistCount(num);
 		List<OcommBean> ocommbeanlist = new ArrayList<OcommBean>();
@@ -282,7 +266,6 @@ public class ObsAction {
 	public ModelAndView obs_edit_ok(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 			throws Exception {
 
-		System.out.println("obs_edit");
 
 		ObsBean obsbean = new ObsBean();
 		int fileSize = 5 * 1024 * 1024; 
@@ -299,19 +282,16 @@ public class ObsAction {
 		int o_no = Integer.parseInt(multi.getParameter("num"));// ��ȣ
 		int page = Integer.parseInt(multi.getParameter("page"));// �ʹ�ȣ
 
-		System.out.println("mem_id = " + mem_id);
 
 		File UpFile = multi.getFile("o_fl");
 		if (UpFile != null) {// ÷���� ���� �ִٸ�
 			String fileName = UpFile.getName();// �������ϸ� ����
-			System.out.println("fileName = " + fileName);
 			Calendar c = Calendar.getInstance();
 			int year = c.get(Calendar.YEAR); // ���� �⵵ ���մϴ�.
 			int month = c.get(Calendar.MONTH) + 1; // ���� �� ���մϴ�.
 			int date = c.get(Calendar.DATE); // ���� �� ���մϴ�.
 
 			String homedir = saveFolder + "/" + year + "-" + month + "-" + date;
-			System.out.println("homedir = " + homedir);
 			// upload���� �Ʒ��� ���� �ø� ��¥�� ���� �����մϴ�.
 			File path1 = new File(homedir);
 			if (!(path1.exists())) {
@@ -323,19 +303,14 @@ public class ObsAction {
 
 			int index = fileName.lastIndexOf(".");
 			
-			System.out.println("index = " + index);
 
 			String fileExtension = fileName.substring(index + 1);
-			System.out.println("fileExtension = " + fileExtension);
 
 			String refileName = "obs" + year + month + date + random + "." + fileExtension;
-			System.out.println("refileName = " + refileName);
 
 			String fileDBName = "/" + year + "-" + month + "-" + date + "/" + refileName;
-			System.out.println("fileDBName = " + fileDBName);
 
 			UpFile.renameTo(new File(homedir + "/" + refileName));
-			System.out.println("homedir / refileName  = " + homedir + "/" + refileName);
 
 			obsbean.setO_fl(fileDBName);
 		}
@@ -346,16 +321,9 @@ public class ObsAction {
 		obsbean.setMem_id(mem_id);
 		obsbean.setO_rc(o_rc-1);
 
-		System.out.println("*****************************");
-		System.out.println("o_sj=" + o_sj);
-		System.out.println("o_ct=" + o_ct);
-		System.out.println("*****************************");
 
 		this.obsService.editObs(obsbean);// �����޼��� ȣ��
 
-		System.out.println("*****************************");
-		System.out.println("update success");
-		System.out.println("*****************************");
 
 		response.sendRedirect("obs_view.brn?state=cont&page=" + page + "&num=" + o_no);
 		return null;
@@ -391,7 +359,6 @@ public class ObsAction {
 	@RequestMapping(value = "/obs_find_ok.brn", method = RequestMethod.GET)
 	public ModelAndView obs_find_ok(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "limit", defaultValue = "20") int limit) throws Exception {
-		System.out.println(limit);
 
 		int page = 1;
 
@@ -414,11 +381,8 @@ public class ObsAction {
 		m.put("limit", limit);
 		m.put("find_field", find_field);
 		m.put("find_name", "%" + find_name + "%"); // %�� �������� ���Ե� ���ڿ��� ã�ƶ�
-		System.out.println(find_field);
-		System.out.println(find_name);
 
 		int listcount = this.obsService.getOListCount3(m);
-		System.out.println(listcount);
 
 		// �� ������ ��
 		int maxpage = (listcount + limit - 1) / limit;

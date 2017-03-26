@@ -56,7 +56,6 @@ public class StatisticsAction {
 		double myRate=service.getMyAverage(map);
 		
 		//현재 회원의 한달 섭취 칼로리를 각각 가져온다.
-		System.out.println("회원 평균 합 avgsum : "+avgsum + " 전체 회원 수 "+all );
 		
 		ModelAndView model = new ModelAndView("html_mypage/statistics");
 		model.addObject("myRate",myRate);

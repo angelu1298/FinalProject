@@ -38,8 +38,7 @@ public class JoinAction {
 	
 	@Autowired
 	private JoinService service;
-	private String saveFolder = "C:/Users/angel/git/FinalProject/src/main/webapp/resources/upload";
-
+	private String saveFolder="C:/apache-tomcat-8.0.42/webapps/FinalProject/resources/upload"; 
 	
 	//회원가입 1단계로 이동(가입동의)
 	@RequestMapping(value="/Join.brn")
@@ -255,7 +254,6 @@ public class JoinAction {
 
 	    	//워너비 사진 불러오기
 	    	String mem_wb = member.getMem_wb();
-	    	System.out.println("mem_wb22"+mem_wb);
 					
 			ModelAndView mv = new ModelAndView("html_membership/modify");
 			
@@ -349,8 +347,6 @@ public class JoinAction {
 				File DelFile= new File(saveFolder+member.getMem_wb());
 				
 				
-				System.out.println("filename 파일명은?"+filename);
-				System.out.println("DelFile 파일명은?"+DelFile);
 				if(DelFile.exists()){  //기존 파일이 존재하면
 					DelFile.delete();  //기존 파일명 삭제
 				}
@@ -390,7 +386,6 @@ public class JoinAction {
 			// 파일명 변경합니다.
 			thumbnail.renameTo(new File(homedir + "/" + refileName));
 			
-			System.out.println("fileDBName는???"+fileDBName);
 			
 			member.setMem_wb(fileDBName); //파일명 저장
 			//워너비 사진 새로고침해야 출력됨
@@ -509,7 +504,6 @@ public class JoinAction {
 				
 			String mem_rs1=request.getParameter("agree").trim();
 			
-			System.out.println(mem_rs1);
 			
 			String mem_rs2="";
 			
@@ -523,7 +517,6 @@ public class JoinAction {
 			}
 
 			
-			System.out.println(mem_rs2);
 
 			MemberBean isMember=this.service.isMember(mem_id);
 			

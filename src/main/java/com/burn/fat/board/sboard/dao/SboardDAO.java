@@ -28,10 +28,7 @@ public class SboardDAO {
 	}
 
 	public void insertSboard(SboardBean bean) {
-		/*int mem_no = sqlSession.selectOne("getmem_no",bean.getMem_id());
-		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("bean", bean);
-		map.put("mem_no", mem_no);*/
+
 		sqlSession.insert("Sboard.insertSboard",bean);
 	}
 

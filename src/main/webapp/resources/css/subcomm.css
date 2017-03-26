@@ -4,8 +4,8 @@
 .wrap{display:inline-block; }
 
 /*서브페이지 전체 레이아웃*/
-.sub_container{ position:relative; width:100%; min-height:100%; margin:30px 0; padding:130px 50px 50px 220px; display:inline-block; z-index:1;  background:url(../img/main/mainbg03.jpg) no-repeat center center;  background-size: auto 100% ; background-attachment:fixed; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; }
-.log_container{ position:relative; width:100%; min-height:100%; margin:30px 0; padding:130px 50px 50px 220px; display:inline-block; z-index:1;  background:url(../img/sub/bg_calc.png) no-repeat center center;  background-size:cover ; background-attachment:fixed; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; }
+.sub_container{ position:relative; width:100%; min-height:100%; margin:30px 0; padding:130px 50px 250px 220px; display:inline-block; z-index:1;  background:url(../img/main/mainbg03.jpg) no-repeat center center;  background-size: auto 100% ; background-attachment:fixed; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; }
+.log_container{ position:relative; width:100%; min-height:100%; margin:30px 0; padding:130px 50px 250px 220px; display:inline-block; z-index:1;  background:url(../img/sub/bg_calc.png) no-repeat center center;  background-size:cover ; background-attachment:fixed; font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; }
 .subContent{ width:100%;  display:inline-block; padding:30px; background:#fff; text-align:left; }
 .subContent.nobg{background:rgba(255,255,255,0); }
 
@@ -68,8 +68,8 @@ nav.snb > ul > li > ul > li:hover {  background:rgba(0,0,0,0.9); }
 
 .side_myinfo {position:fixed; top:130px; left:20px; float:left; width:180px; height:75%; display:block; text-align:center; padding:20px; background:#000; color:#fff; }
 .side_myinfo dl dt{ clear:both; display:block; width:100%; height:25px; margin:10px 0 20px 0; line-height:25px; font-weight:500;text-align:center; font-size:20px; }
-.side_myinfo dl dd{ text-align:center; display:block; width:100%; min-height:45px; height:auto;  margin-bottom:8px; font-size:12px; font-weight:400; color:#c0c0c0; line-height:18px; font-weight:500; }
-.side_myinfo dl dd strong{ width:100%; clear:both; display:block; height:25px; font-size:15px;/*  padding-left:15px; background:url(../img/bull/bull_mandor.gif) no-repeat 0 0; background-size:10px;   */ } 
+.side_myinfo dl dd{ text-align:center; display:block; width:100%; min-height:45px; height:auto;  margin-bottom:12px; font-size:12px; font-weight:400; color:#c0c0c0; line-height:18px; font-weight:500; }
+.side_myinfo dl dd strong{ /* width:100%;*/ clear:both; display:block; height:20px; font-size:15px;/*  padding-left:15px; background:url(../img/bull/bull_mandor.gif) no-repeat 0 0; background-size:10px;   */ } 
 .side_myinfo dl dd span{ margin-top:3px;  }
 .side_myinfo dl dd.goalweight{ padding-left:50px; line-height:25px; min-height:30px;  font-size:17px; background-image:url(../img/sub/scales.png); background-size:18px; background-repeat:no-repeat; background-position:35px 0;  }
 
@@ -79,7 +79,7 @@ nav.snb > ul > li > ul > li:hover {  background:rgba(0,0,0,0.9); }
 .side_myinfo dl dd.goalzone{ position:relative; }
 .side_myinfo dl dd .txtgoal{ padding-right:20px; width:100%; height:30px; line-height:30px; font-family:'Nanum Pen Script'; background:none; font-size:19px; border:none; }
 .side_myinfo dl dd .btn_goal_edit{ position:absolute; top:5px; right:0; width:20px; height:20px; display:block; background:url(../img/bull/bull_pen.png) no-repeat center; cursor:pointer; }
-
+#btn_goalww_edit{ top:26px; }
 .side_myinfo form{ height:100%; }
 .side_myinfo input[type=submit] {position:fixed; bottom:0; left:0; width:100%; height:50px; background:#fff; }
 .info_list{ margin:10px 0 0 25px; display:inline-block; }
@@ -130,7 +130,26 @@ nav.snb > ul > li > ul > li:hover {  background:rgba(0,0,0,0.9); }
 .cal_diet_button{ width:80px; padding:25px 10px; clear:both; margin-left:450px; display:block; height:80px; line-height:23px; font-size:15px; background:rgba(190,35,25,1); color:#fff; font-weight:400; border-radius:40px; }
 .cal_diet_button:hover{ background:rgba(220,20,20,1);  }
 
-.cal_content{ position:relative; width:100%; height:auto; margin:20px auto; display:inline-block;  background:url(../img/main/gymbg.jpg) no-repeat center center;  background-size:130% auto;  font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; 	}
+.step2 label{margin-left:20px;  display:block; float:left;  width:auto; cursor:pointer; }
+.step2 > p > label {
+    margin-left: 20px;
+    display: block;
+    float: left;
+    width: auto;
+    cursor: pointer;
+    margin: 0 10px 10px 0;
+    display: block;
+    padding: 0 15px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 5px;
+    border: 1px solid #be2319;
+    color: #be2319;
+    background: rgba(0, 0, 0, 0);
+}
+.step2 > p > label > input[type=radio]{ margin-right:3px; display:none; }
+
+.cal_content{ position:relative; width:100%; height:auto; min-height:400px; margin:20px auto; display:inline-block;  background:url(../img/main/gymbg.jpg) no-repeat center center;  background-size:130% auto;  font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕'; 	}
 .cal_content .cal_contentarea { position:relative; margin:0 auto; width:100%; padding:30px; display:block; text-align:center; }
 .cal_contentarea .group2 {  clear:both; margin:0 auto 50px auto; display:block; width:300px; height:300px;   }
 .cal_contentarea .bring_type {   width:700px;  clear:both; margin:0 auto; background:rgba(255,255,255,0.8); padding:30px;    }
@@ -152,13 +171,25 @@ nav.snb > ul > li > ul > li:hover {  background:rgba(0,0,0,0.9); }
 .bring_type .stip {/*  background:url(../img/bull/bull_mandor.gif) no-repeat 0 0; padding-left:20px;  */margin-bottom:20px; font-size:15px; letter-spacing:-1px; color:rgba(190,35,25,1); text-align:center; }
 .btn_list { margin:0 auto; display:inline-block; clear:both; }
 .btn_list input[type=button]{ float:left; margin:0 10px 10px 0; display:block; padding:0 15px;  height:35px; line-height:35px; border-radius:5px; border:1px solid rgba(190,35,25,1); color:rgba(190,35,25,1); background:transparent; }
-
+#inputdata{ margin-top:20px;  background-image:url(../img/cal/scale.png); background-repeat:no-repeat;  background-position:center center; background-size:auto 100%; text-align: center; width:400px; height:400px; display:inline-block; padding:160px 80px; }
+#inputdata p { text-align:center; font-size:13px; margin-bottom:5px; display:inline-block; width:100%; }
+#inputdata p:nth-child(2){height:35px;}
+#inputdata p:nth-child(4){ margin-top:20px; }
+#inputdata p strong{ width:60px; float:left;}
+#inputdata p > *{ float:left;}
+#inputdata input[type=text]{ margin-left:20px; height:30px; line-height:30px; border:1px solid #232323;  width:60px;}
+#time_send{ text-align:center; margin-left:70px; display:block; padding:0 15px;  height:35px; line-height:35px; border-radius:5px; border:1px solid rgba(190,35,25,1); color:rgba(190,35,25,1); background:transparent; }
 .rsltbox{ margin-top:20px; display:inline-block; width:100%; margin-top:20px; clear:both; }
 .rsltbox p{ display:inline-block; margin:10px auto; }
+#select_result{ background:rgba(255,255,255,0.5); padding:50px; border-radius:10px; margin-top:40px;}
+.cal_result strong{ color:rgba(190,35,25,1); font-size:30px;}
+.cal_result a{  margin:20px 0 0 10px ; display:block; padding:0 15px;  height:35px; line-height:35px; border-radius:5px; border:1px solid rgba(190,35,25,1); color:rgba(190,35,25,1); background:transparent; }
+
 .bring_type #kcalbutton{ float:left; display:block; }
 .bring_type #kcalbox{ float:left; display:block; }
 .bring_type #timevalue{  font-size:17px; font-weight:500px; clear:both; display:block; height:30px; }	
 .bring_type #timevalue strong{ padding-left:20px; background:url(../img/bull/bull_mandor.gif) no-repeat 0 0 ;}
+
 .rsltbox input[type=text]{ margin-left:10px; width:60px; height:30px; line-height:30px; text-align:center; }
 .rsltbox input[type=button]{ width:40px; height:30px; line-height:30px; }
 .btn_list input[type=button].on{ background:rgba(190,35,25,0.5); color:#fff; } 
@@ -176,7 +207,7 @@ nav.snb > ul > li > ul > li:hover {  background:rgba(0,0,0,0.9); }
 .graph .bar {    display: block; position: relative; background: #B1D632;  text-align: center;   color: #333;  height: 2em; line-height: 2em; }
 .graph .bar span { position: absolute; left: 1em; }
 
-.step2{ }
+.step2{ width:500px; margin:20px auto;}
 .rsltbox input[type=text]{ margin-left:10px; width:60px; height:30px; line-height:30px; text-align:center; }
 .rsltbox input[type=button]{ width:40px; height:30px; line-height:30px; }
 .btn_list input[type=button].on{ background:rgba(190,35,25,0.5); color:#fff; } 

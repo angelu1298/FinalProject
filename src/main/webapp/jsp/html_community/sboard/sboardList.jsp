@@ -4,20 +4,36 @@
 <script>
 		$(function(){
 						
-			$("#viewcount").val(${limit}).prop("selected", true);
+			$("#viewcount").val('${limit}').prop("selected", true);
 			$('#viewcount').change(function(){
-				$.ajax({
-					data : {"limit" : $('#viewcount').val()},
-					type : "get",
-					success : function(data){
-						$('form[name="search"]').submit();
-					 },
-					error : function(data, status){
-						   				 
-					 }
-				})
-			})
+				
+				location.href="./sboardList.brn?limit="+$("#viewcount").val();
+			})	
+			doRemoveTag(); 
 		})
+function s_find_check(){
+	
+		if($.trim($(".find_field").val())==''){
+			alert("검색할 항목을 선택해주세요");
+			return false;
+		}
+		if($.trim($('.find_name').val())==''){
+			alert("검색할 값을 입력해주세요");
+			return false;
+		}
+}
+
+		
+		function removeTag( html ) {
+            return html.replace(/(<([^>]+)>)/gi, "");
+         }
+    
+         function doRemoveTag() {
+            var beforeText = $(".removetag").html();
+            var afterText = removeTag( beforeText );
+            $(".removetag").html( afterText );
+         }
+            
 </script>
 	<!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
 	<section class="sub_container">
@@ -30,15 +46,13 @@
 		
 			<h3>후기게시판</h3>
 			
-		<%-- 	<!-- 베스트게시글 -->
 			<%@ include file="bestSboard.jsp" %>
-			 --%>
-			<h4>목록</h4>
 			<!-- form -->
 			<form action="sboardView.brn"  method="post" onsubmit="find_check()">
-			<p class="srch_result">
-				<span class="rs_txt"><strong>${listcount }</strong>건이 검색되었습니다.</span>
-			</p>
+				<p class="srch_result">
+		            <strong>목록</strong>
+		            <span class="rs_txt"><strong>${listcount }</strong>건이 검색되었습니다.</span>
+		         </p>
 			<!--테이블-->
 			<div class="common_list_box">
 				<table cellpadding="0" cellspacing="0" border="1" summary="운동게시판입니다. 제목,글쓴이,등록일,조회수,추천수를 확인할 수 있고, 등록일 기준으로 sorting 됩니다.">
@@ -111,7 +125,7 @@
 								<strong>${a}</strong>
 							</c:if>
 							<c:if test="${a != page }">
-								<a href="sboardList.brn?page=${a}&limit=${limit}"><strong>${a}</strong></a>
+								<a href="sboardList.brn?page=${a}&limit=${limit}">${a}</a>
 							</c:if>
 						</c:forEach>			
 						<c:if test="${page < maxpage }">
@@ -128,20 +142,22 @@
 			</form>
 			<!-- //form -->
 			<!--버튼영역-->
+			<c:if test="${!empty sessionScope.mem_id }" >
 			<div class="btnB_area">
 				<div class="fr">
 					<a href="./sboardWrite.brn" class="black">글쓰기</a>
 				</div>
 			</div>
+			</c:if>
 			<!--//버튼영역-->
 			
 					<!--검색영역-->
 			<form method="get" action="sboardfind_ok.brn"
-		  	onsubmit="return find_check()" name="search">
+		  	onsubmit="return s_find_check()" name="s_search">
 			<div class="borad_srch">
 					<!--//검색영역-->
 					<span class="fl ml20">
-							<select id="viewcount fl" name="limit">
+							<select id="viewcount" name="limit">
 								<option value="20">20개보기</option>
 								<option value="50">50개보기</option>
 								<option value="100">100개보기</option>
@@ -150,13 +166,13 @@
 				<!--한줄-->
 				<p class="col">
 					<label for="srch_sel01" class="sc_txt">검색영역</label>
-					<select class="w180 mr10" id="srch_sel01" name="find_field">
+					<select class="w180 mr10 find_field" id="srch_sel01" name="find_field">
 							<option value="">검색할 항목을 선택하세요</option>
 							<option value="mem_id">작성자</option>
 					       <option value="s_sj">글제목</option>
 					       <option value="s_ct">글내용</option>
 					</select>
-					<label for="srch_txt" class="dnone"></label><input type="text" name="find_name" id="srch_txt" class="w280 mr10" placeholder="검색어를 입력하세요"/>
+					<label for="srch_txt" class="dnone"></label><input type="text" name="find_name" id="srch_txt" class="w280 mr10 find_name" placeholder="검색어를 입력하세요"/>
 					<input type="submit" class="btn_srch" value="검색" />
 				</p>
 				<!--한줄-->

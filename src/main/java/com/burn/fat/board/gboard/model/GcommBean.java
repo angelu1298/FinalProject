@@ -59,7 +59,6 @@ public class GcommBean {
 		return gbbs_num;
 	}
 	public void setGbbs_num(int gbbs_num) {
-		System.out.println("getGbbs_num >>>>>>>>>>>>>>>>>" + gbbs_num);
 		this.gbbs_num = gbbs_num;
 	}
  

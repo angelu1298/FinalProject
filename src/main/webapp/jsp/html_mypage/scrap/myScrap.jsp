@@ -22,34 +22,37 @@
 		
 		<script>
 			$(function(){
+
+				$("#obo_scrap").parent().addClass("on");
+				$("#scrapview").load("./o_sc_view.brn");
 				$("#obo_scrap").click(function() {
-					alert("oboard");
+					$(".tabarea ul li").removeClass("on");
+					$(this).parent().addClass("on");
 					$("#scrapview").load("./o_sc_view.brn");
 				});
 				
 				$("#ebo_scrap").click(function() {
-					alert("eboard");
+					$(".tabarea ul li").removeClass("on");
+					$(this).parent().addClass("on");
 					$("#scrapview").load("./e_sc_view.brn");
-					<%-- <%@ include file="../../html_mypage/scrap/e_myScrap.jsp"%> --%>
 				});
-				
 
 				$("#sbo_scrap").click(function() {
-					alert("sbo_scrap");
+					$(".tabarea ul li").removeClass("on");
+					$(this).parent().addClass("on");
 					$("#scrapview").load("./s_sc_view.brn");
-					<%-- <%@ include file="../../html_mypage/scrap/e_myScrap.jsp"%> --%>
 				});
 				
 				$("#fbo_scrap").click(function() {
-					alert("fbo_scrap");
+					$(".tabarea ul li").removeClass("on");
+					$(this).parent().addClass("on");
 					$("#scrapview").load("./f_sc_view.brn");
-					<%-- <%@ include file="../../html_mypage/scrap/e_myScrap.jsp"%> --%>
 				});
 				
 				$("#gbo_scrap").click(function() {
-					alert("gbo_scrap");
+					$(".tabarea ul li").removeClass("on");
+					$(this).parent().addClass("on");
 					$("#scrapview").load("./g_sc_view.brn");
-					<%-- <%@ include file="../../html_mypage/scrap/e_myScrap.jsp"%> --%>
 				});
 			})
 		</script>
@@ -58,12 +61,6 @@
 		
 		</div>
 		
-<%-- 
-		<%@ include file="../../html_mypage/scrap/f_myScrap.jsp"%>
-	
-		<%@ include file="../../html_mypage/scrap/s_myScrap.jsp"%>
-		<%@ include file="../../html_mypage/scrap/g_myScrap.jsp"%>
- --%>
 	
 	<!-- 서브컨텐츠 영역 END -->
 

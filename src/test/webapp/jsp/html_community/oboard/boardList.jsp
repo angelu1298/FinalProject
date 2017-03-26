@@ -5,7 +5,7 @@
 <%@ page import="com.burn.fat.board.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<script src="./resources/js/jquery.js"></script>
+<script src="./resources/js/jquery.min.js"></script>
 <script src="./resources/js/list.js"></script>
 
 <!-- container Start : 헤더와 푸터를 제외한 실제 영역-->

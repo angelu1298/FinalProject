@@ -67,10 +67,22 @@
 	<!-- fboard 스크랩 -->
 		<!-- session id가 oboard에서 스크랩한 게시물 select -->
 		<select id="fbs_scrap" resultType="fboardbean" parameterType="int">
-			select * 
+			<!-- select * 
 			from fboard
 			where f_lkno like '%,'||#{mem_no}||',%'
-			order by f_no desc 
+			order by f_no desc  -->
+			<![CDATA[
+		select * 
+		from 
+		  (select rownum rnum, f_no,mem_id,f_sj, 
+           f_ct,f_fl,f_rc,f_dt,f_lk,f_lkno,fcomm_cnt
+		   from  
+	  	      (select * from fboardlist 
+	  	       order by f_no desc, f_rc asc)
+	  	   ) 
+	   	where f_lkno like '%,'||#{mem_no}||',%'
+			order by f_no desc
+		]]>
 		</select>
 		
 		<select id="f_scrap_count" resultType="int" parameterType="int">
@@ -86,10 +98,20 @@
 	<!-- sboard 스크랩 -->
 		<!-- session id가 oboard에서 스크랩한 게시물 select -->
 		<select id="sbs_scrap" resultType="sboardbean" parameterType="int">
-			select * 
-			from sboard
-			where s_lkno like '%,'||#{mem_no}||',%'
-			order by s_no desc 
+			 <![CDATA[
+				select * 
+				from 
+				  (select rownum rnum, s_no, mem_id,   s_sj, 
+				   s_ct, s_fl,   s_rc,
+				   s_dt,  s_lk,   S_lkno ,scomm_cnt
+				   from  
+			  	      (select * from sboardlist 
+			  	       order by s_no desc)
+			  	   ) 
+			   	where s_lkno like '%,'||#{mem_no}||',%'
+					order by s_no desc 
+				]]>
+			
 		</select>
 		
 		

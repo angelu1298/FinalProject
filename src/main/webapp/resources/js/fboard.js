@@ -1,5 +1,5 @@
 ﻿
-  function check(){
+  function f_check(){
 	  if($.trim($("#f_sj").val())==""){
 		  alert("글제목을 입력하세요!");
 		  $("#f_sj").val("").focus();
@@ -13,7 +13,7 @@
 	  $('form').submit();
   }
   
-  function delete_check(){
+  function f_delete_check(){
 		if (confirm("정말 삭제하시겠습니까??") == true){
 			var f_no = $("#f_no").val();
 			var page = $("#page").val();

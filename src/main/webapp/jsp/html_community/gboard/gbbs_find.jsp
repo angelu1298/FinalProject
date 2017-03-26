@@ -181,14 +181,14 @@
 						<p class="col">
 							<p class="fr mr20">
 								<label for="srch_sel01" class="sc_txt">검색영역</label>
-								<select class="w180 mr10" id="gfind_field" name="gfind_field">
+								<select class="w180 mr10 find_field" id="gfind_field" name="gfind_field">
 									<option value="">전체검색</option>
 									<option value="gbbs_author">작성자</option>
 									<option value="gbbs_subject">글제목</option>
 									<option value="gbbs_content">글내용</option>
 								</select>
 								<label for="srch_txt" class="dnone"></label>
-								<input type="text" name="gfind_name" id="gfind_name" class="w280 mr10" placeholder="검색어를 입력하세요"/>
+								<input type="text" name="gfind_name" id="gfind_name" class="w280 mr10 find_name" placeholder="검색어를 입력하세요"/>
 								<input type="submit" class="btn_srch" value="검색" />
 							</p>
 						</p>

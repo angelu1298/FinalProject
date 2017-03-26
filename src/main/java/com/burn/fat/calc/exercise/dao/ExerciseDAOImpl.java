@@ -16,24 +16,21 @@ public class ExerciseDAOImpl {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	/*¿îµ¿Å¸ÀÔ °¡Á®¿À±â*/
+	/*ï¿½îµ¿Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	public List<ExerciseBean> bringtype() throws Exception{
 		List<ExerciseBean> list = sqlSession.selectList("bring_type");
 		return list;
 	}
 	
-	/*¿îµ¿ÀÌ¸§ °¡Á®¿À±â*/
+	/*ï¿½îµ¿ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	public List<ExerciseBean> bringname(String name) throws Exception{
 		List<ExerciseBean> list = sqlSession.selectList("bring_name",name);
 		return list;
 	}
 
-	/*½Ã°£°è»êÇÏ±â*/
+	/*ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½*/
 	public List<ExerciseBean> bringtime(Map map) {
 		List<ExerciseBean> list = sqlSession.selectList("bring_time",map);
-		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^");
-		System.out.println(map);
-		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^");
 		return list;
 	}
 	

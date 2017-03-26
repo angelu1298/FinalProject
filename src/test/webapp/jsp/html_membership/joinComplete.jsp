@@ -5,7 +5,7 @@
 <c:if test="${!empty sessionScope.mem_id }">
 <script> 
 	$(function(){
-		parent.document.getElementById('talkframe').src = "http://127.0.0.1:3000?mem_id=${sessionScope.mem_id}";
+		parent.document.getElementById('talkframe').src = "http://112.154.136.153:3000?mem_id=${sessionScope.mem_id}";
 	})
 </script>
 </c:if>

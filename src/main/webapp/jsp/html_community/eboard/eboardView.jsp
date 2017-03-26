@@ -46,11 +46,13 @@ $(document).ready(function(){
       <div class="Board_view">
          <input type="hidden" name="e_no" id="e_no" value="${ebobean.e_no }" />
          <!--LIKE-->
+         <c:if test="${!empty sessionScope.mem_id }">
          <div class="likeArea">
             <ul> 
-               <li><input type="button" value="스크랩" class="ebo_scrap btn_scrap"/><span>스크랩하기</span></li>
+               <li><a href="#" type="button" title="스크랩" class="ebo_scrap btn_scrap"><span>스크랩하기</span></a></li>
             </ul>
          </div>
+         </c:if>
          <!--//LIKE-->
          
          <!--제목-->
@@ -95,7 +97,7 @@ $(document).ready(function(){
          <!--버튼영역-->
       <div class="btnB_area">
          <div class="fl">
-         <c:if test="${sessionScope.mem_id == mem_id}">
+         <c:if test="${sessionScope.mem_id == ebobean.mem_id}">
              <input type="button" value="삭제" class="white"
                onclick="location='ebo_delete_ok.brn?num=${ebobean.e_no}&page=${page}'" />
              <input type="button" value="수정" class="white"

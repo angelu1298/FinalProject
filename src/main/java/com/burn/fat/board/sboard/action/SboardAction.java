@@ -34,7 +34,7 @@ public class SboardAction {
 	private SboardService service;
 	@Autowired
 	private ScommService scommservice;
-	private String saveFolder="C:/Users/angel/git/FinalProject/src/main/webapp/resources/upload"; //파일 저장시킬 경로
+	private String saveFolder="C:/apache-tomcat-8.0.42/webapps/FinalProject/resources/upload";  //파일 저장시킬 경로
 
 	@RequestMapping(value = "/sboardWrite.brn")
 	public String sboardwrite() {
@@ -81,7 +81,6 @@ public class SboardAction {
 				int date = c.get(Calendar.DATE); // 오늘 일 구합니다.
 
 				String homedir = saveFolder + "/" + year + "-" + month + "-" + date;
-				System.out.println("homedir = " + homedir);
 				// upload폴더 아래에 파일 올린 날짜로 폴더 생성합니다.
 				File path1 = new File(homedir);
 				if (!(path1.exists())) {
@@ -101,19 +100,14 @@ public class SboardAction {
 				// indexOf가 처음 발견되는 문자열에 대한 index를 반환하는 반면,
 				// lastIndexOf는 마지막으로 발견되는 문자열의 index를 반환합니다.
 				// (파일명에 점에 여러개 있을 경우 맨 마지막에 발견되는 문자열의 위치를 리턴합니다.)
-				System.out.println("index = " + index);
 				fileExtension = filename.substring(index + 1);
-				System.out.println("fileExtension = " + fileExtension);
 				/**** 확장자 구하기 끝 ***/
 				// 새로운 파일명을 저장
 				refileName = "sboard" + year + month + date + random + "." + fileExtension;
-				System.out.println("refileName = " + refileName);
 				// 오라클 디비에 저장될 레코드 값
 				fileDBName += "/" + year + "-" + month + "-" + date + "/" + refileName + ",";
-				System.out.println("fileDBName = " + fileDBName);
 				// 파일명 변경합니다.
 				UpFile.renameTo(new File(homedir + "/" + refileName));
-				System.out.println("homedir / refileName  = " + homedir + "/" + refileName);
 			}
 			bean.setS_fl(fileDBName);
 
@@ -134,7 +128,6 @@ public class SboardAction {
 			int page = 1;
 			
 	 		HttpSession session = request.getSession();
-	 		System.out.println(limit);
 	 		if(request.getParameter("page") != null){
 				page=Integer.parseInt(request.getParameter("page"));
 			}
@@ -143,7 +136,6 @@ public class SboardAction {
 	 		}else if(request.getParameter("limit") != null)
 	 		{
 	 			limit=Integer.parseInt(request.getParameter("limit"));
-	 			session.setAttribute("limit", limit); //session에 limit를 저장하면 페이징처리시 쿼리스트링으로 limit값을 넘겨주지 않아도 된다.
 	 		}
 			int listcount=service.getListCount(); //총 리스트 수를 받아옴
 		
@@ -178,7 +170,7 @@ public class SboardAction {
 				model.addObject("bestlist", bestlist);
 				return model;	
 	}
-
+	
 	@RequestMapping(value = "/sboardscrap.brn")
 	public void sboardscrap(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "s_no", required = true) int s_no) throws Exception {
@@ -198,14 +190,11 @@ public class SboardAction {
 					check = 1;
 				}
 			}
-			System.out.println("1." + s_lkno);
 		} else {
-			System.out.println("s_lkno is null");
 		}
 		int result = 0;
 		if (check != 1) {
 			result = service.likeCountUp(map);
-			System.out.println(result);
 		}
 		PrintWriter out = response.getWriter();
 		out.print(result);
@@ -263,7 +252,6 @@ public class SboardAction {
 					filenamelist.add(token.nextToken());
 				}
 				contM.addObject("filenames", filenamelist);
-				System.out.println(filenamelist.get(0));
 			}
 			List<ScommBean> commbeanlist = new ArrayList<ScommBean>();
 			commbeanlist = scommservice.getCommList(s_no);
@@ -398,11 +386,8 @@ public class SboardAction {
 		m.put("limit", limit);
 		m.put("find_field", find_field);
 		m.put("find_name", "%" + find_name + "%");
-		System.out.println(find_field);
-		System.out.println(find_name);
 
 		int listcount = this.service.getListCountSearch(m);
-		System.out.println(listcount);
 
 		// 총 페이지 수
 		int maxpage = (listcount + limit - 1) / limit;

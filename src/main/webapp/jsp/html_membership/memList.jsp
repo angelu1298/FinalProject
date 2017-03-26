@@ -2,9 +2,26 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/jsp/inc/boardHeader.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="./resources/js/managelist.js"></script>
  <script>
+ $(function(){
         $("#viewcount").val("${limit}").prop("selected", true);
+        $("#viewcount").change(function(){
+    	    var scount=$("#viewcount").val();
+           $.ajax({
+    	       type:"POST",    
+    	       url:"memlist.brn",    
+    	       data: {"limit" : scount}, 
+    	       cache: false,
+    	       headers : {"cache-control" : "no-cache", "pragma" : "no-cache"},
+    	       success : function(data){    	        
+    	    	  $("body").html(data);
+    	       },
+		       error:function(){
+			        alert("data error");
+			   }
+    	      })//ajax end
+    	     });//change end	 
+ })
  </script>
 
 <!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
@@ -124,18 +141,18 @@
 				
 				<c:forEach var="a" begin="${startpage}" end="${endpage}">
 				<c:if test="${a == page }">
-					<strong><span>${a}</span></strong>
+					<strong>${a}</strong>
 				</c:if>
 				<c:if test="${a != page }">
-					<a href="memlist.brn?page=${a}&limit=${limit}" ><strong><span>${a}</span></strong></a>&nbsp;
+					<a href="memlist.brn?page=${a}&limit=${limit}" >${a}</a>&nbsp;
 				</c:if>
 				</c:forEach>
 					
 				<c:if test="${page >= maxpage }">
-					<a href="#none" class="next" title="다음페이지">&gt;</a>
+					<a href="#none" class="next" title="다음페이지">&gt;&gt;</a>
 				</c:if>
 				<c:if test="${page < maxpage }">
-					<a href="memlist.brn?page=${page+1}&limit=${limit}" class="next" title="다음페이지">&gt;</a>
+					<a href="memlist.brn?page=${page+1}&limit=${limit}" class="next" title="다음페이지">&gt;&gt;</a>
 				</c:if>		
 				</p>
 			</div>

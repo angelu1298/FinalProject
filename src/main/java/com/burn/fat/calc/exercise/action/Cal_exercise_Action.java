@@ -56,7 +56,6 @@ public class Cal_exercise_Action {
 										HttpServletResponse response) throws Exception {
 
 
-		System.out.println(name);
 
 		List<ExerciseBean> exerciselist = exerService.bringname(name);
 

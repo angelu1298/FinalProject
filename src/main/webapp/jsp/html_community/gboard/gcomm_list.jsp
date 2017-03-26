@@ -57,7 +57,6 @@ $(function(){
 			var gcomm_no = $(this).parents('li').find('.gcomm_no').val();
 			var gbbs_num = $("#gbbs_num").val();
 			var gcomm_re_ct = $(this).prev('.gcomm_re_ct').val();
-			alert(gbbs_num +"/"+ gcomm_no +"/"+ gcomm_re_ct );
 			
 			$.ajax({
 				data : {

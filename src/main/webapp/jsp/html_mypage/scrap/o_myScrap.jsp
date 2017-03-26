@@ -57,7 +57,7 @@
 								value="${num-1}" />
 						</td>
 
-						<td class="ten">
+						<td class="ten tit">
 							<div style="text-align: left">
 
 
@@ -86,36 +86,30 @@
 	</table>
 </div>
 <div class="paginate">
-				<p>
-					<a href="o_sc_view?page=1" class="pre" title="맨앞">&lt;&lt;</a>
-					<c:if test="${page <=1}">
-						<a href="#none" class="pre" title="이전페이지">&lt;</a>
-					</c:if>
-					<c:if test="${page > 1}">
-						<a href="o_sc_view?page=${page-1}&limit=${limit}" class="pre" title="이전페이지">&lt;</a>
-					</c:if>
-					<!-- 페이지가 1,2,3 이 있음 현재페이지가 2 라고 치면 
-						1은 2랑 다르니까 1에는 링크가 걸리고 2는 2랑 같으니까 링크가 안걸려야함 현재페이지니까 -->
-					<c:forEach var="a" begin="${startpage}" end="${endpage}">
-						<c:if test="${a == page }">
-							<span>${a}</span>
-						</c:if>
-						<c:if test="${a != page }">
-							<a href="o_sc_view?page=${a}&limit=${limit}" ><span>${a}</span></a>&nbsp;
-						</c:if>
-					</c:forEach>
-					<!--  -->
-					<a href="o_sc_view?page=${maxpage}" class="pre" title="맨뒤">&gt;&gt;</a>
-					<c:if test="${page >= maxpage }">
-						<a href="#none" class="next" title="다음페이지">&gt;</a>
-					</c:if>
-					<c:if test="${page < maxpage }">
-						<a href="o_sc_view?page=${page+1}&limit=${limit}" class="next" title="다음페이지">&gt;</a>
-					</c:if>	
-				</p>
-					
-
-				</div>
+	<p>
+		<a href="o_sc_view.brn?page=1" class="pre" title="맨앞">&lt;&lt;</a>
+		<c:if test="${page <=1}">
+			<a href="#none" class="pre" title="이전페이지">&lt;</a>
+		</c:if>
+		<c:if test="${page > 1}">
+			<a href="o_sc_view.brn?page=${page-1}&limit=${limit}" class="pre" title="이전페이지">&lt;</a>
+		</c:if>
+		<c:forEach var="a" begin="${startpage}" end="${endpage}">
+			<c:if test="${a == page }">
+				<strong>${a}</strong>
+			</c:if>
+			<c:if test="${a != page }">
+				<a href="o_sc_view.brn?page=${a}&limit=${limit}" >${a}</a>&nbsp;
+			</c:if>
+		</c:forEach>
+		<c:if test="${page >= maxpage }">
+			<a href="#none" class="next" title="다음페이지">&gt;</a>
+		</c:if>
+		<c:if test="${page < maxpage }">
+			<a href="o_sc_view.brn?page=${page+1}&limit=${limit}" class="next" title="다음페이지">&gt;</a>
+		</c:if>	
+		<a href="o_sc_view.brn?page=${maxpage}" class="pre" title="맨뒤">&gt;&gt;</a>
+	</p>
+</div>
 				<!--//페이징 -->
 
-</form>

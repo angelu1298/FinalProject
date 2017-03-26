@@ -27,7 +27,7 @@
          </dd>
 			<dd class="goalzone">
 				<input type="text" name="my_memo" id="my_memo" value="${myinfobean.my_memo}" class="txtgoal">
-				<input type="button"  class="btn_goal_edit" id=btn_goal_edit""/>
+				<input type="button"  class="btn_goal_edit" id="btn_goal_edit"/>
 			</dd>
 			<dd><strong>ID</strong><span>${myinfobean.mem_id }</span></dd>
 			
@@ -39,17 +39,16 @@
 				<input type="text" name="goal_w" id="goal_w"  value="${myinfobean.goal_w}" class="txtgoal">
 				<input type="button"  class="btn_goal_edit" id="btn_goalww_edit"/>
 			</dd>
-		 	<dd>어제는 총 <em><fmt:formatNumber value="${avrgPerM/3*100 }" pattern="00.00"/></em>%의 회원이 목표를 달성!</dd> 
 			<dd class="info_list">
 				<a href="./sc_view.brn">스크랩목록</a>
-				<a href="./Statistics.brn">통계</a>
-			</dd>
+<!-- 				<a href="./Statistics.brn">통계</a>
+ -->			</dd>
 			
 		</dl>
 		
 		
 		<script>
-
+$(function(){
 			/* 해당 리스트 삭제모달창 불러오기  */
 			$(".btn_bmi").click(function(){
 				$(".modal_bg").removeClass("off"); 
@@ -104,4 +103,6 @@
 					
 				}
 			});
+	
+})
 		</script>

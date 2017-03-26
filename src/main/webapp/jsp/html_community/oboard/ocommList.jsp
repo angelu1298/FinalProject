@@ -85,14 +85,18 @@
 							<strong>reply</strong>					
 						</c:forEach>
 					</p>
-				</c:if>			
-					<span>${ocomm.mem_id } </span>
-					<!-- 작성자  -->
-					<span> ${ocomm.ocomm_dt }</span>
-					<!-- 작성 날짜 -->
-					<span>${ocomm.ocomm_ct }</span>
-					<!-- 코멘트 내용 -->
-				</p>
+				</c:if>		
+				<c:set var="num" value="${ocomm.ocomm_re_lev}" />	
+					<div class="content st0${num}">
+						<p class="fl">
+							<span>${ocomm.mem_id } </span>
+							<!-- 작성자  -->
+							<span> ${ocomm.ocomm_dt }</span>
+							<!-- 작성 날짜 -->
+						</p>
+						<span>${ocomm.ocomm_ct }</span>
+						<!-- 코멘트 내용 -->
+					</div>
 				<p class="sbtnarea">
 					<c:if test="${sessionScope.mem_id == ocomm.mem_id }">
 						<span class="deletecomm">[삭제]</span>
@@ -105,8 +109,8 @@
 			
 				<div class="comm_re_ct_area">
 					<h5>댓글을 작성해주세요</h5>
-					<textarea cols="100%" rows="10%" class="ocomm_re_ct"></textarea>
-					<button class="ocomm_rep_button" >댓글남기기</button>
+					<textarea cols="100%" rows="10%" class="ocomm_re_ct comm_re_ct"></textarea>
+					<button class="ocomm_rep_button comm_rep_button" >댓글남기기</button>
 				</div>
 				
 			</li>
@@ -114,8 +118,9 @@
 	</ul>
 </c:if>
 <c:if test="${empty beanlist }">
-	<span>등록된 코멘트가 없습니다.</span>
+	<p class="nolist">등록된 코멘트가 없습니다.</p>
 </c:if>
+
 <div class="comm_ct_area">
 	<textarea cols="70" rows="20" id="ocomm_ct"></textarea>
 	<button onclick="ocomm_write()" class="comm_rep_buttonL">코멘트남기기</button>
@@ -124,7 +129,6 @@
 	
 		function ocomm_write(){
 
-			alert("!!!!!!!!!!!!!!!!!");			
 			if( $('#ocomm_ct').val()==''){
 				alert('코멘트를 입력하세요');
 				return false;
@@ -137,7 +141,6 @@
 						"ocomm_ct": ocomm_ct},
 				url: "ocommWrite_ok.brn",
 				success : function(data){
-					alert(data);
 					if(data==1){
 					$('.commentList').empty();
 					$('.commentList').load("./ocommList.brn",'o_no='+o_no);

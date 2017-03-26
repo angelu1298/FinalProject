@@ -18,7 +18,7 @@
 	<select id="scommlist" parameterType="int" resultType="scommbean">
 		select * from scommlist
 		where s_no=#{s_no}
-		order by  scomm_re_ref desc, scomm_re_seq asc
+		order by   scomm_re_ref asc,  scomm_re_seq asc, scomm_no asc
 	</select>
 	<!-- 코멘트 삭제 코멘트 댓글이 없는 경우 -->
 	<delete id="deletecomm" parameterType="java.util.Map">
@@ -53,5 +53,10 @@
 			   #{scomm_re_seq},
 			   #{s_no})
 	</insert>
+	<update id="updatereseq" parameterType="scommbean">
+		update scomment
+		set scomm_re_seq = scomm_re_seq +1
+		where scomm_re_ref = #{scomm_re_ref} and scomm_re_seq > #{scomm_re_seq}
+	</update>
 	
 </mapper>

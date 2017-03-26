@@ -47,7 +47,7 @@
 									<span class="mando">비밀번호</span>
 								</th>
 								<td>
-									<input type="text" class="w200 " id="inputpw" name="inputpw" pattern=".{8,}" value="${member.mem_pw }">
+									<input type="password" class="w200 " id="inputpw" name="inputpw" pattern=".{8,}" value="${member.mem_pw }">
 									<span class="tip_info2">8~16 자리수 영문과 숫자를 조합</span>
 								</td>
 							</tr>
@@ -56,7 +56,7 @@
 									<span class="mando" >비밀번호 확인</span>
 								</th>
 								<td>
-									<input type="text" class="w200 " id="checkpw" name="checkpw" value="${member.mem_pw }">
+									<input type=""password"" class="w200 " id="checkpw" name="checkpw" value="${member.mem_pw }">
 									<span class="tip_info2">비밀번호를 다시 한번 입력해주세요.</span>
 								</td>
 							</tr>
@@ -196,7 +196,7 @@
 								</th>
 								<td>
 									<p class="col">
-										<input type="button" value="우편번호찾기" id="findzipcode"> 
+										<input type="button" value="우편번호찾기" id="findzipcode" onclick="zipcode_find()"> 
 										<input type="text" class="w100" id="zipcode" name="zipcode" value="${member.mem_zc }">
 									</p>
 									<p class="col">

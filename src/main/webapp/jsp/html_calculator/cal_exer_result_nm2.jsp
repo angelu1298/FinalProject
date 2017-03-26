@@ -2,8 +2,7 @@
 
 <%@ page import="java.util.*"%>
 <%@ page import="com.burn.fat.*"%>
-<script src="./resources/js/jquery.js"></script>
-<script src="./resources/js/list.js"></script>
+<script src="./resources/js/jquery.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 	<!-- erc_nm, erc_sx, erc_minw, erc_maxw, erc_ten, erc_hun -->

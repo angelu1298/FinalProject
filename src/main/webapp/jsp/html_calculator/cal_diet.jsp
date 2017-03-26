@@ -6,6 +6,7 @@
    <!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
    <section class="sub_container">
    
+		<%@ include file="../inc/leftMenu03.jsp" %>
       
       <!-- 서브컨텐츠 영역 START -->
       <div class="subContent">
@@ -16,10 +17,10 @@
 	            $(".side_myinfo").load("my_info.brn");
 	         })
 	      </script> -->
-	      
+	      <!-- 
 	      <div class="side_myinfo">
 	         
-	      </div>
+	      </div> -->
 	      
 
 		<h3>WORKOUT</h3>
@@ -34,7 +35,6 @@
                   var goal_weight = $('.goal_weight').val();
                   var goalDay = $('.goalDay').val();
                   var select_per = $('.per:checked').val();
-                  alert(select_per);
                   $.ajax({
                      data : {
                         "now_weight" : now_weight,
@@ -84,10 +84,9 @@
                         <label for="gender_w"><img src="resources/img/cal/woman.png" id="woman" /></label>
 					</li>
 					<li>
-						 <p><strong>현재체중</strong><input type="text" name="now_weight" class="now_weight" /><span>kg</span></p>
-                      	 <p><strong>목표날짜</strong><input type="text" name="goalDay" class="goalDay" /><span>일</span></p>
+							 <p><strong>현재체중</strong><input type="text" name="now_weight" class="now_weight" /><span>kg</span></p>
+                      	 	<p><strong>목표날짜</strong><input type="text" name="goalDay" class="goalDay" /><span>일</span></p>
                      </li>
-                  
                      <li>
                           <ol>
                              <li><input type="radio" class="per" name="select_per" id="select_per1" value="100" /><label for="select_per1">운동 100%</label></li>

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.burn.fat.member.dao.MemberService;
+import com.burn.fat.member.join.dao.JoinService;
 import com.burn.fat.member.model.MemberBean;
 
 @Controller("member")
@@ -32,6 +33,9 @@ public class MemberAction {
    //- @Resource : 이름을 기준으로 빈을 찾아 주입하는 애노테이션
    @Autowired  //@Autowired은 생성자나 메서드, 멤버변수 위에 모두 사용할 수 있습니다.
    private MemberService memberService;
+   
+   @Autowired
+	private JoinService service;
    
 
    @RequestMapping(value="/idFind.brn")
@@ -157,8 +161,6 @@ public class MemberAction {
         
         
         
-        System.out.println("mem_maid= "+mem_maid);
-      System.out.println("mem_madomain= "+mem_madomain);
       
       Map<String, String> m=new HashMap<String,String>();
       //컬렉션 Map에 키와 값  저장합니다.
@@ -246,9 +248,9 @@ public class MemberAction {
            
            
            //관리자의 메일 발신 전용 계정 메일.....
-           final String username = "ssheln";  //네이버 아이디     
+           final String username = "angelu85";  //네이버 아이디     
            int port=465;
-           final String password = "qweqwe123";   //네이버 이메일 비밀번호
+           final String password = "moonriver8505";   //네이버 이메일 비밀번호
            
            
            //임시비밀번호 생성
@@ -267,12 +269,14 @@ public class MemberAction {
            
            String randomNum = sb.toString();
          
+           member.setMem_pw(randomNum);
+           this.service.updateMember(member);
            
            
            // 이메일 내용
            String subject = "Burning fat 임시 비밀번호 발송";
            String body = "Burning fat 홈페이지 임시 비밀번호 발송입니다.&nbsp; 임시 비밀번호는 "+randomNum+" 입니다."
-                 + "&nbsp; 다시 로그인해주세요.";
+                 + "&nbsp; 다시 로그인해주세요. http://112.154.136.153:8080/FinalProject Burning Fat으로 가기";
             
            //html파일이 오는 경우
            
@@ -302,7 +306,7 @@ public class MemberAction {
               
            Message mimeMessage = new MimeMessage(session);
            
-           mimeMessage.setFrom(new InternetAddress("ssheln@naver.com"));
+           mimeMessage.setFrom(new InternetAddress("angelu85@naver.com"));
            //발신자 셋팅, 보내는 사람의 이메일 주소를 한번 더 입력.. 이메일 풀 주소를 다 작성
            
            mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(mem_ma));

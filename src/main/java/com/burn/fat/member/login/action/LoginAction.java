@@ -34,7 +34,6 @@ public class LoginAction {
 				@RequestParam(value="check_id") String check_id, @RequestParam(value="check_pass") String check_pass,HttpSession session) throws Exception {
 		MemberBean member = service.getMemberById(check_id);
 		session= request.getSession();
-		ModelAndView model = new ModelAndView("main/mainPage");
 		PrintWriter out = response.getWriter();
 		
 		MemberBean isDeleteId=service.isDeleteId(check_id);
@@ -61,14 +60,15 @@ public class LoginAction {
 				}
 			}
 	    }
-		
-		return model;
+	    out.print("<script>alert('"+check_id+"님 burn fat에 오신 것을 환영합니다.');</script>");
+		response.sendRedirect("./Main.brn");
+		return null;
 	}
 	
 	@RequestMapping("/Logout.brn")
 	public String logout(HttpServletRequest request, HttpServletResponse response,HttpSession session) throws Exception{
 		session= request.getSession();
-		session. invalidate();
+		session.invalidate();
 		
 		return "html_membership/logout";
 	}

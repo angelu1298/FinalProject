@@ -22,7 +22,6 @@ public class RequestProcessingTimeInterceptor extends HandlerInterceptorAdapter 
 		HttpSession session = request.getSession();
 		response.setContentType("text/html;charset=UTF-8");
 		
-		System.out.println("핸들러는들어왔나요???");
 		
 		if(session.getAttribute("mem_id")==null){ // 세션에 값이 없을경우,
 
@@ -38,8 +37,6 @@ public class RequestProcessingTimeInterceptor extends HandlerInterceptorAdapter 
 	public void postHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		System.out.println("Request URL::" + request.getRequestURL().toString()
-				+ " Sent to Handler :: Current Time=" + System.currentTimeMillis());
 		//we can add attributes in the modelAndView and use that in the view page
 	}
 

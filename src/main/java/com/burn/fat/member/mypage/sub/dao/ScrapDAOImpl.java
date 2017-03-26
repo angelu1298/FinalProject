@@ -27,7 +27,6 @@ public class ScrapDAOImpl {
 	public int getOscrapCount(int mem_no) throws Exception {
 		System.err.println("oooooboard");
 		int count = ((Integer) sqlSession.selectOne("o_scrap_count",mem_no)).intValue();
-		System.out.println(count);
 		return count;
 	}
 	
@@ -41,8 +40,7 @@ public class ScrapDAOImpl {
 	/* eboard 스크랩 갯수*/
 	public int getEscrapCount(int mem_no) throws Exception {
 		System.err.println("eeeee");
-		int count = ((Integer) sqlSession.selectOne("g_scrap_count",mem_no)).intValue();
-		System.out.println(count);
+		int count = ((Integer) sqlSession.selectOne("e_scrap_count",mem_no)).intValue();
 		return count;
 	}
 
@@ -57,7 +55,6 @@ public class ScrapDAOImpl {
 	public int getGscrapCount(int mem_no) throws Exception {
 		System.err.println("ggggggg");
 		int count = ((Integer) sqlSession.selectOne("g_scrap_count",mem_no)).intValue();
-		System.out.println(count);
 		return count;
 	}
 	
@@ -72,7 +69,6 @@ public class ScrapDAOImpl {
 	public int getFscrapCount(int mem_no) throws Exception {
 		System.err.println("fffff");
 		int count = ((Integer) sqlSession.selectOne("f_scrap_count",mem_no)).intValue();
-		System.out.println(count);
 		return count;
 	}
 
@@ -86,7 +82,6 @@ public class ScrapDAOImpl {
 	public int getSscrapCount(int mem_no) throws Exception {
 		System.err.println("ssss");
 		int count = ((Integer) sqlSession.selectOne("s_scrap_count",mem_no)).intValue();
-		System.out.println(count);
 		return count;
 	}
 

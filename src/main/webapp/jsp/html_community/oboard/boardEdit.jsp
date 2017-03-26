@@ -56,7 +56,6 @@ $(function(){
     });
     
 	$(".btn_del").click(function() {
-    	alert("버튼눌렸어");
     	$( ".file_name" ).remove();
     });
 

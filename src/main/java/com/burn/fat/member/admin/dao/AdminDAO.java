@@ -35,7 +35,6 @@ public class AdminDAO {
 	public int getListCount_find(Map m) throws Exception {
 		int count=0;
 		count=((Integer)sqlSession.selectOne("getListCountfind",m)).intValue();
-		System.out.println("count는?"+count);
 		return count;
 	}
 	//관리자 회원 검색

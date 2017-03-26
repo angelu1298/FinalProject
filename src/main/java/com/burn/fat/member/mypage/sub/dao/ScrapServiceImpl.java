@@ -25,7 +25,6 @@ public class ScrapServiceImpl implements ScrapService {
     /*oboard 스크랩 갯수*/
 	    @Override
 	    public int getOscrapCount(int mem_no) throws Exception {
-	    	System.out.println("serviceimpl"+mem_no);
 	    	return scrapDAO.getOscrapCount(mem_no);
 	    }
     
@@ -39,7 +38,6 @@ public class ScrapServiceImpl implements ScrapService {
     /*eboard 스크랩 갯수*/
     @Override
 	    public int getEscrapCount(int mem_no) throws Exception {
-	    	System.out.println("serviceimpl"+mem_no);
 	    	return scrapDAO.getEscrapCount(mem_no);
 	    }
     
@@ -53,7 +51,6 @@ public class ScrapServiceImpl implements ScrapService {
 	/*gboard 스크랩 갯수*/
 	@Override
 	    public int getGscrapCount(int mem_no) throws Exception {
-	    	System.out.println("serviceimpl"+mem_no);
 	    	return scrapDAO.getGscrapCount(mem_no);
 	    }
 	
@@ -67,7 +64,6 @@ public class ScrapServiceImpl implements ScrapService {
 	/*fboard 스크랩 갯수*/
 	@Override
 	    public int getFscrapCount(int mem_no) throws Exception {
-	    	System.out.println("serviceimpl"+mem_no);
 	    	return scrapDAO.getFscrapCount(mem_no);
 	    }
 	   
@@ -82,7 +78,6 @@ public class ScrapServiceImpl implements ScrapService {
 	/*fboard 스크랩 갯수*/
 	@Override
 	    public int getSscrapCount(int mem_no) throws Exception {
-	    	System.out.println("serviceimpl"+mem_no);
 	    	return scrapDAO.getSscrapCount(mem_no);
 	    }
    

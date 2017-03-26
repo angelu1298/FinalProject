@@ -43,7 +43,7 @@ public class GbbsAction {
 	// DAO클래스가 바뀌면 해당하는 컨트롤러를 다 바꿔줘야하기 떄문에 ,
 	// DAO클래스만 변경해서 사용할 수 있는 방법을 생각 => 다형성을 이용한다(Autowired)
 	////private String saveFolder ="C:/Program Files/Apache Software Foundation/Tomcat 8.0/webapps/myapp/resources/upload";
-	private String saveFolder="C:/Users/angel/git/FinalProject/src/main/webapp/resources/upload";
+	private String saveFolder="C:/apache-tomcat-8.0.42/webapps/FinalProject/resources/upload"; 
 
 	/*자료실 입력폼*/
 	@RequestMapping(value="/gbbs_write.brn")
@@ -63,14 +63,14 @@ public class GbbsAction {
 	
 	/* 자료실 목록 */
 	@RequestMapping(value="/gbbs_write_ok.brn", method=RequestMethod.POST)
-	public ModelAndView gbbs_write_ok(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView gbbs_write_ok(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
 
 		GbbsBean gbbsbean = new GbbsBean();
 		int sizeLimit = 50*1024*1024; // 이진파일 최대 업로드 
 		MultipartRequest multi2 = null;
 		multi2 = new MultipartRequest(request, saveFolder, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
 
-		int gbbs_mem_no = Integer.parseInt(multi2.getParameter("gbbs_mem_no"));
+		int gbbs_mem_no = ((Integer)session.getAttribute("mem_no")).intValue();
 		String gbbs_subject = multi2.getParameter("gbbs_subject").trim();
 		String gbbs_content = multi2.getParameter("gbbs_content").trim();
 
@@ -95,7 +95,6 @@ public class GbbsAction {
 				int date = c.get(Calendar.DATE);
 
 				String homedir = saveFolder + "/" + year + "-" + month + "-" + date ;  
-				System.out.println("homedir = " + homedir);
 	
 				// upload 폴더 아래에 파일을 올린 날짜로 폴더 생성합니다.  
 				File path1 = new File(homedir);
@@ -116,36 +115,27 @@ public class GbbsAction {
 				lastIndexOf는 마지막으로 발견되는 문자열의 index를 반환합니다.
 				파일명에 점이 여러개 있을 경우에 맨 마지막에 발견되는 문자열의 위치를 리턴합니다. */
 				
-				System.out.println("index = " + index);
 				
 				String fileExtension = fileName.substring(index+1);
-				System.out.println("file Extension = " + fileExtension );
 				
 				/* 확장자 구하기 끝 */
 				// 새로운 파일명을 저장
 				String refileName = "gbbs" + year + month + date + random + "." + fileExtension; 
-				System.out.println("refileName : " + refileName);
 				
 				// 오라클 디비에 저장될 레코드 값
 				String fileDBName = homedir + "/" + refileName; 
 				String fileDBName_thumb = homedir + "/sm" + refileName; 
-				System.out.println("오라클 디비에 저장될 레코드 값" + fileDBName);
-				System.out.println("fileName : " + fileName);
 				
 				File f = new File(saveFolder+File.separator+fileName);  // 서버에 업로드된 파일객체 (디렉토리포함)
 				f.renameTo(new File(fileDBName));
-				long fileSize = f.length(); // 파일크기 (bytes)
 				   
 				fileDBNames += ";"  + year + "-" + month + "-" + date + "/" + refileName ;
 				
 				String orgFileName =  fileDBName;
 				String thumbFileName = fileDBName_thumb;
-				System.out.println("homedir:" + homedir);
-				System.out.println("refileName:" + refileName);
 				Thumbnail.createImage(orgFileName, thumbFileName, 5);
 			}
 			
-			System.out.println(fileDBNames);
 			gbbsbean.setGbbs_file(fileDBNames);
 			
 		} catch(IOException ioe){
@@ -215,7 +205,6 @@ public class GbbsAction {
 		model.addObject("Gbbsgall", Gbbsgall);
 		model.addObject("limit", limit);
 		
-		System.out.println("listcount:"+listcount+"\tpage:"+page+"\tlimit:"+limit);
 		return model;	
 	
 	}
@@ -249,7 +238,6 @@ public class GbbsAction {
 		if(state.equals("cont")){//내용보기
 			
 			contM.setViewName("html_community/gboard/gbbs_cont");  //글내용 중 엔터키 친부분을 다음줄로 개행 처리
-			System.out.println( gbbsbean.getGbbs_content());
 			String gbbs_cont = gbbsbean.getGbbs_content().replace("\n","<br/>");
 			contM.addObject("gbbs_cont", gbbs_cont);
 		
@@ -329,7 +317,6 @@ public class GbbsAction {
 				int date = c.get(Calendar.DATE);
 
 				String homedir = saveFolder + "/" + year + "-" + month + "-" + date ;  
-				System.out.println("homedir = " + homedir);
 	
 				// upload 폴더 아래에 파일을 올린 날짜로 폴더 생성합니다.  
 				File path1 = new File(homedir);
@@ -342,7 +329,6 @@ public class GbbsAction {
 				Random r = new Random();
 				int random = r.nextInt(100000000);
 				
-				System.out.println("fileName" + fileName);
 				/*확장자 구하기 시작*/
 				int index = fileName.lastIndexOf(".");
 				/* 문자열에서 특정 문자열의 위치값(index)를 반환합니다
@@ -350,21 +336,16 @@ public class GbbsAction {
 				lastIndexOf는 마지막으로 발견되는 문자열의 index를 반환합니다.
 				파일명에 점이 여러개 있을 경우에 맨 마지막에 발견되는 문자열의 위치를 리턴합니다. */
 				
-				System.out.println("index = " + index);
 				
 				String fileExtension = fileName.substring(index+1);
-				System.out.println("file Extension = " + fileExtension );
 				
 				/* 확장자 구하기 끝 */
 				// 새로운 파일명을 저장
 				String refileName = "gbbs" + year + month + date + random + "." + fileExtension; 
-				System.out.println("refileName : " + refileName);
 				
 				// 오라클 디비에 저장될 레코드 값
 				String fileDBName = homedir + "/" + refileName; 
 				String fileDBName_thumb = homedir + "/sm" + refileName; 
-				System.out.println("오라클 디비에 저장될 레코드 값" + fileDBName);
-				System.out.println("fileName : " + fileName);
 				
 				File f = new File(saveFolder+File.separator+fileName);  // 서버에 업로드된 파일객체 (디렉토리포함)
 				f.renameTo(new File(fileDBName));
@@ -374,8 +355,6 @@ public class GbbsAction {
 				
 				String orgFileName =  fileDBName;
 				String thumbFileName = fileDBName_thumb;
-				System.out.println("homedir:" + homedir);
-				System.out.println("refileName:" + refileName);
 				Thumbnail.createImage(orgFileName, thumbFileName, 5);
 				
 				resultfileDBNames += fileDBNames;
@@ -388,18 +367,12 @@ public class GbbsAction {
 				// 삭제할 파일을 replace로 하나씩 지워줍니다.
 				for(int i=0; i<img_del.length; i++){
 						
-					System.out.println("지울파일" + img_del[i]);
 					String delfileDBName = ";" + img_del[i].replaceAll("sm", "");
-					System.out.println(delfileDBName);
 					// 원래파일 + 새로운파일 - 지울파일
-					System.out.println("resultfileDBNames 전 : " + resultfileDBNames); 
 					// DB에서 지워줌.
 					resultfileDBNames = resultfileDBNames.replace(delfileDBName, "");
-					System.out.println("resultfileDBNames 후 : " + resultfileDBNames);
 					
-					System.out.println(saveFolder);
 					String delfile = saveFolder+delfileDBName;
-					System.out.println("삭제할 파일주소  : " + delfile);
 					File fd = new File(delfileDBName);
 					File fdsmall = new File(delfileDBName.replace("gbbs","smgbbs") );
 					fd.delete();		// 파일삭제
@@ -479,7 +452,6 @@ public class GbbsAction {
 	   public ModelAndView gbbs_find_ok( HttpServletRequest request,  HttpServletResponse response, @RequestParam(value="limit", defaultValue="10") int limit ) throws Exception{
 
 		  	int page=1;
-			System.out.println("limit:" + limit );
 			
 			if(request.getParameter("page")!=null){
 				page=Integer.parseInt(request.getParameter("page"));
@@ -501,12 +473,9 @@ public class GbbsAction {
 	         m.put("gfind_field", gfind_field);
 	         m.put("gfind_name", "%"+gfind_name+"%");         
 	         
-	         System.out.println(gfind_field);
-	         System.out.println(gfind_name);
 	         
 	         
 	         int listcount = this.gbbsService.getGlistCount2(m);
-	         System.out.println(listcount);
 	         
 	         //총 페이지 수
 	         int maxpage = (listcount+limit-1)/limit;
@@ -560,7 +529,6 @@ public class GbbsAction {
 	         gfind_field=request.getParameter("gfind_field").trim();
 	         //검색 필드 저장
 	      }
-	      //System.out.println(find_name);
 	         
 	      Map m = new HashMap();
 	      m.put("page", page);
@@ -568,7 +536,6 @@ public class GbbsAction {
 	      m.put("gfind_name", "%" + gfind_name+"%");
 	      
 	      int listcount=this.gbbsService.getGlistCount2(m);
-	      System.out.println("listcount="+listcount);
 	      
 	      if(request.getParameter("gorderdate")!=null){
 	         gorderdate=request.getParameter("gorderdate");

@@ -113,9 +113,5 @@
 		</c:if>
 	</ul>
 
-	<!-- 목표 -->
-	<div>
-		<input type="text" /><input type="button">
-	</div>
-
+	
 </div>

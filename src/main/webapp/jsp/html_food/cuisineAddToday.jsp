@@ -45,7 +45,6 @@
 			request.setCharacterEncoding("UTF-8");
 			String cus_tt = request.getParameter("cus_tt");
 			String decodeResult = URLDecoder.decode(cus_tt, "UTF-8");
-			System.out.println(decodeResult);
 		%>
 		
       <div class="modal_area size_medium">

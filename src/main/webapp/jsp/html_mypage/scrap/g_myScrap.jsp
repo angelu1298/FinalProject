@@ -33,7 +33,7 @@
 									<span class="date"><fmt:formatDate value="${b.gbbs_date}" pattern="yyyy.MM.dd" /></span>
 									<span class="click">${b.gbbs_readcount}</span>
 									<span class="like">${b.gbbs_like}</span>
-									<span class="author">${b.gbbs_author}</span>
+									<span class="author">${b.gbbs_userid}</span>
 								</p>
 							</a>
 						</li>
@@ -75,12 +75,13 @@
 			<!-- 페이징 -->				
 			<div class="paginate">
 				<p>
+					<a href="g_sc_view.brn?page=1" class="pre" title="맨앞">&lt;&lt;</a>
 					<c:if test="${page <=1 }">
-						<span>&lt;&lt;</span>
+						<a href="#none" class="pre" title="이전페이지">&lt;</a>
 					</c:if>
 					
 					<c:if test="${page > 1 }">
-						<a href="gbbs_gall.brn?page=${page-1}">&lt;</a>
+						<a href="g_sc_view.brn?page=${page-1}&limit=${limit}" class="pre" title="이전페이지">&lt;</a>
 					</c:if>			
 		
 					<c:forEach var="a" begin="${startpage}" end="${endpage}">
@@ -88,16 +89,17 @@
 							<strong>${a}</strong>
 						</c:if>
 						<c:if test="${a != page }">
-							<a href="gbbs_gall.brn?page=${a}">${a}</a>
+							<a href="g_sc_view.brn?page=${a}&limit=${limit}" >${a}</a>&nbsp;
 						</c:if>
 					</c:forEach>			
-						
 						<c:if test="${page >= maxpage }">
-							<span>&gt;</span>
+							<a href="#none" class="next" title="다음페이지">&gt;</a>
 						</c:if>
 						<c:if test="${page < maxpage }">
-							<a href="gbbs_gall.brn?page=${page+1}">&gt;&gt;</a>
+						<a href="g_sc_view.brn?page=${page+1}&limit=${limit}" class="next" title="다음페이지">&gt;</a>
 						</c:if>
+					<a href="g_sc_view.brn?page=${maxpage}" class="pre" title="맨뒤">&gt;&gt;</a>
+						
 					</p>
 				</div>
 				<!-- // 페이징 -->				 

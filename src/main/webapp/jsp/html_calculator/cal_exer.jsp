@@ -5,6 +5,7 @@
 	<section class="sub_container">
 	
 		<!-- 서브메뉴에 따라 Side Navigation을 다르게 부여해준다. -->	
+			<%@ include file="../inc/leftMenu03.jsp" %>
 		<%-- <%@ include file="/inc/myinfo.jsp" %> --%>
 		<%-- <%@ include file="../inc/left_cal.jsp" %> --%>
 		

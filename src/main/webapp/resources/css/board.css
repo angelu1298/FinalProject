@@ -44,7 +44,7 @@ input[type=button], input[type=file], input[type=submit]{appearance:none; -o-app
 .common_list_box table caption {width:0; height:0; font-size:0; line-height:0; visibility:hidden}
 .common_list_box table th { padding:15px 0 15px 0;  background:#f0f0f0; border:none; border-bottom:1px solid #e0e0e0; font-size:13px; font-weight:600; color:#5c5b5b; height:20px; text-align:center; }
 .common_list_box table td { overflow:hidden; padding:10px 0 11px 0; min-height:40px; line-height:20px; background:#fff; border:none; border-top:1px solid #e0e0e0 !important; text-align:center; font-size:13px; color:#7a7979; word-break:break-all;}
-.common_list_box table td a { color:#484747; position:relative; float:left; width:100%; display:block; line-height:20px; height:20px; }
+.common_list_box table td a { color:#484747; position:relative; float:left; width:100%; display:block; line-height:20px; }
 .common_list_box table td a .cnt{ font-size:10px; font-family:tahoma; font-weight:500; margin-left:5px; display:block; line-height:20px; height:20px; }
 .common_list_box table td a:hover{ color:#4391fc; }
 .common_list_box table td.tit{ text-align:left;  overflow:visible;}
@@ -126,14 +126,14 @@ li p span.author{ background-image:url(../img/ic/ic_write.png);}
 .file_Area{ clear:both; width:100%; margin-top:20px} 
 .file_Area h6{ font-size:15px; clear:both; display:inline-block;  } 
 .file_Area h6 strong{float:left;}
-.file_Area h6 input[type=button]{ margin-left:10px; height:20px; display:block; float:left; } 
+.file_Area h6 input[type=button]{  height:30px; display:block; float:left; font-size:11px; background-size:25px auto; background-color:transparent; background-repeat:no-repeat;   text-indent:-9999px; } 
 .file_Area ul{ clear:both; margin:10px 0px 15px 0px; padding:15px; display:inline-block; width:100%; text-align:left; color:#615f5f;  font-size:13px; background:#f7f6f6; border-right:1px solid #e0e0e0; border-left:1px solid #d0d0d0 ;border-top:1px solid #d0d0d0; border-bottom:1px solid #e0e0e0;  }
-.file_Area ul li{ position:relative; display:block; float:left; width:100%; line-height:30px; height:30px; margin-left:10px; padding-left:15px; background:url(../img/bull/btn_fileadd.gif) no-repeat left center; word-break:break-all; word-wrap:break-word; word-wrap:break-word;  }
-.file_Area ul li input[type=file]{  position:absolute; top:0; right:0;  appearance:none; -o-appearance:none; -moz-appearance:none; -webkit-appearance:none; position:absolute; top:6px; width:20px; height:20px;  display:block; text-indent:-9999px; overflow:hidden
+.file_Area ul li{ position:relative; display:block; float:left; width:100%; line-height:30px; height:30px; margin-left:10px; word-break:break-all; word-wrap:break-word; word-wrap:break-word;  }
+/* .file_Area ul li input[type=file]{  position:absolute; top:0; right:0;  appearance:none; -o-appearance:none; -moz-appearance:none; -webkit-appearance:none; position:absolute; top:6px; width:20px; height:20px;  display:block; text-indent:-9999px; overflow:hidden
 ; text-indent:-9999px; background-repeat:no-repeat; background-size:auto; background-position:center;  background-color:#d00; } 
-.file_Area ul li input.btn_del{  position:absolute; top:0; right:0px; background-image:url(../img/btn/btn_input_plus.png);  }
-.file_Area ul li input.btn_add {  position:absolute; top:0; right:25px; background-image:url(../img/btn/btn_input_minus.png);  }
-
+ */
+.file_Area ul li input.btn_add {  position:absolute; top:0; right:50px;  width:30px; line-height:30px;  height:30px;  display:block; background-position:center left; background-image:url(../img/btn/btn_input_plus.png); background-repeat:no-repeat; background-size:25px auto; padding-left:30px; text-indent:-9999px; overflow:hidden }
+.file_Area ul li input.btn_del{  position:absolute; top:0; right:20px; width:30px; line-height:30px; height:30px;  display:block;background-position:center left; background-image:url(../img/btn/btn_input_minus.png); background-repeat:no-repeat;  background-size:25px auto; text-indent:-9999px; overflow:hidden  }
 .file_Area_img{ clear:both; width:100%; margin-top:20px}
 .file_Area_img h6{ font-size:15px; clear:both; display:inline-block; height:28px; } 
 .file_Area_img h6 strong{float:left;}
@@ -151,7 +151,7 @@ li p span.author{ background-image:url(../img/ic/ic_write.png);}
 .btnB_area a, .btnB_area input[type=button], .btnB_area input[type=submit], .btnB_area input[type=reset]{ appearance:none; -ms-appearance:none; -o-appearance:none; -webkit-appearance:none;  }
 .btnB_area a, .btnB_area input[type=button], .btnB_area input[type=submit], .btnB_area input[type=reset]{ cursor:pointer; float:left; height:30px; line-height:30px; padding:0 15px; display:block; font-size:13px;  border:1px solid #232323; }
 .btnB_area a.black , .btnB_area input.black { background:#454545; color:#fff; border:1px solid #232323; }
-.btnB_area a.white , .btnB_area input.white { border:1px solid #808080; color:#565656; }
+.btnB_area a.white , .btnB_area input.white { border:1px solid #808080; color:#565656;  background:#fff; }
 .btnB_area .fl a, .btnB_area .fl input{ margin-right:5px; }
 .btnB_area .fr a, .btnB_area .fr input{ margin-left:5px; }	
 

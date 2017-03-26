@@ -5,8 +5,6 @@
 <%@ page import="com.burn.fat.board.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<script src="./resources/js/jquery.js"></script>
-<script src="./resources/js/list.js"></script>
 
 <!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
 <section class="sub_container">
@@ -126,7 +124,7 @@
                         <strong>${a}</strong>
                      </c:if>
                      <c:if test="${a != page }">
-                        <a href="obs_list.brn?page=${a}&limit=${limit}"><strong>${a}</strong></a>
+                        <a href="obs_list.brn?page=${a}&limit=${limit}">${a}</a>
                      </c:if>
                   </c:forEach>         
                   <c:if test="${page < maxpage }">
@@ -145,11 +143,13 @@
 
 
       <!--버튼영역-->
+      <c:if test="${!empty sessionScope.mem_id }" >
       <div class="btnB_area">
          <div class="fr">
             <a href="obs_write.brn" class="black">글쓰기</a>
          </div>
       </div>
+      </c:if>
       <!--//버튼영역-->
 
 
@@ -159,7 +159,7 @@
          <div class="borad_srch">
             <!--//검색영역-->
             <span class="fl ml20">
-               <select id="viewcount fl" name="limit">
+               <select id="viewcount" name="limit">
                   <option value="20">20개보기</option>
                   <option value="50">50개보기</option>
                   <option value="100">100개보기</option>
@@ -168,13 +168,13 @@
             <!--한줄-->
             <p class="col">
                <label for="srch_sel01" class="sc_txt">검색영역</label> <select
-                  class="w180 mr10" id="srch_sel01" name="find_field">
+                  class="w180 mr10 find_field" id="srch_sel01" name="find_field">
                   <option value="">검색할 항목을 선택하세요</option>
                   <option value="mem_id">작성자</option>
                   <option value="o_sj">글제목</option>
                   <option value="o_ct">글내용</option>
                </select> <label for="srch_txt" class="dnone"></label><input type="text"
-                  name="find_name" id="srch_txt" class="w280 mr10"
+                  name="find_name" id="srch_txt" class="w280 mr10 find_name"
                   value="검색어를 입력하세요" /> <input type="submit" class="btn_srch"
                   value="검색" />
 
@@ -191,26 +191,10 @@
 </section>
 <!-- // container End -->
 <script>
+$(function(){
+	$("#viewcount").val("${limit}").prop("selected",true);
+	
+})
 
-$("#viewcount").val("${limit}").prop("selected",true);
-
-function find_check(){
-   if($('#srch_sel01').val().trim()==''){
-      alert('검색할 항목을 설정해주세요');
-      return false;
-   }
-   
-   if($('#srch_txt').val().trim()==''){
-      alert('검색할 값을 입력해주세요');
-      return false;
-   }
-   
-   if($('#srch_txt').val().trim()=='검색어를 입력하세요'){
-      alert('검색할 값을 입력해주세요');
-      return false;
-   }
-   
-      
-}
 </script>
 <%@ include file="../../inc/footer.jsp"%>

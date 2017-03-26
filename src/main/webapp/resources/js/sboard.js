@@ -1,10 +1,4 @@
 
-function find_check(){
-	if($('#srch_txt').val().trim()==''){
-		alert('검색할 값을 입력해주세요');
-	}
-}
-
 function delete_check(){
 	if (confirm("정말 삭제하시겠습니까??") == true){
 		var s_no = $("#s_no").val();
@@ -15,8 +9,10 @@ function delete_check(){
 			type : "post",
 			url : "sboarddelete_ok.brn",
 			success : function(data){
-				if(data==1)
+				if(data==1){
 					alert('게시물이 삭제되었습니다');
+					location.href="sboardList.brn";
+				}
 				else
 					alert('게시물 삭제에 실패했습니다'+data);
 			},

@@ -7,7 +7,7 @@
 <title>자료실 답변</title>
 <link rel="stylesheet" type="text/css" href="./resources/css/bbs.css" />
 <link rel="stylesheet" type="text/css" href="./resources/css/admin.css" />
-<script src="./resources/js/jquery.js"></script>
+<script src="./resources/js/jquery.min.js"></script>
 <script src="./resources/js/bbs.js"></script>
 </head>
 <body>

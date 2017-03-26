@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.Calendar"%>
 <!DOCTYPE html>
-<html ng-app>
+<html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -12,11 +11,9 @@
 <title>Burn Fat</title>
 <link href="${pageContext.request.contextPath}/resources/css/sub.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/angular.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/sboard.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/fboard.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/list.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/gboard.js"></script> 
 
 

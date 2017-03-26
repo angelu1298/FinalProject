@@ -48,8 +48,6 @@ public class ScrapAction {
 				//String mem_id = (String)session.getAttribute("mem_id");
 				int mem_no = (Integer)session.getAttribute("mem_no");
 				
-				//System.out.println(mem_id);
-				System.out.println(mem_no);
 				
 				int page = 1;
 				int limit = 10;
@@ -67,8 +65,6 @@ public class ScrapAction {
 					session.setAttribute("limit", limit); 
 				}
 		
-				System.out.println("limit = " + limit);
-				System.out.println("page = " + page);
 				
 				int listcount = scrapservice.getOscrapCount(mem_no); //oboard게시판에서 스크랩한 게시글 수
 		
@@ -113,8 +109,6 @@ public class ScrapAction {
 				//String mem_id = (String)session.getAttribute("mem_id");
 				int mem_no = (Integer)session.getAttribute("mem_no");
 				
-				//System.out.println(mem_id);
-				System.out.println(mem_no);
 				
 				int page = 1;
 				int limit = 10;
@@ -132,8 +126,6 @@ public class ScrapAction {
 					session.setAttribute("limit", limit); 
 				}
 		
-				System.out.println("limit = " + limit);
-				System.out.println("page = " + page);
 				
 				int listcount = scrapservice.getEscrapCount(mem_no); //eboard게시판에서 스크랩한 게시글 수
 		
@@ -178,8 +170,6 @@ public class ScrapAction {
 				//String mem_id = (String)session.getAttribute("mem_id");
 				int mem_no = (Integer)session.getAttribute("mem_no");
 				
-				//System.out.println(mem_id);
-				System.out.println(mem_no);
 				
 				int page = 1;
 				int limit = 10;
@@ -197,12 +187,9 @@ public class ScrapAction {
 					session.setAttribute("limit", limit); 
 				}
 		
-				System.out.println("limit = " + limit);
-				System.out.println("page = " + page);
 				
 				int listcount = scrapservice.getGscrapCount(mem_no); //eboard게시판에서 스크랩한 게시글 수
 					
-				System.out.println(listcount);
 				
 				int maxpage = (listcount + limit - 1) / limit;
 		
@@ -221,7 +208,6 @@ public class ScrapAction {
 				m.put("limit", limit);
 
 				List<GbbsBean> gbslist = scrapservice.getGbsScrap(mem_no);
-				System.out.println("gggggggggggbslist = " + gbslist);
 				ModelAndView mv = new ModelAndView("html_mypage/scrap/g_myScrap");
 				
 				mv.addObject("page", page);
@@ -246,8 +232,6 @@ public class ScrapAction {
 				//String mem_id = (String)session.getAttribute("mem_id");
 				int mem_no = (Integer)session.getAttribute("mem_no");
 				
-				//System.out.println(mem_id);
-				System.out.println(mem_no);
 				
 				int page = 1;
 				int limit = 10;
@@ -265,8 +249,6 @@ public class ScrapAction {
 					session.setAttribute("limit", limit); 
 				}
 		
-				System.out.println("limit = " + limit);
-				System.out.println("page = " + page);
 				
 				int listcount = scrapservice.getFscrapCount(mem_no); //eboard게시판에서 스크랩한 게시글 수
 		
@@ -287,7 +269,6 @@ public class ScrapAction {
 				m.put("limit", limit);
 
 				List<FboardBean> fbslist = scrapservice.getFbsScrap(mem_no);
-				System.out.println(fbslist);
 				ModelAndView mv = new ModelAndView("html_mypage/scrap/f_myScrap");
 				
 				mv.addObject("page", page);
@@ -312,8 +293,6 @@ public class ScrapAction {
 				//String mem_id = (String)session.getAttribute("mem_id");
 				int mem_no = (Integer)session.getAttribute("mem_no");
 				
-				//System.out.println(mem_id);
-				System.out.println(mem_no);
 				
 				int page = 1;
 				int limit = 10;
@@ -331,8 +310,6 @@ public class ScrapAction {
 					session.setAttribute("limit", limit); 
 				}
 		
-				System.out.println("limit = " + limit);
-				System.out.println("page = " + page);
 				
 				int listcount = scrapservice.getSscrapCount(mem_no); //eboard게시판에서 스크랩한 게시글 수
 		
@@ -354,7 +331,6 @@ public class ScrapAction {
 				m.put("limit", limit);
 
 				List<SboardBean> sbslist = scrapservice.getSbsScrap(mem_no);
-				System.out.println(sbslist);
 				
 				ModelAndView mv = new ModelAndView("html_mypage/scrap/s_myScrap");
 				

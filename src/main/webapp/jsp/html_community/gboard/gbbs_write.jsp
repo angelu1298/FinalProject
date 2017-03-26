@@ -25,7 +25,6 @@
 					<!-- 제목 -->
 					<div class="board_tit">
 						<input type="text" name="gbbs_subject" id="gbbs_subject" size="40" />
-						<input type="hidden" name="gbbs_mem_no" id="gbbs_mem_no" value="1" size="14" class="input_box"/>
 					</div>						 
 					<!--// 제목--> 
 					

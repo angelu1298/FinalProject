@@ -18,7 +18,7 @@
 					$(".centerbox > ul > li").removeClass("on")
 					$(this).parents("li").addClass("on");
 				})
-				parent.document.getElementById('talkframe').src = "http://127.0.0.1:3000?mem_id=${sessionScope.mem_id}";
+				parent.document.getElementById('talkframe').src = "http://112.154.136.153:3000?mem_id=${sessionScope.mem_id}";
 			})
 		</script>
 			
@@ -73,15 +73,15 @@
 							<dl>
 								<dt>식품</dt>
 								<dd>
-									<c:if test="${!empty olist}">
-									<c:forEach items="${olist}" var="o">
-										<a href="./obs_view.brn?num=${o.o_no}&page=1&state=cont">
-											<strong>${o.o_sj}</strong>
-											<span class="date">${o.o_dt}</span>
+									<c:if test="${!empty flist}">
+									<c:forEach items="${flist}" var="f">
+										<a href="./fbs_list.brn?num=${f.f_no}&page=1&state=cont">
+											<strong>${f.f_sj}</strong>
+											<span class="date">${f.f_dt}</span>
 										</a>
 									</c:forEach>
 									</c:if>
-									<c:if test="${empty olist}">
+									<c:if test="${empty flist}">
 										<p class="nolist">등록된 게시물이 없습니다.
 									</c:if>
 								</dd>
@@ -93,15 +93,15 @@
 							<dl>
 								<dt>자유</dt>
 								<dd>
-									<c:if test="${!empty flist}">
-										<c:forEach items="${flist}" var="f">
-											<a href="./fbs_list.brn?num=${f.f_no}&page=1&state=cont">
-												<strong>${f.f_sj}</strong>
-												<span class="date">${f.f_dt}</span>
+									<c:if test="${!empty olist}">
+										<c:forEach items="${olist}" var="o">
+											<a href="./obs_list.brn?num=${o.o_no}&page=1&state=cont">
+												<strong>${o.o_sj}</strong>
+												<span class="date">${o.o_dt}</span>
 											</a>
 										</c:forEach>
 									</c:if>
-									<c:if test="${empty flist}">
+									<c:if test="${empty olist}">
 										<p class="nolist">등록된 게시물이 없습니다.
 									</c:if>
 								</dd>
@@ -148,24 +148,26 @@
 			
 			<div class="pinkarea">
 				<div>
-				
+					<a href="./juiceMake.brn">
 					<dl class="pink01">
-						<dt><a href="./juiceMake.brn">당신의 건강주스 칼로리를 계산해드립니다</a></dt>
-						<dd><a href="./juiceMake.brn">My DIET Recipe</dd>
+						<dt>당신의 건강주스 칼로리를 계산해드립니다</dt>
+						<dd>My DIET Recipe</dd>
 					</dl>
-					
+					</a>
 					<dl class="pink02">
-						<dt><a href="">효율적인 몸매관리를 도와드립니다</a></dt>
-						<dd><a href="">My DIET Diary</a></dd>
+						<dt>효율적인 몸매관리를 도와드립니다</dt>
+						<dd>My DIET Diary</dd>
 					</dl>
-					
-					<dl class="pink03">
-						<dt><a href="./obs_list.brn">다이어트에 관련된 이야기를 공유합니다</a></dt>
-						<dd><a href="./obs_list.brn">My DIET Story</a></dd>
-					</dl>
+					<a href="./obs_list.brn">
+						<dl class="pink03">
+							<dt>다이어트에 관련된 이야기를 공유합니다</dt>
+							<dd>My DIET Story</dd>
+						</dl>
+					</a>
 				
 				</div>
 			</div>
+			
 			
 			<div class="bottomarea">
 				<div>

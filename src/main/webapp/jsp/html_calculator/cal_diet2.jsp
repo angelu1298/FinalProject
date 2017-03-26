@@ -21,10 +21,7 @@
 					if($('.goal_weight').val() > 150){
 						alert('병원가세요');
 						$('.goal_weight').val('');
-					}/* else if($('.goal_weight').val() < 36){
-						alert('최저몸무게는 36kg입니다');
-						$('.goal_weight').val('');
-					}   */
+					}
 				});
 				
 				
@@ -44,9 +41,7 @@
 						var now_weight = $('.now_weight').val();
 						var goal_weight = $('.goal_weight').val();
 						var goalDay = $('.goalDay').val();
-			// 			var select_per = Integer.parseInt($('.per:checked').val());
 						var select_per = $('.per:checked').val();
-						alert(select_per);
 						$.ajax({
 							data : {
 								"now_weight" : now_weight,
@@ -115,74 +110,6 @@
 			  	<button class="cal_diet_button">결과보기</button> 
 			</div>
 			</div>
-			
-			<!-- 	$(function() {
-				$('.cal_diet_button').each(function(index, item) {
-					$(this).on('click', function() {
-						var now_weight = $('.now_weight').val();
-						var goal_weight = $('.goal_weight').val();
-						var goalDay = $('.goalDay').val();
-						var select_per = $('.per').val();
-						$.ajax({
-							data : {
-								"now_weight" : now_weight,
-								"goal_weight" : goal_weight,
-								"goalDay" : goalDay,
-								"select_per" : select_per
-							
-							},
-							type : "post",
-							url : "calculator_diet_ok.brn",
-							success : function(data) {
-								var item =$.param(data);
-								alert(item);
-									$('.result').load('cal_diet_result.brn',item);
-									
-							},
-							error : function(data, status) {
-								alert('결과 출력 실패');
-							}
-						})
-					})
-				});
-			}); -->
-			
-			<!-- $(function() {
-				$('.cal_diet_button').each(function(index, item) {
-					$(this).on('click', function() {
-						var now_weight = $('.now_weight').val();
-						var goal_weight = $('.goal_weight').val();
-						var goalDay = $('.goalDay').val();
-						var select_per = $('.per').val();
-						$.ajax({
-							data : {
-								"now_weight" : now_weight,
-								"goal_weight" : goal_weight,
-								"goalDay" : goalDay,
-								"select_per" : select_per
-							
-							},
-							type : "post",
-							url : "calculator_diet_ok.brn",
-							success : function(data) {
-								var item =$.param(data);
-								alert(item);
-									$('.result').load('cal_diet_result.brn',item);
-									
-							},
-							error : function(data, status) {
-								alert('결과 출력 실패');
-							}
-						})
-					})
-				});
-			}); -->
-				
-		
-		
-		
-		
-		
 		
 		</div>
 		

@@ -11,17 +11,7 @@
 		<script>
 	
 	
-      		$(function () {/* 
-
-      			$(".juicemake form").submit(function(){
-    				if( $(".in_blender ul li").length == 0 ){
-    					$('.modal_bg').removeClass("off");
-    					$('.modal_bg').load("alert_page.brn");
-    					var msg = "과일이나 채소를 1가지 이상 추가해주세요";
-    					messageFunc(msg); 
-    					return false;
-    				}
-      			}) */
+      		$(function () {
       			
       			$('ul.vegitablelist > li').draggable({
                     helper: 'clone', zIndex: 100, 	scroll: false

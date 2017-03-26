@@ -35,7 +35,7 @@
 		   s_dt,  s_lk,   S_lkno ,scomm_cnt
 		   from  
 	  	      (select * from sboardlist 
-	  	       order by s_lk desc , s_rc desc)
+	  	       order by  s_rc desc, s_lk desc )
 	  	   ) 
 	   	where rnum <= 5  and rnum >= 1
 		]]>
@@ -122,27 +122,6 @@
     		set scomm_cnt = (select count(*) from scomment where s_no=#{s_no})
     	where s_no=#{s_no}
     </update>
-    
-    <!-- 자료실 검색 결과 총 게시물 수 -->
-    <!-- <select id="bbsfind_cnt1" resultClass="int" 
-    parameterClass="String">
-      select count(bbs_num) from bbs6 
-      where bbs_name like #find_name#  
-    </select> -->    
-    
-    <!-- 자료실 검색 결과 총 게시물 수 -->
-    <!-- <select id="bbsfind_cnt2" resultClass="int" 
-    parameterClass="String">
-      select count(bbs_num) from bbs6
-      where bbs_subject like #find_name#
-    </select> -->    
-    
-    <!-- 자료실 검색 결과 총 게시물 수 -->
-    <!-- <select id="bbsfind_cnt3" resultClass="int" 
-    parameterClass="String">
-      select count(bbs_num) from bbs6 
-      where bbs_content like #find_name#  
-    </select>  -->   
     
     <!-- 자료실 내용 가져오기 -->
     <select id="sboardcont" resultType="sboardbean" parameterType="int">

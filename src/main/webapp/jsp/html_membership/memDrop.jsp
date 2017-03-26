@@ -3,19 +3,25 @@
 <%@ include file="/jsp/inc/logHeader.jsp"%>
 <script>
 $(function(){
-	$('#memdrop').submit(function(){
-		if($.trim($('#inputpw').val())==''){
-			$('#inputpw').css({'color':'red'});
-			$('#inputpw').val('비밀번호를 입력하세요');
-			return false;
-		}
-		if($.trim($('#inputpw').val())!=$.trim($('#checkpw').val())){
-			$('#checkpw').css({'color':'red'});
-			$('#checkpw').val('비밀번호가 일치하지 않습니다');
-			return false;
-		}
-		
-	})
+	  $('#memdrop').submit(function(){
+	      if($.trim($('#inputpw').val())==''){
+	         var newtext='<span class="txtred">비밀번호를 입력하세요.</span>';
+	         $("#inputpw_text").text('');
+	         $("#inputpw_text").show();
+	         $("#inputpw_text").html(newtext);  //span 아이디 영역에 경고 문자 추가
+	         $("#inputpw").val("").focus();
+	         return false;
+	      }
+	      if($.trim($('#inputpw').val())!=$.trim($('#checkpw').val())){   
+	         var newtext='<span class="txtred">비밀번호가 일치하지 않습니다</span>';
+	         $("#checkpw_text").text('');
+	         $("#checkpw_text").show();
+	         $("#checkpw_text").html(newtext);  //span 아이디 영역에 경고 문자 추가
+	         $("#checkpw").val("").focus();
+	         return false;
+	      }
+	      
+	   })
 })
 </script>
 
@@ -61,20 +67,22 @@ $(function(){
 							</tr>
 							<tr>
 								<th>
-									비밀번호
-								</th>
-								<td>
-									<input type="password" class="w200 " id="inputpw" name="inputpw" pattern=".{8,}">
-								</td>
-							</tr>
-							<tr>
-								<th>
-									비밀번호 확인
-								</th>
-								<td>
-									<input type="password" class="w200 " id="checkpw" name="checkpw">
-									<span class="tip_info2">비밀번호를 다시 한번 입력해주세요.</span>
-								</td>
+					                           비밀번호
+					            </th>
+					            <td>
+					                <input type="password" class="w200 " id="inputpw" name="inputpw" pattern=".{8,}">
+					                <span id="inputpw_text"></span>
+					            </td>
+					        </tr>
+					        <tr>
+					       		 <th>
+					                 	비밀번호 확인
+					             </th>
+					             <td>
+					                <input type="password" class="w200 " id="checkpw" name="checkpw">
+					                <span class="tip_info2">비밀번호를 다시 한번 입력해주세요.</span>
+					                <span id="checkpw_text"></span>
+					            </td>
 							</tr>
 						</tbody>
 						</table>

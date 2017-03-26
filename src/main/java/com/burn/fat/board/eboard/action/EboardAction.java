@@ -32,7 +32,7 @@ public class EboardAction {
 	@Autowired
 	public EboardService eboService;
 	
-	private String saveFolder="C:/Users/angel/git/FinalProject/src/main/webapp/resources/upload"; //�뙆�씪 ���옣�떆�궗 寃쎈줈
+	private String saveFolder="C:/apache-tomcat-8.0.42/webapps/FinalProject/resources/upload"; //�뙆�씪 ���옣�떆�궗 寃쎈줈
 	/* �뒪�겕�옪 */
 	@RequestMapping(value = "/eboardscrap.brn")
 	public void sboardscrap(HttpServletRequest request, HttpServletResponse response,
@@ -44,6 +44,7 @@ public class EboardAction {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("e_no", e_no);
+		
 		map.put("mem_no", mem_no);
 		int check = 0;
 		String e_lkno = this.eboService.checkscrap(e_no);
@@ -54,14 +55,11 @@ public class EboardAction {
 					check = 1;
 				}
 			}
-			System.out.println("1." + e_lkno);
 		} else {
-			System.out.println("e_lkno is null");
 		}
 		int result = 0;
 		if (check != 1) {
 			result = this.eboService.likeCountUp(map);
-			System.out.println(result);
 		}
 		PrintWriter out = response.getWriter();
 		out.print(result);
@@ -95,7 +93,7 @@ public class EboardAction {
 		PrintWriter out = response.getWriter();
 		String mem_id = (String)session.getAttribute("mem_id");
 		if(mem_id==null){
-			out.print("<script>alert('濡쒓렇�씤 �썑 �씠�슜�븷 �닔 �엳�뒿�땲�떎.');");
+			out.print("<script>alert('로그인 하세요.');");
 			out.print(" history.back()</script>");
 			
 			return null;
@@ -115,7 +113,6 @@ public class EboardAction {
 			int date=c.get(Calendar.DATE);      //�삤�뒛 �씪 援ы빀�땲�떎.
 			
             String homedir=saveFolder+"/"+year+"-"+month+"-"+date;
-            System.out.println("homedir = " + homedir);
             //upload�뤃�뜑 �븘�옒�뿉 �뙆�씪 �삱由� �궇吏쒕줈 �뤃�뜑 �깮�꽦�빀�땲�떎.
             File path1=new File(homedir);
             if(!(path1.exists())){
@@ -131,24 +128,18 @@ public class EboardAction {
 			//indexOf媛� 泥섏쓬 諛쒓껄�릺�뒗 臾몄옄�뿴�뿉 ���븳 index瑜� 諛섑솚�븯�뒗 諛섎㈃,
 			//lastIndexOf�뒗 留덉�留됱쑝濡� 諛쒓껄�릺�뒗 臾몄옄�뿴�쓽 index瑜� 諛섑솚�빀�땲�떎.
 			//(�뙆�씪紐낆뿉 �젏�뿉 �뿬�윭媛� �엳�쓣 寃쎌슦 留� 留덉�留됱뿉 諛쒓껄�릺�뒗 臾몄옄�뿴�쓽 �쐞移섎�� 由ы꽩�빀�땲�떎.)
-			System.out.println("index = " +  index);
 			
 			String fileExtension = fileName.substring(index + 1);
-			System.out.println("fileExtension = " +  fileExtension);
 			/****�솗�옣�옄 援ы븯湲� �걹 ***/
 			//�깉濡쒖슫 �뙆�씪紐낆쓣 ���옣
 			String refileName="eboard"+year+month+date+random+"."+
 					fileExtension;
-			System.out.println("refileName = " + refileName);
 			
 			 //�삤�씪�겢 �뵒鍮꾩뿉 ���옣�맆 �젅肄붾뱶 媛�
             String fileDBName="/"+year+"-"+month+"-"+date+"/"+refileName;
-            System.out.println("fileDBName = " + fileDBName);
            
             //�뙆�씪紐� 蹂�寃쏀빀�땲�떎.
             UpFile.renameTo(new File(homedir+"/"+refileName));
-            System.out.println("homedir / refileName  = " + homedir+"/"+
-            refileName);
             
            
             ebobean.setE_fl(fileDBName);
@@ -185,7 +176,7 @@ public class EboardAction {
 		HttpSession session = request.getSession();
 		
 		int page=1;
-		int limit=10; //珥덇린媛�
+		int limit=20; //珥덇린媛�
 		
 		if(request.getParameter("page") != null){
 			page=Integer.parseInt(request.getParameter("page"));
@@ -249,7 +240,6 @@ public class EboardAction {
 			page=Integer.parseInt(request.getParameter("page"));
 		}
 		
-		System.out.println("page="+page);
 		
 		//////////20以꾨낫湲� 10以꾨낫湲� 
 		//�씠�쟾�뿉 �꽕�젙�맂 limit媛� �엳�뒗吏� 泥댄겕
@@ -263,7 +253,6 @@ public class EboardAction {
  			session.setAttribute("limit", limit);
  		}
  		////////////
- 		System.out.println("limit = " + limit);
  		
 		
 		//珥� 由ъ뒪�듃 �닔 諛쏄린
@@ -516,7 +505,7 @@ public class EboardAction {
 		HttpSession session = request.getSession();
 		
 		int page=1;
-		int limit=10; //珥덇린媛�
+		int limit=20; //珥덇린媛�
 		
 		if(request.getParameter("page") != null){
 			page=Integer.parseInt(request.getParameter("page"));
@@ -544,7 +533,6 @@ public class EboardAction {
  			session.setAttribute("limit", limit);
  		}
  		////////////
- 		System.out.println("limit = " + limit);
  		
  		
 		

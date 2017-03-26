@@ -40,6 +40,9 @@ public class ScommDAO {
 	public List<ScommBean> getCommentRef(ScommBean bean) {
 		return sqlSession.selectList("Scomm.getcommentref",bean);
 	}
+	public void updatereseq(ScommBean bean) {
+		 sqlSession.update("Scomm.updatereseq",bean);
+	}
 	public int deleteCommExistRep(Map<String, Integer> map) {
 		return sqlSession.update("Scomm.deletecommexistrep",map);
 	}

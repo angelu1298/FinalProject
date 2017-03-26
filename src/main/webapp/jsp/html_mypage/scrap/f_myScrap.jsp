@@ -38,36 +38,25 @@
 						</tr>
 						<!--등록된 게시물이 있는 경우-->
 						
-						<tr>
 						<!-- 화면 출력 번호  변수 정의 -->
 						<c:set var="num" value="${listcount-(page-1)*limit}" />
 
 						<!-- 반복문 시작 -->
-
+						<c:forEach var="b" items="${bbslist}">
 							<tr align="center" valign="middle" bordercolor="#333333"
 								onmouseover="this.style.backgroundColor='F8F8F8'"
 								onmouseout="this.style.backgroundColor=''">
-							<!-- 	<td height="23" class="ten"> -->
-									<!-- 번호 출력 부분 --> <%-- <c:out value="${num}" />  --%>
+								<td height="23" class="ten"> 
+								<!-- <td> -->
+									<!-- 번호 출력 부분 --> <c:out value="${num}" />  
 									<c:set var="num" value="${num-1}" />
 								</td>
 
-						<c:forEach var="b" items="${bbslist}">
-								<td class="ten">
-									<div style="text-align: left">
-
-
+						
+								<td class="ten tit">
 										<!-- 제목 출력 부분 -->
 										<a href="bbs_cont.brn?num=${b.f_no}&page=${page}&state=cont">
 											${b.f_sj} </a>
-											
-										<%-- <c:set var="logtime" 
-										value="${boardNoticeDTO.getNo_logtime().substring(0,10).replaceAll('-', '').trim() }"></c:set>
-										<c:if test="${date-logtime < 1 }">
-										&nbsp;<img src="../images/board/new.gif" align="absmiddle">
-										</c:if> --%>
-										<!-- 새글 표시 -->
-									</div>
 								</td>
 
 
@@ -88,28 +77,32 @@
 			<!--페이징 -->
 			<div class="paginate">
 				<p>
-				<c:if test="${page <=1 }">
-					<a href="#none" class="pre" title="이전페이지">&lt;&lt;</a> 
-				</c:if>
-				<c:if test="${page > 1 }">
-					<a href="bbs_list.brn?page=${page-1}&limit=${limit}" class="pre" title="이전페이지">&lt;&lt;</a>
-				</c:if>	
-				
-				<c:forEach var="a" begin="${startpage}" end="${endpage}">
-				<c:if test="${a == page }">
-					<strong><span>${a}</span></strong>
-				</c:if>
-				<c:if test="${a != page }">
-					<a href="bbs_list.brn?page=${a}&limit=${limit}" ><strong><span>${a}</span></strong></a>&nbsp;
-				</c:if>
-				</c:forEach>
+					<a href="f_sc_view.brn?page=1" class="pre" title="맨앞">&lt;&lt;</a>
 					
-				<c:if test="${page >= maxpage }">
-					<a href="#none" class="next" title="다음페이지">&gt;</a>
-				</c:if>
-				<c:if test="${page < maxpage }">
-					<a href="bbs_list.brn?page=${page+1}&limit=${limit}" class="next" title="다음페이지">&gt;</a>
-				</c:if>		
+					<c:if test="${page <=1 }">
+						<a href="#none" class="pre" title="이전페이지">&lt;&lt;</a> 
+					</c:if>
+					<c:if test="${page > 1 }">
+						<a href="f_sc_view.brn?page=${page-1}&limit=${limit}" class="pre" title="이전페이지">&lt;&lt;</a>
+					</c:if>	
+					
+					<c:forEach var="a" begin="${startpage}" end="${endpage}">
+					<c:if test="${a == page }">
+						<strong>${a}</strong>
+					</c:if>
+					<c:if test="${a != page }">
+						<a href="f_sc_view.brn?page=${a}&limit=${limit}" >${a}</a>&nbsp;
+					</c:if>
+					</c:forEach>
+						
+					<c:if test="${page >= maxpage }">
+						<a href="#none" class="next" title="다음페이지">&gt;</a>
+					</c:if>
+					<c:if test="${page < maxpage }">
+						<a href="f_sc_view.brn?page=${page+1}&limit=${limit}" class="next" title="다음페이지">&gt;</a>
+					</c:if>		
+					<a href="f_sc_view.brn?page=${maxpage}" class="pre" title="맨뒤">&gt;&gt;</a>
+					
 				</p>
 			</div>
 			<!--//페이징 -->

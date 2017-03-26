@@ -101,7 +101,6 @@ public class GcommAction {
 		gcomm_re_lev = gcomm_re_lev+1;
 		gcomm_re_seq = gcomm_re_seq+1;
 
-		System.out.println(gcomm_re_lev + " / " + gcomm_re_seq);
 		
 		commbean.setGcomm_ct(gcomm_re_ct);
 		commbean.setGcomm_re_ref(gcomm_re_ref);

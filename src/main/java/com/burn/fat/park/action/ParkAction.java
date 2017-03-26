@@ -60,13 +60,11 @@ public class ParkAction {
 			
 			String mem_addr = parkService.getParkAddr(mem_no); //총 리스트 수를  
 	
-			System.out.println("주소  : " + mem_addr);
 			String[] memjuso = mem_addr.split(" ");
 				
 			mem_sido  = memjuso[0];
 			mem_gungu = memjuso[1];
 			
-			System.out.println(mem_sido + " / " + mem_gungu);
 			
 		}
 

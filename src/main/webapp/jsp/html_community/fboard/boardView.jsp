@@ -26,11 +26,13 @@
 				<input type="hidden" name="f_no" id="f_no" value="${bbsbean.f_no}" />
 				<input type="hidden" name="page" id="page" value="${page}" />
 				<!--LIKE-->
-				<div class="likeArea">
-					<ul> 
-						<li><a href="#" class="btn_scrap" title="스크랩" onclick="f_scrap_ok()"><span>스크랩하기</span></a></li>
-					</ul>
-				</div>
+				   <c:if test="${!empty sessionScope.mem_id }">
+			         <div class="likeArea">
+			            <ul> 
+			               <li><a href="#" class="btn_scrap" title="스크랩" onclick="f_scrap_ok()"><span>스크랩하기</span></a></li>
+			            </ul>
+			         </div>
+         		</c:if>
 				<!--//LIKE-->
 					
 				<!--제목-->
@@ -80,7 +82,7 @@
 				<div class="fl">
 				<c:if test="${bbsbean.mem_id == sessionScope.mem_id }">
 					
-	   				<a href="#" class="white" onclick="delete_check()">삭제</a>
+	   				<a href="#" class="white" onclick="f_delete_check()">삭제</a>
 					<a href="bbs_cont.brn?num=${bbsbean.f_no}&page=${page}&state=edit" class="white">수정</a>
 	   				
    				</c:if>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../../inc/subHeader.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script src="./resources/js/jquery.js"></script>
+<script src="./resources/js/jquery.min.js"></script>
 <script src="./resources/js/list.js"></script>
 <!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
 <section class="sub_container">

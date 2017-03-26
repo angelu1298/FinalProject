@@ -137,7 +137,7 @@
 		</div>
 		<!--서브컨텐츠 영역 END -->
 		
-	</sectio>
+	</section>
 	<!-- // container End -->
 
 <%@ include file="../inc/footer.jsp"%>

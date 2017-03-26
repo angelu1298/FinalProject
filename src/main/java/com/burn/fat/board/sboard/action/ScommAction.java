@@ -54,6 +54,7 @@ public class ScommAction {
 			HttpServletResponse response,@RequestParam(value="s_no") int s_no) throws Exception{
 		List<ScommBean> beanlist = new ArrayList<ScommBean>();
 		ModelAndView model=new ModelAndView("html_community/sboard/scommList");
+		sboardservice.changeScommcnt(s_no);
 		beanlist = service.getCommList(s_no);
 		model.addObject("beanlist",beanlist);
 		
@@ -89,15 +90,16 @@ public class ScommAction {
 		ScommBean commbean = new ScommBean();
 		HttpSession session = request.getSession();
 		String mem_id = (String) session.getAttribute("mem_id");
-		commbean.setMem_id(mem_id);
 		commbean.setS_no(s_no);
 		commbean.setScomm_no(scomm_no);
 		commbean = service.getComment(commbean);
 		int scomm_re_ref = commbean.getScomm_re_ref();
 		int scomm_re_lev = commbean.getScomm_re_lev();
 		int scomm_re_seq = commbean.getScomm_re_seq();
+		service.updatereseq(commbean);
 		scomm_re_lev = scomm_re_lev+1;
 		scomm_re_seq =scomm_re_seq+1;
+		commbean.setMem_id(mem_id);
 		commbean.setScomm_ct(scomm_ct);
 		commbean.setScomm_re_ref(scomm_re_ref);
 		commbean.setScomm_re_lev(scomm_re_lev);

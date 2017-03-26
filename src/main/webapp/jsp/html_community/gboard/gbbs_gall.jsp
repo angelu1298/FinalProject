@@ -105,7 +105,7 @@
 								<strong>${a}</strong>
 							</c:if>
 							<c:if test="${a != page }">
-								<a href="gbbs_gall.brn?page=${a}&limit=${limit}"><strong>${a}</strong></a>
+								<a href="gbbs_gall.brn?page=${a}&limit=${limit}">${a}</a>
 							</c:if>
 						</c:forEach>			
 						<c:if test="${page < maxpage }">
@@ -121,11 +121,13 @@
 				<!--//페이징 -->
 					
 				<!--버튼영역-->
+				<c:if test="${!empty sessionScope.mem_id }" >
 				<div class="btnB_area"> 
 					<div class="fr">
 						<a class="black" href="gbbs_write.brn">글쓰기</a>
 					</div>
 				</div>
+				</c:if>
 				<!--//버튼영역-->
 				
 				<!--검색영역 스크립트--> 
@@ -136,7 +138,7 @@
 					<form method="get" action="gbbs_find_ok.brn" onsubmit="return find_check()">
 						
 						<span class="fl ml20">
-							<select id="viewcount fl" name="limit">
+							<select id="viewcount" name="limit">
 								<option value="20">20개보기</option>
 								<option value="50">50개보기</option>
 								<option value="100">100개보기</option>
@@ -147,14 +149,14 @@
 						<p class="col"> 
 							<p class="fr mr20">
 								<label for="srch_sel01" class="sc_txt">검색영역</label>
-								<select class="w180 mr10" id="gfind_field" name="gfind_field">
+								<select class="w180 mr10 find_field" id="gfind_field" name="gfind_field">
 									<option value="">전체검색</option>
 									<option value="gbbs_author">작성자</option>
 									<option value="gbbs_subject">글제목</option>
 									<option value="gbbs_content">글내용</option>
 								</select>
 								<label for="srch_txt" class="dnone"></label>
-								<input type="text" name="gfind_name" id="gfind_name" class="w280 mr10" placeholder="검색어를 입력하세요"/>
+								<input type="text" name="gfind_name" id="gfind_name" class="w280 mr10 find_name" placeholder="검색어를 입력하세요"/>
 								<input type="submit" class="btn_srch" value="검색" />
 							</p>
 						</p>

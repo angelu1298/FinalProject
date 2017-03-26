@@ -9,7 +9,6 @@
     	$.each($(".saveDB"),function(){
     		$(this).on('click',function(){
     			if($('.exer').text()==''){
-    				alert('')
     			}
     		})
     	})
@@ -69,7 +68,6 @@
     					$(divclass).append(data);
     				},
     				error : function(data, status) {
-//     					alert('아침 식품 출력 실패');
     				}
     			});
     			

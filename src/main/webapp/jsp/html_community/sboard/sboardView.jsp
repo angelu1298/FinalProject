@@ -19,11 +19,13 @@
 				<input type="hidden" name="s_no" id="s_no" value="${sbean.s_no }" />
 				<input type="hidden" name="page" id="page" value="${page }" />
 				<!--LIKE-->
-				<div class="likeArea">
-					<ul> 
-						<li><a href="#" class="btn_scrap" title="스크랩" onclick="s_scrap_ok()"><span>스크랩하기</span></a></li>
-					</ul>
-				</div>
+				 <c:if test="${!empty sessionScope.mem_id }">
+			         <div class="likeArea">
+			            <ul> 
+			           	 <li><a href="#" class="btn_scrap" title="스크랩" onclick="s_scrap_ok()"><span>스크랩하기</span></a></li>
+			            </ul>
+			         </div>
+         		</c:if>
 				<!--//LIKE-->
 						
 				<!--제목-->

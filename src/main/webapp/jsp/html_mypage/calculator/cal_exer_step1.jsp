@@ -45,11 +45,12 @@
 					
 							});
 					});
-					</script> 
+					</script>
+					<div class="btn_list">
 					<c:forEach var="a" items="${erc_ty}" >
 						<input type="button" class="type" name="${a.erc_ty}" value="${a.erc_ty}" />
 					</c:forEach>
-			
+					</div>
 					<div class="step2 " id="step2"></div> 
 				</div>
 			</div>

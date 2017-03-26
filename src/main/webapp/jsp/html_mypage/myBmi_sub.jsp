@@ -71,7 +71,6 @@
 			
 			bmi_result = bmi_result.toFixed(1);
 			
-			alert(bmi_result);
 			
 			$("#bmivalue").val(bmi_result);
 			

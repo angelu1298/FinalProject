@@ -168,29 +168,16 @@
 	        resultType="EboBean">	
 		select * from 
 		 (select 
-		        rownum rnum, e_no, mem_no, e_sj, 
+		        rownum rnum, e_no, mem_no, e_sj, mem_id,
 		  		 e_ct, e_rc, e_dt, e_lk, e_lkno, e_fl
           from  
-<!-- 	  	     (select * from eboard -->
 	  			(select * from 
 	  	       <!-- MyBatis 동적SQL문 -->
 <!-- 		       <where> -->
-			     <!-- 검색 조건 전체인 경우 '%'||#{find_name}||'%'-->
-			     <if test="find_field=='ebo_tot'">
-			    	eboard 
-			    	where e_sj like #{find_name} 
-			    	or e_ct like #{find_name}  
-<!-- 			    	or mem_id like #{find_name} 검색조건이 글쓴이(아이디)인 경우-->
-			    	order by e_no desc)
-			     </if>
 			     <!-- 검색 조건이 글쓴이인 경우 -->
-			     <if test="find_field=='ebo_id'">
-			     	(select m.mem_id, e.e_no, e.mem_no, e.e_sj, 
-		  					 e.e_ct, e.e_rc, e.e_dt, e.e_lk, e.e_lkno, e.e_fl
-		  		  from member m, eboard e 
-			     		where e.mem_no=m.mem_no and m.mem_id like #{find_name})
-			     		 order by e_no desc)
-			     </if>
+			    <if test="find_field=='ebo_id'">
+                  eboard where mem_id like #{find_name}  order by e_no desc)
+              </if>
 			     <!-- 검색 조건이 제목인 경우 -->
 			     <if test="find_field=='ebo_subject'">
 				   eboard where e_sj like #{find_name}  order by e_no desc)

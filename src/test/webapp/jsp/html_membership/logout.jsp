@@ -3,7 +3,7 @@
 	<!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
 	<section class="log_container">
 <script>
-	parent.document.getElementById('talkframe').src = 'http://127.0.0.1:3000';
+	parent.document.getElementById('talkframe').src = 'http://112.154.136.153:3000';
 </script>
 		<!-- 서브메뉴에 따라 Side Navigation을 다르게 부여해준다. -->	
 		<%@ include file="/jsp/inc/leftMenu_log.jsp" %>

@@ -6,7 +6,7 @@
 	<!DOCTYPE html>
 	<html>
 	<head>
-	<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>web study</title>
 	<link href="css/style.css" rel="stylesheet" type="text/css"> 

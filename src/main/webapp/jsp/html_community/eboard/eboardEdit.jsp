@@ -96,7 +96,7 @@ $(function(){
 			<!--버튼영역-->
 			<div class="btnB_area">
 				<div class="fl">
-					<input type="reset" class="white"/>취소
+					<input type="reset" class="white"/>
 					<a href="ebo_list.brn" class="white">목록</a>
 				</div>
 				<div class="fr">

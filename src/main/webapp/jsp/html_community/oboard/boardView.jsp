@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../../inc/subHeader.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!-- <script src="./resources/js/jquery.js"></script>
-<script src="./resources/js/list.js"></script> -->
 <!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
 <section class="sub_container">
 
@@ -16,22 +14,19 @@
       <div class="subContent">
       
          <h3>자유게시판</h3>
-         ${sessionScope.mem_id}
          <h4>보기</h4>
       
          <!--게시글-->
          <div class="Board_view">
             <input type="hidden" name="o_no" value="${obsbean.o_no}" />
             <!--LIKE-->
-            <div class="likeArea">
-               <ul> 
-                  <li><a href="#" class="btn_scrap" title="스크랩" ><span>스크랩하기</span></a></li>
-               </ul>
-            </div>
-      
-   
-               
-                  
+             <c:if test="${!empty sessionScope.mem_id }">
+			         <div class="likeArea">
+			            <ul> 
+			               <li><a href="#" class="btn_scrap" title="스크랩" ><span>스크랩하기</span></a></li>
+			            </ul>
+			         </div>
+         		</c:if>
             <!--제목-->
             <div class="board_tit">
                ${obsbean.o_sj}

@@ -3,17 +3,18 @@
 
 <mapper namespace="Ocomm">
 <!-- 코멘트 추가 -->
-	<insert id="o_insertcomm" parameterType="scommbean" >
+	<insert id="o_insertcomm" parameterType="ocommbean" >
 		insert into ocomment
 		values(ocomm_no_seq.nextval, 
 			   (select mem_no from member where mem_id=#{mem_id}),
+			   #{mem_id},
 			   #{ocomm_ct},
 			   sysdate,
 			   ocomm_no_seq.nextval,
 			   0,
 			   0,
-			   #{o_no},
-			   #{mem_id})
+			   #{o_no}
+			   )
 	</insert>
 	<!-- 각 게시글 마다 코멘트 불러오기 -->
 	<select id="o_commlist" parameterType="int" resultType="ocommbean">
@@ -47,13 +48,14 @@
 		insert into ocomment
 		values(ocomm_no_seq.nextval, 
 				(select mem_no from member where mem_id=#{mem_id}),
+			   #{mem_id},
 			   #{ocomm_ct},
 			   sysdate,
 			   #{ocomm_re_ref},
 			   #{ocomm_re_lev},
 			   #{ocomm_re_seq},
-			   #{o_no},
-			   #{mem_id})
+			   #{o_no}
+			   )
 	</insert>
 	
 </mapper>

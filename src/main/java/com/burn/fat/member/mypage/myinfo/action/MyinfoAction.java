@@ -108,15 +108,11 @@ public class MyinfoAction {
 		String mem_id = (String)session.getAttribute("mem_id");
 		int mem_no = ((Integer)session.getAttribute("mem_no")).intValue();
 		
-		System.out.println("mem_id 마이인포= "+mem_id);
-		System.out.println("mem_no 마이인포= "+mem_no);
 		
 		MemberBean myinfobean = this.myinfoService.getMyinfo(mem_no);
 		
-		System.out.println("여기는?1-------" + myinfobean);
 		ModelAndView contM = new ModelAndView("inc/myinfo");
 
-		System.out.println("여기는?2");
 	     
         Map<String,Object> map = new HashMap<String,Object>();
  		Calendar cal2 = Calendar.getInstance();
@@ -147,8 +143,6 @@ public class MyinfoAction {
 		int mem_no = (Integer)session.getAttribute("mem_no");            
 		String my_memo = request.getParameter("my_memo");
 		
-		System.out.println("mem_no = "+mem_no);
-		System.out.println("my_memo = "+my_memo);
 		
 		/*수정*/
 		//MemberBean myinfobean = new MemberBean();
@@ -160,9 +154,6 @@ public class MyinfoAction {
 				
 		this.myinfoService.memo_update(m);// 수정메서드 호출
 
-		System.out.println("*****************************");
-		System.out.println("memo_update update success");
-		System.out.println("*****************************");
 
 		response.sendRedirect("my_view.brn");
 	
@@ -174,14 +165,11 @@ public class MyinfoAction {
 	public ModelAndView goalw_edit(HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) throws Exception {
 		
-		System.out.println("몸무게 수정");
 		
 		int mem_no = (Integer)session.getAttribute("mem_no");            
 		int goal_w = Integer.parseInt(request.getParameter("goal_w"));
 		
 		
-		System.out.println("mem_no = "+mem_no);
-		System.out.println("goal_w = "+goal_w);
 		
 		/*수정*/
 		/*MemberBean myinfobean = new MemberBean();*/
@@ -197,9 +185,6 @@ public class MyinfoAction {
 		
 		this.myinfoService.w_update(m);// 수정메서드 호출
 
-		System.out.println("*****************************");
-		System.out.println("w_update update success");
-		System.out.println("*****************************");
 
 		response.sendRedirect("my_view.brn");
 	

@@ -41,14 +41,6 @@
 							</tr>
 							<tr>
 								<th>
-									<span class="mando">비밀번호</span>
-								</th>
-								<td>
-									${member.mem_pw }
-								</td>
-							</tr>
-							<tr>
-								<th>
 									 <span class="mando">성명</span>
 								</th>
 								<td>
@@ -100,9 +92,11 @@
 									 주소
 								</th>
 								<td>
-									<li>${member.mem_zc }</li>
-									<li>${member.mem_add1 }</li>
-									<li>${member.mem_add2 }</li>
+									<ul>                           
+										<li class="mb5">${member.mem_zc }</li>
+                          				<li class="mb5">${member.mem_add1 }</li>
+                           				<li>${member.mem_add2 }</li>            
+                           			</ul>
 								</td>
 							</tr>
 							<tr>
@@ -111,7 +105,6 @@
 								</th>
 								<td>
 									${member.mem_ma }
-									</select>
 								</td>
 							</tr>
 							<tr>
@@ -136,11 +129,11 @@
 								</th>
 								<td>
 									<c:if test="${empty member.mem_wb }">
-										<img src="./resources/upload/default.PNG" width="50px" height="30px">
+										<img src="./resources/upload/default.PNG" width="50px" height="50px">
 									</c:if>
 									<c:if test="${!empty member.mem_wb}">
 										<img src="./resources/upload/${member.mem_wb }" alt="img"
-										 onchange="prewb()"/>
+										 onchange="prewb()" width="50px" height="50px"/>
 										<span class="bttxt" id="thumbnail">이렇게 되길 기원합니다</span>
 								</c:if>
 								</td>

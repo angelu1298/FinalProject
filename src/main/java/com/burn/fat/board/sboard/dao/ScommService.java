@@ -34,6 +34,10 @@ public class ScommService {
 		dao.insertCommRep(commbean);
 		
 	}
+	public void updatereseq(ScommBean commbean) {
+		dao.updatereseq(commbean);
+		
+	}
 
 
 	public Integer getCommCnt(int s_no) {

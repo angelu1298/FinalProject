@@ -1,12 +1,11 @@
 function find_check(){
 	
-	if($("#gfind_field").val().trim==''){
+	if($.trim($(".find_field").val())==''){
 		var msg = "검색할 항목을 선택해주세요";
 		messageFunc(msg);
 		return false;
 	}
-	if($('#srch_txt').val().trim()==''){
-		//alert('검색할 값을 입력해주세요');
+	if($.trim($('.find_name').val())==''){
 		var msg = "검색할 값을 입력해주세요";
 		messageFunc(msg);
 		return false;

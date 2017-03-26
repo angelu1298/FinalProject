@@ -34,7 +34,7 @@
 				<c:forEach items="${slist}" var="list">
 					<tr>
 						<td><c:out value="${num }" /><c:set var="num" value="${num-1}"/>	</td>
-						<td><a href="sboardcont.brn?s_no=${list.s_no}&page=${page}&state=cont">${list.s_sj }</a>[ ${list.scomm_cnt }]</td>
+						<td class="tit"><a href="sboardcont.brn?s_no=${list.s_no}&page=${page}&state=cont">${list.s_sj }</a>[ ${list.scomm_cnt }]</td>
 						<td>${list.mem_id }</td>
 						<td>${list.s_dt }</td>
 					</tr>
@@ -55,25 +55,33 @@
 		<!--페이징 -->
 		<div class="paginate">
 			<p>
-				<a href="sboardList.brn?page=1" class="pre" title="맨앞">&lt;&lt;</a>
+				<a href="s_sc_view.brn?page=1" class="pre" title="맨앞">&lt;&lt;</a>
+				<c:if test="${page <=1}">
+						<a href="#none" class="pre" title="이전페이지">&lt;</a>
+				</c:if>
+				
 				<c:if test="${page > 1 }">
-				<a href="sboardList.brn?page=${page-1}" class="pre" title="이전페이지">&lt;</a>
+					<a href="s_sc_view.brn?page=${page-1}" class="pre" title="이전페이지">&lt;</a>
 				</c:if>		
 			
 				<c:forEach var="a" begin="${startpage}" end="${endpage}">
 					<c:if test="${a == page }">
-						<a href="#">${a}</a>
+						<strong>${a}</strong>
 					</c:if>
 					<c:if test="${a != page }">
-						<a href="sboardList.brn?page=${a}"><strong>${a}</strong></a>
+						<a href="s_sc_view.brn?page=${a}">${a}</a>
 					</c:if>
 				</c:forEach>			
 				
+				<c:if test="${page >= maxpage }">
+					<a href="#none" class="next" title="다음페이지">&gt;</a>
+				</c:if>
 				<c:if test="${page < maxpage }">
-					<a href="sboardList.brn?page=${page+1}">&gt;</a>
-				</c:if>			
+					<a href="s_sc_view.brn?page=${page+1}&limit=${limit}" class="next" title="다음페이지">&gt;</a>
+				</c:if>	
+					
 				
-				<a href="sboardList.brn?page=${maxpage }" class="next" title="맨뒤">&gt;&gt;</a>
+				<a href="s_sc_view.brn?page=${maxpage }" class="next" title="맨뒤">&gt;&gt;</a>
 		
 			</p>
 		</div>

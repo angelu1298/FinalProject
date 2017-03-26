@@ -85,10 +85,10 @@ $(function(){
 					<input type="text" placeholder="제목을 입력해주세요." id="f_sj" name="f_sj"/>
 				</div>
 				<!--정보-->
-				<div class="Editor_Area" id="bbs_content"> 
-				 <textarea name="f_ct" id="f_ct" rows="8" cols="50"
-      				class="input_box"></textarea>
-				</div>
+				<div class="Editor_Area"> 
+	             <textarea name="f_ct" id="f_ct" rows="10" cols="766px"
+	                  class="input_box"></textarea>
+	            </div>
 				<!--첨부파일-->
 				<div class="file_Area">
 					<h6><strong>첨부파일</strong><input type="file" value="파일추가" name="f_fl"></h6>
@@ -108,7 +108,7 @@ $(function(){
 				</div>
 				<div class="fr">
 				<!-- <input type="button" id="save" class="btn_1" value="저장"/> -->
-				<a href="#" class="black" id="save" onclick="return check()" >등록</a> 
+				<a href="#" class="black" id="save" onclick="return f_check()" >등록</a> 
 				</div>
 			</div>
 			<!--//버튼영역--> 

@@ -18,5 +18,5 @@ $(function(){
 })
 </script>	
 <iframe src="./Main.brn" id="mainframe"></iframe>
-<iframe src="http://127.0.0.1:3000" id="talkframe"></iframe>
+<iframe src="http://112.154.136.153:3000" id="talkframe"></iframe>
 <input type="button" class="macaotalkview" />

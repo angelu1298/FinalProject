@@ -152,7 +152,6 @@ public class ExerCalc {
 				}
 			}
 		}
-		System.out.println(cal_eval+"@@@@@@@@@@@@@@@@@@@@@@@22");
 		ModelAndView mv = new ModelAndView("html_mypage/mypage_main");
 		mv.addObject("cal_eval", cal_eval);
 		mv.addObject("cal_date", cal_date);
@@ -507,7 +506,6 @@ public class ExerCalc {
 			HttpSession session) throws Exception{
 		
 		int mem_no = (Integer) session.getAttribute("mem_no");
-		System.out.println("wholeDay="+ wholeDay);
 		int kcal2 = Integer.parseInt(kcal);
 		
 		String erc_nm = exerbean.getImsiEN();
@@ -551,7 +549,6 @@ public class ExerCalc {
 			HttpSession session) throws Exception{
 		
 		int mem_no = (Integer) session.getAttribute("mem_no");
-		System.out.println("wholeDay="+ wholeDay);
 		int kcal2 = Integer.parseInt(kcal);
 		
 		String erc_nm = exerbean.getImsiEN();

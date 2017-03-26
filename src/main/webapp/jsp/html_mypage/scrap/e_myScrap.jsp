@@ -38,12 +38,14 @@
 						</c:if>
 						<!--등록된 게시물이 있는 경우-->
 						<c:if test="${listcount != 0}">
+						
+						<!-- 화면 출력 번호  변수 정의 -->
+						<c:set var="num" value="${listcount-(page-1)*limit}" />
+
 						<c:forEach var="e" items="${ebolist}">
 							<tr>
-								<td><!-- No -->
-									${e.e_no}
-								</td>
-								<td><!-- 제목 출력 부분 -->	
+								<td><c:out value="${num }" /><c:set var="num" value="${num-1}"/>	</td>
+								<td class="tit"><!-- 제목 출력 부분 -->	
 									<a href="eboardView.brn?num=${e.e_no}&page=${page}&state=cont">
 										${e.e_sj}
 									</a>
@@ -65,42 +67,31 @@
 				<!--페이징 -->
 				<div class="paginate">
 				<p>
-					<a href="ebo_list.brn?page=1" class="pre" title="맨앞">&lt;&lt;</a>
+					<a href="e_sc_view.brn?page=1" class="pre" title="맨앞">&lt;&lt;</a>
 					<c:if test="${page <=1}">
 						<a href="#none" class="pre" title="이전페이지">&lt;</a>
 					</c:if>
 					<c:if test="${page > 1}">
-						<a href="ebo_list.brn?page=${page-1}&limit=${limit}" class="pre" title="이전페이지">&lt;</a>
+						<a href="e_sc_view.brn?page=${page-1}&limit=${limit}" class="pre" title="이전페이지">&lt;</a>
 					</c:if>
 					<!-- 페이지가 1,2,3 이 있음 현재페이지가 2 라고 치면 
 						1은 2랑 다르니까 1에는 링크가 걸리고 2는 2랑 같으니까 링크가 안걸려야함 현재페이지니까 -->
 					<c:forEach var="a" begin="${startpage}" end="${endpage}">
 						<c:if test="${a == page }">
-							<span>${a}</span>
+							<strong>${a}</strong>
 						</c:if>
 						<c:if test="${a != page }">
-							<a href="ebo_list.brn?page=${a}&limit=${limit}" ><span>${a}</span></a>&nbsp;
+							<a href="e_sc_view.brn.brn?page=${a}&limit=${limit}" >${a}</a>&nbsp;
 						</c:if>
 					</c:forEach>
 					<!--  -->
-					<a href="ebo_list.brn?page=${maxpage}" class="pre" title="맨뒤">&gt;&gt;</a>
 					<c:if test="${page >= maxpage }">
 						<a href="#none" class="next" title="다음페이지">&gt;</a>
 					</c:if>
 					<c:if test="${page < maxpage }">
-						<a href="ebo_list.brn?page=${page+1}&limit=${limit}" class="next" title="다음페이지">&gt;</a>
+						<a href="e_sc_view.brn?page=${page+1}&limit=${limit}" class="next" title="다음페이지">&gt;</a>
 					</c:if>	
+					<a href="e_sc_view.brn?page=${maxpage}" class="pre" title="맨뒤">&gt;&gt;</a>
 				</p>
 					
-					
-					<!-- 원본 -->
-					<!-- <p>
-						<a href="#none" class="pre" title="맨앞">&lt;&lt;</a>
-						<a href="#none" class="pre" title="이전페이지">&lt;</a>
-						<strong><span>1</span></strong>
-						<a href="#none"><span>2</span></a> 
-						<a href="#none" class="next" title="다음페이지">&gt;</a>
-						<a href="#none" class="pre" title="맨뒤">&gt;&gt;</a>
-					</p> -->
 				</div>
-</form>

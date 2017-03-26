@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../../inc/subHeader.jsp"%>
-<script src="./resources/js/jquery.min.js"></script>
 <script type="text/javascript" src="./resources/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
 
 <script>
@@ -53,7 +52,6 @@ $(function(){
     });
     
     $(".btn_del").click(function() {
-    	alert("버튼눌렸어");
     	$( ".file_name" ).remove();
     });
 
@@ -79,7 +77,6 @@ $(function(){
 				<!--제목-->
 				<div class="board_tit">
 					<input type="text" name="o_sj" placeholder="제목을 입력해주세요."/>
-					<input type="text" name="mem_id" value="${mem_id }"/>
 				</div>
 				<!--정보-->
 				<div class="Editor_Area"> 

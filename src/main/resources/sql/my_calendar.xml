@@ -2,12 +2,6 @@
  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="myCalendar">
-
-	<!-- <insert id="setDay_ok" parameterType="java.util.Map">
-		insert into calendar
-		(cal_date, day, mem_no)
-		values(#{cal_date}, #{day}, #{mem_no})
-	</insert> -->
 	
 	<!-- 운동 칼로리 저장 -->
 	<insert id="setE_kcal" parameterType="java.util.Map">
@@ -41,12 +35,6 @@
 		  and cal_date = #{cal_date}
 		  and day = #{day}
 	</select>
-<!-- 	<select id="getE_kcal2" parameterType="java.util.Map" resultType="String">
-		select e_kcal from calendar
-		where mem_no = #{mem_no}
-		  and cal_date = #{cal_date}
-		  and day = #{day}
-	</select> -->
 	
 	<!-- 평가 값 저장 -->
 	<update id="setEmo_eval" parameterType="java.util.Map" >

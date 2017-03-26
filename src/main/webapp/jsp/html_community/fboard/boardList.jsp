@@ -4,12 +4,29 @@
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<script src="/fat/resources/js/jquery.min.js"></script>
- <script src="./resources/js/list.js"></script>
     
     
  <script>
+ $(function(){
+	 
         $("#viewcount").val("${limit}").prop("selected", true);
+        $("#viewcount").change(function(){
+    	    var scount=$("#viewcount").val();
+           $.ajax({
+    	       type:"POST",    
+    	       url:"bbs_list.brn",    
+    	       data: {"limit" : scount}, 
+    	       cache: false,
+    	       headers : {"cache-control" : "no-cache", "pragma" : "no-cache"},
+    	       success : function(data){    	        
+    	    	  $("body").html(data);
+    	       },
+		       error:function(){
+			        alert("data error");
+			   }
+    	      })//ajax end
+    	     });//change end
+ })
  </script>
 <!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
 <section class="sub_container">
@@ -126,7 +143,7 @@
 						<strong>${a}</strong>
 					</c:if>
 					<c:if test="${a != page }">
-						<a href="bbs_list.brn?page=${a}&limit=${limit}" ><strong><span>${a}</span></strong></a>&nbsp;
+						<a href="bbs_list.brn?page=${a}&limit=${limit}" >${a}</a>
 					</c:if>
 				</c:forEach>
 					
@@ -141,11 +158,13 @@
 				</p>
 			</div>
 			<!--버튼영역-->
+			  <c:if test="${!empty sessionScope.mem_id }" >
 			<div class="btnB_area"> 
 				<div class="fr">
 					<a href="bbs_write.brn" class="black">글쓰기</a>
 				</div>
 			</div>
+			</c:if>
 		</form>
 			<!--//페이징 -->
 			<!--검색영역-->
@@ -153,7 +172,7 @@
 		  	onsubmit="return find_check()">
 			<div class="borad_srch">
 					<span class="fl ml20">
-							<select id="viewcount fl" name="limit">
+							<select id="viewcount" name="limit">
 								<option value="20">20개보기</option>
 								<option value="50">50개보기</option>
 								<option value="100">100개보기</option>
@@ -162,13 +181,13 @@
 				<!--한줄-->
 				<p class="col">
 					<label for="srch_sel01" class="sc_txt">검색영역</label> 
-					<select class="w180 mr10" name="find_field" id="find_field" >
+					<select class="w180 mr10 find_field" name="find_field" id="find_field" >
 						<option value="bbs_name">작성자</option>
 		       			<option value="bbs_subject">글제목</option>
 		       			<option value="bbs_content">글내용</option>
 					</select> 
 					<label for="srch_txt" class="dnone"></label>
-					<input type="text" name="find_name" id="find_name" class="w280 mr10"/> 
+					<input type="text" name="find_name" id="find_name" class="w280 mr10 find_name"/> 
 					<input type="submit" class="btn_srch" value="검색" />
 				</p>
 				<!--한줄-->

@@ -1,13 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="../../inc/subHeader.jsp"%>
+<%@ include file="../../inc/boardHeader.jsp"%>
 <!-- 임시 아이디 세션 생성 -->
-<%-- <% session.setAttribute("id","testId"); %> --%>
-<script src="./resources/js/jquery.min.js"></script>
-<script src="./resources/js/list_eboard.js"></script>
 <script>
+$(function(){
    $("#viewcount").val("${limit}").prop("selected", true);
+	 $("#viewcount").change(function(){
+         var scount=$("#viewcount").val();
+         $.ajax({
+            type:"POST",    
+            url:"eboardList.brn",    
+            data: {"limit" : scount}, 
+            cache: false,
+            headers : {"cache-control" : "no-cache", "pragma" : "no-cache"},
+            success : function(data){               
+              $("body").html(data);
+            },
+           error:function(){
+               alert("data error");
+          }
+           })//ajax end
+          });//change end
+})
+   
 </script>
     
    <!-- container Start : 헤더와 푸터를 제외한 실제 영역-->
@@ -68,7 +84,7 @@
                            <a href="eboardView.brn?num=${e.e_no}&page=${page}&state=cont">
                               ${e.e_sj}
                               <c:if test="${!empty e.e_fl }">
-                              	<span class="fileExist">파일 있음</span>
+                                 <span class="fileExist">파일 있음</span>
                               </c:if>
                            </a>
                         </td>
@@ -113,22 +129,24 @@
                   </c:if>
                </c:forEach>
                <!--  -->
-               <a href="ebo_list.brn?page=${maxpage}" class="pre" title="맨뒤">&gt;&gt;</a>
                <c:if test="${page >= maxpage }">
                   <a href="#none" class="next" title="다음페이지">&gt;</a>
                </c:if>
                <c:if test="${page < maxpage }">
                   <a href="ebo_list.brn?page=${page+1}&limit=${limit}" class="next" title="다음페이지">&gt;</a>
                </c:if>   
+               <a href="ebo_list.brn?page=${maxpage}" class="pre" title="맨뒤">&gt;&gt;</a>
             </p>
                
             </div>
-            <!--//페이징 -->   
+            <!--//페이징 -->  
+            <c:if test="${!empty sessionScope.mem_id }" >
              <div class="btnB_area">
                <div class="fr">
                   <a href="./eboardWrite.brn" class="black">글쓰기</a>
                </div>
             </div>
+           </c:if>
             
          </form>      
          <!-- //form -->
@@ -136,7 +154,7 @@
             <!--검색영역-->
             <!--한줄-->
              <form method="get" action="ebo_find_ok.brn"
-                onsubmit="return find_check()">
+                onsubmit="return find_check()" name="search">
             <div class="borad_srch" id="bbsfind">
                <span class="fl ml20">
                      <select id="viewcount fl" name="limit">
@@ -147,14 +165,14 @@
                </span>
             <p class="col">
                <label for="srch_sel01" class="sc_txt">검색영역</label>
-               <select class="w180 mr10" id="srch_sel01" name="find_field">
-                  <option value="ebo_tot">전체</option>
+               <select class="w180 mr10 find_field" id="srch_sel01" name="find_field">
+                    <option value="">검색할 항목을 선택하세요</option>
                   <option value="ebo_id">작성자</option>
                       <option value="ebo_subject">글제목</option>
                       <option value="ebo_content">글내용</option>
                </select>
-               <label for="srch_txt" class="dnone"></label><input type="text" name="find_name" id="srch_txt" class="w280 mr10" value=""/>
-               <input type="submit" class="input_button" value="검색" />
+               <label for="srch_txt" class="dnone"></label><input type="text" name="find_name" id="srch_txt" class="w280 mr10 find_name" placeholder="검색어를 입력하세요"/>
+               <input type="submit" class="btn_srch" value="검색" />
             </p>
             <!--한줄-->
          </div>
