@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="statistic">
+	<select id="getEachAv" parameterType="java.util.Map" resultType="double">
+		select round(avg(cal_eval), 3)
+		from calendardistinct
+		where cal_date >= #{monthEarly} and cal_date &lt;=#{monthEnd}
+		group by mem_no
+	</select>
+	<select id="getMyAverage" parameterType="java.util.Map" resultType="double">
+		select round(avg(cal_eval), 3)
+		from calendardistinct
+		where cal_date >= #{monthEarly} and cal_date&lt;=#{monthEnd} and mem_no=#{mem_no}
+	</select>
+	<select id="getMemNum" parameterType="java.util.Map" resultType="int">
+		select count(distinct mem_no)
+		from calendardistinct
+		where cal_date >= #{monthEarly} and cal_date &lt;=#{monthEnd}
+	</select>
+	<select id="entireMemNum" parameterType="int" resultType="int">
+		select count(distinct mem_no)
+		from calendardistinct
+		where cal_date =#{yesterday}
+	</select>
+	<select id="getGoalNum" parameterType="int" resultType="int">
+		select count(distinct c.mem_no)
+		from calendardistinct c, member m
+		where cal_date =#{yesterday} and m.mem_w = m.GOAL_W and c.mem_no= m.mem_no
+	</select>
+</mapper>

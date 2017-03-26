@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fboard">
+
+	<!-- 자료실 저장 -->
+    <insert id="bbs_insert" parameterType="fboardbean">
+      insert into fboard 
+          (f_no,mem_no,f_sj, 
+           f_ct,f_fl,f_rc,f_dt)
+	      values(fboard_seq.nextval,
+					(select mem_no from member where mem_id = #{mem_id}),
+						 #{f_sj}, to_clob(#{f_ct}), #{f_fl, jdbcType=VARCHAR},
+			             0,sysdate)
+    </insert>
+    
+    <!-- 자료실 총 게시물 수 -->
+    <select id="bbs_count" resultType="int" >
+      select count(*) from fboard 
+    </select>
+    
+    
+    
+    <!-- 자료실 목록 (page번호를 전달받아서 startRow와 endRow를 구함)-->
+	<select id="bbs_list"  parameterType="java.util.Map"  resultType="fboardbean">
+	    <![CDATA[
+		select * 
+		from 
+		  (select rownum rnum, f_no,mem_id,f_sj, 
+           f_ct,f_fl,f_rc,f_dt,f_lk,f_lkno
+		   from  
+	  	      (select * from fboardlist 
+	  	       order by f_no desc, f_rc asc)
+	  	   ) 
+	   	where rnum >= ((#{page}-1) * #{limit}+1)  and rnum <= (#{page} * #{limit})
+		]]>
+	</select>    
+    
+    
+    
+    
+    <!-- 자료실 검색 결과 총 게시물 수 -->
+	<select id="bbsfind_cnt" parameterType="java.util.Map"
+		    resultType="int">
+		select count(*) from fboardlist 
+		<!-- MyBatis 동적SQL문
+		     <where>태그는 where절을 반환합니다. 
+		     <where>안의 하위 태그를 실행하고 반환값이 있으면 where절을 만들어 
+		           반환하고  반환값이 없으면 where절을 반환하지 않습니다. 
+		 -->
+		<where>
+			<!-- 검색 조건이 없는 경우 -->
+			<if test="find_field==''">
+			</if>
+			 <!-- 검색 조건이 글쓴이인 경우 -->
+			<if test="find_field=='bbs_name'">
+				mem_id like #{find_name}
+			</if> 
+			<!-- 검색 조건이 제목인 경우 -->
+			<if test="find_field=='bbs_subject'">
+				f_sj like #{find_name}
+			</if>
+			<!-- 검색 조건이 내용인 경우 -->
+			<if test="find_field=='bbs_content'">
+				f_ct like #{find_name}
+			</if>
+		</where>	
+	</select>   
+	
+	
+	<!-- 자료실 검색 목록 (page번호를 전달받아서 startRow와 endRow를 구함)-->
+	<select id="bbs_find" parameterType="java.util.Map"  
+	        resultType="fboardbean">	
+		select * from 
+		 (select 
+		        rownum rnum,f_no,mem_id,f_sj, 
+           		f_ct,f_fl,f_rc,f_dt,f_lk,f_lkno 
+          from  
+	  	     (select * from fboardlist	
+	  	
+	  	       <!-- MyBatis 동적SQL문 -->
+		       <where>
+			     <!-- 검색 조건없는 경우 -->
+			     <if test="find_field==''">
+			     </if>
+			      <!-- 검색 조건이 글쓴이인 경우 -->
+			     <if test="find_field=='bbs_name'">
+				     mem_id like #{find_name}
+			     </if> 
+			     <!-- 검색 조건이 제목인 경우 -->
+			     <if test="find_field=='bbs_subject'">
+				     f_sj like #{find_name}
+			     </if>
+			     <!-- 검색 조건이 내용인 경우 -->
+			     <if test="find_field=='bbs_content'">
+				     f_ct like #{find_name}
+			     </if>
+		      </where>	  	
+	  		  order by f_no desc)
+	  		) 
+	   		where rnum &gt;= ((#{page}-1) * 10+1)  
+	   		  and rnum &lt;= (#{page} * 10)
+	</select>    
+    
+    
+    
+    
+    <!-- 자료실 내용 가져오기 -->
+    <select id="bbs_cont" resultType="fboardbean" parameterType="int">
+      select * from fboardlist where f_no=#{num}
+    </select>
+    
+    <!-- 조회수 증가 -->
+    <update id="bbs_hit" parameterType="int">
+      update fboard 
+         set f_rc=f_rc+1 
+       where f_no=#{num}
+    </update>
+    
+    <!-- 자료실 수정 -->
+    <update id="bbs_edit" parameterType="fboardbean">
+     update fboard 
+        set f_sj=#{f_sj},
+            f_ct=#{f_ct}, f_fl=#{f_fl, jdbcType=VARCHAR}
+      where f_no=#{f_no}
+    </update>
+    
+    <!-- 자료실 삭제 -->
+    <delete id="bbs_delete" parameterType="int">
+      delete 
+      from   fboard 
+      where  f_no=#{f_no}
+    </delete>
+    
+    
+    <!-- 게시판 추천 -->
+    <update id="likecountup" parameterType="java.util.Map" >
+  		update fboard 
+  		   set 
+	  	     f_lkno = f_lkno||','||to_char(#{mem_no})||',' 
+  		  ,
+  		   	   f_lk = f_lk+1
+  		 where f_no=#{f_no}
+  	</update>
+    
+    
+    <!-- 게시판 스크랩 -->
+	<select id="checkscrap" parameterType="int" resultType="String">
+  		select f_lkno
+  		  from fboard
+  		 where f_no=#{f_no} 
+  	</select>
+
+<!-- 코멘트 입력시 게시물의 코멘트 수 증가  -->
+	<update id="updatefcommcnt" parameterType="int" >
+    	update fboard
+    		set fcomm_cnt = fcomm_cnt+1
+    	where f_no=#{f_no}
+    </update>
+
+
+<!-- 코멘트 추가 -->
+	<insert id="insertcomm" parameterType="fcommbean" >
+		insert into fcomment 
+		values(fcomm_seq.nextval, 
+			   (select mem_no from member where mem_id=#{mem_id}),
+			   #{fcomm_ct},
+			   sysdate,
+			   fcomm_seq.nextval,
+			   0,
+			   0,
+			   #{f_no})
+	</insert>
+
+	<!-- 코멘트 삭제 -->
+	<delete id="deletecomm" parameterType="java.util.Map">
+		delete  fcomment 
+		where f_no=#{f_no} and fcomm_no=#{fcomm_no}
+	</delete>
+	
+	<!-- 코멘트 리스트 -->
+		<select id="fcommlist" parameterType="int" resultType="fcommbean">
+		select * from fcommlist
+		where f_no=#{f_no}
+		order by  fcomm_re_ref desc, fcomm_re_seq asc
+	</select>
+	
+	
+	<!-- 코멘트  댓글 불러오기 -->
+	<select id="getcomment" parameterType="fcommbean" resultType="fcommbean">
+		select * from fcommlist
+		where f_no=#{f_no} and fcomm_no=#{fcomm_no}
+	</select>
+	
+    
+    
+    <!-- 코멘트에 댓글 달기 -->
+	<insert id="insertcommreply" parameterType="fcommbean">
+		insert into fcomment
+		values(fcomm_seq.nextval, 
+				(select mem_no from member where mem_id=#{mem_id}),
+			   #{fcomm_ct},
+			   sysdate,
+			   #{fcomm_re_ref},
+			   #{fcomm_re_lev},
+			   #{fcomm_re_seq},
+			   #{f_no})
+	</insert>
+	
+	<!-- 현재 코멘트에 댓글이 있는 경우 삭제된 코멘트 입니다  -->
+	<update id="deletecommexistrep" parameterType="java.util.Map">
+		update fcomment 
+		 set   fcomm_ct='삭제된 코멘트 입니다'
+		 where f_no=#{f_no} and fcomm_no=#{fcomm_no}
+	</update>
+	
+	<!-- 코멘트에 달린 댓글 확인 -->
+	<select id="getcommentref" parameterType="fcommbean" resultType="fcommbean">
+		select * from fcommlist
+		where f_no=#{f_no} and fcomm_re_ref=#{fcomm_no}
+	</select>
+	
+	
+</mapper>
+
+
+
+
+

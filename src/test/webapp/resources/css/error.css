@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+
+@import url('default.css'); 
+
+
+
+body{background:#e0e0e0;}
+.errorBox{ text-align:center; width:500px; height:auto; padding:150px 50px 100px 50px; margin:10% auto; background:#fff url(../img/bull/err.png) no-repeat center 70px; border-radius:10px; border:1px solid #c0c0c0;}
+.errorBox h1{font-size:50px; color:#232323; margin-bottom:10px;}
+.errorBox h3{font-size:20px; color:#787878; margin-bottom:50px;}	
+.errorBox input[type=button]{background:#e90c00;  color:#fff; height:40px; line-height:40px; padding:0 30px; margin:0 5px; border-radius:2px; font-size:15px;}

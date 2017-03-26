@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="mainBoard">
+ 
+	<select id="s_list" resultType="sboardbean">
+	    <![CDATA[
+		select * 
+		from 
+		  (select rownum rnum, s_no, mem_id,   s_sj, 
+		   s_ct, s_fl,   s_rc,
+		   s_dt,  s_lk,   S_lkno ,scomm_cnt
+		   from  
+	  	      (select * from sboardlist 
+	  	       order by s_dt desc)
+	  	   ) 
+	   	where rnum < 6
+		]]>
+	</select>    
+	
+	<select id="g_list"  resultType="gbbsbean">
+	    <![CDATA[
+	      select rownum, grnum, gbbs_userid, gbbs_author, gbbs_num,gbbs_mem_no,gbbs_subject,gbbs_content,gbbs_readcount,gbbs_date,gbbs_like,gbbs_likeno,gbbs_file,gbbs_comm
+	       from 
+	        (select rownum grnum, m.mem_id gbbs_userid, m.mem_nm gbbs_author, g.g_no gbbs_num, g.mem_no gbbs_mem_no, g.g_sj  gbbs_subject, 
+	                      	    g.g_ct gbbs_content, g.g_rc gbbs_readcount, g.g_dt  gbbs_date, g.g_lk gbbs_like, g.g_lkno gbbs_likeno, 
+	                      	    g.g_fl gbbs_file, g.GCOMM_CNT gbbs_comm
+				                from member m, glist g 
+				                where g.mem_no=m.mem_no order by g.g_no desc
+			) where grnum < 6
+		]]>
+	</select>    
+	
+	<select id="o_list"  resultType="obsbean">
+	    <![CDATA[
+		select * from (select rownum rnum, mem_id,mem_no,
+		 o_no, o_sj, o_ct, o_fl, o_rc, o_dt, o_lk,
+		o_lkno from oboard order by o_no desc)
+	   	where rnum < 6
+		]]>
+	</select>    
+	
+	<select id="f_list"  resultType="fboardbean">
+	    <![CDATA[
+		select * 
+		from 
+		  (select rownum rnum, f_no,mem_id,f_sj, 
+           f_ct,f_fl,f_rc,f_dt,f_lk,f_lkno
+		   from  
+	  	      (select * from fboardlist 
+	  	       order by f_no desc, f_rc asc)
+	  	   ) 
+	   	where rnum < 6
+		]]>
+	</select>    
+	
+     <select id="e_list"   resultType="ebobean">
+	    <![CDATA[
+		select * 
+		from 
+		  (select rownum rnum, e_no, mem_no,   e_sj, 
+		   e_ct, e_rc,  e_dt, e_lk, e_lkno, e_fl
+		   from  
+	  	      (select * from eboard
+	  	     	 order by e_no desc)
+	  	   ) 
+	   	where rnum < 6
+		]]>
+	</select>    
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

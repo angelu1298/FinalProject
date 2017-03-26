@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Test">
+
+	<!-- oboard 스크랩 -->
+		<!-- session id가 oboard에서 스크랩한 게시물 select -->
+		<select id="obs_scrap" resultType="obsbean" parameterType="int">
+			select * 
+			from oboard
+			where o_lkno like '%,'||#{mem_no}||',%'
+			order by o_no desc 
+		</select>
+		
+		<select id="o_scrap_count" resultType="int" parameterType="int">
+			select count(*) from 
+				(
+					select * 
+					from oboard
+					where o_lkno like '%,'||#{mem_no}||',%'
+				)
+		</select>
+		
+		
+	<!-- eboard 스크랩 -->
+		<!-- session id가 oboard에서 스크랩한 게시물 select -->
+		<select id="ebs_scrap" resultType="ebobean" parameterType="int">
+			select * 
+			from eboard
+			where e_lkno like '%,'||#{mem_no}||',%'
+			order by e_no desc 
+		</select>
+		
+		<select id="e_scrap_count" resultType="int" parameterType="int">
+			select count(*) from 
+				(
+					select * 
+					from eboard
+					where e_lkno like '%,'||#{mem_no}||',%'
+				)
+		</select>
+		
+		
+		
+	<!-- gboard 스크랩 -->
+	
+		<select id="g_scrap_count" resultType="int" parameterType="int">
+			select count(*) from 
+				(
+					select * 
+					from gboard
+					where g_lkno like '%,'||#{mem_no}||',%'
+				)
+		</select>
+
+		<select id="gbs_scrap" resultType="gbbsbean" parameterType="int">	
+			select rownum, grnum, gbbs_userid, gbbs_author, gbbs_num,gbbs_mem_no,gbbs_subject,gbbs_content,gbbs_readcount,gbbs_date,gbbs_like,gbbs_likeno,gbbs_file,gbbs_comm
+	       from 
+	        (select rownum grnum, m.mem_id gbbs_userid, m.mem_nm gbbs_author, g.g_no gbbs_num, g.mem_no gbbs_mem_no, g.g_sj  gbbs_subject, 
+	                      	    g.g_ct gbbs_content, g.g_rc gbbs_readcount, g.g_dt  gbbs_date, g.g_lk gbbs_like, g.g_lkno gbbs_likeno, 
+	                      	    g.g_fl gbbs_file, g.GCOMM_CNT gbbs_comm
+				                from member m, glist g 
+				                where g.mem_no=m.mem_no order by g.g_no desc
+			) where grnum &gt;= ((#{page}-1) * #{limit} +1)  and grnum &lt;= (#{page} * #{limit}) order by grnum asc
+		</select>
+		
+	<!-- fboard 스크랩 -->
+		<!-- session id가 oboard에서 스크랩한 게시물 select -->
+		<select id="fbs_scrap" resultType="fboardbean" parameterType="int">
+			<!-- select * 
+			from fboard
+			where f_lkno like '%,'||#{mem_no}||',%'
+			order by f_no desc  -->
+			<![CDATA[
+		select * 
+		from 
+		  (select rownum rnum, f_no,mem_id,f_sj, 
+           f_ct,f_fl,f_rc,f_dt,f_lk,f_lkno,fcomm_cnt
+		   from  
+	  	      (select * from fboardlist 
+	  	       order by f_no desc, f_rc asc)
+	  	   ) 
+	   	where f_lkno like '%,'||#{mem_no}||',%'
+			order by f_no desc
+		]]>
+		</select>
+		
+		<select id="f_scrap_count" resultType="int" parameterType="int">
+			select count(*) from 
+				(
+					select * 
+					from fboard
+					where f_lkno like '%,'||#{mem_no}||',%'
+				)
+		</select>
+		
+		
+	<!-- sboard 스크랩 -->
+		<!-- session id가 oboard에서 스크랩한 게시물 select -->
+		<select id="sbs_scrap" resultType="sboardbean" parameterType="int">
+			 <![CDATA[
+				select * 
+				from 
+				  (select rownum rnum, s_no, mem_id,   s_sj, 
+				   s_ct, s_fl,   s_rc,
+				   s_dt,  s_lk,   S_lkno ,scomm_cnt
+				   from  
+			  	      (select * from sboardlist 
+			  	       order by s_no desc)
+			  	   ) 
+			   	where s_lkno like '%,'||#{mem_no}||',%'
+					order by s_no desc 
+				]]>
+			
+		</select>
+		
+		
+		<select id="s_scrap_count" resultType="int" parameterType="int">
+			select count(*) from 
+				(
+					select * 
+					from sboard
+					where s_lkno like '%,'||#{mem_no}||',%'
+				)
+		</select>
+	
+		
+	
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

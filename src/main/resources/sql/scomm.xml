@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Scomm">
+<!-- 코멘트 추가 -->
+	<insert id="insertcomm" parameterType="scommbean" >
+		insert into scomment
+		values(scomm_no_seq.nextval, 
+			   (select mem_no from member where mem_id=#{mem_id}),
+			   #{scomm_ct},
+			   sysdate,
+			   scomm_no_seq.nextval,
+			   0,
+			   0,
+			   #{s_no})
+	</insert>
+	<!-- 각 게시글 마다 코멘트 불러오기 -->
+	<select id="scommlist" parameterType="int" resultType="scommbean">
+		select * from scommlist
+		where s_no=#{s_no}
+		order by   scomm_re_ref asc,  scomm_re_seq asc, scomm_no asc
+	</select>
+	<!-- 코멘트 삭제 코멘트 댓글이 없는 경우 -->
+	<delete id="deletecomm" parameterType="java.util.Map">
+		delete  scomment 
+		where s_no=#{s_no} and scomm_no=#{scomm_no}
+	</delete>
+	<!-- 코멘트 불러오기 -->
+	<select id="getcomment" parameterType="scommbean" resultType="scommbean">
+		select * from scommlist
+		where s_no=#{s_no} and scomm_no=#{scomm_no}
+	</select>
+	<!-- 코멘트에 달린 댓글 확인 -->
+	<select id="getcommentref" parameterType="scommbean" resultType="scommbean">
+		select * from scommlist
+		where s_no=#{s_no} and scomm_re_ref=#{scomm_no}
+	</select>
+	<!-- 현재 코멘트에 댓글이 있는 경우 삭제된 코멘트 입니다  -->
+	<update id="deletecommexistrep" parameterType="java.util.Map">
+		update scomment 
+		 set   scomm_ct='삭제된 코멘트 입니다'
+		 where s_no=#{s_no} and scomm_no=#{scomm_no}
+	</update>
+	<!-- 코멘트에 댓글 달기 -->
+	<insert id="insertcommreply" parameterType="scommbean">
+		insert into scomment
+		values(scomm_no_seq.nextval, 
+				(select mem_no from member where mem_id=#{mem_id}),
+			   #{scomm_ct},
+			   sysdate,
+			   #{scomm_re_ref},
+			   #{scomm_re_lev},
+			   #{scomm_re_seq},
+			   #{s_no})
+	</insert>
+	<update id="updatereseq" parameterType="scommbean">
+		update scomment
+		set scomm_re_seq = scomm_re_seq +1
+		where scomm_re_ref = #{scomm_re_ref} and scomm_re_seq > #{scomm_re_seq}
+	</update>
+	
+</mapper>

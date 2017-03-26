@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Test">
+
+	<!-- 처음	 -->
+	<select id="getmyinfo" resultType="memberbean" parameterType="int">
+		select * from member where mem_no=#{mem_no}
+	</select>
+	
+	<!-- my_memo 수정 -->
+	<update id="memo_update" parameterType="memberbean">
+		update member
+		set my_memo=#{my_memo}
+		where mem_no=#{mem_no}
+	</update>
+	
+	<!-- my_w 수정 -->
+	<update id="w_update" parameterType="java.util.Map">
+		update member
+		set goal_w=#{goal_w}
+		where mem_no=#{mem_no}
+	</update>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

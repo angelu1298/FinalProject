@@ -1,0 +1,88 @@
+@CHARSET "UTF-8";
+
+@import url('default.css'); 
+@import url('include.css'); 
+
+* {font-family:'Nanum Square','나눔스퀘어','Nanum Barun Gothic','나눔바른고딕', NanumGothic,'나눔고딕';}
+.mainarea{ padding-top:100px; width:100%; min-width:1024px; height:auto; text-align:center; background:url(../img/main/mainbg01.jpg) no-repeat center center; background-size:auto 100%; background-attachment: fixed; }
+
+.mainarea > .mainbox{ width:1000px; height:500px; display:block; margin:80px auto;  }
+.centerbox, .leftbox, .rightbox {  display:block; height:500px; float:left; }
+
+.centerbox { width:500px; } 
+.leftbox, .rightbox { width:250px; } 
+.leftbox > .box,
+.rightbox > .box { width:250px; height:250px; display:block;}
+a:hover{ color:#fce0e0; }
+.centerbox { position:relative;  padding:50px 80px;  }
+.centerbox .c_tit{ }
+.centerbox .c_tit h2 { width:70%; height:80px;  background:url(../img/main/tit_story.png) no-repeat 0 0 ; background-size:100% auto; text-indent:-9999px; }
+.centerbox .c_tit p { color:#fff; font-weight:400; font-size:17px; text-align:left; font-weight:400;}
+.centerbox ul { position:relative; margin-top:50px; display:inline-block; width:100%; height:auto; }
+.centerbox ul > li { float:left; color:#fff; text-aling:left;  width:100%; }
+.centerbox ul > li > dl{ width:100%; }
+.centerbox ul > li > dl > dt{ position:absolute; top:0; height:45px; line-height:45px; width:40px; text-align:center; cursor:pointer; }
+.centerbox ul > li.on > dl > dt{ border-top:1px solid #fce0e0;  color:#fce0e0; line-height:43px; }
+.centerbox ul > li > dl > dt:hover{ border-top:1px solid #fff; color:#fff; line-height:43px; }
+.centerbox ul > li:nth-child(1) > dl > dt { left:40px;  }
+.centerbox ul > li:nth-child(2) > dl > dt { left:110px; }
+.centerbox ul > li:nth-child(3) > dl > dt { left:190px; }
+.centerbox ul > li:nth-child(4) > dl > dt { left:260px; } 
+
+.centerbox ul > li > dl > dd { display:none; position:absolute; top:60px; left:0; }
+.centerbox ul > li.on > dl { width:100%;  display:block;  text-align:left;border-top:1px solid rgba(255,255,255,0.3);  }
+.centerbox ul > li.on > dl > dd { width:100%;  display:block !important;  position:relative; }
+.centerbox ul > li.on > dl > dd > a { position:relative; clear:both; display:block; width:100%; padding-left:10px; border-bottom:1px solid rgba(255,255,255,0.3);  height:45px; line-height:45px;   }
+.centerbox ul > li.on > dl > dd > a strong{ float:left; font-size:13px; width:100%;  padding-right:80px; font-weight:500; word-break:keep-all; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;  }
+.centerbox ul > li.on > dl > dd > a .date{  position:absolute; top:0; right:10px; font-size:11px; width:65px;  height:50px; dsiplay:block; overflow:hidden; }
+.centerbox ul > li.on > dl > dd	.nolist{ border-bottom:1px solid rgba(255,255,255,0.3);   border-top:1px solid rgba(255,255,255,0.3);  text-align:center; padding-top:100px; padding-bottom:100px; font-size:11px; background:url(../img/ic/ic_comment_w.png) no-repeat center 60px; }
+.centerbox ul > li.on > dl > dd > a:hover{ background:rgba(0,0,0,0.2); }
+.leftbox  > .box.box01 { background:rgba(0,0,0,0.5); }
+.leftbox  > .box.box02 { background:rgba(192,180,160,0.3); }
+.rightbox > .box.box03 { background:rgba(190,35,25,0.5); }
+.rightbox > .box.box04 { background:rgba(20,20,20,0.5); }
+
+.mainbox .box { padding:60px 35px;  }
+.mainbox .box input[type=text]{ width:130px; height:30px; margin-left:10px; padding:0 10px; line-height:30px; float:left; display:block; border:1px solid rgba(255,255,255,0.2); border-radius:2px; background:none; appearance:none;  font-size:13px; color:#fff; }
+.mainbox .box input[type=submit].btn_srch{ width:30px; height:30px; line-height:30px; margin:0 5px 0 0; padding:0; float:right; display:block; text-indent:-9999px; background:url(../img/main/btn_srch.png) no-repeat center center; background-size:20px; opacity:0.5; cursor:pointer; appearance:none; font-size:13px; color:#fff;  }
+.mainbox .box input[type=submit].btn_srch:hover,
+.mainbox .box input[type=submit].btn_srch:focus {opacity:0.8; }
+.mainbox .box input[type=button].btn_enter{ width:120px; height:30px; margin:0 auto;  padding:0 10px; line-height:30px; display:block; border:1px solid rgba(255,255,255,0.5); background:none; appearance:none;  font-size:13px; color:#fff; cursor:pointer; }
+.mainbox .box input[type=button].btn_enter:focus,
+.mainbox .box input[type=button].btn_enter:hover{ border:1px solid rgba(255,255,255,0.8); border-radius:2px; color:#fff; background:rgba(255,255,255,0.1); }
+.mainbox .box input[type=text]:focus,
+.mainbox .box input[type=text]:hover{ border:1px solid rgba(255,255,255,0.8); color:#fff; background:rgba(255,255,255,0.1); }
+
+.mainbox .box h4 { height:50px; margin-bottom:20px; background-repeat:no-repeat; background-position:center; background-color:transparent; background-size:auto 18px; text-indent:-9999px;  }
+.mainbox .box a { display:block; line-height:30px;  width:140px; height:30px; margin:0 0 5px 20px; clear:both; color:#fff; border-radius:3px; border:1px solid rgba(255,255,255,0.5); }
+.mainbox .box a:hover {color:#fce0e0;  border:1px solid rgba(255,255,255,1); background:rgba(255,255,255,0.1); }
+.mainbox .box.box01 h4 { background-image:url(../img/main/stit_calc.png); }
+.mainbox .box.box02 h4 { background-image:url(../img/main/stit_park.png); }
+.mainbox .box.box03 h4 { background-image:url(../img/main/stit_calory.png); }
+.mainbox .box.box04 h4 { background-image:url(../img/main/stit_chat.png); background-size:auto 40px;  }
+
+.pinkarea{ width:100%; height:200px;  text-align:center; background:url(../img/main/mainbg02.jpg) no-repeat center center; background-size:100% auto; }
+.pinkarea > div{ margin:0 auto;  display:inline-block; }
+.pinkarea div dl{ float:left; margin:0 50px; width:250px; height:200px; padding-top:100px; background-size:30px; background-repeat:no-repeat; background-position:center 50px;   }
+.pinkarea div dl dt{ display:block; width:100%; height:20px;  font-size:14px; color:#fff; letter-spacing:-1px; }
+.pinkarea div dl dd{ display:block; width:100%; height:30px;  background-size: auto 16px; background-repeat:no-repeat; background-position:center; text-indent:-9999px;  }
+.pinkarea div dl.pink01 { background-image:url(../img/main/img_diary.png); }
+.pinkarea div dl.pink02 { background-image:url(../img/main/img_recipe.png); }
+.pinkarea div dl.pink03 { background-image:url(../img/main/img_story.png); }
+.pinkarea div dl.pink01 dd { background-image:url(../img/main/stit_diary.png); }
+.pinkarea div dl.pink02 dd { background-image:url(../img/main/stit_recipe.png); }
+.pinkarea div dl.pink03 dd { background-image:url(../img/main/stit_story.png); }
+
+.bottomarea{ width:100%; height:360px; padding:30px 0;  text-align:center; background:#000 url(../img/main/mainbg03.jpg) no-repeat 0 -5px; background-size: 100% ;  }
+.bottomarea > div{ margin:0 auto;  width:1000px; display:inline-block; }
+.bottomarea > div ul { float:right; width:300px; height:300px;   }
+.bottomarea > div ul li { width:150px; height:150px; display:block; float:left; }
+.bottomarea > div ul li a{ width:150px; height:150px; display:block; text-indent:-9999px; background-repeat:no-repeat; background-position:center;  background-size:auto 20px; }
+.bottomarea > div ul li.btn_Exercise a { background-image:url(../img/main/ftit_exercise.png); }
+.bottomarea > div ul li.btn_Cuisine a { background-image:url(../img/main/ftit_cuisine.png); border:1px solid rgba(255,255,255,0.3); }
+.bottomarea > div ul li.btn_Grocery a { background-image:url(../img/main/ftit_grocery.png); border:1px solid rgba(255,255,255,0.3); }
+.bottomarea > div ul li.btn_Diet a { background-image:url(../img/main/ftit_diet.png); }
+.bottomarea > div ul li:hover a { background-color:rgba(255,255,255,0.1); }
+
+footer{ position:static !important; }
+

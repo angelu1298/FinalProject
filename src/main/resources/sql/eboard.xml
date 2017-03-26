@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Eboard">
+
+	<!-- 스크랩 여부 확인 -->
+  	<select id="checkscrap" parameterType="int" resultType="String">
+  		select e_lkno
+  		  from eboard
+  		 where e_no=#{e_no} 
+  	</select>
+  	
+  	<update id="likecountup" parameterType="java.util.Map" >
+  		update eboard 
+  		   set 
+	  	     e_lkno = e_lkno||','||to_char(#{mem_no})||',' 
+  		  ,
+  		   	   e_lk = e_lk+1
+  		 where e_no=#{e_no}
+  	</update>
+  	
+	<!-- 글 번호 구하기 -->
+	<select id="ebo_getNo" resultType="int">
+		select max(e_no) from eboard
+	</select>
+	
+	<!-- 글 저장 -->
+    <insert id="ebo_insert" parameterType="ebobean">
+      insert into eboard 
+          (e_no, e_sj, e_ct, e_rc, e_dt, mem_id, e_fl)
+      values(#{e_no}, #{e_sj}, #{e_ct},
+              0, sysdate, #{mem_id}, #{e_fl, jdbcType=VARCHAR})
+    </insert>
+    
+    
+    <!-- 글 총 게시물 수 -->
+    <select id="ebo_count" resultType="int" >
+      select count(*) from eboard 
+    </select>
+    
+    
+    <!-- 글 목록 (page번호를 전달받아서 startRow와 endRow를 구함)-->
+	<select id="ebo_list"  parameterType="java.util.Map"  resultType="ebobean">
+	    <![CDATA[
+		select * 
+		from 
+		  (select rownum rnum, e_no, mem_id,   e_sj, 
+		   e_ct, e_rc,  e_dt, e_lk, e_lkno, e_fl
+		   from  
+	  	      (select * from eboard
+	  	     	 order by e_no desc)
+	  	   ) 
+	   	where rnum >= ((#{page}-1) * #{limit}+1)  
+	   		and rnum <= (#{page} * #{limit})
+	   		
+		]]>
+	</select>    
+    
+    
+    <!-- 글 내용 가져오기 -->
+    <select id="ebo_cont" resultType="ebobean" parameterType="int">
+      select * from eboard where e_no=#{e_no}
+    </select>
+    
+    <!-- 조회수 증가 -->
+    <update id="ebo_hit" parameterType="int">
+      update eboard 
+         set e_rc = e_rc+1 
+       where e_no = #{num}
+    </update>
+    
+    <!-- 글 수정 -->
+    <update id="ebo_edit" parameterType="ebobean">
+    	update eboard
+    	  set e_rc = e_rc-1, e_sj=#{e_sj}, e_ct=#{e_ct},
+    	   e_fl=#{e_fl, jdbcType=VARCHAR}
+    	 where e_no=#{e_no} 
+    </update>
+    
+    <!-- 글 삭제 -->
+    <delete id="ebo_delete" parameterType="int">
+    	delete eboard
+    		where e_no=#{e_no}
+    </delete>
+    
+    <update id="ebo_updateNo" parameterType="int">
+    	update eboard set e_no=e_no-1 where e_no>=#{e_no}
+    </update>
+    
+    <!-- 회원정보 갖고오기 -->
+	<select id="mem_IdCk" parameterType="String" resultType="String">
+    	select mem_id from member where mem_id=#{id}
+    </select>  
+    
+    <select id="mem_NoCk" parameterType="String" resultType="int">
+    	select mem_no from member where mem_id=#{id}
+    </select>
+    
+    <!-- 좋아요 -->
+   <!--  <update id="joayo_up" parameterType="java.util.Map">
+    	update eboard set e_lk=e_lk+1 and e_lkno=#{e_lkno} where e_no=#{e_no}
+    </update> -->
+    
+    <select id="joayo_get" parameterType="int" resultType="int">
+    	select e_lk from eboard where e_no=#{e_no}
+    </select>
+    
+    <!-- 추천인 회원번호 저장 -->
+   <!-- 	<update id="setLkno" parameterType="java.util.Map">
+   		update eboard set e_lkno=#{mem_no.to_Char()} where e_no=#{e_no}
+   	</update> -->
+    	
+   <update id="joayo_up" parameterType="java.util.Map">
+      update eboard
+         set e_rc = e_rc-1 , e_lk = e_lk+1 
+         where e_no = #{e_no} 
+   </update>
+<!--    
+	where e_no = #{e_no} and e_lkno != to_char(#{mem_no})
+	<update id="setLkno" parameterType="int">
+      update eboard
+         set e_rc = e_rc-1 , e_lk = e_lk+1 , e_lkno = concat(e_lkno,',',#{gbbs_mem_no})
+         where e_no = #{gbbs_mem_no} and e_lkno not like '%'||to_char(#{gbbs_mem_no})||'%'
+   </update> -->
+   	
+   	
+   	<!-- 추천인 회원번호 불러오기 -->
+   	<select id="getLkno" parameterType="int" resultType="String">
+   		select e_lkno from eboard where e_no=#{e_no}
+   	</select>
+   	
+    
+     <!-- 자료실 검색 결과 총 게시물 수 -->
+	<select id="getFindName" parameterType="java.util.Map"
+		    resultType="int">
+<!-- 		select count(*) from eboard -->
+		select count(*) from 
+		<!-- MyBatis 동적SQL문
+		     <where>태그는 where절을 반환합니다. 
+		     <where>안의 하위 태그를 실행하고 반환값이 있으면 where절을 만들어 
+		           반환하고  반환값이 없으면 where절을 반환하지 않습니다. 
+		 -->
+<!-- 		<where> -->
+			<!-- 검색 조건이 전체인 경우 -->
+			<if test="find_field=='ebo_tot'">
+				eboard where e_sj like #{find_name} or e_ct like #{find_name}
+			</if>
+			<!-- 검색 조건이 글쓴이인 경우 -->
+			<if test="find_field=='ebo_id'">
+				(select m.mem_id from member m, eboard e 
+			     		where e.mem_no=m.mem_no and m.mem_id like #{find_name})
+			     		 
+			</if>
+			<!-- 검색 조건이 제목인 경우 -->
+			<if test="find_field=='ebo_subject'">
+				eboard where e_sj like #{find_name}
+			</if>
+			<!-- 검색 조건이 내용인 경우 -->
+			<if test="find_field=='ebo_content'">
+				eboard where e_ct like #{find_name}
+			</if>
+<!-- 		</where>	 -->
+	</select>   
+	
+	
+		<!-- 자료실 검색 목록 (page번호를 전달받아서 startRow와 endRow를 구함)-->
+	<select id="getEboList3"  parameterType="java.util.Map"  
+	        resultType="EboBean">	
+		select * from 
+		 (select 
+		        rownum rnum, e_no, mem_no, e_sj, mem_id,
+		  		 e_ct, e_rc, e_dt, e_lk, e_lkno, e_fl
+          from  
+	  			(select * from 
+	  	       <!-- MyBatis 동적SQL문 -->
+<!-- 		       <where> -->
+			     <!-- 검색 조건이 글쓴이인 경우 -->
+			    <if test="find_field=='ebo_id'">
+                  eboard where mem_id like #{find_name}  order by e_no desc)
+              </if>
+			     <!-- 검색 조건이 제목인 경우 -->
+			     <if test="find_field=='ebo_subject'">
+				   eboard where e_sj like #{find_name}  order by e_no desc)
+			     </if>
+			     <!-- 검색 조건이 내용인 경우 -->
+			     <if test="find_field=='ebo_content'">
+				    eboard where e_ct like #{find_name}  order by e_no desc)
+			     </if>
+<!-- 		      </where>	  	 -->
+<!-- 	  		  order by e_no desc) -->
+	  		) 
+	   		where rnum &gt;= ((#{page}-1) * #{limit}+1)  
+	   		  and rnum &lt;= (#{page} * #{limit})
+	</select>  
+	
+	<!-- 아이디 얻어오기 -->
+	<select id="findId" resultType="String">
+		select m.mem_id from eboard e, member m 
+			where e.mem_no = m.mem_no
+	</select>
+	
+	<!-- 코멘트저장 -->
+	<insert id="insertEComm" parameterType="ecommBean">
+		insert into ecomment
+		(ecomm_no, 
+		mem_no,
+		ecomm_ct, 
+		ecomm_dt, 
+		e_no, 
+		ecomm_re_ref, 
+		ecomm_re_lev, 
+		ecomm_re_seq  )
+		values
+		(e_comm_seq2.nextval, 
+		(select mem_no from member where mem_id=#{mem_id}),
+		#{ecomm_ct}, 
+		sysdate, 
+		#{e_no},
+		e_comm_seq2.nextval,
+		0,
+		0 )
+	</insert>
+	
+	<!-- 코멘트 총갯수 -->
+	<select id="commCount" parameterType="int" resultType="int">
+		select count(*) from ecomment 
+			where e_no = #{e_no}
+	</select>
+	
+	
+	
+	
+	<!-- !코멘트목록 불러오기 -->
+	<select id="getEComment" parameterType="ecommBean" resultType="ecommBean">
+	  	select * from ecommlist
+    		where e_no=#{e_no}
+    		and ecomm_no=#{ecomm_no}
+	</select>
+	
+	<!-- 각 게시글 마다 코멘트 불러오기 -->
+	<select id="getECommList" parameterType="int" resultType="ecommBean">
+		select * from ecommlist
+		where e_no=#{e_no}
+		order by  ecomm_re_ref desc, ecomm_re_seq asc
+	</select>
+	
+	
+	
+	
+	
+	<!--// 답글 불러오기 -->
+	<select id="getComm_re" parameterType="java.util.Map" resultType="ecommBean">
+		select * from ecomment
+		where e_no=#{e_no} and ecomm_no=#{ecomm_no} 
+	</select>
+	
+	<select id="getcId" parameterType="int" resultType="String">
+		select mem_id from member
+			where mem_no=#{mem_no}
+	</select>
+	
+	<!--// 코멘트에 달린 댓글 확인 -->
+	<select id="getcommentref" parameterType="ecommBean" resultType="ecommBean">
+		select * from ecommlist
+		where e_no=#{e_no} and ecomm_re_ref=#{ecomm_no}
+	</select>
+	
+	 <!-- 답글 레벨 증가 -->
+    <update id="ecomm_Level" parameterType="ecommBean">
+        update ecomment 
+           set ecomm_re_seq=ecomm_re_seq+1
+		 where ecomm_re_ref=#{ecomm_re_ref}  and ecomm_re_seq > #{ecomm_re_seq}
+    </update>
+    
+    <!-- 답글 저장 -->
+    <insert id="insertECommRep" parameterType="ecommBean">   
+       insert into ecomment( 
+              ecomm_no, mem_no, ecomm_ct,
+              e_no,
+              ecomm_re_ref,ecomm_re_lev, ecomm_re_seq, ecomm_dt) 
+       values(
+              e_comm_seq2.nextval, 
+              (select mem_no from member where mem_id=#{mem_id}),
+              #{ecomm_ct},
+               #{e_no}, #{ecomm_re_ref},#{ecomm_re_lev},
+              #{ecomm_re_seq}, sysdate)
+    </insert>
+    
+    
+    <!-- 코멘트 삭제 -->
+    <delete id="deleteEcomm" parameterType="java.util.Map">
+    	delete ecomment
+    		where ecomm_no = #{ecomm_no}
+<!--     		where ecomm_re_del_no = #{ecomm_re_del_no} and ecomm_no = #{ecomm_no} -->
+    </delete>
+    
+    <!-- //코멘트 삭제 코멘트 답글이 없는 경우 : 걍삭제 -->
+	<delete id="deletecomm" parameterType="java.util.Map">
+		delete  ecomment 
+		where e_no=#{e_no} and ecomm_no=#{ecomm_no}
+	</delete>
+	
+	<!-- //현재 코멘트에 답글이 있는 경우 삭제된 코멘트 입니다  -->
+	<update id="deletecommexistrep" parameterType="java.util.Map">
+		update ecomment 
+		 set   ecomm_ct='삭제된 코멘트 입니다'
+		 where e_no=#{e_no} and ecomm_no=#{ecomm_no}
+	</update>
+	
+	
+	<!-- 코멘트 입력시 게시물의 코멘트 수 증가  -->
+	<update id="changeEcommcnt" parameterType="int" >
+    	update eboard
+    		set ecomm_cnt = (select count(*) from ecomment where e_no=#{e_no})
+    	where e_no=#{e_no}
+    </update>
+    
+</mapper>
+
+
+
+
+
+
+
+
+
